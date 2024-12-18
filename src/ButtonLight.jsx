@@ -1,5 +1,11 @@
 import "./ButtonLight.css";
 
-export default function ButtonLight({ children }) {
-  return <button className="buttonLight">{children}</button>;
+export default function ButtonLight({ children, isSelected }) {
+  return (
+    <button
+      className={"buttonLight" + (isSelected ? " buttonLightActive" : "")}
+    >
+      {children}
+    </button>
+  );
 }

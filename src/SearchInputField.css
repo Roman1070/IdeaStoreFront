@@ -1,0 +1,26 @@
+.searchInputFieldBlock {
+  flex-grow: 120;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background: #eee;
+  border-radius: 40px;
+  padding: 15px 10px;
+  flex-grow: 120;
+  height: 20px;
+  transition-duration: 0.3s;
+}
+.searchInputFieldBlock:hover {
+  background: #ddd;
+}
+
+.searchInputField {
+  background: inherit;
+  width: 100%;
+  height: 100%;
+  outline: none;
+  border: none;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: 600;
+}

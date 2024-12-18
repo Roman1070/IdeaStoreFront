@@ -24,7 +24,6 @@ export default function Homepage() {
   }
   return (
     <>
-      <BoardSelector></BoardSelector>
       <div className="ideasParent">
         {images.map((image) => (
           <IdeaCard

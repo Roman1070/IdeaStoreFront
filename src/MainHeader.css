@@ -2,6 +2,15 @@
   height: 80px;
   align-items: center;
   display: flex;
-  padding-top: 16px;
   width: 100%;
+  flex-shrink: 0;
+  min-width: 300px;
+}
+
+.mainHeaderSmallButton {
+  margin: 0px 10px;
+  width: 40px;
+  height: 40px;
+  border-radius: 40px;
+  border: 0px;
 }

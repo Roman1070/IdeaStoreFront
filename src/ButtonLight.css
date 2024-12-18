@@ -1,19 +1,21 @@
 .buttonLight {
-  height: 37px;
+  height: 40px;
   display: inline-block;
   text-align: center;
   font-weight: 600;
   font-size: 16px;
 
-  padding: 0px 20px;
+  padding: 0px 0px;
   cursor: pointer;
-  letter-spacing: 2px;
+  letter-spacing: 1px;
   position: relative;
   overflow: hidden;
   background-color: unset;
   border: 0px;
 }
-
+.buttonLightActive {
+  width: 100%;
+}
 .buttonLight:before {
   content: "";
   position: absolute;

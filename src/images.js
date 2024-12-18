@@ -1,2 +1,2 @@
 let imagesCount = 18;
-let imgs = [];
+let images = [];

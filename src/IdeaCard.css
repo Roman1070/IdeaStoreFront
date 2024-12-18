@@ -2,5 +2,26 @@
   display: inline-block;
   justify-content: center;
 }
-.ideaCard:hover {
+.activeIdeaCard {
+  background-color: #000;
+  border-radius: 20px;
+}
+
+.saveButton {
+  background-color: red;
+  width: 100%;
+  height: 100%;
+  border-radius: 30px;
+  font-family: inherit;
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  padding-bottom: 3px;
+  color: #fff;
+  transition-duration: 0.3s;
+  border: none;
+}
+
+.saveButton:hover {
+  background-color: darkred;
 }

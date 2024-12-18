@@ -1,23 +1,40 @@
 import IdeaCard from "./IdeaCard.jsx";
 import NoDraggingLayout from "./NoDraggingLayout.jsx";
-import { imgs, imagesCount } from "./images.js";
+import { images, imagesCount } from "./images.js";
 import "./Homepage.css";
+import { useState } from "react";
 import BoardSelector from "./BoardSelector.jsx";
 export default function Homepage() {
-  imgs = [];
+  const [currentCard, setCurrentCard] = useState(null);
+  images = [];
   for (let i = 0; i < 18; i++) {
-    imgs.push(`images/image${i + 1}.jpg`);
+    images.push({
+      src: `images/image${i + 1}.jpg`,
+      index: i,
+    });
   }
 
-  function onMouseEnter(card) {
-    console.log("card mouse enter");
+  function onMouseEnter(index) {
+    console.log(index);
+    setCurrentCard(index);
+  }
+
+  function onMouseExit(index) {
+    setCurrentCard(null);
   }
   return (
     <>
       <BoardSelector></BoardSelector>
       <div className="ideasParent">
-        {imgs.map((image) => (
-          <IdeaCard key={image} image={image} onMouseEnter={onMouseEnter} />
+        {images.map((image) => (
+          <IdeaCard
+            key={image.index}
+            image={image.src}
+            onMouseEnter={onMouseEnter}
+            onMouseExit={onMouseExit}
+            index={image.index}
+            isSelected={currentCard == image.index}
+          />
         ))}
       </div>
     </>

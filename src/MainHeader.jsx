@@ -10,6 +10,7 @@ export default function MainHeader() {
           height: "32px",
           display: "inline-block",
           transformOrigin: "50% 100%",
+          marginLeft: "20px",
         }}
       />
       <span

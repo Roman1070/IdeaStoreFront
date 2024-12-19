@@ -1,7 +1,8 @@
 import logo from "./logo.svg";
 import "./App.css";
-import Homepage from "./Homepage.jsx";
-import MainHeader from "./MainHeader.jsx";
+import Homepage from "./Homepage/Homepage.jsx";
+import SavedIdeasPage from "./SavedIdeasPage/SavedIdeasPage.jsx";
+import MainHeader from "./MainHeader/MainHeader.jsx";
 import {
   BrowserRouter as Router,
   Routes,
@@ -18,6 +19,7 @@ function App() {
           with exact path "/", in component props 
           we passes the imported component*/}
           <Route exact path="/" element={<Homepage />} />
+          <Route exact path="/saved_ideas" element={<SavedIdeasPage />} />
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </Router>

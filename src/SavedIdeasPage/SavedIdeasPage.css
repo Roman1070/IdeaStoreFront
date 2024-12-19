@@ -1,0 +1,23 @@
+.upperHeader {
+  margin: 0px 8%;
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+.profilePictureOnSavedIdeas {
+  width: 60px;
+  height: 60px;
+  display: inline-block;
+  border-radius: 60px;
+  margin: 0px 20px;
+}
+.profileBlockOnSavedIdeas {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.savedIdeasHeader {
+  font-size: 36px;
+  font-weight: 500;
+}

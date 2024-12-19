@@ -1,9 +1,8 @@
-import IdeaCard from "./IdeaCard.jsx";
-import NoDraggingLayout from "./NoDraggingLayout.jsx";
-import { images, imagesCount } from "./images.js";
+import IdeaCard from "../IdeaCard/IdeaCard.jsx";
+import { images, imagesCount } from "../images.js";
 import "./Homepage.css";
 import { useState } from "react";
-import BoardSelector from "./BoardSelector.jsx";
+
 export default function Homepage() {
   const [currentCard, setCurrentCard] = useState(null);
   images = [];

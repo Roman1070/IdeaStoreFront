@@ -1,5 +1,5 @@
-import ButtonLight from "./ButtonLight";
-import SearchInputField from "./SearchInputField";
+import ButtonLight from "../ButtonLight/ButtonLight";
+import SearchInputField from "../SearchInputField/SearchInputField";
 import "./MainHeader.css";
 export default function MainHeader() {
   return (

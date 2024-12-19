@@ -1,2 +1,3 @@
-let imagesCount = 18;
+const imagesCount = 18;
 let images = [];
+let savedImages = [];

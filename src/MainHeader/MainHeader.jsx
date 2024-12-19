@@ -1,7 +1,10 @@
 import ButtonLight from "../ButtonLight/ButtonLight";
 import SearchInputField from "../SearchInputField/SearchInputField";
 import "./MainHeader.css";
+import { useState } from "react";
 export default function MainHeader() {
+  const [selectedTab, setSelectedTab] = useState(0);
+  console.log(selectedTab);
   return (
     <header className="mainHeader">
       <img
@@ -22,7 +25,14 @@ export default function MainHeader() {
           position: "relative",
         }}
       >
-        <ButtonLight>Главная</ButtonLight>
+        <ButtonLight
+          onClick={() => {
+            setSelectedTab(0);
+          }}
+          isSelected={selectedTab == 0}
+        >
+          Главная
+        </ButtonLight>
       </span>
       <span
         style={{
@@ -31,12 +41,31 @@ export default function MainHeader() {
           position: "relative",
         }}
       >
-        <ButtonLight>Создать</ButtonLight>
+        <ButtonLight
+          isSelected={selectedTab == 1}
+          onClick={() => {
+            setSelectedTab(1);
+          }}
+        >
+          Создать
+        </ButtonLight>
       </span>
       <SearchInputField />
-      <button className="mainHeaderSmallButton"></button>
-      <button className="mainHeaderSmallButton"></button>
-      <button className="mainHeaderSmallButton"></button>
+
+      <button className="mainHeaderSmallButton">
+        <img src="bell.png" alt="" className="imgInHeaderSmallButton" />
+      </button>
+      <button className="mainHeaderSmallButton">
+        <img src="message.png" alt="" className="imgInHeaderSmallButton" />
+      </button>
+      <button
+        onClick={() => {
+          setSelectedTab(2);
+        }}
+        className="mainHeaderSmallButton"
+      >
+        <img src="profileTemp.jpg" alt="" className="imgInHeaderSmallButton" />
+      </button>
     </header>
   );
 }

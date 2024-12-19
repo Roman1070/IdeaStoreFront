@@ -1,11 +1,23 @@
 import "./ButtonLight.css";
-
-export default function ButtonLight({ children, isSelected }) {
+import { Link } from "react-router-dom";
+export default function ButtonLight({ children, isSelected, onClick, url }) {
   return (
-    <button
-      className={"buttonLight" + (isSelected ? " buttonLightActive" : "")}
+    <div
+      style={{
+        display: "inline-block",
+      }}
     >
-      {children}
-    </button>
+      <button onClick={onClick} className={"buttonLight"}>
+        {children}
+      </button>
+      {isSelected && (
+        <div
+          style={{
+            height: "2px",
+            backgroundColor: "#000",
+          }}
+        ></div>
+      )}
+    </div>
   );
 }

@@ -8,9 +8,22 @@
 }
 
 .mainHeaderSmallButton {
-  margin: 0px 10px;
+  margin: 0px 8px;
   width: 40px;
   height: 40px;
   border-radius: 40px;
   border: 0px;
+  background-color: #fff;
+  transition: 0.3s;
+  padding: 0px;
+  align-items: center;
+}
+.mainHeaderSmallButton:hover {
+  cursor: pointer;
+  background-color: #ddd;
+}
+.imgInHeaderSmallButton {
+  width: 24px;
+  height: 24px;
+  border-radius: 30px;
 }

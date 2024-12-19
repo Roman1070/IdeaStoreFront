@@ -1,6 +1,14 @@
+.upperModalBlock {
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  padding: 0 7.5%;
+  margin-bottom: 30px;
+}
+
 .upperHeader {
-  margin: 0px 8%;
   margin-top: 20px;
+  margin-bottom: 40px;
   display: flex;
   justify-content: space-between;
 }
@@ -9,7 +17,6 @@
   height: 60px;
   display: inline-block;
   border-radius: 60px;
-  margin: 0px 20px;
 }
 .profileBlockOnSavedIdeas {
   display: flex;
@@ -20,4 +27,22 @@
 .savedIdeasHeader {
   font-size: 36px;
   font-weight: 500;
+}
+
+.usernameInSavedIdeas {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+.usernameBlockInSavedIdeas {
+  margin: 0px 20px;
+}
+
+.openProfileButtonInSavedIdeas {
+  width: 160px;
+  height: 40px;
+  border-radius: 40px;
+  border: none;
+  font-size: 14px;
+  font-weight: 550;
 }

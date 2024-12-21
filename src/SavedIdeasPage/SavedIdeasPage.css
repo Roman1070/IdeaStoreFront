@@ -1,0 +1,48 @@
+.upperModalBlock {
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  padding: 0 7.5%;
+  margin-bottom: 30px;
+}
+
+.upperHeader {
+  margin-top: 20px;
+  margin-bottom: 40px;
+  display: flex;
+  justify-content: space-between;
+}
+.profilePictureOnSavedIdeas {
+  width: 60px;
+  height: 60px;
+  display: inline-block;
+  border-radius: 60px;
+}
+.profileBlockOnSavedIdeas {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.savedIdeasHeader {
+  font-size: 36px;
+  font-weight: 500;
+}
+
+.usernameInSavedIdeas {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+.usernameBlockInSavedIdeas {
+  margin: 0px 20px;
+}
+
+.openProfileButtonInSavedIdeas {
+  width: 160px;
+  height: 40px;
+  border-radius: 40px;
+  border: none;
+  font-size: 14px;
+  font-weight: 550;
+}

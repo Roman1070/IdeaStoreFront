@@ -8,7 +8,7 @@ export default function BoardSelector() {
         paddingLeft: "10px",
       }}
     >
-      <ButtonLight>All</ButtonLight>
+      <ButtonLight>Все</ButtonLight>
     </div>
   );
 }

@@ -13,9 +13,7 @@
   background-color: unset;
   border: 0px;
 }
-.buttonLightActive {
-  width: 100%;
-}
+
 .buttonLight:before {
   content: "";
   position: absolute;

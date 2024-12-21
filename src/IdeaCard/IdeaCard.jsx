@@ -27,14 +27,13 @@ export default function IdeaCard({
             src={image}
             alt={image}
             style={{
-              color: "#000",
               width: "100%",
               borderRadius: "20px",
-              opacity: 1,
+              color: "#000",
+              opacity: 0.3,
               zIndex: "1",
             }}
           />
-
           <div
             style={{
               position: "absolute",

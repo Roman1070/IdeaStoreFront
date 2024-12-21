@@ -1,21 +1,9 @@
-import IdeaCard from "./IdeaCard.jsx";
-import NoDraggingLayout from "./NoDraggingLayout.jsx";
-import { images, imagesCount } from "./images.js";
-import "./Homepage.css";
+import IdeaCard from "./IdeaCard/IdeaCard";
 import { useState } from "react";
-import BoardSelector from "./BoardSelector.jsx";
-export default function Homepage() {
-  const [currentCard, setCurrentCard] = useState(null);
-  images = [];
-  for (let i = 0; i < 18; i++) {
-    images.push({
-      src: `images/image${i + 1}.jpg`,
-      index: i,
-    });
-  }
 
+export default function PinsScroll({ images }) {
+  const [currentCard, setCurrentCard] = useState(null);
   function onMouseEnter(index) {
-    console.log(index);
     setCurrentCard(index);
   }
 

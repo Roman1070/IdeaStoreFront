@@ -2,18 +2,11 @@ import "./SavedIdeasPage.css";
 import ButtonLight from "../ButtonLight/ButtonLight";
 import IdeasScroll from "../IdeasScroll";
 import { useState } from "react";
+import { GetSavedIdeas, GetUserByEmail } from "../db";
 export default function SavedIdeasPage() {
   const [selectedTab, setSelectedTab] = useState(0);
 
-  let savedImages = [];
-  for (let i = 0; i < 40; i++) {
-    if (i % 2 == 0) {
-      savedImages.push({
-        src: `images/image${i + 1}.jpg`,
-        index: i,
-      });
-    }
-  }
+  let savedImages = GetSavedIdeas(GetUserByEmail("yaro@mail.ru"));
   return (
     <>
       <div className="upperModalBlock">
@@ -34,7 +27,12 @@ export default function SavedIdeasPage() {
             </button>
           </div>
         </div>
-        <div>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+          }}
+        >
           <span
             style={{
               marginRight: "30px",

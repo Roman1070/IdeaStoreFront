@@ -4,7 +4,7 @@ import "./MainHeader.css";
 import { useState } from "react";
 export default function MainHeader() {
   const [selectedTab, setSelectedTab] = useState(0);
-  console.log(selectedTab);
+
   return (
     <header className="mainHeader">
       <img
@@ -26,10 +26,11 @@ export default function MainHeader() {
         }}
       >
         <ButtonLight
+          url={"/"}
           onClick={() => {
             setSelectedTab(0);
           }}
-          isSelected={selectedTab == 0}
+          isSelected={window.location.pathname == "/"}
         >
           Главная
         </ButtonLight>
@@ -42,7 +43,8 @@ export default function MainHeader() {
         }}
       >
         <ButtonLight
-          isSelected={selectedTab == 1}
+          url={"/create"}
+          isSelected={window.location.pathname == "/create"}
           onClick={() => {
             setSelectedTab(1);
           }}
@@ -58,13 +60,11 @@ export default function MainHeader() {
       <button className="mainHeaderSmallButton">
         <img src="message.png" alt="" className="imgInHeaderSmallButton" />
       </button>
-      <button
-        onClick={() => {
-          setSelectedTab(2);
-        }}
-        className="mainHeaderSmallButton"
-      >
+      <a href="/saved_ideas" className="mainHeaderSmallButton">
         <img src="profileTemp.jpg" alt="" className="imgInHeaderSmallButton" />
+      </a>
+      <button className="arrowNearProfile">
+        <img src="downArrow.png" alt="" className="imgInHeaderSmallButton" />
       </button>
     </header>
   );

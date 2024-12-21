@@ -9,6 +9,7 @@ import {
   Route,
   Navigate,
 } from "react-router-dom";
+import CreatePage from "./CreatePage/CreatePage.jsx";
 function App() {
   return (
     <>
@@ -19,6 +20,7 @@ function App() {
           with exact path "/", in component props 
           we passes the imported component*/}
           <Route exact path="/" element={<Homepage />} />
+          <Route exact path="/create" element={<CreatePage />} />
           <Route exact path="/saved_ideas" element={<SavedIdeasPage />} />
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>

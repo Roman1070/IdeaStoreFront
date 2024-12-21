@@ -1,7 +1,7 @@
 import IdeaCard from "./IdeaCard/IdeaCard";
 import { useState } from "react";
 
-export default function PinsScroll({ images }) {
+export default function IdeasScroll({ images }) {
   const [currentCard, setCurrentCard] = useState(null);
   function onMouseEnter(index) {
     setCurrentCard(index);

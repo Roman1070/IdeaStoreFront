@@ -18,12 +18,30 @@
   padding: 0px;
   align-items: center;
 }
+
 .mainHeaderSmallButton:hover {
   cursor: pointer;
   background-color: #ddd;
 }
 .imgInHeaderSmallButton {
-  width: 24px;
-  height: 24px;
+  width: 60%;
+  height: 60%;
   border-radius: 30px;
+  padding: 20% 20%;
+}
+.arrowNearProfile {
+  margin: 0px 8px;
+  width: 28px;
+  height: 28px;
+  border-radius: 28px;
+  border: 0px;
+  background-color: #fff;
+  transition: 0.3s;
+  padding: 0px;
+  align-items: center;
+}
+
+.arrowNearProfile:hover {
+  cursor: pointer;
+  background-color: #ddd;
 }

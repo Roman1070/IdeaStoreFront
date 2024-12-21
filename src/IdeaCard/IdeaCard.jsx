@@ -14,26 +14,17 @@ export default function IdeaCard({
       onMouseLeave={() => onMouseExit(index)}
       className={"ideaCard" + (isSelected ? " activeIdeaCard" : "")}
       style={{
-        display: "flex",
-        height: "max-content",
-        justifyContent: "center",
         backgroundImage: { image },
-        position: "relative",
       }}
     >
+      <img
+        src={image}
+        alt={image}
+        style={{ width: "100%", borderRadius: "20px" }}
+      />
+      <div className="ideaCardFade"></div>
       {isSelected && (
         <>
-          <img
-            src={image}
-            alt={image}
-            style={{
-              width: "100%",
-              borderRadius: "20px",
-              color: "#000",
-              opacity: 0.3,
-              zIndex: "1",
-            }}
-          />
           <div
             style={{
               position: "absolute",
@@ -47,13 +38,6 @@ export default function IdeaCard({
             <button className="saveButton">Сохранить</button>
           </div>
         </>
-      )}
-      {!isSelected && (
-        <img
-          src={image}
-          alt={image}
-          style={{ width: "100%", borderRadius: "20px" }}
-        />
       )}
     </div>
   );

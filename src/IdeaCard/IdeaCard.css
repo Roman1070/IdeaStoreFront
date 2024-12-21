@@ -1,12 +1,28 @@
 .ideaCard {
-  display: inline-block;
   justify-content: center;
+
+  display: flex;
+  height: max-content;
+  justify-content: center;
+  position: relative;
 }
 .activeIdeaCard {
   background-color: #000;
   border-radius: 20px;
 }
-
+.ideaCardFade {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  background-color: #000;
+  opacity: 0;
+  z-index: 2;
+  transition-duration: 0.3s;
+}
+.ideaCardFade:hover {
+  opacity: 0.7;
+}
 .saveButton {
   background-color: red;
   width: 100%;

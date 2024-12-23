@@ -1,0 +1,23 @@
+.modalBlock {
+  position: fixed;
+  height: 600px;
+  width: 350px;
+  display: grid;
+  right: 20px;
+  top: 70px;
+  place-items: center;
+  background-color: rgba(0, 0, 0, 0.322);
+  z-index: 5;
+}
+
+.modalContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  box-shadow: 5px 3px 4px 10px rgba(0, 0, 0, 1);
+  height: 100%;
+  max-width: 100%;
+  background-color: white;
+  border-radius: 20px;
+}

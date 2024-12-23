@@ -32,7 +32,7 @@ export default function IdeaCard({
               height: "55px",
               top: "10px",
               right: "10px",
-              zIndex: "5",
+              zIndex: "3",
             }}
           >
             <button className="saveButton">Сохранить</button>

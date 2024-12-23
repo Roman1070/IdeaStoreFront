@@ -2,6 +2,15 @@ import ButtonLight from "../ButtonLight/ButtonLight";
 import SearchInputField from "../SearchInputField/SearchInputField";
 import "./MainHeader.css";
 import { useState } from "react";
+
+function signIn() {
+  localStorage.setItem("loggedIn", true);
+  window.location.replace("/");
+}
+function signUp() {
+  localStorage.setItem("loggedIn", true);
+  window.location.replace("/");
+}
 export default function MainHeaderGuest() {
   const [selectedTab, setSelectedTab] = useState(0);
 
@@ -42,8 +51,12 @@ export default function MainHeaderGuest() {
           flexDirection: "row",
         }}
       >
-        <button className="signInButton">Войти</button>
-        <button className="signUpButton">Регистрация</button>
+        <button onClick={signIn} className="signInButton">
+          Войти
+        </button>
+        <button onClick={signUp} className="signUpButton">
+          Регистрация
+        </button>
       </div>
     </header>
   );

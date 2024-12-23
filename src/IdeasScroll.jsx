@@ -3,14 +3,14 @@ import { useState } from "react";
 
 export default function IdeasScroll({ ideas }) {
   var loggedIn = localStorage.getItem("loggedIn");
-  if (loggedIn == null) loggedIn = false;
+  if (loggedIn == null) loggedIn = "false";
   const [currentCard, setCurrentCard] = useState(null);
   function onMouseEnter(index) {
-    if (loggedIn) setCurrentCard(index);
+    if (loggedIn == "true") setCurrentCard(index);
   }
 
   function onMouseExit(index) {
-    if (loggedIn) setCurrentCard(null);
+    if (loggedIn == "true") setCurrentCard(null);
   }
   return (
     <>

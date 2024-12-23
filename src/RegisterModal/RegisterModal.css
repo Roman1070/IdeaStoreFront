@@ -1,0 +1,42 @@
+.registerModalBlock {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  height: 771px;
+  width: 464px;
+  display: grid;
+  place-items: center;
+  z-index: 5;
+  place-self: center;
+}
+.registerModalBlockFade {
+  position: absolute;
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+  z-index: 10;
+}
+.registerModalContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex;
+  box-shadow: 0px 0px 2px 4px rgba(0, 0, 0, 0.1);
+  height: 100%;
+  width: 100%;
+  background-color: white;
+  border-radius: 20px;
+  padding: 20px 10px;
+}
+.registerModalIconContainer {
+  width: 100%;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.registerModalIcon {
+  width: 40px;
+}

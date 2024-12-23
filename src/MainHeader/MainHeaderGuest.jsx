@@ -1,63 +1,65 @@
 import ButtonLight from "../ButtonLight/ButtonLight";
+import RegisterModal from "../RegisterModal/RegisterModal";
 import SearchInputField from "../SearchInputField/SearchInputField";
 import "./MainHeader.css";
 import { useState } from "react";
 
-function signIn() {
-  localStorage.setItem("loggedIn", true);
-  window.location.replace("/");
-}
-function signUp() {
-  localStorage.setItem("loggedIn", true);
-  window.location.replace("/");
-}
 export default function MainHeaderGuest() {
   const [selectedTab, setSelectedTab] = useState(0);
-
+  const [displayRegisterModal, setDisplayRegisterModal] = useState(false);
+  console.log(displayRegisterModal);
   return (
-    <header className="mainHeader">
-      <img
-        src="logo.png"
-        alt=""
-        style={{
-          height: "32px",
-          display: "flex",
-          transformOrigin: "50% 100%",
-          marginLeft: "20px",
-          marginRight: "10px",
-        }}
-      />
-      <div className="appName">IdeaStore</div>
-      <span
-        style={{
-          padding: "0 8px",
-          flexGrow: "2",
-          position: "relative",
-        }}
-      >
-        <ButtonLight
-          url={"/"}
-          onClick={() => {
-            setSelectedTab(0);
+    <>
+      <header className="mainHeader">
+        <img
+          src="logo.png"
+          alt=""
+          style={{
+            height: "32px",
+            display: "flex",
+            transformOrigin: "50% 100%",
+            marginLeft: "20px",
+            marginRight: "10px",
           }}
-          isSelected={window.location.pathname == "/"}
+        />
+        <div className="appName">IdeaStore</div>
+        <span
+          style={{
+            padding: "0 8px",
+            flexGrow: "2",
+            position: "relative",
+          }}
         >
-          Просмотреть
-        </ButtonLight>
-      </span>
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "row",
-        }}
-      >
-        <button onClick={signIn} className="signInButton">
-          Войти
-        </button>
-        <button onClick={signUp} className="signUpButton">
-          Регистрация
-        </button>
-      </div>
-    </header>
+          <ButtonLight
+            url={"/"}
+            onClick={() => {
+              setSelectedTab(0);
+            }}
+            isSelected={window.location.pathname == "/"}
+          >
+            Просмотреть
+          </ButtonLight>
+        </span>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+          }}
+        >
+          <button className="signInButton">Войти</button>
+          <button
+            onClick={() => {
+              setDisplayRegisterModal(true);
+              document.body.style.overflow = "hidden";
+            }}
+            className="signUpButton"
+          >
+            Регистрация
+          </button>
+        </div>
+      </header>
+      <div className="mainHeaderHeightBlock"></div>
+      {displayRegisterModal && <RegisterModal />}
+    </>
   );
 }

@@ -1,16 +1,16 @@
 import "./ProfileModal.css";
+function signOut() {
+  localStorage.setItem("loggedIn", false);
+  window.location.replace("/");
+}
 export default function ProfileModal() {
   return (
     <>
-      <div className="modalBlock">
-        <div className="modalContainer">
-          <div>
-            <h2>Modal</h2>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex, nisi.
-              Dolorem est esse iste perferendis.
-            </p>
-          </div>
+      <div className="profileModalBlock">
+        <div className="profileModalContainer">
+          <button onClick={signOut} className="profileModalButton">
+            Выйти
+          </button>
         </div>
       </div>
     </>

@@ -1,4 +1,4 @@
-.modalBlock {
+.profileModalBlock {
   position: fixed;
   height: 670px;
   width: 362px;
@@ -9,14 +9,23 @@
   z-index: 5;
 }
 
-.modalContainer {
+.profileModalContainer {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
   box-shadow: 0px 0px 2px 4px rgba(0, 0, 0, 0.1);
   height: 100%;
-  max-width: 100%;
+  width: 100%;
   background-color: white;
   border-radius: 20px;
+}
+.profileModalButton {
+  border: unset;
+  width: 100%;
+  justify-content: left;
+  font-weight: 600;
+  font-size: 16px;
+  height: 30px;
+  cursor: pointer;
 }

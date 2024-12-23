@@ -19,8 +19,7 @@ function App() {
   }
   return (
     <>
-      {loggedIn && <MainHeaderSignedIn />}
-      {!loggedIn && <MainHeaderGuest />}
+      {loggedIn == "true" ? <MainHeaderSignedIn /> : <MainHeaderGuest />}
       <Router>
         <Routes>
           {/* This route is for home component 
@@ -29,7 +28,7 @@ function App() {
           <Route
             exact
             path="/"
-            element={loggedIn ? <Homepage /> : <LandingPage />}
+            element={loggedIn == "true" ? <Homepage /> : <LandingPage />}
           />
           <Route exact path="/create" element={<CreatePage />} />
           <Route exact path="/saved_ideas" element={<SavedIdeasPage />} />

@@ -1,19 +1,21 @@
 import IdeaCard from "./IdeaCard/IdeaCard";
 import { useState } from "react";
 
-export default function IdeasScroll({ images }) {
+export default function IdeasScroll({ ideas }) {
+  var loggedIn = localStorage.getItem("loggedIn");
+  if (loggedIn == null) loggedIn = false;
   const [currentCard, setCurrentCard] = useState(null);
   function onMouseEnter(index) {
-    setCurrentCard(index);
+    if (loggedIn) setCurrentCard(index);
   }
 
   function onMouseExit(index) {
-    setCurrentCard(null);
+    if (loggedIn) setCurrentCard(null);
   }
   return (
     <>
       <div className="ideasParent">
-        {images.map((image) => (
+        {ideas.map((image) => (
           <IdeaCard
             key={image.index}
             image={image.src}

@@ -55,7 +55,7 @@ export default function SavedIdeasPage() {
         </div>
       </div>
 
-      {selectedTab == 0 && <IdeasScroll images={savedImages}></IdeasScroll>}
+      {selectedTab == 0 && <IdeasScroll ideas={savedImages}></IdeasScroll>}
     </>
   );
 }

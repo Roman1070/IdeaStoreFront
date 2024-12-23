@@ -2,7 +2,7 @@ import ButtonLight from "../ButtonLight/ButtonLight";
 import SearchInputField from "../SearchInputField/SearchInputField";
 import "./MainHeader.css";
 import { useState } from "react";
-export default function MainHeader() {
+export default function MainHeaderSignedIn() {
   const [selectedTab, setSelectedTab] = useState(0);
 
   return (

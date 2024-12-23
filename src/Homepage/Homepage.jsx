@@ -8,7 +8,7 @@ export default function Homepage() {
 
   return (
     <>
-      <IdeasScroll images={images}></IdeasScroll>
+      <IdeasScroll ideas={images}></IdeasScroll>
     </>
   );
 }

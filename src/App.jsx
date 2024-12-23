@@ -2,7 +2,7 @@ import logo from "./logo.svg";
 import "./App.css";
 import Homepage from "./Homepage/Homepage.jsx";
 import SavedIdeasPage from "./SavedIdeasPage/SavedIdeasPage.jsx";
-import MainHeader from "./MainHeader/MainHeader.jsx";
+import MainHeaderSignedIn from "./MainHeader/MainHeaderSignedIn.jsx";
 import {
   BrowserRouter as Router,
   Routes,
@@ -10,16 +10,27 @@ import {
   Navigate,
 } from "react-router-dom";
 import CreatePage from "./CreatePage/CreatePage.jsx";
+import MainHeaderGuest from "./MainHeader/MainHeaderGuest.jsx";
+import LandingPage from "./LandingPage/LandingPage.jsx";
 function App() {
+  var loggedIn = localStorage.getItem("loggedIn");
+  if (loggedIn == null) {
+    loggedIn = false;
+  }
   return (
     <>
-      <MainHeader />
+      {loggedIn && <MainHeaderSignedIn />}
+      {!loggedIn && <MainHeaderGuest />}
       <Router>
         <Routes>
           {/* This route is for home component 
           with exact path "/", in component props 
           we passes the imported component*/}
-          <Route exact path="/" element={<Homepage />} />
+          <Route
+            exact
+            path="/"
+            element={loggedIn ? <Homepage /> : <LandingPage />}
+          />
           <Route exact path="/create" element={<CreatePage />} />
           <Route exact path="/saved_ideas" element={<SavedIdeasPage />} />
           <Route path="*" element={<Navigate to="/" />} />

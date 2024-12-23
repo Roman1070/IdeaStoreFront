@@ -40,8 +40,48 @@
   padding: 0px;
   align-items: center;
 }
-
+.signInButton {
+  background-color: red;
+  font-weight: 600;
+  color: white;
+  font-size: 16px;
+  transition-duration: 0.3s;
+  margin-right: 20px;
+  width: 90px;
+  height: 40px;
+  border-radius: 40px;
+  border: unset;
+  align-items: center;
+  cursor: pointer;
+}
+.signInButton:hover {
+  background-color: darkred;
+}
+.signUpButton {
+  background-color: #ddd;
+  font-weight: 600;
+  color: #333;
+  font-size: 16px;
+  transition-duration: 0.3s;
+  margin-right: 30px;
+  width: 150px;
+  height: 40px;
+  border-radius: 40px;
+  border: unset;
+  align-items: center;
+  cursor: pointer;
+}
+.signUpButton:hover {
+  background-color: #aaa;
+}
 .arrowNearProfile:hover {
   cursor: pointer;
   background-color: #ddd;
+}
+.appName {
+  font-size: 24px;
+  font-weight: 600;
+  color: red;
+  margin-right: 20px;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }

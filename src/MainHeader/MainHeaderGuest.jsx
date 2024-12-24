@@ -7,7 +7,11 @@ import { useState } from "react";
 export default function MainHeaderGuest() {
   const [selectedTab, setSelectedTab] = useState(0);
   const [displayRegisterModal, setDisplayRegisterModal] = useState(false);
-  console.log(displayRegisterModal);
+  if (displayRegisterModal) {
+    document.body.style.overflow = "hidden";
+  } else {
+    document.body.style.overflow = "visible";
+  }
   return (
     <>
       <header className="mainHeader">
@@ -50,7 +54,6 @@ export default function MainHeaderGuest() {
           <button
             onClick={() => {
               setDisplayRegisterModal(true);
-              document.body.style.overflow = "hidden";
             }}
             className="signUpButton"
           >
@@ -59,7 +62,9 @@ export default function MainHeaderGuest() {
         </div>
       </header>
       <div className="mainHeaderHeightBlock"></div>
-      {displayRegisterModal && <RegisterModal />}
+      {displayRegisterModal && (
+        <RegisterModal closeFunc={() => setDisplayRegisterModal(false)} />
+      )}
     </>
   );
 }

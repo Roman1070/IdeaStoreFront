@@ -9,6 +9,7 @@ export default function MainHeaderSignedIn() {
   const [modalEnabled, setModelEnabled] = useState(false);
   return (
     <>
+      <div> id="registerModal"</div>
       <header className="mainHeader">
         <img
           src="logo.png"

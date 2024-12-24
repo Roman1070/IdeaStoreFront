@@ -19,6 +19,7 @@ function App() {
   }
   return (
     <>
+      <div id="registerModal"></div>
       {loggedIn == "true" ? <MainHeaderSignedIn /> : <MainHeaderGuest />}
       <Router>
         <Routes>

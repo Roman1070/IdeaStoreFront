@@ -1,5 +1,6 @@
 import GetIdeas from "../db";
 import IdeasScroll from "../IdeasScroll";
+import "./LandingPage.css";
 function getRandomInt(max) {
   return Math.floor(Math.random() * max);
 }

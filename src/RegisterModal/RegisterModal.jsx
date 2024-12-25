@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import "./RegisterModal.css";
 import { createPortal } from "react-dom";
-import RegisterInputField from "./RegisterInputField";
+import RegisterForm from "./RegisterForm";
 
 export default function RegisterModal({ open, closeFunc }) {
   return createPortal(
@@ -20,43 +20,7 @@ export default function RegisterModal({ open, closeFunc }) {
             Находите новые идеи для <br />
             вдохновения
           </h5>
-          <form className="registerForm">
-            <RegisterInputField
-              name="email"
-              type="email"
-              placeholder={"Введите адрес эл.почты"}
-            >
-              Адрес электронной почты
-            </RegisterInputField>
-            <RegisterInputField
-              name="password"
-              type="password"
-              placeholder={"Создайте пароль"}
-            >
-              Пароль
-            </RegisterInputField>
-            <RegisterInputField
-              name="password_confirm"
-              type="password"
-              placeholder={"Введите пароль еще раз"}
-            >
-              Подтверждение пароля
-            </RegisterInputField>
-            <RegisterInputField
-              name="birth_date"
-              type="date"
-              placeholder={"дд.мм.гггг"}
-            >
-              Дата рождения
-            </RegisterInputField>
-            <div className="registerInputDiv">
-              <input
-                type="submit"
-                className="registerSubmitButton"
-                value="Продолжить"
-              />
-            </div>
-          </form>
+          <RegisterForm />
         </div>
       </div>
     </>,

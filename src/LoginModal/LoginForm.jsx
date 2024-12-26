@@ -1,5 +1,5 @@
 import "./LoginModal.css";
-import RegisterInputField from "../RegisterModal/RegisterInputField";
+import InputField from "../InputField/InputField";
 import { useState } from "react";
 const validateEmail = (email) => {
   return String(email)
@@ -30,15 +30,26 @@ export default function LoginForm() {
       setEmailError("Wrong email format");
       return;
     }
-    fetch(`http://localhost:8181/login?email=${email}&password=${password}`, {
-      method: "GET",
+    fetch(`http://localhost:8181/login`, {
+      method: "POST",
+      headers: {
+        /** Заголовок, указывающий, что клиент ожидает получить данные в формате JSON */
+        Accept: "application/json",
+
+        /** Заголовок, указывающий, что тело запроса отправляется в формате JSON */
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: email,
+        password: password,
+      }),
     })
       .then((response) => response.json())
       .then((json) => handleLogin(json));
   };
   return (
     <form className="registerForm" onSubmit={handleSubmit}>
-      <RegisterInputField
+      <InputField
         name="email"
         type="email"
         onChange={() => setEmailError("")}
@@ -47,15 +58,15 @@ export default function LoginForm() {
         placeholder={"Введите адрес эл.почты"}
       >
         Адрес электронной почты
-      </RegisterInputField>
-      <RegisterInputField
+      </InputField>
+      <InputField
         name="password"
         type="password"
         isCorrect={true}
         placeholder={"Создайте пароль"}
       >
         Пароль
-      </RegisterInputField>
+      </InputField>
       <div className="registerInputDiv">
         <input
           type="submit"

@@ -35,6 +35,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  align-content: center;
 }
 .registerModalIcon {
   width: 40px;
@@ -54,37 +55,12 @@
   margin-top: 10px;
   margin-bottom: 20px;
 }
-.registerInputDiv {
-  width: 270px;
-  margin-bottom: 10px;
-  display: flex;
-  flex-direction: column;
-}
 .registerForm {
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-.registerInput {
-  margin-top: 6px;
-  height: 50px;
-  max-width: 100%;
-  display: inline-block;
-  border: 2px solid rgba(0, 0, 0, 0.3);
-  border-radius: 18px;
-  padding-left: 20px;
-  padding-right: 20px;
-  font-size: 14px;
-  transition-duration: 0.2s;
-}
-.registerInput:hover {
-  border: 2px solid rgba(0, 0, 0, 0.7);
-}
-.registerInputError {
-  border: 2px solid rgba(202, 18, 18, 1);
-}
-.registerInputError:hover {
-  border: 2px solid rgba(202, 18, 18, 1);
+  width: 300px;
+  margin: 0px auto;
 }
 .registerErrorText {
   color: rgba(202, 18, 18, 1);
@@ -99,6 +75,7 @@
   transition-duration: 0.2s;
   font-size: 14px;
   font-weight: 500;
+  width: 200px;
 }
 .registerSubmitButton:hover {
   background-color: #a10b22;

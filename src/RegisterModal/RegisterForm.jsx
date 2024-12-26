@@ -1,7 +1,7 @@
 import "./RegisterModal.css";
-import RegisterInputField from "./RegisterInputField";
 import { useSearchParams } from "react-router-dom";
 import { useState } from "react";
+import InputField from "../InputField/InputField";
 const validateEmail = (email) => {
   return String(email)
     .toLowerCase()
@@ -61,19 +61,27 @@ export default function RegisterForm() {
       }
       return;
     }
+    const req = JSON.stringify({
+      email: email,
+      password: password,
+    });
+    fetch(`http://localhost:8181/register`, {
+      method: "POST",
+      headers: {
+        /** Заголовок, указывающий, что клиент ожидает получить данные в формате JSON */
+        Accept: "application/json",
 
-    fetch(
-      `http://localhost:8181/register?email=${email}&password=${password}`,
-      {
-        method: "POST",
-      }
-    )
+        /** Заголовок, указывающий, что тело запроса отправляется в формате JSON */
+        "Content-Type": "application/json",
+      },
+      body: req,
+    })
       .then((response) => response.json())
       .then((json) => handleRegister(json));
   };
   return (
     <form className="registerForm" onSubmit={handleSubmit}>
-      <RegisterInputField
+      <InputField
         name="email"
         type="email"
         onChange={() => setEmailError("")}
@@ -82,8 +90,8 @@ export default function RegisterForm() {
         placeholder={"Введите адрес эл.почты"}
       >
         Адрес электронной почты
-      </RegisterInputField>
-      <RegisterInputField
+      </InputField>
+      <InputField
         name="password"
         type="password"
         isCorrect={passwordError == ""}
@@ -92,8 +100,8 @@ export default function RegisterForm() {
         placeholder={"Создайте пароль"}
       >
         Пароль
-      </RegisterInputField>
-      <RegisterInputField
+      </InputField>
+      <InputField
         name="passwordConfirm"
         type="password"
         isCorrect={confirmPasswordError == ""}
@@ -102,8 +110,8 @@ export default function RegisterForm() {
         placeholder={"Введите пароль еще раз"}
       >
         Подтверждение пароля
-      </RegisterInputField>
-      <RegisterInputField
+      </InputField>
+      <InputField
         name="birthDate"
         type="date"
         isCorrect={birthDateError == ""}
@@ -111,7 +119,7 @@ export default function RegisterForm() {
         placeholder={"дд.мм.гггг"}
       >
         Дата рождения
-      </RegisterInputField>
+      </InputField>
       <div className="registerInputDiv">
         <input
           type="submit"

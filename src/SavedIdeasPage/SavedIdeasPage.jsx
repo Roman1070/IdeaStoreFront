@@ -40,7 +40,7 @@ export default function SavedIdeasPage() {
           >
             <ButtonLight
               onClick={() => setSelectedTab(0)}
-              isSelected={selectedTab == 0}
+              isSelected={selectedTab === 0}
             >
               Пины
             </ButtonLight>
@@ -48,14 +48,14 @@ export default function SavedIdeasPage() {
 
           <ButtonLight
             onClick={() => setSelectedTab(1)}
-            isSelected={selectedTab == 1}
+            isSelected={selectedTab === 1}
           >
             Доски
           </ButtonLight>
         </div>
       </div>
 
-      {selectedTab == 0 && <IdeasScroll ideas={savedImages}></IdeasScroll>}
+      {selectedTab === 0 && <IdeasScroll ideas={savedImages}></IdeasScroll>}
     </>
   );
 }

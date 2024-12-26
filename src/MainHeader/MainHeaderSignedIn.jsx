@@ -9,7 +9,6 @@ export default function MainHeaderSignedIn() {
   const [modalEnabled, setModelEnabled] = useState(false);
   return (
     <>
-      <div> id="registerModal"</div>
       <header className="mainHeader">
         <img
           src="logo.png"
@@ -34,7 +33,7 @@ export default function MainHeaderSignedIn() {
             onClick={() => {
               setSelectedTab(0);
             }}
-            isSelected={window.location.pathname == "/"}
+            isSelected={window.location.pathname === "/"}
           >
             Главная
           </ButtonLight>
@@ -48,7 +47,7 @@ export default function MainHeaderSignedIn() {
         >
           <ButtonLight
             url={"/create"}
-            isSelected={window.location.pathname == "/create"}
+            isSelected={window.location.pathname === "/create"}
             onClick={() => {
               setSelectedTab(1);
             }}

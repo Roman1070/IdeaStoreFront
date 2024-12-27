@@ -28,3 +28,7 @@
   display: flex;
   flex-direction: column;
 }
+
+.inputErrorText {
+  color: rgba(202, 18, 18, 1);
+}

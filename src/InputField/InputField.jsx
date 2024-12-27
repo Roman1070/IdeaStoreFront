@@ -11,7 +11,7 @@ export default function InputField({ children, isCorrect, error, ...props }) {
           }
           {...props}
         />
-        <span className="registerErrorText">{error}</span>
+        <span className="inputErrorText">{error}</span>
       </div>
     </>
   );

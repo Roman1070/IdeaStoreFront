@@ -79,3 +79,6 @@
 .hideBG {
   background-color: unset;
 }
+.wrapperError {
+  border: 4px dashed rgba(255, 0, 0, 0.8);
+}

@@ -62,9 +62,6 @@
   width: 300px;
   margin: 0px auto;
 }
-.registerErrorText {
-  color: rgba(202, 18, 18, 1);
-}
 .registerSubmitButton {
   height: 40px;
   background-color: #e60023;

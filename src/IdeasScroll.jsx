@@ -6,6 +6,7 @@ export default function IdeasScroll({ ideas }) {
   if (loggedIn == null) loggedIn = "false";
   const [currentCard, setCurrentCard] = useState(null);
   function onMouseEnter(index) {
+    console.log(index);
     if (loggedIn == "true") setCurrentCard(index);
   }
 
@@ -23,7 +24,7 @@ export default function IdeasScroll({ ideas }) {
               onMouseEnter={onMouseEnter}
               onMouseExit={onMouseExit}
               index={idea.id}
-              isSelected={currentCard == idea.index}
+              isSelected={currentCard == idea.id}
             />
           ))}
       </div>

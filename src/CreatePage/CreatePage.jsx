@@ -8,7 +8,7 @@ const CreatePageDescriptionInputId = "createPageDescriptionInput";
 const CreatePageLinkInputId = "createPageLinkInput";
 const CreatePageTagsInputId = "createPageTagsInput";
 const CreatePageResponseId = "createPageResponse";
-
+const CreatePageImageInputId = "createPageImageInput";
 export default function CreatePage() {
   const [previewSrc, setPreviewSrc] = useState("");
   const [previewSrcError, setPreviewSrcError] = useState("");
@@ -18,8 +18,7 @@ export default function CreatePage() {
   const [description, setDescription] = useState("");
   const [link, setLink] = useState("");
   const [tags, setTags] = useState("");
-  const [createResponseCorrect, setCreateResponseCorrent] = useState(true);
-  const [createResponse, setCreateResponse] = useState("");
+  const [createResponseError, setCreateResponseError] = useState("");
   function onNameChanged(event) {
     setNameError("");
     setName(event.target.value);
@@ -60,45 +59,29 @@ export default function CreatePage() {
     return true;
   }
   function handleAfterSend(json) {
+    console.log(json);
     if (Object.hasOwn(json, "err")) {
-      setCreateResponse(json.err);
-      setCreateResponseCorrent(false);
+      setCreateResponseError(json.err);
     } else {
-      setCreateResponse("Идея успешно опубликована");
-      setCreateResponseCorrent(true);
-      setPreviewSrc("");
+      setCreateResponseError("");
+      window.location.assign("/saved_ideas");
     }
-    document
-      .getElementById(CreatePageResponseId)
-      .classList.remove("fadeAnimation");
-    setTimeout(() => {
-      document
-        .getElementById(CreatePageResponseId)
-        .classList.add("fadeAnimation");
-    }, 2000);
-    setTimeout(() => {
-      setCreateResponse("");
-    }, 3000);
   }
   function onPublishClick() {
     if (!validateInputImage()) return;
     if (!validateName()) return;
     if (!validateDescription()) return;
 
-    const req = JSON.stringify({
-      image: previewSrc,
-      name: name,
-      description: description,
-      link: link,
-      tags: tags,
-    });
+    var data = new FormData();
+    var imageData = document.getElementById(CreatePageImageInputId).files[0];
+    data.append("image", imageData);
+    data.append("name", name);
+    data.append("description", description);
+    data.append("link", link);
+    data.append("tags", tags);
     fetch(`http://localhost:8182/create-pin`, {
       method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: req,
+      body: data,
     })
       .then((response) => response.json())
       .then((json) => handleAfterSend(json));
@@ -130,21 +113,14 @@ export default function CreatePage() {
         >
           Поделиться идеей
         </span>
-        <span
-          id={CreatePageResponseId}
-          className={
-            createResponseCorrect
-              ? "createResponseCorrect"
-              : "createResponseError"
-          }
-        >
-          {createResponse ? createResponse : ""}
+        <span id={CreatePageResponseId} className="createResponseError">
+          {createResponseError}
         </span>
         <button onClick={onPublishClick} className="createIdeaButton">
           Опубликовать
         </button>
       </div>
-      <div className="createPageMainElement">
+      <form className="createPageMainElement">
         <div
           className={
             previewSrc
@@ -232,7 +208,7 @@ export default function CreatePage() {
             Теги
           </InputField>
         </div>
-      </div>
+      </form>
     </>
   );
 }

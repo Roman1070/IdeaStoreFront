@@ -1,16 +1,3 @@
-class Idea {
-  constructor(id, image, name, desc, link, tags) {
-    this.id = id;
-    this.image = image;
-    this.name = name;
-    this.desc = desc;
-    this.link = link;
-    this.tags = tags;
-  }
-}
-
-let ideas = [];
-let savedIdeas = [];
 function User(id, email, nickname, password, savedIdeas) {
   this.id = id;
   this.email = email;

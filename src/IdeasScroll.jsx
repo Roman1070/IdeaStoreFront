@@ -6,7 +6,6 @@ export default function IdeasScroll({ ideas }) {
   if (loggedIn == null) loggedIn = "false";
   const [currentCard, setCurrentCard] = useState(null);
   function onMouseEnter(index) {
-    console.log(index);
     if (loggedIn == "true") setCurrentCard(index);
   }
 

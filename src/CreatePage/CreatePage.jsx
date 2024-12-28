@@ -19,6 +19,7 @@ export default function CreatePage() {
   const [link, setLink] = useState("");
   const [tags, setTags] = useState("");
   const [createResponseError, setCreateResponseError] = useState("");
+
   function onNameChanged(event) {
     setNameError("");
     setName(event.target.value);
@@ -79,7 +80,6 @@ export default function CreatePage() {
     data.append("description", description);
     data.append("link", link);
     data.append("tags", tags);
-    console.log(data);
     fetch(`http://localhost:8182/create-pin`, {
       method: "POST",
       body: data,
@@ -121,7 +121,7 @@ export default function CreatePage() {
           Опубликовать
         </button>
       </div>
-      <form className="createPageMainElement">
+      <form className="createPageMainElement" encType="multipart/form-data">
         <div
           className={
             previewSrc
@@ -175,11 +175,10 @@ export default function CreatePage() {
         </div>
         <div className="createPageInputFieldsBlock">
           <InputField
-            onChange={onNameChanged}
+            onChangeAction={onNameChanged}
             error={nameError}
             isCorrect={!nameError}
             id={CreatePageNameInputId}
-            reset={!name}
           >
             Название
           </InputField>
@@ -187,24 +186,21 @@ export default function CreatePage() {
             id={CreatePageDescriptionInputId}
             isCorrect={!descriptionError}
             error={descriptionError}
-            onChange={onDescChanged}
-            reset={!description}
+            onChangeAction={onDescChanged}
           >
             Описание
           </InputField>
           <InputField
             id={CreatePageLinkInputId}
             isCorrect={true}
-            onChange={onLinkChanged}
-            reset={!link}
+            onChangeAction={onLinkChanged}
           >
             Ссылка при нажатии
           </InputField>
           <InputField
             id={CreatePageTagsInputId}
             isCorrect={true}
-            onChange={onTagsChanged}
-            reset={!tags}
+            onChangeAction={onTagsChanged}
           >
             Теги
           </InputField>

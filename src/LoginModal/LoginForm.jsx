@@ -52,7 +52,7 @@ export default function LoginForm() {
       <InputField
         name="email"
         type="email"
-        onChange={() => setEmailError("")}
+        onChangeAction={() => setEmailError("")}
         isCorrect={emailError == ""}
         error={emailError}
         placeholder={"Введите адрес эл.почты"}

@@ -2,30 +2,32 @@ import "./RegisterModal.css";
 import { useSearchParams } from "react-router-dom";
 import { useState } from "react";
 import InputField from "../InputField/InputField";
-const validateEmail = (email) => {
+function validateEmail(email) {
   return String(email)
     .toLowerCase()
     .match(
       /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
     );
-};
+}
 function validatePassword(pass, confirm) {
   if (pass != confirm)
     return {
       field: "confirm",
-      msg: "Passwords must match",
+      msg: "Пароли должны совпадать",
     };
   if (pass.length < 6)
     return {
       field: "password",
-      msg: "Passwords length must be at least 6 characters long",
+      msg: "Минимальная длина пароля - 6 символов",
     };
   return {
     field: "password",
     msg: "ok",
   };
 }
-
+function validateBirthDate(birthDate) {
+  return birthDate != undefined && birthDate.length > 0;
+}
 export default function RegisterForm() {
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
@@ -48,7 +50,7 @@ export default function RegisterForm() {
     const confirmPassword = event.target.passwordConfirm.value;
     const birthDate = event.target.birthDate.value;
     if (!validateEmail(email)) {
-      setEmailError("Wrong email format");
+      setEmailError("Неправильный формат email");
       return;
     }
     const validatePasswordResult = validatePassword(password, confirmPassword);
@@ -61,9 +63,14 @@ export default function RegisterForm() {
       }
       return;
     }
+    if (!validateBirthDate(birthDate)) {
+      setBirthDateError("Пожалуйста, введите дату вашего рождения");
+      return;
+    }
     const req = JSON.stringify({
       email: email,
       password: password,
+      birthDate: birthDate,
     });
     fetch(`http://localhost:8181/register`, {
       method: "POST",
@@ -84,7 +91,7 @@ export default function RegisterForm() {
       <InputField
         name="email"
         type="email"
-        onChange={() => setEmailError("")}
+        onChangeAction={() => setEmailError("")}
         isCorrect={emailError == ""}
         error={emailError}
         placeholder={"Введите адрес эл.почты"}
@@ -96,7 +103,7 @@ export default function RegisterForm() {
         type="password"
         isCorrect={passwordError == ""}
         error={passwordError}
-        onChange={() => setPasswordError("")}
+        onChangeAction={() => setPasswordError("")}
         placeholder={"Создайте пароль"}
       >
         Пароль
@@ -106,7 +113,7 @@ export default function RegisterForm() {
         type="password"
         isCorrect={confirmPasswordError == ""}
         error={confirmPasswordError}
-        onChange={() => setConfirmPasswordError("")}
+        onChangeAction={() => setConfirmPasswordError("")}
         placeholder={"Введите пароль еще раз"}
       >
         Подтверждение пароля
@@ -117,6 +124,7 @@ export default function RegisterForm() {
         isCorrect={birthDateError == ""}
         error={birthDateError}
         placeholder={"дд.мм.гггг"}
+        onChangeAction={() => setBirthDateError("")}
       >
         Дата рождения
       </InputField>

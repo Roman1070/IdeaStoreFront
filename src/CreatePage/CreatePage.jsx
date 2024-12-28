@@ -7,6 +7,7 @@ const CreatePageNameInputId = "createPageNameInput";
 const CreatePageDescriptionInputId = "createPageDescriptionInput";
 const CreatePageLinkInputId = "createPageLinkInput";
 const CreatePageTagsInputId = "createPageTagsInput";
+const CreatePageResponseId = "createPageResponse";
 
 export default function CreatePage() {
   const [previewSrc, setPreviewSrc] = useState("");
@@ -17,6 +18,8 @@ export default function CreatePage() {
   const [description, setDescription] = useState("");
   const [link, setLink] = useState("");
   const [tags, setTags] = useState("");
+  const [createResponseCorrect, setCreateResponseCorrent] = useState(true);
+  const [createResponse, setCreateResponse] = useState("");
   function onNameChanged(event) {
     setNameError("");
     setName(event.target.value);
@@ -56,6 +59,27 @@ export default function CreatePage() {
     }
     return true;
   }
+  function handleAfterSend(json) {
+    if (Object.hasOwn(json, "err")) {
+      setCreateResponse(json.err);
+      setCreateResponseCorrent(false);
+    } else {
+      setCreateResponse("Идея успешно опубликована");
+      setCreateResponseCorrent(true);
+      setPreviewSrc("");
+    }
+    document
+      .getElementById(CreatePageResponseId)
+      .classList.remove("fadeAnimation");
+    setTimeout(() => {
+      document
+        .getElementById(CreatePageResponseId)
+        .classList.add("fadeAnimation");
+    }, 2000);
+    setTimeout(() => {
+      setCreateResponse("");
+    }, 3000);
+  }
   function onPublishClick() {
     if (!validateInputImage()) return;
     if (!validateName()) return;
@@ -68,7 +92,7 @@ export default function CreatePage() {
       link: link,
       tags: tags,
     });
-    fetch(`http://localhost:8181/create-pin`, {
+    fetch(`http://localhost:8182/create-pin`, {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -77,7 +101,7 @@ export default function CreatePage() {
       body: req,
     })
       .then((response) => response.json())
-      .then((json) => window.location.reload());
+      .then((json) => handleAfterSend(json));
   }
   const changeHandler = (event) => {
     if (!event.target.files.length) {
@@ -105,6 +129,16 @@ export default function CreatePage() {
           }}
         >
           Поделиться идеей
+        </span>
+        <span
+          id={CreatePageResponseId}
+          className={
+            createResponseCorrect
+              ? "createResponseCorrect"
+              : "createResponseError"
+          }
+        >
+          {createResponse ? createResponse : ""}
         </span>
         <button onClick={onPublishClick} className="createIdeaButton">
           Опубликовать
@@ -168,6 +202,7 @@ export default function CreatePage() {
             error={nameError}
             isCorrect={!nameError}
             id={CreatePageNameInputId}
+            reset={!name}
           >
             Название
           </InputField>
@@ -176,6 +211,7 @@ export default function CreatePage() {
             isCorrect={!descriptionError}
             error={descriptionError}
             onChange={onDescChanged}
+            reset={!description}
           >
             Описание
           </InputField>
@@ -183,6 +219,7 @@ export default function CreatePage() {
             id={CreatePageLinkInputId}
             isCorrect={true}
             onChange={onLinkChanged}
+            reset={!link}
           >
             Ссылка при нажатии
           </InputField>
@@ -190,6 +227,7 @@ export default function CreatePage() {
             id={CreatePageTagsInputId}
             isCorrect={true}
             onChange={onTagsChanged}
+            reset={!tags}
           >
             Теги
           </InputField>

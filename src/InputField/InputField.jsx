@@ -1,6 +1,12 @@
 import "./InputField.css";
 
-export default function InputField({ children, isCorrect, error, ...props }) {
+export default function InputField({
+  children,
+  isCorrect,
+  error,
+  reset,
+  ...props
+}) {
   return (
     <>
       <div className="inputDiv">

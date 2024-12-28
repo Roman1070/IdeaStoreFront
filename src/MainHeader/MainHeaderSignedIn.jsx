@@ -3,7 +3,7 @@ import ProfileModal from "../ProfileModal/ProfileModal";
 import SearchInputField from "../SearchInputField/SearchInputField";
 import "./MainHeader.css";
 import { useState } from "react";
-
+const HostName = "http://localhost:3000/";
 export default function MainHeaderSignedIn() {
   const [selectedTab, setSelectedTab] = useState(0);
   const [modalEnabled, setModelEnabled] = useState(false);
@@ -11,7 +11,7 @@ export default function MainHeaderSignedIn() {
     <>
       <header className="mainHeader">
         <img
-          src="logo.png"
+          src={HostName + "images/logo.png"}
           alt=""
           style={{
             height: "32px",
@@ -58,14 +58,22 @@ export default function MainHeaderSignedIn() {
         <SearchInputField />
 
         <button className="mainHeaderSmallButton">
-          <img src="bell.png" alt="" className="imgInHeaderSmallButton" />
+          <img
+            src={HostName + "images/bell.png"}
+            alt=""
+            className="imgInHeaderSmallButton"
+          />
         </button>
         <button className="mainHeaderSmallButton">
-          <img src="message.png" alt="" className="imgInHeaderSmallButton" />
+          <img
+            src={HostName + "images/message.png"}
+            alt=""
+            className="imgInHeaderSmallButton"
+          />
         </button>
         <a href="/saved_ideas" className="mainHeaderSmallButton">
           <img
-            src="profileTemp.jpg"
+            src={HostName + "images/profileTemp.jpg"}
             alt=""
             className="imgInHeaderSmallButton"
           />
@@ -74,7 +82,11 @@ export default function MainHeaderSignedIn() {
           className="arrowNearProfile"
           onClick={() => setModelEnabled(!modalEnabled)}
         >
-          <img src="downArrow.png" alt="" className="imgInHeaderSmallButton" />
+          <img
+            src={HostName + "images/downArrow.png"}
+            alt=""
+            className="imgInHeaderSmallButton"
+          />
         </button>
       </header>
       <div className="mainHeaderHeightBlock"></div>

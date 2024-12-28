@@ -13,6 +13,7 @@ import CreatePage from "./CreatePage/CreatePage.jsx";
 import MainHeaderGuest from "./MainHeader/MainHeaderGuest.jsx";
 import LandingPage from "./LandingPage/LandingPage.jsx";
 import { useReducer, useState } from "react";
+import IdeaPreviewPage from "./IdeaPreviewPage/IdeaPreviewPage.jsx";
 
 function App() {
   var loggedIn = localStorage.getItem("loggedIn");
@@ -35,6 +36,7 @@ function App() {
           />
           <Route exact path="/create" element={<CreatePage />} />
           <Route exact path="/saved_ideas" element={<SavedIdeasPage />} />
+          <Route exact path="/idea/*" element={<IdeaPreviewPage />} />
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </Router>

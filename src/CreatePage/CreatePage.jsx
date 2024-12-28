@@ -9,6 +9,7 @@ const CreatePageLinkInputId = "createPageLinkInput";
 const CreatePageTagsInputId = "createPageTagsInput";
 const CreatePageResponseId = "createPageResponse";
 const CreatePageImageInputId = "createPageImageInput";
+const HostName = "http://localhost:3000/";
 export default function CreatePage() {
   const [previewSrc, setPreviewSrc] = useState("");
   const [previewSrcError, setPreviewSrcError] = useState("");
@@ -133,7 +134,7 @@ export default function CreatePage() {
         >
           <div className="createPageImageInputContent">
             <img
-              src="uploadIcon.png"
+              src={HostName + "images/uploadIcon.png"}
               alt=""
               style={{
                 height: "40px",

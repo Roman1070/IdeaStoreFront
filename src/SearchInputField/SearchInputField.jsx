@@ -5,7 +5,7 @@ export default function SearchInputField() {
   return (
     <div className="searchInputFieldBlock">
       <img
-        src="lupa.png"
+        src="http://localhost:3000/images/lupa.png"
         style={{
           height: "24px",
           width: "24px",

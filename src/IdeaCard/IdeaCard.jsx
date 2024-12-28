@@ -23,14 +23,25 @@ export default function IdeaCard({
         content="image"
         style={{ width: "100%", borderRadius: "20px" }}
       />
+      <a
+        href={"/idea/" + index}
+        style={{
+          position: "absolute",
+          width: "100%",
+          height: "100%",
+          cursor: "pointer",
+          display: "inline-block",
+          zIndex: "3",
+        }}
+      ></a>
       {isSelected && (
         <>
           <div className="ideaCardFade"></div>
           <div
             style={{
               position: "absolute",
-              width: "130px",
-              height: "55px",
+              width: "120px",
+              height: "45px",
               top: "10px",
               right: "10px",
               zIndex: "3",

@@ -15,16 +15,17 @@ export default function IdeasScroll({ ideas }) {
   return (
     <>
       <div className="ideasParent">
-        {ideas.map((image) => (
-          <IdeaCard
-            key={image.index}
-            image={image.src}
-            onMouseEnter={onMouseEnter}
-            onMouseExit={onMouseExit}
-            index={image.index}
-            isSelected={currentCard == image.index}
-          />
-        ))}
+        {ideas &&
+          ideas.map((idea) => (
+            <IdeaCard
+              key={idea.id}
+              image={idea.image}
+              onMouseEnter={onMouseEnter}
+              onMouseExit={onMouseExit}
+              index={idea.id}
+              isSelected={currentCard == idea.index}
+            />
+          ))}
       </div>
     </>
   );

@@ -2,11 +2,10 @@ import "./SavedIdeasPage.css";
 import ButtonLight from "../ButtonLight/ButtonLight";
 import IdeasScroll from "../IdeasScroll";
 import { useState } from "react";
-import { GetSavedIdeas, GetUserByEmail } from "../db";
-export default function SavedIdeasPage() {
+
+export default function SavedIdeasPage({ ideas }) {
   const [selectedTab, setSelectedTab] = useState(0);
 
-  let savedImages = GetSavedIdeas(GetUserByEmail("yaro@mail.ru"));
   return (
     <>
       <div className="upperModalBlock">
@@ -55,7 +54,7 @@ export default function SavedIdeasPage() {
         </div>
       </div>
 
-      {selectedTab === 0 && <IdeasScroll ideas={savedImages}></IdeasScroll>}
+      {selectedTab === 0 && <IdeasScroll ideas={ideas}></IdeasScroll>}
     </>
   );
 }

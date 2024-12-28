@@ -1,5 +1,15 @@
-const imagesCount = 40;
-let images = [];
+class Idea {
+  constructor(id, image, name, desc, link, tags) {
+    this.id = id;
+    this.image = image;
+    this.name = name;
+    this.desc = desc;
+    this.link = link;
+    this.tags = tags;
+  }
+}
+
+let ideas = [];
 let savedIdeas = [];
 function User(id, email, nickname, password, savedIdeas) {
   this.id = id;
@@ -32,31 +42,3 @@ const users = [
     [1, 4, 3, 5, 6, 7, 11, 14, 15, 19, 22, 26, 29]
   ),
 ];
-
-export default function GetIdeas() {
-  images = [];
-  for (let i = 0; i < imagesCount; i++) {
-    images.push({
-      src: `images/image${i + 1}.jpg`,
-      index: i,
-    });
-  }
-  return images;
-}
-export function GetSavedIdeas(user) {
-  let ideas = GetIdeas();
-  savedIdeas = [];
-  console.log(user);
-  for (var i = 0; i < user.savedIdeas.length; i++) {
-    savedIdeas.push(ideas[i]);
-  }
-  return savedIdeas;
-}
-
-export function GetUserByEmail(email) {
-  for (let i = 0; i < users.length; i++) {
-    if (users[i].email === email) {
-      return users[i];
-    }
-  }
-}

@@ -18,8 +18,9 @@ export default function IdeaCard({
       }}
     >
       <img
-        src={image}
+        src={"http://localhost:8182/images/" + image}
         alt={image}
+        content="image"
         style={{ width: "100%", borderRadius: "20px" }}
       />
       <div className="ideaCardFade"></div>

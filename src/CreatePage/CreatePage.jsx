@@ -79,6 +79,7 @@ export default function CreatePage() {
     data.append("description", description);
     data.append("link", link);
     data.append("tags", tags);
+    console.log(data);
     fetch(`http://localhost:8182/create-pin`, {
       method: "POST",
       body: data,

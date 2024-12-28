@@ -23,9 +23,9 @@ export default function IdeaCard({
         content="image"
         style={{ width: "100%", borderRadius: "20px" }}
       />
-      <div className="ideaCardFade"></div>
       {isSelected && (
         <>
+          <div className="ideaCardFade"></div>
           <div
             style={{
               position: "absolute",

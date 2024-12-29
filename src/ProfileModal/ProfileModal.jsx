@@ -1,6 +1,7 @@
+import { DeleteCookie } from "../utils";
 import "./ProfileModal.css";
 function signOut() {
-  localStorage.setItem("loggedIn", false);
+  DeleteCookie("token", "/", "");
   window.location.replace("/");
 }
 export default function ProfileModal() {

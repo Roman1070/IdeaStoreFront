@@ -12,18 +12,17 @@ import {
 import CreatePage from "./CreatePage/CreatePage.jsx";
 import MainHeaderGuest from "./MainHeader/MainHeaderGuest.jsx";
 import LandingPage from "./LandingPage/LandingPage.jsx";
-import { useReducer, useState } from "react";
+
 import IdeaPreviewPage from "./IdeaPreviewPage/IdeaPreviewPage.jsx";
+import { GetCookie } from "./utils.js";
 
 function App() {
-  var loggedIn = localStorage.getItem("loggedIn");
-  if (loggedIn == null) {
-    loggedIn = false;
-  }
+  var loggedIn = GetCookie("token");
+
   return (
     <>
       <div id="registerModal"></div>
-      {loggedIn == "true" ? <MainHeaderSignedIn /> : <MainHeaderGuest />}
+      {loggedIn != null ? <MainHeaderSignedIn /> : <MainHeaderGuest />}
       <Router>
         <Routes>
           {/* This route is for home component 
@@ -32,7 +31,7 @@ function App() {
           <Route
             exact
             path="/"
-            element={loggedIn == "true" ? <Homepage /> : <LandingPage />}
+            element={loggedIn != null ? <Homepage /> : <LandingPage />}
           />
           <Route exact path="/create" element={<CreatePage />} />
           <Route exact path="/saved_ideas" element={<SavedIdeasPage />} />

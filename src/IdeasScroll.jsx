@@ -1,16 +1,17 @@
 import IdeaCard from "./IdeaCard/IdeaCard";
 import { useState } from "react";
+import { GetCookie } from "./utils";
 
 export default function IdeasScroll({ ideas }) {
-  var loggedIn = localStorage.getItem("loggedIn");
-  if (loggedIn == null) loggedIn = "false";
+  var loggedIn = GetCookie("token");
+
   const [currentCard, setCurrentCard] = useState(null);
   function onMouseEnter(index) {
-    if (loggedIn == "true") setCurrentCard(index);
+    if (loggedIn != null) setCurrentCard(index);
   }
 
   function onMouseExit(index) {
-    if (loggedIn == "true") setCurrentCard(null);
+    if (loggedIn != null) setCurrentCard(null);
   }
   return (
     <>

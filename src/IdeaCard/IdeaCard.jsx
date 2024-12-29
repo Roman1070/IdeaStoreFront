@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import "./IdeaCard.css";
-import { GetIdeaSrc } from "../utils";
+import { GetCookie, GetIdeaSrc } from "../utils";
 const HostName = "http://localhost:8182/images/";
 export default function IdeaCard({
   image,
@@ -9,6 +9,7 @@ export default function IdeaCard({
   index,
   isSelected,
 }) {
+  var loggedIn = GetCookie("token");
   return (
     <div
       onMouseEnter={() => onMouseEnter(index)}
@@ -24,17 +25,19 @@ export default function IdeaCard({
         content="image"
         style={{ width: "100%", borderRadius: "20px" }}
       />
-      <a
-        href={"/idea/" + index}
-        style={{
-          position: "absolute",
-          width: "100%",
-          height: "100%",
-          cursor: "pointer",
-          display: "inline-block",
-          zIndex: "3",
-        }}
-      ></a>
+      {loggedIn && (
+        <a
+          href={"/idea/" + index}
+          style={{
+            position: "absolute",
+            width: "100%",
+            height: "100%",
+            cursor: "pointer",
+            display: "inline-block",
+            zIndex: "3",
+          }}
+        ></a>
+      )}
       {isSelected && (
         <>
           <div className="ideaCardFade"></div>

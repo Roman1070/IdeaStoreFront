@@ -16,8 +16,7 @@ export default function LoginForm() {
       console.log(json.err);
       setEmailError(json.err);
     } else if (Object.hasOwn(json, "token")) {
-      localStorage.setItem("loggedIn", true);
-      localStorage.setItem("authToken", json.token);
+      document.cookie = `token=${json.token}; path=/;`;
       window.location.assign("/");
     }
   }

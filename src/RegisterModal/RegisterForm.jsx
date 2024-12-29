@@ -33,20 +33,44 @@ export default function RegisterForm() {
   const [passwordError, setPasswordError] = useState("");
   const [confirmPasswordError, setConfirmPasswordError] = useState("");
   const [birthDateError, setBirthDateError] = useState("");
+  var email = "";
+  var password = "";
+
   function handleRegister(json) {
     if (Object.hasOwn(json, "err")) {
       console.log(json.err);
       setEmailError(json.err);
     } else if (Object.hasOwn(json, "user_id")) {
-      localStorage.setItem("loggedIn", true);
-      localStorage.setItem("user_id", json.user_id);
-      window.location.assign("/");
+      fetch(`http://localhost:8181/login`, {
+        method: "POST",
+        headers: {
+          /** Заголовок, указывающий, что клиент ожидает получить данные в формате JSON */
+          Accept: "application/json",
+
+          /** Заголовок, указывающий, что тело запроса отправляется в формате JSON */
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: email,
+          password: password,
+        }),
+      })
+        .then((response) => response.json())
+        .then((json) => {
+          if (Object.hasOwn(json, "err")) {
+            console.log(json.err);
+            setEmailError(json.err);
+          } else if (Object.hasOwn(json, "token")) {
+            document.cookie = `token=${json.token}; path=/;`;
+            window.location.assign("/");
+          }
+        });
     }
   }
   var handleSubmit = (event) => {
     event.preventDefault();
-    const email = event.target.elements.email.value;
-    const password = event.target.password.value;
+    email = event.target.elements.email.value;
+    password = event.target.password.value;
     const confirmPassword = event.target.passwordConfirm.value;
     const birthDate = event.target.birthDate.value;
     if (!validateEmail(email)) {

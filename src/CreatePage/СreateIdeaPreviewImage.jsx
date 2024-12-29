@@ -1,5 +1,9 @@
 import "./CreatePage.css";
 
 export default function СreateIdeaPreviewImage({ src }) {
-  return <img src={src} id="createIdeaPreviewImage"></img>;
+  return (
+    <div className="createPageImageWrapper">
+      <img src={src} id="createIdeaPreviewImage"></img>
+    </div>
+  );
 }

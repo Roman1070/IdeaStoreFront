@@ -14,7 +14,6 @@ export default function CreatePage() {
   const [previewSrc, setPreviewSrc] = useState("");
   const [previewSrcError, setPreviewSrcError] = useState("");
   const [nameError, setNameError] = useState("");
-  const [descriptionError, setDescriptionError] = useState("");
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [link, setLink] = useState("");
@@ -25,10 +24,7 @@ export default function CreatePage() {
     setNameError("");
     setName(event.target.value);
   }
-  function onDescChanged(event) {
-    setDescriptionError("");
-    setDescription(event.target.value);
-  }
+
   function onLinkChanged(event) {
     setLink(event.target.value);
   }
@@ -51,15 +47,6 @@ export default function CreatePage() {
     }
     return true;
   }
-  function validateDescription() {
-    const input = document.getElementById(CreatePageDescriptionInputId);
-    const desc = input.value;
-    if (desc.length < 12) {
-      setDescriptionError("Description must be at least 12 characters long");
-      return false;
-    }
-    return true;
-  }
   function handleAfterSend(json) {
     console.log(json);
     if (Object.hasOwn(json, "err")) {
@@ -72,7 +59,6 @@ export default function CreatePage() {
   function onPublishClick() {
     if (!validateInputImage()) return;
     if (!validateName()) return;
-    if (!validateDescription()) return;
 
     var data = new FormData();
     var imageData = document.getElementById(CreatePageImageInputId).files[0];
@@ -132,22 +118,24 @@ export default function CreatePage() {
               : "createPageImageInputWrapper"
           }
         >
-          <div className="createPageImageInputContent">
-            <img
-              src={HostName + "images/uploadIcon.png"}
-              alt=""
-              style={{
-                height: "40px",
-                width: "40px",
-                marginBottom: "10px",
-              }}
-              className={previewSrc ? "hide" : ""}
-            />
-            <span className={previewSrc ? "hide" : ""}>
-              Выберите файл или
-              <br /> перетащите его сюда
-            </span>
-          </div>
+          {!previewSrc && (
+            <div className="createPageImageInputContent">
+              <img
+                src={HostName + "images/uploadIcon.png"}
+                alt=""
+                style={{
+                  height: "40px",
+                  width: "40px",
+                  marginBottom: "10px",
+                }}
+                className={previewSrc ? "hide" : ""}
+              />
+              <span className={previewSrc ? "hide" : ""}>
+                Выберите файл или
+                <br /> перетащите его сюда
+              </span>
+            </div>
+          )}
           {previewSrc && (
             <СreateIdeaPreviewImage src={previewSrc}></СreateIdeaPreviewImage>
           )}
@@ -183,12 +171,7 @@ export default function CreatePage() {
           >
             Название
           </InputField>
-          <InputField
-            id={CreatePageDescriptionInputId}
-            isCorrect={!descriptionError}
-            error={descriptionError}
-            onChangeAction={onDescChanged}
-          >
+          <InputField id={CreatePageDescriptionInputId} isCorrect={true}>
             Описание
           </InputField>
           <InputField

@@ -38,16 +38,7 @@ export default function IdeaCard({
       {isSelected && (
         <>
           <div className="ideaCardFade"></div>
-          <div
-            style={{
-              position: "absolute",
-              width: "120px",
-              height: "45px",
-              top: "10px",
-              right: "10px",
-              zIndex: "3",
-            }}
-          >
+          <div className="saveButtonHolder" style={{}}>
             <button className="saveButton">Сохранить</button>
           </div>
         </>

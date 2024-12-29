@@ -33,3 +33,8 @@ const HostName = "http://localhost:8182/images/";
 export function GetIdeaSrc(name) {
   return HostName + name;
 }
+
+const ReactHostName = "http://localhost:3000/images/";
+export function GetLocalImageSrc(name) {
+  return ReactHostName + name;
+}

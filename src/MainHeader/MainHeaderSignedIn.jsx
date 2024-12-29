@@ -9,6 +9,7 @@ const HostName = "http://localhost:3000/";
 export default function MainHeaderSignedIn() {
   const [selectedTab, setSelectedTab] = useState(0);
   const [modalEnabled, setModelEnabled] = useState(false);
+  const smallButtonSize = 40;
   return (
     <>
       <header className="mainHeader">
@@ -60,14 +61,17 @@ export default function MainHeaderSignedIn() {
         <SearchInputField />
 
         <SmallRoundButton
+          size={smallButtonSize}
           imgSrc={HostName + "images/bell.png"}
         ></SmallRoundButton>
 
         <SmallRoundButton
+          size={smallButtonSize}
           imgSrc={HostName + "images/message.png"}
         ></SmallRoundButton>
 
         <SmallRoundButton
+          size={smallButtonSize}
           isLink={true}
           href="/saved_ideas"
           imgSrc={HostName + "images/profileTemp.jpg"}

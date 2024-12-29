@@ -50,6 +50,14 @@
     opacity: 0;
   }
 }
+.saveButtonHolder {
+  position: absolute;
+  width: 120px;
+  height: 45px;
+  top: 10px;
+  right: 10px;
+  z-index: 3;
+}
 .saveButton {
   background-color: red;
   width: 100%;

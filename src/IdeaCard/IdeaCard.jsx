@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import "./IdeaCard.css";
-
+import { GetIdeaSrc } from "../utils";
+const HostName = "http://localhost:8182/images/";
 export default function IdeaCard({
   image,
   onMouseEnter,
@@ -18,7 +19,7 @@ export default function IdeaCard({
       }}
     >
       <img
-        src={"http://localhost:8182/images/" + image}
+        src={GetIdeaSrc(image)}
         alt={image}
         content="image"
         style={{ width: "100%", borderRadius: "20px" }}

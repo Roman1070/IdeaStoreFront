@@ -1,7 +1,9 @@
 import ButtonLight from "../ButtonLight/ButtonLight";
 import ProfileModal from "../ProfileModal/ProfileModal";
 import SearchInputField from "../SearchInputField/SearchInputField";
+import SmallRoundButton from "../SmallRoundButton/SmallRoundButton";
 import "./MainHeader.css";
+import "../SmallRoundButton/SmallRoundButton.css";
 import { useState } from "react";
 const HostName = "http://localhost:3000/";
 export default function MainHeaderSignedIn() {
@@ -57,27 +59,19 @@ export default function MainHeaderSignedIn() {
         </span>
         <SearchInputField />
 
-        <button className="mainHeaderSmallButton">
-          <img
-            src={HostName + "images/bell.png"}
-            alt=""
-            className="imgInHeaderSmallButton"
-          />
-        </button>
-        <button className="mainHeaderSmallButton">
-          <img
-            src={HostName + "images/message.png"}
-            alt=""
-            className="imgInHeaderSmallButton"
-          />
-        </button>
-        <a href="/saved_ideas" className="mainHeaderSmallButton">
-          <img
-            src={HostName + "images/profileTemp.jpg"}
-            alt=""
-            className="imgInHeaderSmallButton"
-          />
-        </a>
+        <SmallRoundButton
+          imgSrc={HostName + "images/bell.png"}
+        ></SmallRoundButton>
+
+        <SmallRoundButton
+          imgSrc={HostName + "images/message.png"}
+        ></SmallRoundButton>
+
+        <SmallRoundButton
+          isLink={true}
+          href="/saved_ideas"
+          imgSrc={HostName + "images/profileTemp.jpg"}
+        ></SmallRoundButton>
         <button
           className="arrowNearProfile"
           onClick={() => setModelEnabled(!modalEnabled)}
@@ -85,7 +79,7 @@ export default function MainHeaderSignedIn() {
           <img
             src={HostName + "images/downArrow.png"}
             alt=""
-            className="imgInHeaderSmallButton"
+            className="imgInSmallRoundButton"
           />
         </button>
       </header>

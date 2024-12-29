@@ -20,3 +20,16 @@ export function GetAllIdeas(onComplete) {
       onComplete(tempIdeas);
     });
 }
+
+export function GetIdea(index, onComplete) {
+  fetch(`http://localhost:8182/get-idea?id=${index}`, {
+    method: "GET",
+  })
+    .then((response) => response.json())
+    .then((json) => onComplete(json));
+}
+
+const HostName = "http://localhost:8182/images/";
+export function GetIdeaSrc(name) {
+  return HostName + name;
+}

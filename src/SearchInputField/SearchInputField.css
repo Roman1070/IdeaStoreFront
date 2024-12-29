@@ -9,6 +9,7 @@
   flex-grow: 120;
   height: 20px;
   transition-duration: 0.3s;
+  margin-right: 12px;
 }
 .searchInputFieldBlock:hover {
   background: #ddd;

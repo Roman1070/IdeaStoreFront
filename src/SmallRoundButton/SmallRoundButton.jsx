@@ -6,6 +6,7 @@ export default function SmallRoundButton({
   href,
   onClick,
   size,
+  marginRight,
 }) {
   if (isLink)
     return (
@@ -14,6 +15,7 @@ export default function SmallRoundButton({
         style={{
           width: `${size}px`,
           height: `${size}px`,
+          marginRight: `${marginRight}px`,
         }}
         className="smallRoundButton"
       >
@@ -25,6 +27,7 @@ export default function SmallRoundButton({
       style={{
         width: `${size}px`,
         height: `${size}px`,
+        marginRight: `${marginRight}px`,
       }}
       className="smallRoundButton"
       onClick={onClick}

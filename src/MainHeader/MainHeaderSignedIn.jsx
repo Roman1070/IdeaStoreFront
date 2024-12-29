@@ -10,6 +10,7 @@ export default function MainHeaderSignedIn() {
   const [selectedTab, setSelectedTab] = useState(0);
   const [modalEnabled, setModelEnabled] = useState(false);
   const smallButtonSize = 40;
+  const smallButtonMargin = 8;
   return (
     <>
       <header className="mainHeader">
@@ -63,11 +64,13 @@ export default function MainHeaderSignedIn() {
         <SmallRoundButton
           size={smallButtonSize}
           imgSrc={HostName + "images/bell.png"}
+          marginRight={smallButtonMargin}
         ></SmallRoundButton>
 
         <SmallRoundButton
           size={smallButtonSize}
           imgSrc={HostName + "images/message.png"}
+          marginRight={smallButtonMargin}
         ></SmallRoundButton>
 
         <SmallRoundButton

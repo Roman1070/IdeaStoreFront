@@ -53,7 +53,7 @@ export default function CreatePage() {
       setCreateResponseError(json.err);
     } else {
       setCreateResponseError("");
-      window.location.assign("/saved_ideas");
+      window.location.assign("/");
     }
   }
   function onPublishClick() {

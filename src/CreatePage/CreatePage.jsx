@@ -32,6 +32,9 @@ export default function CreatePage() {
   function onTagsChanged(event) {
     setTags(event.target.value);
   }
+  function onDescriptionChanged(event) {
+    setDescription(event.target.value);
+  }
   function validateName() {
     const input = document.getElementById(CreatePageNameInputId);
     const name = input.value;
@@ -177,7 +180,11 @@ export default function CreatePage() {
           >
             Название
           </InputField>
-          <InputField id={CreatePageDescriptionInputId} isCorrect={true}>
+          <InputField
+            id={CreatePageDescriptionInputId}
+            isCorrect={true}
+            onChangeAction={onDescriptionChanged}
+          >
             Описание
           </InputField>
           <InputField

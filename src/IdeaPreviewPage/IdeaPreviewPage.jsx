@@ -18,6 +18,7 @@ export default function IdeaPreviewPage() {
       setIdeaEmpty(false);
     });
   }
+
   return (
     <>
       <div className="previewIdeaBlock">
@@ -42,7 +43,7 @@ export default function IdeaPreviewPage() {
                   marginRight={smallButtonsMargin}
                   imgSrc={GetLocalImageSrc("heart.png")}
                 ></SmallRoundButton>
-                <div className="likesCount">1223</div>
+                <div className="likesCount">{idea.likes > 0 && idea.likes}</div>
               </div>
               <SmallRoundButton
                 size={smallButtonSize}
@@ -90,6 +91,7 @@ export default function IdeaPreviewPage() {
               <span>Открыть веб-сайт</span>
             </a>
           )}
+          <div className="previewIdeaDescriptionBlock">{idea.description}</div>
         </div>
       </div>
     </>

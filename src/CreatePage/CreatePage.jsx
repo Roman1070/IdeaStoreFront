@@ -3,6 +3,7 @@ import InputField from "../InputField/InputField";
 import "./CreatePage.css";
 import "../InputField/InputField.css";
 import СreateIdeaPreviewImage from "./СreateIdeaPreviewImage";
+import { GetCookie } from "../utils";
 const CreatePageNameInputId = "createPageNameInput";
 const CreatePageDescriptionInputId = "createPageDescriptionInput";
 const CreatePageLinkInputId = "createPageLinkInput";
@@ -67,9 +68,14 @@ export default function CreatePage() {
     data.append("description", description);
     data.append("link", link);
     data.append("tags", tags);
+    console.log(GetCookie("token"));
     fetch(`http://localhost:8182/create-pin`, {
       method: "POST",
       body: data,
+      credentials: "include",
+      headers: {
+        cookie: `token=${GetCookie("token")};`,
+      },
     })
       .then((response) => response.json())
       .then((json) => handleAfterSend(json));

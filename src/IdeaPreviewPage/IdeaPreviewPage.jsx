@@ -61,11 +61,13 @@ export default function IdeaPreviewPage() {
             </div>
           </div>
           <a
-            href={`http://${idea.link}`}
+            href={idea.link}
             target="_blank"
             rel="noopener noreferrer"
             style={{
               padding: "0 16px",
+              textDecoration: "none",
+              color: "black",
             }}
           >
             {idea.link}
@@ -81,7 +83,7 @@ export default function IdeaPreviewPage() {
           {idea.link && (
             <a
               className="previewIdeaOpenLinkButton"
-              href={`http://${idea.link}`}
+              href={idea.link}
               target="_blank"
               rel="noopener noreferrer"
             >

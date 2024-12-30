@@ -31,6 +31,15 @@ export function GetIdea(index, onComplete) {
     .then((json) => onComplete(json));
 }
 
+export function IsIdeaSaved(index, onComplete) {
+  fetch(JoinClientAddress(`is-idea-saved?id=${index}`), {
+    method: "GET",
+    credentials: "include",
+  })
+    .then((response) => response.json())
+    .then((json) => onComplete(json));
+}
+
 export function Login(email, password, onComplete) {
   fetch(JoinClientAddress("login"), {
     method: "POST",

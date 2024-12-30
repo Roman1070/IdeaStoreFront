@@ -3,7 +3,8 @@ import { GetIdeaSrc, GetLocalImageSrc } from "../utils";
 import "./IdeaPreviewPage.css";
 import "../IdeaCard/IdeaCard.css";
 import SmallRoundButton from "../SmallRoundButton/SmallRoundButton";
-import { GetIdea } from "../requests";
+import { GetIdea, IsIdeaSaved } from "../requests";
+import SaveIdeaButton from "../IdeaCard/SaveIdeaButton";
 
 export default function IdeaPreviewPage() {
   const index = window.location.pathname.substring(6);
@@ -12,11 +13,19 @@ export default function IdeaPreviewPage() {
   const smallButtonsMargin = 6;
   const [idea, setIdea] = useState([]);
   const [ideaEmpty, setIdeaEmpty] = useState(true);
+  const [saved, setSaved] = useState(false);
   const smallButtonSize = 40;
   if (ideaEmpty) {
     GetIdea(index, (idea) => {
       setIdea(idea);
       setIdeaEmpty(false);
+      IsIdeaSaved(index, (json) => {
+        if (Object.hasOwn(json, "err")) {
+          alert("internal error checking idea saved: " + json.err);
+        } else {
+          setSaved(json.saved);
+        }
+      });
     });
   }
 
@@ -57,9 +66,12 @@ export default function IdeaPreviewPage() {
                 imgSrc={GetLocalImageSrc("option.png")}
               ></SmallRoundButton>
             </div>
-
             <div className="previewPageSaveButtonHolder">
-              <button className="saveButton">Сохранить</button>
+              <SaveIdeaButton
+                index={index}
+                saved={saved}
+                onSaved={setSaved}
+              ></SaveIdeaButton>
             </div>
           </div>
           <a

@@ -43,11 +43,13 @@ export default function IdeaCard({
       {isSelected && (
         <>
           <div className="ideaCardFade"></div>
-          <SaveIdeaButton
-            onSaved={onSaveToggle}
-            saved={saved}
-            idea={idea}
-          ></SaveIdeaButton>
+          <div className="saveButtonHolder">
+            <SaveIdeaButton
+              onSaved={onSaveToggle}
+              saved={saved}
+              index={index}
+            ></SaveIdeaButton>
+          </div>
         </>
       )}
     </div>

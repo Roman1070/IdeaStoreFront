@@ -6,16 +6,10 @@ import { useState } from "react";
 
 export default function Homepage() {
   const [ideas, setIdeas] = useState([]);
-  const [ideasEmpty, setIdeasEmpty] = useState(true);
-  if (ideasEmpty) {
+
+  if (ideas.length == 0)
     GetAllIdeas((ideas) => {
       setIdeas(ideas);
-      setIdeasEmpty(false);
     });
-  }
-  return (
-    <>
-      <IdeasScroll ideas={ideas}></IdeasScroll>
-    </>
-  );
+  return <>{ideas && <IdeasScroll ideas={ideas}></IdeasScroll>}</>;
 }

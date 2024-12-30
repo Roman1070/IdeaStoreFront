@@ -7,7 +7,6 @@ import "../SmallRoundButton/SmallRoundButton.css";
 import { useState } from "react";
 const HostName = "http://localhost:3000/";
 export default function MainHeaderSignedIn() {
-  const [selectedTab, setSelectedTab] = useState(0);
   const [modalEnabled, setModelEnabled] = useState(false);
   const smallButtonSize = 40;
   const smallButtonMargin = 8;
@@ -32,13 +31,7 @@ export default function MainHeaderSignedIn() {
             position: "relative",
           }}
         >
-          <ButtonLight
-            url={"/"}
-            onClick={() => {
-              setSelectedTab(0);
-            }}
-            isSelected={window.location.pathname === "/"}
-          >
+          <ButtonLight url={"/"} isSelected={window.location.pathname === "/"}>
             Главная
           </ButtonLight>
         </span>
@@ -52,9 +45,6 @@ export default function MainHeaderSignedIn() {
           <ButtonLight
             url={"/create"}
             isSelected={window.location.pathname === "/create"}
-            onClick={() => {
-              setSelectedTab(1);
-            }}
           >
             Создать
           </ButtonLight>

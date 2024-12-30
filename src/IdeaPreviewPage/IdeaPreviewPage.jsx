@@ -11,14 +11,12 @@ export default function IdeaPreviewPage() {
   const minPreviewBlockH = window.innerHeight * 0.4;
   const maxPreviewBlockH = window.innerHeight * 0.85;
   const smallButtonsMargin = 6;
-  const [idea, setIdea] = useState([]);
-  const [ideaEmpty, setIdeaEmpty] = useState(true);
+  const [idea, setIdea] = useState(null);
   const [saved, setSaved] = useState(false);
   const smallButtonSize = 40;
-  if (ideaEmpty) {
+  if (idea == null) {
     GetIdea(index, (idea) => {
       setIdea(idea);
-      setIdeaEmpty(false);
       IsIdeaSaved(index, (json) => {
         if (Object.hasOwn(json, "err")) {
           alert("internal error checking idea saved: " + json.err);
@@ -29,84 +27,89 @@ export default function IdeaPreviewPage() {
     });
   }
 
-  return (
-    <>
-      <div className="previewIdeaBlock">
-        <div
-          className="previewIdeaImageHolder"
-          style={{
-            minHeight: `${minPreviewBlockH}px`,
-            maxHeight: `${maxPreviewBlockH}px`,
-          }}
-        >
-          <img
-            className="previewIdeaBlockImage"
-            src={GetIdeaSrc(idea.image)}
-          ></img>
-        </div>
-        <div className="previewIdeaDataBlock">
-          <div className="previewIdeaDataHeader">
-            <div className="previewImageButtonsGroup">
-              <div className="previewImageLikesGroup">
+  if (idea)
+    return (
+      <>
+        <div className="previewIdeaBlock">
+          <div
+            className="previewIdeaImageHolder"
+            style={{
+              minHeight: `${minPreviewBlockH}px`,
+              maxHeight: `${maxPreviewBlockH}px`,
+            }}
+          >
+            <img
+              className="previewIdeaBlockImage"
+              src={GetIdeaSrc(idea.image)}
+            ></img>
+          </div>
+          <div className="previewIdeaDataBlock">
+            <div className="previewIdeaDataHeader">
+              <div className="previewImageButtonsGroup">
+                <div className="previewImageLikesGroup">
+                  <SmallRoundButton
+                    size={smallButtonSize}
+                    marginRight={smallButtonsMargin}
+                    imgSrc={GetLocalImageSrc("heart.png")}
+                  ></SmallRoundButton>
+                  <div className="likesCount">
+                    {idea.likes > 0 && idea.likes}
+                  </div>
+                </div>
                 <SmallRoundButton
                   size={smallButtonSize}
                   marginRight={smallButtonsMargin}
-                  imgSrc={GetLocalImageSrc("heart.png")}
+                  imgSrc={GetLocalImageSrc("share.png")}
                 ></SmallRoundButton>
-                <div className="likesCount">{idea.likes > 0 && idea.likes}</div>
+                <SmallRoundButton
+                  size={smallButtonSize}
+                  marginRight={smallButtonsMargin}
+                  imgSrc={GetLocalImageSrc("option.png")}
+                ></SmallRoundButton>
               </div>
-              <SmallRoundButton
-                size={smallButtonSize}
-                marginRight={smallButtonsMargin}
-                imgSrc={GetLocalImageSrc("share.png")}
-              ></SmallRoundButton>
-              <SmallRoundButton
-                size={smallButtonSize}
-                marginRight={smallButtonsMargin}
-                imgSrc={GetLocalImageSrc("option.png")}
-              ></SmallRoundButton>
+              <div className="previewPageSaveButtonHolder">
+                <SaveIdeaButton
+                  index={index}
+                  saved={saved}
+                  onSaved={setSaved}
+                ></SaveIdeaButton>
+              </div>
             </div>
-            <div className="previewPageSaveButtonHolder">
-              <SaveIdeaButton
-                index={index}
-                saved={saved}
-                onSaved={setSaved}
-              ></SaveIdeaButton>
-            </div>
-          </div>
-          <a
-            href={idea.link}
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{
-              padding: "0 16px",
-              textDecoration: "none",
-              color: "black",
-            }}
-          >
-            {idea.link}
-          </a>
-          {<p className="previewIdeaName">{idea.name}</p>}
-          <div className="previewIdeaAuthorBlock">
-            <img
-              className="previewIdeaAuthorAvatar"
-              src={GetLocalImageSrc("profileTemp.jpg")}
-            ></img>
-            <a className="previewIdeaAuthorName">yaro</a>
-          </div>
-          {idea.link && (
             <a
-              className="previewIdeaOpenLinkButton"
               href={idea.link}
               target="_blank"
               rel="noopener noreferrer"
+              style={{
+                padding: "0 16px",
+                textDecoration: "none",
+                color: "black",
+              }}
             >
-              <span>Открыть веб-сайт</span>
+              {idea.link}
             </a>
-          )}
-          <div className="previewIdeaDescriptionBlock">{idea.description}</div>
+            {<p className="previewIdeaName">{idea.name}</p>}
+            <div className="previewIdeaAuthorBlock">
+              <img
+                className="previewIdeaAuthorAvatar"
+                src={GetLocalImageSrc("profileTemp.jpg")}
+              ></img>
+              <a className="previewIdeaAuthorName">yaro</a>
+            </div>
+            {idea.link && (
+              <a
+                className="previewIdeaOpenLinkButton"
+                href={idea.link}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <span>Открыть веб-сайт</span>
+              </a>
+            )}
+            <div className="previewIdeaDescriptionBlock">
+              {idea.description}
+            </div>
+          </div>
         </div>
-      </div>
-    </>
-  );
+      </>
+    );
 }

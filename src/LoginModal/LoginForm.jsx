@@ -1,6 +1,7 @@
 import "./LoginModal.css";
 import InputField from "../InputField/InputField";
 import { useState } from "react";
+import { JoinClientAddress } from "../utils";
 const validateEmail = (email) => {
   return String(email)
     .toLowerCase()
@@ -16,7 +17,9 @@ export default function LoginForm() {
       console.log(json.err);
       setEmailError(json.err);
     } else if (Object.hasOwn(json, "token")) {
-      document.cookie = `token=${json.token}; path=/;`;
+      let date = new Date(Date.now() + 86400e3);
+      date = date.toUTCString();
+      document.cookie = `token=${json.token}; path=/; expires=${date}`;
       window.location.assign("/");
     }
   }
@@ -29,7 +32,7 @@ export default function LoginForm() {
       setEmailError("Wrong email format");
       return;
     }
-    fetch(`http://localhost:8181/login`, {
+    fetch(JoinClientAddress("login"), {
       method: "POST",
       headers: {
         /** Заголовок, указывающий, что клиент ожидает получить данные в формате JSON */

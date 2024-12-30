@@ -2,6 +2,7 @@ import "./RegisterModal.css";
 import { useSearchParams } from "react-router-dom";
 import { useState } from "react";
 import InputField from "../InputField/InputField";
+import { JoinClientAddress } from "../utils";
 function validateEmail(email) {
   return String(email)
     .toLowerCase()
@@ -41,7 +42,7 @@ export default function RegisterForm() {
       console.log(json.err);
       setEmailError(json.err);
     } else if (Object.hasOwn(json, "user_id")) {
-      fetch(`http://localhost:8181/login`, {
+      fetch(JoinClientAddress("login"), {
         method: "POST",
         headers: {
           /** Заголовок, указывающий, что клиент ожидает получить данные в формате JSON */

@@ -1,6 +1,6 @@
 export function GetAllIdeas(onComplete) {
   var tempIdeas = [];
-  fetch("http://localhost:8182/get-ideas", {
+  fetch(JoinClientAddress("get-ideas"), {
     method: "GET",
   })
     .then((response) => response.json())
@@ -22,14 +22,14 @@ export function GetAllIdeas(onComplete) {
 }
 
 export function GetIdea(index, onComplete) {
-  fetch(`http://localhost:8182/get-idea?id=${index}`, {
+  fetch(JoinClientAddress(`get-idea?id=${index}`), {
     method: "GET",
   })
     .then((response) => response.json())
     .then((json) => onComplete(json));
 }
 
-const HostName = "http://localhost:8182/images/";
+const HostName = JoinClientAddress("images/");
 export function GetIdeaSrc(name) {
   return HostName + name;
 }
@@ -61,4 +61,9 @@ export function DeleteCookie(name, path, domain) {
     document.cookie =
       name + "=; Path=" + path + "; Domain=" + domain + "; Max-Age=-1;";
   } else console.log("cant find cookie " + name);
+}
+
+export function JoinClientAddress(endpoint) {
+  const ClientAddress = "http://localhost:8000/";
+  return ClientAddress + endpoint;
 }

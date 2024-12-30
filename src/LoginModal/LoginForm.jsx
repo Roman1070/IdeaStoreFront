@@ -2,6 +2,7 @@ import "./LoginModal.css";
 import InputField from "../InputField/InputField";
 import { useState } from "react";
 import { JoinClientAddress } from "../utils";
+import { Login } from "../requests";
 const validateEmail = (email) => {
   return String(email)
     .toLowerCase()
@@ -32,22 +33,7 @@ export default function LoginForm() {
       setEmailError("Wrong email format");
       return;
     }
-    fetch(JoinClientAddress("login"), {
-      method: "POST",
-      headers: {
-        /** Заголовок, указывающий, что клиент ожидает получить данные в формате JSON */
-        Accept: "application/json",
-
-        /** Заголовок, указывающий, что тело запроса отправляется в формате JSON */
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        email: email,
-        password: password,
-      }),
-    })
-      .then((response) => response.json())
-      .then((json) => handleLogin(json));
+    Login(email, password, handleLogin);
   };
   return (
     <form className="registerForm" onSubmit={handleSubmit}>

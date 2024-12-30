@@ -1,5 +1,5 @@
-import { GetAllIdeas } from "../utils.js";
 import IdeasScroll from "../IdeasScroll.jsx";
+import { GetAllIdeas } from "../requests.js";
 
 import "./Homepage.css";
 import { useState } from "react";

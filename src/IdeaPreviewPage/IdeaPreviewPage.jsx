@@ -1,8 +1,9 @@
 import { useState } from "react";
-import { GetIdea, GetIdeaSrc, GetLocalImageSrc } from "../utils";
+import { GetIdeaSrc, GetLocalImageSrc } from "../utils";
 import "./IdeaPreviewPage.css";
 import "../IdeaCard/IdeaCard.css";
 import SmallRoundButton from "../SmallRoundButton/SmallRoundButton";
+import { GetIdea } from "../requests";
 
 export default function IdeaPreviewPage() {
   const index = window.location.pathname.substring(6);

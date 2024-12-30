@@ -20,7 +20,7 @@ export default function IdeasScroll({ ideas }) {
           ideas.map((idea) => (
             <IdeaCard
               key={idea.id}
-              image={idea.image}
+              idea={idea}
               onMouseEnter={onMouseEnter}
               onMouseExit={onMouseExit}
               index={idea.id}

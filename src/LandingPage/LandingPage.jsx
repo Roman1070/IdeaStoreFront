@@ -1,9 +1,9 @@
 import { useSearchParams } from "react-router-dom";
 import GetIdeas from "../db";
 import IdeasScroll from "../IdeasScroll";
-import { GetAllIdeas } from "../utils";
 import "./LandingPage.css";
 import { useState } from "react";
+import { GetAllIdeas } from "../requests";
 function getRandomInt(max) {
   return Math.floor(Math.random() * max);
 }

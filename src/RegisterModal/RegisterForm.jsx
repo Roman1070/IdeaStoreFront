@@ -3,6 +3,7 @@ import { useSearchParams } from "react-router-dom";
 import { useState } from "react";
 import InputField from "../InputField/InputField";
 import { JoinClientAddress } from "../utils";
+import { Login, Register } from "../requests";
 function validateEmail(email) {
   return String(email)
     .toLowerCase()
@@ -42,30 +43,15 @@ export default function RegisterForm() {
       console.log(json.err);
       setEmailError(json.err);
     } else if (Object.hasOwn(json, "user_id")) {
-      fetch(JoinClientAddress("login"), {
-        method: "POST",
-        headers: {
-          /** Заголовок, указывающий, что клиент ожидает получить данные в формате JSON */
-          Accept: "application/json",
-
-          /** Заголовок, указывающий, что тело запроса отправляется в формате JSON */
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email: email,
-          password: password,
-        }),
-      })
-        .then((response) => response.json())
-        .then((json) => {
-          if (Object.hasOwn(json, "err")) {
-            console.log(json.err);
-            setEmailError(json.err);
-          } else if (Object.hasOwn(json, "token")) {
-            document.cookie = `token=${json.token}; path=/;`;
-            window.location.assign("/");
-          }
-        });
+      Login(email, password, (json) => {
+        if (Object.hasOwn(json, "err")) {
+          console.log(json.err);
+          setEmailError(json.err);
+        } else if (Object.hasOwn(json, "token")) {
+          document.cookie = `token=${json.token}; path=/;`;
+          window.location.assign("/");
+        }
+      });
     }
   }
   var handleSubmit = (event) => {
@@ -97,19 +83,8 @@ export default function RegisterForm() {
       password: password,
       birthDate: birthDate,
     });
-    fetch(`http://localhost:8181/register`, {
-      method: "POST",
-      headers: {
-        /** Заголовок, указывающий, что клиент ожидает получить данные в формате JSON */
-        Accept: "application/json",
 
-        /** Заголовок, указывающий, что тело запроса отправляется в формате JSON */
-        "Content-Type": "application/json",
-      },
-      body: req,
-    })
-      .then((response) => response.json())
-      .then((json) => handleRegister(json));
+    Register(req, handleRegister);
   };
   return (
     <form className="registerForm" onSubmit={handleSubmit}>

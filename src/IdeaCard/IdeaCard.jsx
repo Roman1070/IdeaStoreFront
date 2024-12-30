@@ -1,27 +1,26 @@
 import { useEffect } from "react";
 import "./IdeaCard.css";
 import { GetCookie, GetIdeaSrc } from "../utils";
+import SaveIdeaButton from "./SaveIdeaButton";
 const HostName = "http://localhost:8182/images/";
 export default function IdeaCard({
-  image,
+  idea,
   onMouseEnter,
   onMouseExit,
   index,
   isSelected,
 }) {
+  function onSaveToggle(savedNow) {}
   var loggedIn = GetCookie("token");
   return (
     <div
       onMouseEnter={() => onMouseEnter(index)}
       onMouseLeave={() => onMouseExit(index)}
       className={"ideaCard" + (isSelected ? " activeIdeaCard" : "")}
-      style={{
-        backgroundImage: { image },
-      }}
     >
       <img
-        src={GetIdeaSrc(image)}
-        alt={image}
+        src={GetIdeaSrc(idea.image)}
+        alt={idea.image}
         content="image"
         style={{ width: "100%", borderRadius: "20px" }}
       />
@@ -41,9 +40,10 @@ export default function IdeaCard({
       {isSelected && (
         <>
           <div className="ideaCardFade"></div>
-          <div className="saveButtonHolder" style={{}}>
-            <button className="saveButton">Сохранить</button>
-          </div>
+          <SaveIdeaButton
+            onClickAction={onSaveToggle}
+            idea={idea}
+          ></SaveIdeaButton>
         </>
       )}
     </div>

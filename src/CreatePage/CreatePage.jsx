@@ -72,7 +72,7 @@ export default function CreatePage() {
     data.append("link", link);
     data.append("tags", tags);
     console.log(GetCookie("token"));
-    fetch(JoinClientAddress("create-idea"), {
+    fetch(JoinClientAddress("idea"), {
       method: "POST",
       body: data,
       credentials: "include",

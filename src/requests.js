@@ -1,4 +1,4 @@
-import { JoinClientAddress } from "./utils";
+import { GetCookie, JoinClientAddress } from "./utils";
 
 export function GetAllIdeas(onComplete) {
   var tempIdeas = [];
@@ -31,20 +31,6 @@ export function GetIdea(index, onComplete) {
     .then((json) => onComplete(json));
 }
 
-export function ToggleSaveIdea(ideaId, boardId, onComplete) {
-  fetch(
-    JoinClientAddress(`toggle-save-idea?idea_id=${ideaId}&board_id=${boardId}`)
-  )
-    .then((response) => response.json())
-    .then((json) => {
-      if (Object.hasOwn(json, "err")) {
-        alert("internal error: " + json.err);
-      } else {
-        onComplete(json);
-      }
-    });
-}
-
 export function Login(email, password, onComplete) {
   fetch(JoinClientAddress("login"), {
     method: "POST",
@@ -64,7 +50,8 @@ export function Login(email, password, onComplete) {
     .then((json) => onComplete(json));
 }
 
-export function Register(req, onComplete) {
+export function Register(req, email, name, onComplete) {
+  console.log(req);
   fetch(JoinClientAddress("register"), {
     method: "POST",
     headers: {
@@ -76,6 +63,57 @@ export function Register(req, onComplete) {
     },
     body: req,
   })
+    .then((response) => response.json())
+    .then((json) => {
+      console.log(json);
+      if (Object.hasOwn(json, "err")) {
+        onComplete(json);
+      } else {
+        console.log(json);
+        createProfile(json, email, name, onComplete);
+      }
+    });
+}
+function createProfile(jsonFromReg, email, name, onCompleteFromReg) {
+  const id = jsonFromReg.user_id;
+
+  fetch(JoinClientAddress("profile"), {
+    method: "POST",
+    headers: {
+      /** Заголовок, указывающий, что клиент ожидает получить данные в формате JSON */
+      Accept: "application/json",
+
+      /** Заголовок, указывающий, что тело запроса отправляется в формате JSON */
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      id: id,
+      email: email,
+      name: name,
+    }),
+  }).then((response) => {
+    console.log(jsonFromReg);
+    onCompleteFromReg(jsonFromReg);
+  });
+}
+export function CreateIdea(data, onComplete) {
+  fetch(JoinClientAddress("idea"), {
+    method: "POST",
+    body: data,
+    credentials: "include",
+  })
+    .then((response) => response.json())
+    .then((json) => onComplete(json));
+}
+
+export function ToggleSaveIdea(ideaId, boardId, onComplete) {
+  fetch(
+    JoinClientAddress(`toggle-save-idea?idea_id=${ideaId}&board_id=${boardId}`),
+    {
+      method: "GET",
+      credentials: "include",
+    }
+  )
     .then((response) => response.json())
     .then((json) => onComplete(json));
 }

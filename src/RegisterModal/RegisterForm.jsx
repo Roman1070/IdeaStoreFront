@@ -30,13 +30,18 @@ function validatePassword(pass, confirm) {
 function validateBirthDate(birthDate) {
   return birthDate != undefined && birthDate.length > 0;
 }
+function validateName(name) {
+  return name && name.length >= 5;
+}
 export default function RegisterForm() {
   const [emailError, setEmailError] = useState("");
+  const [nameError, setNameError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [confirmPasswordError, setConfirmPasswordError] = useState("");
   const [birthDateError, setBirthDateError] = useState("");
   var email = "";
   var password = "";
+  var name = "";
 
   function handleRegister(json) {
     if (Object.hasOwn(json, "err")) {
@@ -58,10 +63,15 @@ export default function RegisterForm() {
     event.preventDefault();
     email = event.target.elements.email.value;
     password = event.target.password.value;
+    name = event.target.name.value;
     const confirmPassword = event.target.passwordConfirm.value;
     const birthDate = event.target.birthDate.value;
     if (!validateEmail(email)) {
       setEmailError("Неправильный формат email");
+      return;
+    }
+    if (!validateName(name)) {
+      setNameError("Минимальная длина имени пользователя - 5 символов");
       return;
     }
     const validatePasswordResult = validatePassword(password, confirmPassword);
@@ -84,7 +94,7 @@ export default function RegisterForm() {
       birthDate: birthDate,
     });
 
-    Register(req, handleRegister);
+    Register(req, email, name, handleRegister);
   };
   return (
     <form className="registerForm" onSubmit={handleSubmit}>
@@ -97,6 +107,16 @@ export default function RegisterForm() {
         placeholder={"Введите адрес эл.почты"}
       >
         Адрес электронной почты
+      </InputField>
+      <InputField
+        name="name"
+        type="text"
+        onChangeAction={() => setNameError("")}
+        isCorrect={nameError == ""}
+        error={nameError}
+        placeholder={"Введите имя пользователя"}
+      >
+        Имя пользователя
       </InputField>
       <InputField
         name="password"

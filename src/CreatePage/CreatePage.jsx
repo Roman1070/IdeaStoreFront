@@ -4,6 +4,7 @@ import "./CreatePage.css";
 import "../InputField/InputField.css";
 import СreateIdeaPreviewImage from "./СreateIdeaPreviewImage";
 import { GetCookie, JoinClientAddress } from "../utils";
+import { CreateIdea } from "../requests";
 const CreatePageNameInputId = "createPageNameInput";
 const CreatePageDescriptionInputId = "createPageDescriptionInput";
 const CreatePageLinkInputId = "createPageLinkInput";
@@ -72,16 +73,8 @@ export default function CreatePage() {
     data.append("link", link);
     data.append("tags", tags);
     console.log(GetCookie("token"));
-    fetch(JoinClientAddress("idea"), {
-      method: "POST",
-      body: data,
-      credentials: "include",
-      headers: {
-        cookie: `token=${GetCookie("token")};`,
-      },
-    })
-      .then((response) => response.json())
-      .then((json) => handleAfterSend(json));
+
+    CreateIdea(data, handleAfterSend);
   }
   const changeHandler = (event) => {
     if (!event.target.files.length) {

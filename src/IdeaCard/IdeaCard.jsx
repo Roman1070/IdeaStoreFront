@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import "./IdeaCard.css";
 import { GetCookie, GetIdeaSrc } from "../utils";
 import SaveIdeaButton from "./SaveIdeaButton";
@@ -10,7 +10,10 @@ export default function IdeaCard({
   index,
   isSelected,
 }) {
-  function onSaveToggle(savedNow) {}
+  const [saved, setSaved] = useState(false);
+  function onSaveToggle(savedNow) {
+    setSaved(savedNow);
+  }
   var loggedIn = GetCookie("token");
   return (
     <div
@@ -41,7 +44,8 @@ export default function IdeaCard({
         <>
           <div className="ideaCardFade"></div>
           <SaveIdeaButton
-            onClickAction={onSaveToggle}
+            onSaved={onSaveToggle}
+            saved={saved}
             idea={idea}
           ></SaveIdeaButton>
         </>

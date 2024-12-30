@@ -73,7 +73,13 @@
   border: none;
   cursor: pointer;
 }
-
-.saveButton:hover {
+.saveButton.reversed {
+  background-color: black;
+}
+.saveButton.active:hover {
   background-color: darkred;
+}
+.saveButton.reversed:hover {
+  background-color: black;
+  color: #ccc;
 }

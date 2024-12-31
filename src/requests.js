@@ -114,6 +114,31 @@ export function CreateIdea(data, onComplete) {
     .then((response) => response.json())
     .then((json) => onComplete(json));
 }
+export function GetSavedIdeas(onComplete) {
+  var tempIdeas = [];
+  fetch(JoinClientAddress("get-saved-ideas"), {
+    method: "GET",
+    credentials: "include",
+  })
+    .then((response) => response.json())
+    .then((json) => {
+      console.log("response json :");
+      var ideas = json.ideas;
+      for (var i in ideas) {
+        tempIdeas.push({
+          id: ideas[i].idea_id,
+          image: ideas[i].image,
+          name: ideas[i].name,
+          description: ideas[i].description,
+          link: ideas[i].link,
+          tags: ideas[i].tags,
+        });
+      }
+    })
+    .then(() => {
+      onComplete(tempIdeas);
+    });
+}
 
 export function ToggleSaveIdea(ideaId, boardId, onComplete) {
   fetch(

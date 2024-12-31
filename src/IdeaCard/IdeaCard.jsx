@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import "./IdeaCard.css";
 import { GetCookie, GetIdeaSrc } from "../utils";
 import SaveIdeaButton from "./SaveIdeaButton";
-const HostName = "http://localhost:8182/images/";
+
 export default function IdeaCard({
   idea,
   onMouseEnter,

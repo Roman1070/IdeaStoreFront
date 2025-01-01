@@ -4,7 +4,7 @@ import "./IdeaCard.css";
 
 export default function SaveIdeaButton({ index, onSaved, saved }) {
   function toggleSave() {
-    ToggleSaveIdea(index, 1, (json) => {
+    ToggleSaveIdea(index, -1, (json) => {
       if (Object.hasOwn(json, "err")) {
         alert("internal error: " + json.err);
       } else {

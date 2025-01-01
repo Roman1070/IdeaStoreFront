@@ -105,6 +105,14 @@ function createProfile(jsonFromReg, email, name, onCompleteFromReg) {
     onCompleteFromReg(jsonFromReg);
   });
 }
+export function GetProfile(onComplete) {
+  fetch(JoinClientAddress("profile"), {
+    method: "GET",
+    credentials: "include",
+  })
+    .then((response) => response.json())
+    .then((json) => onComplete(json));
+}
 export function CreateIdea(data, onComplete) {
   fetch(JoinClientAddress("idea"), {
     method: "POST",

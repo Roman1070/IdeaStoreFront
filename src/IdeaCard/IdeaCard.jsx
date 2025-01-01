@@ -9,8 +9,9 @@ export default function IdeaCard({
   onMouseExit,
   index,
   isSelected,
+  savedDefault,
 }) {
-  const [saved, setSaved] = useState(false);
+  const [saved, setSaved] = useState(savedDefault);
   function onSaveToggle(savedNow) {
     setSaved(savedNow);
   }

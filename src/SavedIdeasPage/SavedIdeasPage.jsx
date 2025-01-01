@@ -2,18 +2,22 @@ import "./SavedIdeasPage.css";
 import ButtonLight from "../ButtonLight/ButtonLight";
 import IdeasScroll from "../IdeasScroll";
 import { useState } from "react";
-import { GetSavedIdeas } from "../requests";
+import { GetProfile, GetSavedIdeas } from "../requests";
 
 export default function SavedIdeasPage() {
   const [ideas, setIdeas] = useState(null);
   const [selectedTab, setSelectedTab] = useState(0);
-  if (ideas == null) {
-    GetSavedIdeas((ideas) => {
-      console.log(ideas);
-      setIdeas(ideas);
+  const [profile, setProfile] = useState(null);
+  if (ideas == null && profile == null) {
+    GetProfile((json) => {
+      console.log(json);
+      setProfile(json.data);
+      GetSavedIdeas((ideas) => {
+        setIdeas(ideas);
+      });
     });
   }
-  if (ideas != null)
+  if (ideas != null && profile != null)
     return (
       <>
         <div className="upperModalBlock">
@@ -26,7 +30,7 @@ export default function SavedIdeasPage() {
                 alt=""
               />
               <div className="usernameBlockInSavedIdeas">
-                <div className="usernameInSavedIdeas">Имя пользователя</div>
+                <div className="usernameInSavedIdeas">{profile.name}</div>
                 <div>0 подписок</div>
               </div>
               <button className="openProfileButtonInSavedIdeas">
@@ -62,7 +66,9 @@ export default function SavedIdeasPage() {
           </div>
         </div>
 
-        {selectedTab === 0 && <IdeasScroll ideas={ideas}></IdeasScroll>}
+        {selectedTab === 0 && (
+          <IdeasScroll saved={true} ideas={ideas}></IdeasScroll>
+        )}
       </>
     );
 }

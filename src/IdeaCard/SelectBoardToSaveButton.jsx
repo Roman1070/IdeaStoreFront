@@ -6,6 +6,7 @@ export default function SelectBoardToSaveButton({
   startBoardId,
   setSelectedBoard,
   saved,
+  reverseColors,
 }) {
   var boards = [
     {
@@ -52,6 +53,7 @@ export default function SelectBoardToSaveButton({
     setSelectedBoardName(event.target.value);
     setSelectedBoard(getBoardId(event.target.value));
   }
+  const color = reverseColors === true ? "white" : "black";
   if (!saved) {
     return (
       <select
@@ -59,6 +61,9 @@ export default function SelectBoardToSaveButton({
         defaultValue={getBoardName(startBoardId)}
         onChange={onChange}
         className="selectBoardButton"
+        style={{
+          color: color,
+        }}
       >
         {content}
       </select>
@@ -76,7 +81,13 @@ export default function SelectBoardToSaveButton({
           fontFamily: "inherit",
         }}
       >
-        <a href="/saved_ideas" className="selectBoardLink">
+        <a
+          href="/saved_ideas"
+          className="selectBoardLink"
+          style={{
+            color: color,
+          }}
+        >
           {selectedBoardName}
         </a>
       </div>

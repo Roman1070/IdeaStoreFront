@@ -3,8 +3,9 @@ import { GetIdeaSrc, GetLocalImageSrc } from "../utils";
 import "./IdeaPreviewPage.css";
 import "../IdeaCard/IdeaCard.css";
 import SmallRoundButton from "../SmallRoundButton/SmallRoundButton";
-import { GetIdea, IsIdeaSaved } from "../requests";
+import { GetIdea, GetUsersBoards, IsIdeaSaved } from "../requests";
 import SaveIdeaButton from "../IdeaCard/SaveIdeaButton";
+import SelectBoardToSaveButton from "../IdeaCard/SelectBoardToSaveButton";
 
 export default function IdeaPreviewPage() {
   const index = window.location.pathname.substring(6);
@@ -12,9 +13,17 @@ export default function IdeaPreviewPage() {
   const maxPreviewBlockH = window.innerHeight * 0.85;
   const smallButtonsMargin = 6;
   const [idea, setIdea] = useState(null);
+  const [boards, setBoards] = useState([]);
   const [saved, setSaved] = useState(false);
+  const [boardId, setBoardId] = useState(-1);
+  function onSaveToggle(savedNow) {
+    setSaved(savedNow);
+  }
+  function setSelectedBoard(id) {
+    setBoardId(id);
+  }
   const smallButtonSize = 40;
-  if (idea == null) {
+  if (idea == null && boards.length == 0) {
     GetIdea(index, (idea) => {
       setIdea(idea);
       IsIdeaSaved(index, (json) => {
@@ -25,6 +34,7 @@ export default function IdeaPreviewPage() {
         }
       });
     });
+    GetUsersBoards((b) => setBoards(b));
   }
 
   if (idea)
@@ -67,12 +77,25 @@ export default function IdeaPreviewPage() {
                   imgSrc={GetLocalImageSrc("option.png")}
                 ></SmallRoundButton>
               </div>
-              <div className="previewPageSaveButtonHolder">
-                <SaveIdeaButton
-                  index={index}
-                  saved={saved}
-                  onSaved={setSaved}
-                ></SaveIdeaButton>
+              <div className="saveButtonBlock">
+                {boards.length > 0 && (
+                  <div className="previewPageSelectBoardButtonHolder">
+                    <SelectBoardToSaveButton
+                      saved={saved}
+                      setSelectedBoard={setSelectedBoard}
+                      availableBoards={boards}
+                      startBoardId={boardId}
+                    ></SelectBoardToSaveButton>
+                  </div>
+                )}
+                <div className="previewPageSaveButtonHolder">
+                  <SaveIdeaButton
+                    onSaved={onSaveToggle}
+                    saved={saved}
+                    board={boardId}
+                    index={index}
+                  ></SaveIdeaButton>
+                </div>
               </div>
             </div>
             <a

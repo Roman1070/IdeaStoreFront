@@ -15,7 +15,10 @@
   flex-direction: column;
   background-color: rgba(0, 0, 0, 0.05);
 }
-
+.saveButtonBlock {
+  display: flex;
+  flex-direction: row;
+}
 .previewIdeaBlockImage {
   max-width: 100%;
   max-height: 100%;
@@ -36,6 +39,10 @@
   justify-content: space-between;
 }
 .previewPageSaveButtonHolder {
+  width: 120px;
+  height: 45px;
+}
+.previewPageSelectBoardButtonHolder {
   width: 120px;
   height: 45px;
 }

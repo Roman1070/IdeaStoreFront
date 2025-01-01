@@ -57,6 +57,7 @@ export default function IdeaCard({
                 setSelectedBoard={setSelectedBoard}
                 availableBoards={availableBoards}
                 startBoardId={boardId}
+                reverseColors={true}
               ></SelectBoardToSaveButton>
             </div>
           )}

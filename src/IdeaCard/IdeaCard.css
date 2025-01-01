@@ -74,7 +74,6 @@
   background: none;
   border: none;
   outline: none;
-  color: white;
   appearance: none;
 }
 .selectBoardButton:hover {
@@ -85,12 +84,11 @@
   font-weight: 600;
   font-family: inherit;
   text-decoration: none;
-  color: black;
 }
 .selectBoardButtonOption {
-  color: black;
   font-size: 18px;
   font-weight: 600;
+  color: black;
 }
 .saveButton {
   background-color: red;

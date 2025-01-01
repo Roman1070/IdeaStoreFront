@@ -8,7 +8,7 @@ export default function Homepage() {
   const [ideas, setIdeas] = useState([]);
 
   if (ideas.length == 0)
-    GetAllIdeas((ideas) => {
+    GetAllIdeas(false, (ideas) => {
       setIdeas(ideas);
     });
   return <>{ideas && <IdeasScroll ideas={ideas}></IdeasScroll>}</>;

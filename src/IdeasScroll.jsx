@@ -24,7 +24,7 @@ export default function IdeasScroll({ ideas, saved }) {
               onMouseEnter={onMouseEnter}
               onMouseExit={onMouseExit}
               index={idea.id}
-              savedDefault={saved}
+              savedDefault={idea.saved || saved}
               isSelected={currentCard == idea.id}
             />
           ))}

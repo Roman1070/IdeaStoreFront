@@ -11,7 +11,7 @@ export default function LandingPage() {
   const [ideas, setIdeas] = useState([]);
   const [ideasEmpty, setIdeasEmpty] = useState(true);
   if (ideasEmpty) {
-    GetAllIdeas((ideas) => {
+    GetAllIdeas(true, (ideas) => {
       setIdeas(ideas);
       setIdeasEmpty(false);
     });

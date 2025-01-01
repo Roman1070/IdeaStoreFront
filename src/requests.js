@@ -1,21 +1,24 @@
 import { GetCookie, JoinClientAddress } from "./utils";
 
-export function GetAllIdeas(onComplete) {
+export function GetAllIdeas(includeSaved, onComplete) {
   var tempIdeas = [];
   fetch(JoinClientAddress("ideas"), {
     method: "GET",
+    credentials: "include",
   })
     .then((response) => response.json())
     .then((json) => {
       for (var i in json) {
-        tempIdeas.push({
-          id: json[i].idea_id,
-          image: json[i].image,
-          name: json[i].name,
-          description: json[i].description,
-          link: json[i].link,
-          tags: json[i].tags,
-        });
+        if (includeSaved || !json[i].saved)
+          tempIdeas.push({
+            id: json[i].idea_id,
+            image: json[i].image,
+            name: json[i].name,
+            description: json[i].description,
+            link: json[i].link,
+            tags: json[i].tags,
+            saved: json[i].saved,
+          });
       }
     })
     .then(() => {

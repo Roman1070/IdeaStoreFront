@@ -14,6 +14,7 @@ export default function SearchInputField() {
         }}
       ></img>
       <input
+        name="searchInputField"
         className="searchInputField"
         onChange={(event) => setContent(event.target.value)}
         value={content}

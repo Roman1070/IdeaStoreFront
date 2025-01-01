@@ -26,6 +26,15 @@ export function GetAllIdeas(includeSaved, onComplete) {
     });
 }
 
+export function GetUsersBoards(onCompelte) {
+  fetch(JoinClientAddress("boards"), {
+    method: "GET",
+    credentials: "include",
+  })
+    .then((response) => response.json())
+    .then((json) => onCompelte(json));
+}
+
 export function GetIdea(index, onComplete) {
   fetch(JoinClientAddress(`idea?id=${index}`), {
     method: "GET",

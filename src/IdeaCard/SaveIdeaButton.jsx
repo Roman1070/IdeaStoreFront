@@ -2,9 +2,9 @@ import { useState } from "react";
 import { ToggleSaveIdea } from "../requests";
 import "./IdeaCard.css";
 
-export default function SaveIdeaButton({ index, onSaved, saved }) {
+export default function SaveIdeaButton({ index, onSaved, saved, board }) {
   function toggleSave() {
-    ToggleSaveIdea(index, -1, (json) => {
+    ToggleSaveIdea(index, board, (json) => {
       if (Object.hasOwn(json, "err")) {
         alert("internal error: " + json.err);
       } else {

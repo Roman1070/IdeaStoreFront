@@ -2,7 +2,7 @@ import IdeaCard from "./IdeaCard/IdeaCard";
 import { useState } from "react";
 import { GetCookie } from "./utils";
 
-export default function IdeasScroll({ ideas, saved }) {
+export default function IdeasScroll({ ideas, saved, availableBoards }) {
   var loggedIn = GetCookie("token");
 
   const [currentCard, setCurrentCard] = useState(null);
@@ -24,6 +24,7 @@ export default function IdeasScroll({ ideas, saved }) {
               onMouseEnter={onMouseEnter}
               onMouseExit={onMouseExit}
               index={idea.id}
+              availableBoards={availableBoards}
               savedDefault={idea.saved || saved}
               isSelected={currentCard == idea.id}
             />

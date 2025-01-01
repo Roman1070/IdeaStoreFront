@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import "./IdeaCard.css";
 import { GetCookie, GetIdeaSrc } from "../utils";
 import SaveIdeaButton from "./SaveIdeaButton";
+import SelectBoardToSaveButton from "./SelectBoardToSaveButton";
 
 export default function IdeaCard({
   idea,
@@ -10,10 +11,15 @@ export default function IdeaCard({
   index,
   isSelected,
   savedDefault,
+  availableBoards,
 }) {
   const [saved, setSaved] = useState(savedDefault);
+  const [boardId, setBoardId] = useState(-1);
   function onSaveToggle(savedNow) {
     setSaved(savedNow);
+  }
+  function setSelectedBoard(id) {
+    setBoardId(id);
   }
   var loggedIn = GetCookie("token");
   return (
@@ -44,10 +50,21 @@ export default function IdeaCard({
       {isSelected && (
         <>
           <div className="ideaCardFade"></div>
+          {availableBoards && (
+            <div className="selectBoardButtonHolder">
+              <SelectBoardToSaveButton
+                saved={saved}
+                setSelectedBoard={setSelectedBoard}
+                availableBoards={availableBoards}
+                startBoardId={boardId}
+              ></SelectBoardToSaveButton>
+            </div>
+          )}
           <div className="saveButtonHolder">
             <SaveIdeaButton
               onSaved={onSaveToggle}
               saved={saved}
+              board={boardId}
               index={index}
             ></SaveIdeaButton>
           </div>

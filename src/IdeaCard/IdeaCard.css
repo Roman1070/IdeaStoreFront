@@ -58,6 +58,40 @@
   right: 10px;
   z-index: 3;
 }
+.selectBoardButtonHolder {
+  position: absolute;
+  width: 120px;
+  height: 45px;
+  top: 10px;
+  right: 120px;
+  z-index: 3;
+}
+.selectBoardButton {
+  width: 100%;
+  height: 100%;
+  font-size: 18px;
+  font-weight: 600;
+  background: none;
+  border: none;
+  outline: none;
+  color: white;
+  appearance: none;
+}
+.selectBoardButton:hover {
+  cursor: pointer;
+}
+.selectBoardLink {
+  font-size: 18px;
+  font-weight: 600;
+  font-family: inherit;
+  text-decoration: none;
+  color: black;
+}
+.selectBoardButtonOption {
+  color: black;
+  font-size: 18px;
+  font-weight: 600;
+}
 .saveButton {
   background-color: red;
   width: 100%;

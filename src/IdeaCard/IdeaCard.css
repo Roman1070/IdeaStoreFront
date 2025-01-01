@@ -60,10 +60,10 @@
 }
 .selectBoardButtonHolder {
   position: absolute;
-  width: 120px;
+  width: 130px;
   height: 45px;
   top: 10px;
-  right: 120px;
+  right: 140px;
   z-index: 3;
 }
 .selectBoardButton {
@@ -75,6 +75,7 @@
   border: none;
   outline: none;
   appearance: none;
+  text-align: right;
 }
 .selectBoardButton:hover {
   cursor: pointer;
@@ -84,6 +85,8 @@
   font-weight: 600;
   font-family: inherit;
   text-decoration: none;
+  text-align: right;
+  margin-right: 25px;
 }
 .selectBoardButtonOption {
   font-size: 18px;
@@ -114,4 +117,19 @@
 .saveButton.reversed:hover {
   background-color: black;
   color: #ccc;
+}
+
+.selectBoardButtonBlock {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  justify-content: center;
+  height: 100%;
+  background-color: transparent;
+  transition-duration: 0.3s;
+  border-radius: 999px;
+}
+
+.selectBoardButtonBlock:hover {
+  background-color: rgba(0, 0, 0, 0.2);
 }

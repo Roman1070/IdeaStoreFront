@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./IdeaCard.css";
+import { GetLocalImageSrc } from "../utils";
 
 export default function SelectBoardToSaveButton({
   availableBoards,
@@ -56,17 +57,30 @@ export default function SelectBoardToSaveButton({
   const color = reverseColors === true ? "white" : "black";
   if (!saved) {
     return (
-      <select
-        name="selectBoardToSave"
-        defaultValue={getBoardName(startBoardId)}
-        onChange={onChange}
-        className="selectBoardButton"
-        style={{
-          color: color,
-        }}
-      >
-        {content}
-      </select>
+      <div className="selectBoardButtonBlock">
+        <select
+          name="selectBoardToSave"
+          defaultValue={getBoardName(startBoardId)}
+          onChange={onChange}
+          className="selectBoardButton"
+          style={{
+            color: color,
+          }}
+        >
+          {content}
+        </select>
+        <img
+          src={GetLocalImageSrc(
+            reverseColors === true ? "downArrow.png" : "downArrowBlack.png"
+          )}
+          style={{
+            height: "20px",
+            width: "20px",
+            display: "inline-block",
+            margin: "15px 3px 15px 3px",
+          }}
+        ></img>
+      </div>
     );
   } else
     return (
@@ -85,7 +99,8 @@ export default function SelectBoardToSaveButton({
           href="/saved_ideas"
           className="selectBoardLink"
           style={{
-            color: color,
+            marginLeft: "20px",
+            color: "black",
           }}
         >
           {selectedBoardName}

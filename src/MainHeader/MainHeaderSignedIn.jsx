@@ -5,6 +5,7 @@ import SmallRoundButton from "../SmallRoundButton/SmallRoundButton";
 import "./MainHeader.css";
 import "../SmallRoundButton/SmallRoundButton.css";
 import { useState } from "react";
+import { GetLocalImageSrc } from "../utils";
 const HostName = "http://localhost:3000/";
 export default function MainHeaderSignedIn() {
   const [modalEnabled, setModelEnabled] = useState(false);
@@ -74,7 +75,7 @@ export default function MainHeaderSignedIn() {
           onClick={() => setModelEnabled(!modalEnabled)}
         >
           <img
-            src={HostName + "images/downArrow.png"}
+            src={GetLocalImageSrc("downArrowBlack.png")}
             alt=""
             className="imgInSmallRoundButton"
           />

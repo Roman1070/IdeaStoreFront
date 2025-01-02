@@ -171,3 +171,11 @@ export function ToggleSaveIdea(ideaId, boardId, onComplete) {
     .then((response) => response.json())
     .then((json) => onComplete(json));
 }
+
+export function GetIdeasInBoard(boardId, onComplete) {
+  fetch(JoinClientAddress(`ideas-in-board?id=${boardId}`), {
+    method: "GET",
+  })
+    .then((response) => response.json())
+    .then((json) => onComplete(json));
+}

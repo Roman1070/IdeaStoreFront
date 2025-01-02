@@ -39,8 +39,8 @@ export default function CreatePage() {
   function validateName() {
     const input = document.getElementById(CreatePageNameInputId);
     const name = input.value;
-    if (name.length < 4) {
-      setNameError("Name must be at least 4 characters long");
+    if (name.length == 0) {
+      setNameError("Please input idea name");
       return false;
     }
     return true;

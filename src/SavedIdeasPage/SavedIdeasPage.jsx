@@ -2,10 +2,12 @@ import "./SavedIdeasPage.css";
 import ButtonLight from "../ButtonLight/ButtonLight";
 import IdeasScroll from "../IdeasScroll";
 import { useState } from "react";
-import { GetProfile, GetSavedIdeas } from "../requests";
+import { GetProfile, GetSavedIdeas, GetUsersBoards } from "../requests";
+import BoardsScroll from "../BoardsScroll/BoardsScroll";
 
 export default function SavedIdeasPage() {
   const [ideas, setIdeas] = useState(null);
+  const [boards, setBoards] = useState(null);
   const [selectedTab, setSelectedTab] = useState(0);
   const [profile, setProfile] = useState(null);
   if (ideas == null && profile == null) {
@@ -14,6 +16,11 @@ export default function SavedIdeasPage() {
       GetSavedIdeas((ideas) => {
         setIdeas(ideas);
       });
+    });
+  }
+  if (boards == null) {
+    GetUsersBoards((json) => {
+      setBoards(json);
     });
   }
   if (ideas != null && profile != null)
@@ -68,6 +75,7 @@ export default function SavedIdeasPage() {
         {selectedTab === 0 && (
           <IdeasScroll saved={true} ideas={ideas}></IdeasScroll>
         )}
+        {selectedTab == 1 && <BoardsScroll boards={boards}></BoardsScroll>}
       </>
     );
 }

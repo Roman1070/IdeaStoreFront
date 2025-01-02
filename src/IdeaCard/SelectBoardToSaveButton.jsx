@@ -78,6 +78,8 @@ export default function SelectBoardToSaveButton({
             width: "20px",
             display: "inline-block",
             margin: "15px 3px 15px 3px",
+            position: "absolute",
+            right: "0px",
           }}
         ></img>
       </div>

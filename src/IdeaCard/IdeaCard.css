@@ -76,6 +76,8 @@
   outline: none;
   appearance: none;
   text-align: right;
+  z-index: 4;
+  padding-right: 25px;
 }
 .selectBoardButton:hover {
   cursor: pointer;

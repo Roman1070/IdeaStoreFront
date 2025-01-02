@@ -10,7 +10,7 @@ export default function SavedIdeasPage() {
   const [profile, setProfile] = useState(null);
   if (ideas == null && profile == null) {
     GetProfile((json) => {
-      console.log(json);
+      console.log(json.data);
       setProfile(json.data);
       GetSavedIdeas((ideas) => {
         setIdeas(ideas);

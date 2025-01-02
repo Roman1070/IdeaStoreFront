@@ -12,9 +12,10 @@ export default function IdeaCard({
   isSelected,
   savedDefault,
   availableBoards,
+  board,
 }) {
   const [saved, setSaved] = useState(savedDefault);
-  const [boardId, setBoardId] = useState(-1);
+  const [boardId, setBoardId] = useState(board ? board : -1);
   function onSaveToggle(savedNow) {
     setSaved(savedNow);
   }

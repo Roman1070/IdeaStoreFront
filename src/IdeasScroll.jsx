@@ -27,6 +27,7 @@ export default function IdeasScroll({ ideas, saved, availableBoards }) {
               availableBoards={availableBoards}
               savedDefault={idea.saved || saved}
               isSelected={currentCard == idea.id}
+              board={idea.board}
             />
           ))}
       </div>

@@ -142,11 +142,11 @@ export function GetSavedIdeas(onComplete) {
   })
     .then((response) => response.json())
     .then((json) => {
-      console.log("response json :");
       var ideas = json.ideas;
       for (var i in ideas) {
         tempIdeas.push({
           id: ideas[i].idea_id,
+          board: ideas[i].board_id,
           image: ideas[i].image,
           name: ideas[i].name,
           description: ideas[i].description,

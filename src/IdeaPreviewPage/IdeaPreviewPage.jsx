@@ -15,26 +15,38 @@ export default function IdeaPreviewPage() {
   const [idea, setIdea] = useState(null);
   const [boards, setBoards] = useState([]);
   const [saved, setSaved] = useState(false);
-  const [boardId, setBoardId] = useState(-1);
+  const [boardId, setBoardId] = useState();
+  const [boardName, setBoardName] = useState();
   function onSaveToggle(savedNow) {
     setSaved(savedNow);
   }
   function setSelectedBoard(id) {
     setBoardId(id);
   }
+  function getBoardName(boards, id) {
+    for (var i = 0; i < boards.length; i++) {
+      if (boards[i].id == id) return boards[i].name;
+    }
+    return "Профиль";
+  }
   const smallButtonSize = 40;
   if (idea == null && boards.length == 0) {
-    GetIdea(index, (idea) => {
-      setIdea(idea);
-      IsIdeaSaved(index, (json) => {
-        if (Object.hasOwn(json, "err")) {
-          alert("internal error checking idea saved: " + json.err);
-        } else {
-          setSaved(json.saved);
-        }
+    GetUsersBoards((b) => {
+      setBoards(b);
+      GetIdea(index, (idea) => {
+        setIdea(idea);
+        IsIdeaSaved(index, (json) => {
+          if (Object.hasOwn(json, "err")) {
+            alert("internal error checking idea saved: " + json.err);
+          } else {
+            setSaved(json.saved);
+            setBoardId(Number(json.boardId));
+
+            setBoardName(getBoardName(b, Number(json.boardId)));
+          }
+        });
       });
     });
-    GetUsersBoards((b) => setBoards(b));
   }
 
   if (idea)
@@ -85,6 +97,7 @@ export default function IdeaPreviewPage() {
                       setSelectedBoard={setSelectedBoard}
                       availableBoards={boards}
                       startBoardId={boardId}
+                      startBoardName={boardName}
                     ></SelectBoardToSaveButton>
                   </div>
                 )}

@@ -5,6 +5,7 @@ import { GetLocalImageSrc } from "../utils";
 export default function SelectBoardToSaveButton({
   availableBoards,
   startBoardId,
+  startBoardName,
   setSelectedBoard,
   saved,
   reverseColors,
@@ -35,9 +36,7 @@ export default function SelectBoardToSaveButton({
     }
   }
 
-  const [selectedBoardName, setSelectedBoardName] = useState(
-    boards != null ? getBoardName(startBoardId) : "Профиль"
-  );
+  const [selectedBoardName, setSelectedBoardName] = useState(startBoardName);
 
   function getBoardId(name) {
     for (var i = 0; i < boards.length; i++) {
@@ -105,7 +104,7 @@ export default function SelectBoardToSaveButton({
             color: "black",
           }}
         >
-          {selectedBoardName}
+          {selectedBoardName ? selectedBoardName : startBoardName}
         </a>
       </div>
     );

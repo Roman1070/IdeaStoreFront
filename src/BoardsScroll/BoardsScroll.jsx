@@ -1,9 +1,13 @@
 import { useState } from "react";
 import BoardCard from "../BoardCard/BoardCards";
 import "./BoardsScroll.css";
-import CreateBoardPopup from "../CreateBoardPopup/CreateBoardPopup";
+import CreateBoardModal from "../CreateBoardModal/CreateBoardModal";
 
-export default function BoardsScroll({ boards, enableCreateButton }) {
+export default function BoardsScroll({
+  boards,
+  enableCreateButton,
+  onBoardCreated,
+}) {
   const [currentBoard, setCurrentBoard] = useState(null);
   const [displayPopup, setDisplayPopup] = useState(false);
   function onMouseEnter(index) {
@@ -16,9 +20,12 @@ export default function BoardsScroll({ boards, enableCreateButton }) {
   return (
     <div className="boardsParent">
       {displayPopup && (
-        <CreateBoardPopup
-          onClose={() => setDisplayPopup(false)}
-        ></CreateBoardPopup>
+        <CreateBoardModal
+          onClose={() => {
+            setDisplayPopup(false);
+            onBoardCreated();
+          }}
+        ></CreateBoardModal>
       )}
       {boards != null &&
         boards.map((board) => (

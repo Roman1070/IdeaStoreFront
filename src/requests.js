@@ -32,7 +32,7 @@ export function GetUsersBoards(onCompelte) {
     credentials: "include",
   })
     .then((response) => response.json())
-    .then((json) => onCompelte(json));
+    .then((json) => onCompelte(json.boards));
 }
 
 export function GetIdea(index, onComplete) {
@@ -129,6 +129,17 @@ export function CreateIdea(data, onComplete) {
     method: "POST",
     body: data,
     credentials: "include",
+  })
+    .then((response) => response.json())
+    .then((json) => onComplete(json));
+}
+export function CreateBoard(name, onComplete) {
+  fetch(JoinClientAddress("board"), {
+    method: "POST",
+    credentials: "include",
+    body: JSON.stringify({
+      name: name,
+    }),
   })
     .then((response) => response.json())
     .then((json) => onComplete(json));

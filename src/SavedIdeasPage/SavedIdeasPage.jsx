@@ -6,6 +6,11 @@ import { GetProfile, GetSavedIdeas, GetUsersBoards } from "../requests";
 import BoardsScroll from "../BoardsScroll/BoardsScroll";
 
 export default function SavedIdeasPage() {
+  function onBoardCreated() {
+    GetUsersBoards((json) => {
+      setBoards(json);
+    });
+  }
   const [ideas, setIdeas] = useState(null);
   const [boards, setBoards] = useState(null);
   const [selectedTab, setSelectedTab] = useState(0);
@@ -79,6 +84,7 @@ export default function SavedIdeasPage() {
           <BoardsScroll
             enableCreateButton={true}
             boards={boards}
+            onBoardCreated={onBoardCreated}
           ></BoardsScroll>
         )}
       </>

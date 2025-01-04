@@ -42,7 +42,7 @@ export default function BoardCard({
         <span className="boardCardName">Новая доска</span>
       </div>
     );
-  } else if (ideas != null && !isCreateCard && boardData != null)
+  } else if (!isCreateCard && boardData != null)
     return (
       <div
         className="boardCard"
@@ -51,8 +51,10 @@ export default function BoardCard({
       >
         <div className="boardCardImageHolder">
           {isActive && <div className="boardCardFade"></div>}
-          <img className="left" src={GetIdeaSrc(ideas[0].image)}></img>
-          {ideas.length > 1 && (
+          {ideas && ideas.length > 0 && (
+            <img className="left" src={GetIdeaSrc(ideas[0].image)}></img>
+          )}
+          {ideas && ideas.length > 1 && (
             <div className="upper">
               <img
                 style={{
@@ -62,7 +64,7 @@ export default function BoardCard({
               ></img>
             </div>
           )}
-          {ideas.length > 2 && (
+          {ideas && ideas.length > 2 && (
             <div className="lower">
               <img
                 style={{
@@ -75,7 +77,7 @@ export default function BoardCard({
         </div>
         <span className="boardCardName">{boardData.name}</span>
         <span className="boardCardIdeasCount">
-          {ideas.length} {MorphIdea(ideas.length)}
+          {ideas && ideas.length} {ideas && MorphIdea(ideas.length)}
         </span>
         <a href={`board/${boardData.id}`} className="boardLink"></a>
       </div>

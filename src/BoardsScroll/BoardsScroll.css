@@ -1,0 +1,6 @@
+.boardsParent {
+  padding: 0 20px;
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: repeat(auto-fill, minmax(264px, 1fr));
+}

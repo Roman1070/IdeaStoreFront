@@ -2,15 +2,8 @@ import { useSearchParams } from "react-router-dom";
 import { GetIdea, GetIdeasInBoard } from "../requests";
 import "./BoardCard.css";
 import { useState } from "react";
-import { GetIdeaSrc } from "../utils";
-function morph(int) {
-  const array = ["идея", "идеи", "идей"];
-  return array[
-    int % 100 > 4 && int % 100 < 20
-      ? 2
-      : [2, 0, 1, 1, 1, 2][int % 10 < 5 ? int % 10 : 5]
-  ];
-}
+import { GetIdeaSrc, MorphIdea } from "../utils";
+
 export default function BoardCard({
   boardData,
   isActive,
@@ -20,7 +13,6 @@ export default function BoardCard({
   const [ideas, setIdeas] = useState();
   if (ideas == null) {
     GetIdeasInBoard(boardData.id, (json) => {
-      console.log(json);
       setIdeas(json);
     });
   }
@@ -57,8 +49,9 @@ export default function BoardCard({
         </div>
         <span className="boardCardName">{boardData.name}</span>
         <span className="boardCardIdeasCount">
-          {ideas.length} {morph(ideas.length)}
+          {ideas.length} {MorphIdea(ideas.length)}
         </span>
+        <a href={`board/${boardData.id}`} className="boardLink"></a>
       </div>
     );
 }

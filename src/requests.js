@@ -11,7 +11,7 @@ export function GetAllIdeas(includeSaved, onComplete) {
       for (var i in json) {
         if (includeSaved || !json[i].saved)
           tempIdeas.push({
-            id: json[i].idea_id,
+            id: json[i].id,
             image: json[i].image,
             name: json[i].name,
             description: json[i].description,
@@ -113,7 +113,6 @@ function createProfile(jsonFromReg, email, name, onCompleteFromReg) {
       name: name,
     }),
   }).then((response) => {
-    console.log(jsonFromReg);
     onCompleteFromReg(jsonFromReg);
   });
 }
@@ -145,13 +144,10 @@ export function GetSavedIdeas(onComplete) {
       var ideas = json.ideas;
       for (var i in ideas) {
         tempIdeas.push({
-          id: ideas[i].idea_id,
+          id: ideas[i].id,
           board: ideas[i].board_id,
           image: ideas[i].image,
           name: ideas[i].name,
-          description: ideas[i].description,
-          link: ideas[i].link,
-          tags: ideas[i].tags,
         });
       }
     })
@@ -175,6 +171,27 @@ export function ToggleSaveIdea(ideaId, boardId, onComplete) {
 export function GetIdeasInBoard(boardId, onComplete) {
   fetch(JoinClientAddress(`ideas-in-board?id=${boardId}`), {
     method: "GET",
+  })
+    .then((response) => response.json())
+    .then((json) => onComplete(json));
+}
+
+export function GetBoard(id, onComplete) {
+  fetch(JoinClientAddress(`board?id=${id}`), {
+    method: "GET",
+  })
+    .then((response) => response.json())
+    .then((json) => onComplete(json));
+}
+
+export function GetIdeas(ids, onComplete) {
+  const idsJson = JSON.stringify({
+    ids: ids,
+  });
+  console.log(idsJson);
+  fetch(JoinClientAddress("ideas"), {
+    method: "POST",
+    body: idsJson,
   })
     .then((response) => response.json())
     .then((json) => onComplete(json));

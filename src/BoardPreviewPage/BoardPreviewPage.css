@@ -1,0 +1,15 @@
+.boardPreviewPageHeader {
+  height: 150px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 45px 34%;
+}
+.boardPreviewPageHeaderLeft {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.boardPreviewPageHeaderRight {
+}

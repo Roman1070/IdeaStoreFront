@@ -19,6 +19,6 @@ export default function LoginModal({ closeFunc }) {
         </div>
       </div>
     </>,
-    document.getElementById("registerModal")
+    document.getElementById("modal")
   );
 }

@@ -75,7 +75,12 @@ export default function SavedIdeasPage() {
         {selectedTab === 0 && (
           <IdeasScroll saved={true} ideas={ideas}></IdeasScroll>
         )}
-        {selectedTab == 1 && <BoardsScroll boards={boards}></BoardsScroll>}
+        {selectedTab == 1 && (
+          <BoardsScroll
+            enableCreateButton={true}
+            boards={boards}
+          ></BoardsScroll>
+        )}
       </>
     );
 }

@@ -2,21 +2,47 @@ import { useSearchParams } from "react-router-dom";
 import { GetIdea, GetIdeasInBoard } from "../requests";
 import "./BoardCard.css";
 import { useState } from "react";
-import { GetIdeaSrc, MorphIdea } from "../utils";
+import { GetIdeaSrc, GetLocalImageSrc, MorphIdea } from "../utils";
 
 export default function BoardCard({
   boardData,
   isActive,
   onMouseEnter,
   onMouseExit,
+  onClick,
+  isCreateCard,
 }) {
   const [ideas, setIdeas] = useState();
-  if (ideas == null) {
+  if (!isCreateCard && ideas == null) {
     GetIdeasInBoard(boardData.id, (json) => {
       setIdeas(json);
     });
   }
-  if (ideas != null)
+  if (isCreateCard) {
+    return (
+      <div
+        className="boardCard"
+        onMouseEnter={() => onMouseEnter(0)}
+        onMouseLeave={() => onMouseExit(0)}
+        onClick={() => onClick()}
+      >
+        <div className="boardCardImageHolder">
+          {isActive && <div className="boardCardFade"></div>}
+          <img
+            style={{
+              width: "50px",
+              height: "50px",
+              display: "flex",
+              margin: "auto auto",
+              flexDirection: "row",
+            }}
+            src={GetLocalImageSrc("plus.png")}
+          ></img>
+        </div>
+        <span className="boardCardName">Новая доска</span>
+      </div>
+    );
+  } else if (ideas != null && !isCreateCard && boardData != null)
     return (
       <div
         className="boardCard"

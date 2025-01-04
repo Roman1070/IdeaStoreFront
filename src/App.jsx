@@ -22,7 +22,6 @@ function App() {
 
   return (
     <>
-      <div id="registerModal"></div>
       {loggedIn != null ? <MainHeaderSignedIn /> : <MainHeaderGuest />}
       <Router>
         <Routes>

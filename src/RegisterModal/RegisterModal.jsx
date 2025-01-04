@@ -24,6 +24,6 @@ export default function RegisterModal({ open, closeFunc }) {
         </div>
       </div>
     </>,
-    document.getElementById("registerModal")
+    document.getElementById("modal")
   );
 }

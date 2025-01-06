@@ -26,13 +26,20 @@ export function GetAllIdeas(includeSaved, onComplete) {
     });
 }
 
-export function GetUsersBoards(onCompelte) {
-  fetch(JoinClientAddress("boards"), {
+export function GetCurrentUsersBoards(onCompelte) {
+  fetch(JoinClientAddress("my-boards"), {
     method: "GET",
     credentials: "include",
   })
     .then((response) => response.json())
     .then((json) => onCompelte(json.boards));
+}
+export function GetBoards(id, onComplete) {
+  fetch(JoinClientAddress(`boards?id=${id}`), {
+    method: "GET",
+  })
+    .then((response) => response.json())
+    .then((json) => onComplete(json.boards));
 }
 
 export function GetIdea(index, onComplete) {

@@ -31,7 +31,10 @@ export function DeleteCookie(name, path, domain) {
       name + "=; Path=" + path + "; Domain=" + domain + "; Max-Age=-1;";
   } else console.log("cant find cookie " + name);
 }
-
+export function JoinReactHostAddress(endpoint) {
+  const ClientAddress = "http://localhost:3000/";
+  return ClientAddress + endpoint;
+}
 export function JoinClientAddress(endpoint) {
   const ClientAddress = "http://localhost:8000/";
   return ClientAddress + endpoint;

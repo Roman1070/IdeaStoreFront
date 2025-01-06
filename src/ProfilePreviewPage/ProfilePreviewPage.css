@@ -14,3 +14,52 @@
   font-size: 36px;
   font-weight: 500;
 }
+.profilePreviewPageButtons {
+  display: flex;
+  flex-direction: row;
+  height: 60px;
+  width: 384px;
+  margin-top: 20px;
+}
+.sendMessageButton {
+  background-color: #ddd;
+  border-radius: 30px;
+  font-family: inherit;
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  padding-bottom: 3px;
+  color: #000;
+  width: 60%;
+  transition-duration: 0.3s;
+  border: none;
+  cursor: pointer;
+  margin-right: 20px;
+}
+.subscribeButton {
+  background-color: red;
+  border-radius: 30px;
+  font-family: inherit;
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  padding-bottom: 3px;
+  color: #fff;
+  width: 60%;
+  transition-duration: 0.3s;
+  border: none;
+  cursor: pointer;
+}
+.subscribeButton:hover {
+  background-color: darkred;
+}
+.sendMessageButton:hover {
+  background-color: #aaa;
+}
+.profilePreviewPageTabs {
+  margin: 20px 0;
+  display: flex;
+  flex-direction: row;
+  width: 200px;
+  justify-content: space-around;
+}

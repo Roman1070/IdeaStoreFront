@@ -3,7 +3,12 @@ import { GetIdeaSrc, GetLocalImageSrc } from "../utils";
 import "./IdeaPreviewPage.css";
 import "../IdeaCard/IdeaCard.css";
 import SmallRoundButton from "../SmallRoundButton/SmallRoundButton";
-import { GetIdea, GetProfile, GetUsersBoards, IsIdeaSaved } from "../requests";
+import {
+  GetIdea,
+  GetProfile,
+  GetCurrentUsersBoards,
+  IsIdeaSaved,
+} from "../requests";
 import SaveIdeaButton from "../IdeaCard/SaveIdeaButton";
 import SelectBoardToSaveButton from "../IdeaCard/SelectBoardToSaveButton";
 
@@ -32,7 +37,7 @@ export default function IdeaPreviewPage() {
   }
   const smallButtonSize = 40;
   if (idea == null && boards.length == 0) {
-    GetUsersBoards((b) => {
+    GetCurrentUsersBoards((b) => {
       GetIdea(index, (idea) => {
         GetProfile(idea.userId, (profile) => {
           setAuthor(profile);

@@ -2,17 +2,21 @@ import "./SavedIdeasPage.css";
 import ButtonLight from "../ButtonLight/ButtonLight";
 import IdeasScroll from "../IdeasScroll";
 import { useState } from "react";
-import { GetCurrentProfile, GetSavedIdeas, GetUsersBoards } from "../requests";
+import {
+  GetCurrentProfile,
+  GetSavedIdeas,
+  GetCurrentUsersBoards,
+} from "../requests";
 import BoardsScroll from "../BoardsScroll/BoardsScroll";
 
 export default function SavedIdeasPage() {
   function onBoardCreated() {
-    GetUsersBoards((json) => {
+    GetCurrentUsersBoards((json) => {
       setBoards(json);
     });
   }
   function onBoardRemoved() {
-    GetUsersBoards((json) => {
+    GetCurrentUsersBoards((json) => {
       setBoards(json);
     });
   }
@@ -29,7 +33,7 @@ export default function SavedIdeasPage() {
     });
   }
   if (boards == null) {
-    GetUsersBoards((json) => {
+    GetCurrentUsersBoards((json) => {
       setBoards(json);
     });
   }
@@ -87,6 +91,7 @@ export default function SavedIdeasPage() {
         )}
         {selectedTab == 1 && (
           <BoardsScroll
+            enableDelete={true}
             enableCreateButton={true}
             boards={boards}
             onBoardCreated={onBoardCreated}

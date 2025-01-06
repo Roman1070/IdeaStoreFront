@@ -2,7 +2,7 @@ import "./SavedIdeasPage.css";
 import ButtonLight from "../ButtonLight/ButtonLight";
 import IdeasScroll from "../IdeasScroll";
 import { useState } from "react";
-import { GetProfile, GetSavedIdeas, GetUsersBoards } from "../requests";
+import { GetCurrentProfile, GetSavedIdeas, GetUsersBoards } from "../requests";
 import BoardsScroll from "../BoardsScroll/BoardsScroll";
 
 export default function SavedIdeasPage() {
@@ -21,7 +21,7 @@ export default function SavedIdeasPage() {
   const [selectedTab, setSelectedTab] = useState(0);
   const [profile, setProfile] = useState(null);
   if (ideas == null && profile == null) {
-    GetProfile((json) => {
+    GetCurrentProfile((json) => {
       setProfile(json.data);
       GetSavedIdeas((ideas) => {
         setIdeas(ideas);

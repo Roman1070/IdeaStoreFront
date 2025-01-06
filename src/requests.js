@@ -116,13 +116,20 @@ function createProfile(jsonFromReg, email, name, onCompleteFromReg) {
     onCompleteFromReg(jsonFromReg);
   });
 }
-export function GetProfile(onComplete) {
-  fetch(JoinClientAddress("profile"), {
+export function GetCurrentProfile(onComplete) {
+  fetch(JoinClientAddress("my-profile"), {
     method: "GET",
     credentials: "include",
   })
     .then((response) => response.json())
     .then((json) => onComplete(json));
+}
+export function GetProfile(id, onComplete) {
+  fetch(JoinClientAddress(`profile?id=${id}`), {
+    method: "GET",
+  })
+    .then((response) => response.json())
+    .then((json) => onComplete(json.data));
 }
 export function CreateIdea(data, onComplete) {
   fetch(JoinClientAddress("idea"), {

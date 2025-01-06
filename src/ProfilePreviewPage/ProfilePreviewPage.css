@@ -1,0 +1,16 @@
+.profilePreviewPage {
+  padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.profilePreviewPageAvatar {
+  height: 120px;
+  width: 120px;
+}
+.profilePreviewPageName {
+  font-size: 36px;
+  font-weight: 500;
+}

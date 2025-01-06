@@ -3,7 +3,7 @@ import { GetIdeaSrc, GetLocalImageSrc } from "../utils";
 import "./IdeaPreviewPage.css";
 import "../IdeaCard/IdeaCard.css";
 import SmallRoundButton from "../SmallRoundButton/SmallRoundButton";
-import { GetIdea, GetUsersBoards, IsIdeaSaved } from "../requests";
+import { GetIdea, GetProfile, GetUsersBoards, IsIdeaSaved } from "../requests";
 import SaveIdeaButton from "../IdeaCard/SaveIdeaButton";
 import SelectBoardToSaveButton from "../IdeaCard/SelectBoardToSaveButton";
 
@@ -17,6 +17,7 @@ export default function IdeaPreviewPage() {
   const [saved, setSaved] = useState(false);
   const [boardId, setBoardId] = useState();
   const [boardName, setBoardName] = useState();
+  const [author, setAuthor] = useState();
   function onSaveToggle(savedNow) {
     setSaved(savedNow);
   }
@@ -32,24 +33,28 @@ export default function IdeaPreviewPage() {
   const smallButtonSize = 40;
   if (idea == null && boards.length == 0) {
     GetUsersBoards((b) => {
-      setBoards(b);
       GetIdea(index, (idea) => {
-        setIdea(idea);
-        IsIdeaSaved(index, (json) => {
-          if (Object.hasOwn(json, "err")) {
-            alert("internal error checking idea saved: " + json.err);
-          } else {
-            setSaved(json.saved);
-            setBoardId(Number(json.boardId));
+        GetProfile(idea.userId, (profile) => {
+          setAuthor(profile);
+          setBoards(b);
+          setIdea(idea);
+          console.log(idea);
+          IsIdeaSaved(index, (json) => {
+            if (Object.hasOwn(json, "err")) {
+              alert("internal error checking idea saved: " + json.err);
+            } else {
+              setSaved(json.saved);
+              setBoardId(Number(json.boardId));
 
-            setBoardName(getBoardName(b, Number(json.boardId)));
-          }
+              setBoardName(getBoardName(b, Number(json.boardId)));
+            }
+          });
         });
       });
     });
   }
 
-  if (idea)
+  if (idea && author)
     return (
       <>
         <div className="previewIdeaBlock">
@@ -129,7 +134,12 @@ export default function IdeaPreviewPage() {
                 className="previewIdeaAuthorAvatar"
                 src={GetLocalImageSrc("profileTemp.jpg")}
               ></img>
-              <a className="previewIdeaAuthorName">yaro</a>
+              <a
+                href={`/profile/${author.id}`}
+                className="previewIdeaAuthorName"
+              >
+                {author.name}
+              </a>
             </div>
             {idea.link && (
               <a

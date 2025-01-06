@@ -85,6 +85,8 @@
 
 .previewIdeaAuthorName {
   padding: 0 0 0 10px;
+  text-decoration: none;
+  color: black;
 }
 .previewIdeaOpenLinkButton {
   height: 48px;

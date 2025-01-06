@@ -8,17 +8,17 @@ export default function Homepage() {
   const [ideas, setIdeas] = useState([]);
   const [boards, setBoards] = useState([]);
   if (ideas.length == 0 && boards.length == 0) {
-    GetCurrentUsersBoards((json) => {
-      setBoards(json);
-    });
     GetAllIdeas(false, (ideas) => {
+      GetCurrentUsersBoards((json) => {
+        setBoards(json);
+      });
       setIdeas(ideas);
     });
   }
 
   return (
     <>
-      {ideas.length > 0 && boards.length > 0 && (
+      {ideas.length > 0 && (
         <IdeasScroll availableBoards={boards} ideas={ideas}></IdeasScroll>
       )}
     </>

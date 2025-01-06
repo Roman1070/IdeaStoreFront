@@ -37,13 +37,7 @@ export default function BoardPreviewPage() {
             </span>
           </div>
         </div>
-        {ideas && (
-          <IdeasScroll
-            saved={true}
-            ideas={ideas}
-            startBoardId={id}
-          ></IdeasScroll>
-        )}
+        {ideas && <IdeasScroll ideas={ideas} startBoardId={id}></IdeasScroll>}
       </>
     );
 }

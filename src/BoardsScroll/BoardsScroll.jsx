@@ -7,6 +7,7 @@ export default function BoardsScroll({
   boards,
   enableCreateButton,
   onBoardCreated,
+  onBoardRemoved,
 }) {
   const [currentBoard, setCurrentBoard] = useState(null);
   const [displayPopup, setDisplayPopup] = useState(false);
@@ -30,6 +31,7 @@ export default function BoardsScroll({
       {boards != null &&
         boards.map((board) => (
           <BoardCard
+            refreshFunc={onBoardRemoved}
             key={board.id}
             onMouseEnter={onMouseEnter}
             onMouseExit={onMouseExit}

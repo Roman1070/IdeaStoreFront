@@ -207,3 +207,13 @@ export function GetIdeas(ids, onComplete) {
     .then((response) => response.json())
     .then((json) => onComplete(json));
 }
+
+export function DeleteBoard(id, onComplete) {
+  fetch(JoinClientAddress("board"), {
+    method: "DELETE",
+    body: JSON.stringify({
+      id: id,
+    }),
+    credentials: "include",
+  }).then((response) => onComplete());
+}

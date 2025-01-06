@@ -1,5 +1,5 @@
 import { useSearchParams } from "react-router-dom";
-import { GetIdea, GetIdeasInBoard } from "../requests";
+import { DeleteBoard, GetIdea, GetIdeasInBoard } from "../requests";
 import "./BoardCard.css";
 import { useState } from "react";
 import { GetIdeaSrc, GetLocalImageSrc, MorphIdea } from "../utils";
@@ -11,7 +11,11 @@ export default function BoardCard({
   onMouseExit,
   onClick,
   isCreateCard,
+  refreshFunc,
 }) {
+  function deleteBoard() {
+    DeleteBoard(boardData.id, refreshFunc);
+  }
   const [ideas, setIdeas] = useState();
   if (!isCreateCard && ideas == null) {
     GetIdeasInBoard(boardData.id, (json) => {
@@ -80,6 +84,14 @@ export default function BoardCard({
           {ideas && ideas.length} {ideas && MorphIdea(ideas.length)}
         </span>
         <a href={`board/${boardData.id}`} className="boardLink"></a>
+        {isActive && (
+          <div className="deleteBoardButton" onClick={deleteBoard}>
+            <img
+              className="deleteBoardButtonImage"
+              src={GetLocalImageSrc("delete.png")}
+            ></img>
+          </div>
+        )}
       </div>
     );
 }

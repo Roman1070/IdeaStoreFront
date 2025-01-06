@@ -11,6 +11,11 @@ export default function SavedIdeasPage() {
       setBoards(json);
     });
   }
+  function onBoardRemoved() {
+    GetUsersBoards((json) => {
+      setBoards(json);
+    });
+  }
   const [ideas, setIdeas] = useState(null);
   const [boards, setBoards] = useState(null);
   const [selectedTab, setSelectedTab] = useState(0);
@@ -85,6 +90,7 @@ export default function SavedIdeasPage() {
             enableCreateButton={true}
             boards={boards}
             onBoardCreated={onBoardCreated}
+            onBoardRemoved={onBoardRemoved}
           ></BoardsScroll>
         )}
       </>

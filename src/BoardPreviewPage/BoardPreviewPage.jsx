@@ -17,7 +17,7 @@ export default function BoardPreviewPage() {
       });
     });
   }
-  if (board != null && ideas != null)
+  if (board != null)
     return (
       <>
         <div className="boardPreviewPageHeader">
@@ -32,11 +32,18 @@ export default function BoardPreviewPage() {
               {board.name}
             </span>
             <span style={{}}>
-              {ideas.length + " " + MorphIdea(ideas.length)}
+              {ideas && ideas.length + " " + MorphIdea(ideas.length)}
+              {!ideas && "0 идей"}
             </span>
           </div>
         </div>
-        <IdeasScroll saved={true} ideas={ideas} startBoardId={id}></IdeasScroll>
+        {ideas && (
+          <IdeasScroll
+            saved={true}
+            ideas={ideas}
+            startBoardId={id}
+          ></IdeasScroll>
+        )}
       </>
     );
 }

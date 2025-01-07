@@ -37,8 +37,11 @@ export default function SelectBoardToSaveButton({
   }
 
   const [selectedBoardName, setSelectedBoardName] = useState(startBoardName);
-  const [selectedBoardId, setSelectedBoardId] = useState(startBoardName);
-
+  const [selectedBoardId, setSelectedBoardId] = useState(startBoardId);
+  const name = getBoardName(selectedBoardId);
+  if (!selectedBoardName && name) {
+    setSelectedBoardName(name);
+  }
   function getBoardId(name) {
     for (var i = 0; i < boards.length; i++) {
       if (boards[i].name == name) return boards[i].id;
@@ -56,6 +59,7 @@ export default function SelectBoardToSaveButton({
     setSelectedBoard(getBoardId(event.target.value));
   }
   const color = reverseColors === true ? "white" : "black";
+  console.log(boards);
   if (!saved) {
     return (
       <div className="selectBoardButtonBlock">
@@ -99,11 +103,7 @@ export default function SelectBoardToSaveButton({
         }}
       >
         <a
-          href={
-            selectedBoardId == undefined
-              ? "/saved_ideas"
-              : `/board/${selectedBoardId}`
-          }
+          href={!selectedBoardId ? "/saved_ideas" : `/board/${selectedBoardId}`}
           className="selectBoardLink"
           style={{
             marginLeft: "20px",

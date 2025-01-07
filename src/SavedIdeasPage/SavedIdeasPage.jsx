@@ -37,6 +37,7 @@ export default function SavedIdeasPage() {
       setBoards(json);
     });
   }
+  console.log(boards);
   if (ideas != null && profile != null)
     return (
       <>
@@ -87,7 +88,11 @@ export default function SavedIdeasPage() {
         </div>
 
         {selectedTab === 0 && (
-          <IdeasScroll saved={true} ideas={ideas}></IdeasScroll>
+          <IdeasScroll
+            availableBoards={boards}
+            saved={true}
+            ideas={ideas}
+          ></IdeasScroll>
         )}
         {selectedTab == 1 && (
           <BoardsScroll

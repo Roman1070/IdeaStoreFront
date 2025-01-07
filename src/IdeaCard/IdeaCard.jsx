@@ -13,6 +13,7 @@ export default function IdeaCard({
   savedDefault,
   availableBoards,
   board,
+  disableSave,
 }) {
   const [saved, setSaved] = useState(savedDefault);
   const [boardId, setBoardId] = useState(board ? board : -1);
@@ -51,7 +52,7 @@ export default function IdeaCard({
       {isSelected && (
         <>
           <div className="ideaCardFade"></div>
-          {availableBoards && (
+          {availableBoards && !disableSave && (
             <div className="selectBoardButtonHolder">
               <SelectBoardToSaveButton
                 saved={saved}
@@ -62,14 +63,16 @@ export default function IdeaCard({
               ></SelectBoardToSaveButton>
             </div>
           )}
-          <div className="saveButtonHolder">
-            <SaveIdeaButton
-              onSaved={onSaveToggle}
-              saved={saved}
-              board={boardId}
-              index={index}
-            ></SaveIdeaButton>
-          </div>
+          {!disableSave && (
+            <div className="saveButtonHolder">
+              <SaveIdeaButton
+                onSaved={onSaveToggle}
+                saved={saved}
+                board={boardId}
+                index={index}
+              ></SaveIdeaButton>
+            </div>
+          )}
         </>
       )}
     </div>

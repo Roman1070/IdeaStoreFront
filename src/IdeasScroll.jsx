@@ -7,6 +7,7 @@ export default function IdeasScroll({
   saved,
   availableBoards,
   startBoardId,
+  disableSave,
 }) {
   var loggedIn = GetCookie("token");
 
@@ -26,6 +27,7 @@ export default function IdeasScroll({
           ideas.map((idea) => (
             <IdeaCard
               key={idea.id}
+              disableSave={disableSave}
               idea={idea}
               onMouseEnter={onMouseEnter}
               onMouseExit={onMouseExit}

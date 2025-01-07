@@ -66,7 +66,9 @@ export default function ProfilePreviewPage() {
             Доски
           </ButtonLight>
         </div>
-        {selectedTab == 0 && <IdeasScroll ideas={ideas}></IdeasScroll>}
+        {selectedTab == 0 && (
+          <IdeasScroll disableSave={true} ideas={ideas}></IdeasScroll>
+        )}
         {selectedTab == 1 && <BoardsScroll boards={boards}></BoardsScroll>}
       </div>
     );

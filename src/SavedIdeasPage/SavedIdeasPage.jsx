@@ -37,7 +37,7 @@ export default function SavedIdeasPage() {
       setBoards(json);
     });
   }
-  console.log(boards);
+
   if (ideas != null && profile != null)
     return (
       <>

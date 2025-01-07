@@ -1,22 +1,31 @@
 import { useState } from "react";
 import "./BoardPreviewPage.css";
-import { GetBoard, GetIdeas } from "../requests";
+import {
+  GetBoard,
+  GetCurrentProfile,
+  GetIdeas,
+  IsIdeaSaved,
+} from "../requests";
 import { MorphIdea } from "../utils";
 import IdeasScroll from "../IdeasScroll";
 export default function BoardPreviewPage() {
   const id = window.location.pathname.substring(7);
   const [board, setBoard] = useState();
   const [ideas, setIdeas] = useState();
+  const [profile, setProfile] = useState();
 
-  if (board == null && ideas == null) {
-    GetBoard(id, (boardJson) => {
-      GetIdeas(boardJson.ideasIds, (ideasJson) => {
-        console.log(ideasJson);
-        setBoard(boardJson);
-        setIdeas(ideasJson);
+  if (!board && !ideas && !profile) {
+    GetCurrentProfile((profJson) => {
+      GetBoard(id, (boardJson) => {
+        GetIdeas(boardJson.ideasIds, (ideasJson) => {
+          setBoard(boardJson);
+          setIdeas(ideasJson);
+          setProfile(profJson.data);
+        });
       });
     });
   }
+
   if (board != null)
     return (
       <>
@@ -37,7 +46,13 @@ export default function BoardPreviewPage() {
             </span>
           </div>
         </div>
-        {ideas && <IdeasScroll ideas={ideas} startBoardId={id}></IdeasScroll>}
+        {ideas && (
+          <IdeasScroll
+            disableSave={true}
+            ideas={ideas}
+            startBoardId={id}
+          ></IdeasScroll>
+        )}
       </>
     );
 }

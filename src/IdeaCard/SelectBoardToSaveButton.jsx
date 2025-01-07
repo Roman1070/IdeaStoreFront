@@ -59,7 +59,7 @@ export default function SelectBoardToSaveButton({
     setSelectedBoard(getBoardId(event.target.value));
   }
   const color = reverseColors === true ? "white" : "black";
-  console.log(boards);
+
   if (!saved) {
     return (
       <div className="selectBoardButtonBlock">

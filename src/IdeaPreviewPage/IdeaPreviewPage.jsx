@@ -26,6 +26,8 @@ export default function IdeaPreviewPage() {
   const [boardName, setBoardName] = useState();
   const [author, setAuthor] = useState();
   const [comments, setComments] = useState();
+  const [commentInput, setCommentInput] = useState();
+  const inputBlock = document.getElementById("enterCommentInput");
   function onSaveToggle(savedNow) {
     setSaved(savedNow);
   }
@@ -38,7 +40,22 @@ export default function IdeaPreviewPage() {
     }
     return "Профиль";
   }
-
+  function onCommentChange(event) {
+    var comment = event.target.innerHTML;
+    if (comment.length > 200) {
+      comment = comment.substring(0, 200);
+    }
+    setCommentInput(comment);
+    if (inputBlock) {
+      inputBlock.innerHTML = comment;
+      var range = document.createRange(); //Create a range (a range is a like the selection but invisible)
+      range.selectNodeContents(inputBlock); //Select the entire contents of the element with the range
+      range.collapse(false); //collapse the range to the end point. false means collapse to end rather than the start
+      var selection = window.getSelection(); //get the selection object (allows you to change selection)
+      selection.removeAllRanges(); //remove any selections already made
+      selection.addRange(range);
+    }
+  }
   const smallButtonSize = 40;
   if (idea == null && boards.length == 0) {
     GetCurrentUsersBoards((b) => {
@@ -197,6 +214,14 @@ export default function IdeaPreviewPage() {
                 </div>
               </>
             )}
+            <div className="enterCommentBlock">
+              <div
+                contentEditable
+                onInput={onCommentChange}
+                id="enterCommentInput"
+                className="enterCommentInput"
+              ></div>
+            </div>
           </div>
         </div>
       </>

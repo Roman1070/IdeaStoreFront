@@ -38,6 +38,7 @@ export default function IdeaPreviewPage() {
     }
     return "Профиль";
   }
+
   const smallButtonSize = 40;
   if (idea == null && boards.length == 0) {
     GetCurrentUsersBoards((b) => {

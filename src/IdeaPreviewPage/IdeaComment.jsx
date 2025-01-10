@@ -1,6 +1,6 @@
-import { GetLocalImageSrc } from "../utils";
+import { GetLocalImageSrc, JoinReactHostAddress } from "../utils";
 import "./IdeaPreviewPage.css";
-export default function IdeaComment() {
+export default function IdeaComment({ comment }) {
   return (
     <div className="ideaComment">
       <img
@@ -9,10 +9,13 @@ export default function IdeaComment() {
       ></img>
       <div className="ideaCommentContent">
         <div className="ideaCommentUpperContent">
-          <span className="ideaCommentAuthorName">Author (yaro probably)</span>
-          <span className="ideaCommentText">
-            TextTextTextTextTextTextTextText Text Text Text Text
-          </span>
+          <a
+            href={JoinReactHostAddress(`profile/${comment.userId}`)}
+            className="ideaCommentAuthorName"
+          >
+            {comment.username}
+          </a>
+          <span className="ideaCommentText">{comment.text}</span>
         </div>
         <div className="ideaCommentLowerContent"></div>
       </div>

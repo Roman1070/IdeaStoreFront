@@ -138,6 +138,10 @@
 }
 .ideaCommentAuthorName {
   font-weight: 500;
+  margin-right: 12px;
+  text-decoration: none;
+  color: black;
+  cursor: pointer;
 }
 .ideaCommentAvatar {
   margin-right: 10px;

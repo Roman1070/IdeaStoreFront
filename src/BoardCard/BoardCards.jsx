@@ -7,7 +7,7 @@ import {
   GetLocalImageSrc,
   JoinClientAddress,
   JoinReactHostAddress,
-  MorphIdea,
+  Morph,
 } from "../utils";
 
 export default function BoardCard({
@@ -85,23 +85,23 @@ export default function BoardCard({
               ></img>
             </div>
           )}
+          {isActive && enableDelete && (
+            <div className="deleteBoardButton" onClick={deleteBoard}>
+              <img
+                className="deleteBoardButtonImage"
+                src={GetLocalImageSrc("delete.png")}
+              ></img>
+            </div>
+          )}
         </div>
         <span className="boardCardName">{boardData.name}</span>
         <span className="boardCardIdeasCount">
-          {ideas && ideas.length} {ideas && MorphIdea(ideas.length)}
+          {ideas && ideas.length} {ideas && Morph(ideas.length)}
         </span>
         <a
           href={JoinReactHostAddress(`board/${boardData.id}`)}
           className="boardLink"
         ></a>
-        {isActive && enableDelete && (
-          <div className="deleteBoardButton" onClick={deleteBoard}>
-            <img
-              className="deleteBoardButtonImage"
-              src={GetLocalImageSrc("delete.png")}
-            ></img>
-          </div>
-        )}
       </div>
     );
 }

@@ -6,7 +6,7 @@ import {
   GetIdeas,
   IsIdeaSaved,
 } from "../requests";
-import { MorphIdea } from "../utils";
+import { Morph } from "../utils";
 import IdeasScroll from "../IdeasScroll";
 export default function BoardPreviewPage() {
   const id = window.location.pathname.substring(7);
@@ -41,7 +41,7 @@ export default function BoardPreviewPage() {
               {board.name}
             </span>
             <span style={{}}>
-              {ideas && ideas.length + " " + MorphIdea(ideas.length)}
+              {ideas && ideas.length + " " + Morph(ideas.length)}
               {!ideas && "0 идей"}
             </span>
           </div>

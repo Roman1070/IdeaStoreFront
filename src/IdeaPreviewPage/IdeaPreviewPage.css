@@ -106,3 +106,39 @@
 .previewIdeaDescriptionBlock {
   margin: 0 16px;
 }
+.commentsHeaderBlock {
+  cursor: pointer;
+  margin: 12px 16px;
+  display: flex;
+  justify-content: space-between;
+}
+.commentsCountText {
+  margin: auto 0;
+  font-size: 16px;
+  font-weight: 500;
+}
+.ideaCommentAvatar {
+  width: 32px;
+  height: 32px;
+}
+.ideaComment {
+  margin: 10px 16px 24px 16px;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.ideaCommentContent {
+  display: flex;
+  flex-direction: column;
+}
+.ideaCommentUpperContent {
+  display: flex;
+  flex-direction: row;
+}
+.ideaCommentAuthorName {
+  font-weight: 500;
+}
+.ideaCommentAvatar {
+  margin-right: 10px;
+}

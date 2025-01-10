@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { GetIdeaSrc, GetLocalImageSrc } from "../utils";
+import { GetIdeaSrc, GetLocalImageSrc, Morph } from "../utils";
 import "./IdeaPreviewPage.css";
 import "../IdeaCard/IdeaCard.css";
 import SmallRoundButton from "../SmallRoundButton/SmallRoundButton";
@@ -8,9 +8,11 @@ import {
   GetProfile,
   GetCurrentUsersBoards,
   IsIdeaSaved,
+  GetComments,
 } from "../requests";
 import SaveIdeaButton from "../IdeaCard/SaveIdeaButton";
 import SelectBoardToSaveButton from "../IdeaCard/SelectBoardToSaveButton";
+import IdeaComment from "./IdeaComment";
 
 export default function IdeaPreviewPage() {
   const index = window.location.pathname.substring(6);
@@ -23,6 +25,7 @@ export default function IdeaPreviewPage() {
   const [boardId, setBoardId] = useState();
   const [boardName, setBoardName] = useState();
   const [author, setAuthor] = useState();
+  const [comments, setComments] = useState();
   function onSaveToggle(savedNow) {
     setSaved(savedNow);
   }
@@ -40,19 +43,23 @@ export default function IdeaPreviewPage() {
     GetCurrentUsersBoards((b) => {
       GetIdea(index, (idea) => {
         GetProfile(idea.userId, (profile) => {
-          setAuthor(profile);
-          setBoards(b);
-          setIdea(idea);
-          console.log(idea);
-          IsIdeaSaved(index, (json) => {
-            if (Object.hasOwn(json, "err")) {
-              alert("internal error checking idea saved: " + json.err);
-            } else {
-              setSaved(json.saved);
-              setBoardId(Number(json.boardId));
+          GetComments(index, (commentsJson) => {
+            setComments(commentsJson);
+            console.log(commentsJson);
+            setAuthor(profile);
+            setBoards(b);
+            setIdea(idea);
+            console.log(idea);
+            IsIdeaSaved(index, (json) => {
+              if (Object.hasOwn(json, "err")) {
+                alert("internal error checking idea saved: " + json.err);
+              } else {
+                setSaved(json.saved);
+                setBoardId(Number(json.boardId));
 
-              setBoardName(getBoardName(b, Number(json.boardId)));
-            }
+                setBoardName(getBoardName(b, Number(json.boardId)));
+              }
+            });
           });
         });
       });
@@ -159,6 +166,36 @@ export default function IdeaPreviewPage() {
             <div className="previewIdeaDescriptionBlock">
               {idea.description}
             </div>
+            {comments && comments.length > 0 && (
+              <>
+                <div className="commentsHeaderBlock">
+                  <span className="commentsCountText">
+                    {comments.length}{" "}
+                    {Morph(comments.length, [
+                      "комментарий",
+                      "комментария",
+                      "комментариев",
+                    ])}
+                  </span>
+                  <img
+                    style={{
+                      margin: "auto 0",
+                      height: "30px",
+                      widows: "30px",
+                    }}
+                    src={GetLocalImageSrc("downArrowBlack.png")}
+                  ></img>
+                </div>
+                <div>
+                  {comments.map((comment) => (
+                    <IdeaComment
+                      comment={comment}
+                      key={comment.id}
+                    ></IdeaComment>
+                  ))}
+                </div>
+              </>
+            )}
           </div>
         </div>
       </>

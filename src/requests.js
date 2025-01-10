@@ -26,13 +26,13 @@ export function GetAllIdeas(includeSaved, onComplete) {
     });
 }
 
-export function GetCurrentUsersBoards(onCompelte) {
+export function GetCurrentUsersBoards(onComplete) {
   fetch(JoinClientAddress("my-boards"), {
     method: "GET",
     credentials: "include",
   })
     .then((response) => response.json())
-    .then((json) => onCompelte(json.boards));
+    .then((json) => onComplete(json.boards));
 }
 export function GetBoards(id, onComplete) {
   fetch(JoinClientAddress(`boards?id=${id}`), {
@@ -229,5 +229,24 @@ export function DeleteBoard(id, onComplete) {
       id: id,
     }),
     credentials: "include",
+  }).then((response) => onComplete());
+}
+
+export function GetComments(ideaId, onComplete) {
+  fetch(JoinClientAddress(`comments?idea=${ideaId}`), {
+    method: "GET",
+  })
+    .then((response) => response.json())
+    .then((json) => onComplete(json.comments));
+}
+
+export function CreateComment(ideaId, text, onComplete) {
+  fetch(JoinClientAddress("comment"), {
+    method: "POST",
+    credentials: "include",
+    body: JSON.stringify({
+      idea_id: ideaId,
+      text: text,
+    }),
   }).then((response) => onComplete());
 }

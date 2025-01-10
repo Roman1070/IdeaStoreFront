@@ -40,8 +40,8 @@ export function JoinClientAddress(endpoint) {
   return ClientAddress + endpoint;
 }
 
-export function MorphIdea(int) {
-  const array = ["идея", "идеи", "идей"];
+export function Morph(int, array) {
+  array = array || ["идея", "идеи", "идей"];
   return array[
     int % 100 > 4 && int % 100 < 20
       ? 2

@@ -43,13 +43,16 @@ export default function IdeaPreviewPage() {
     return "Профиль";
   }
   function trySendComment() {
-    if (!commentInput || commentInput.length == 0) {
+    var comment = commentInput.replaceAll("<div><br></div>", " ");
+    comment = comment.replaceAll("<div>", "");
+    comment = comment.replaceAll("</div>", "");
+    if (!comment || comment.length == 0) {
       setCommentError("Comment mustn't be empty");
       return;
     }
-    console.log(idea);
+    console.log(comment);
 
-    CreateComment(index, commentInput, () => {
+    CreateComment(index, comment, () => {
       setCommentInput("");
       inputBlock.innerHTML = "";
       GetComments(index, (commentsJson) => {
@@ -212,16 +215,17 @@ export default function IdeaPreviewPage() {
                       "комментариев",
                     ])}
                   </span>
-                  <img
-                    style={{
-                      margin: "auto 0",
-                      height: "30px",
-                      widows: "30px",
-                    }}
-                    src={GetLocalImageSrc("downArrowBlack.png")}
-                  ></img>
+                  <SmallRoundButton
+                    imgSrc={GetLocalImageSrc("downArrowBlack.png")}
+                    size={40}
+                  ></SmallRoundButton>
                 </div>
-                <div>
+                <div
+                  className="commentsBlock"
+                  style={{
+                    maxHeight: `${window.innerHeight * 0.5}px`,
+                  }}
+                >
                   {comments.map((comment) => (
                     <IdeaComment
                       comment={comment}
@@ -238,11 +242,17 @@ export default function IdeaPreviewPage() {
                 id="enterCommentInput"
                 className="enterCommentInput"
               ></div>
-              <SmallRoundButton
-                size={40}
-                imgSrc={GetLocalImageSrc("sendMessage.png")}
-                onClick={trySendComment}
-              ></SmallRoundButton>
+              <div
+                style={{
+                  marginBottom: "15px",
+                }}
+              >
+                <SmallRoundButton
+                  size={40}
+                  imgSrc={GetLocalImageSrc("sendMessage.png")}
+                  onClick={trySendComment}
+                ></SmallRoundButton>
+              </div>
             </div>
           </div>
         </div>

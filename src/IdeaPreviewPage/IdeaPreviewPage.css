@@ -149,17 +149,23 @@
 }
 .enterCommentBlock {
   width: 100%;
-  bottom: 20px;
+  bottom: 0px;
+  z-index: 2;
   position: absolute;
   display: flex;
   flex-direction: row;
-  max-width: 100%;
   justify-content: space-around;
   align-items: end;
+  background-color: white;
 }
 .enterCommentInput {
   padding: 10px 20px;
   background-color: #ddd;
   border-radius: 20px;
   width: 75%;
+  margin: 20px 0;
+}
+.commentsBlock {
+  overflow-y: scroll;
+  overflow-x: hidden;
 }

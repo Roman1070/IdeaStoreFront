@@ -9,6 +9,7 @@ import {
   GetCurrentUsersBoards,
   IsIdeaSaved,
   GetComments,
+  CreateComment,
 } from "../requests";
 import SaveIdeaButton from "../IdeaCard/SaveIdeaButton";
 import SelectBoardToSaveButton from "../IdeaCard/SelectBoardToSaveButton";
@@ -27,6 +28,7 @@ export default function IdeaPreviewPage() {
   const [author, setAuthor] = useState();
   const [comments, setComments] = useState();
   const [commentInput, setCommentInput] = useState();
+  const [commentError, setCommentError] = useState();
   const inputBlock = document.getElementById("enterCommentInput");
   function onSaveToggle(savedNow) {
     setSaved(savedNow);
@@ -39,6 +41,21 @@ export default function IdeaPreviewPage() {
       if (boards[i].id == id) return boards[i].name;
     }
     return "Профиль";
+  }
+  function trySendComment() {
+    if (!commentInput || commentInput.length == 0) {
+      setCommentError("Comment mustn't be empty");
+      return;
+    }
+    console.log(idea);
+
+    CreateComment(index, commentInput, () => {
+      setCommentInput("");
+      inputBlock.innerHTML = "";
+      GetComments(index, (commentsJson) => {
+        setComments(commentsJson);
+      });
+    });
   }
   function onCommentChange(event) {
     var comment = event.target.innerHTML;
@@ -221,6 +238,11 @@ export default function IdeaPreviewPage() {
                 id="enterCommentInput"
                 className="enterCommentInput"
               ></div>
+              <SmallRoundButton
+                size={40}
+                imgSrc={GetLocalImageSrc("sendMessage.png")}
+                onClick={trySendComment}
+              ></SmallRoundButton>
             </div>
           </div>
         </div>

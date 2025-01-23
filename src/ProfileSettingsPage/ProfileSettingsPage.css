@@ -1,0 +1,118 @@
+.profileSettingsPage {
+  padding-top: 50px;
+  display: flex;
+  flex-direction: row;
+}
+.profileSettingsPageMenu {
+  width: 640px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 60px;
+  margin-left: 30px;
+}
+.profileSettingsTab {
+  display: flex;
+  flex-direction: column;
+}
+.profileSettingsTabHeader {
+  font-size: 28px;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+.profileSettingsTabSubheader {
+  width: 450px;
+  margin-bottom: 20px;
+}
+.profileSettingsTabImageBlock {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  position: relative;
+}
+.profileSettingsTabImage {
+  width: 75px;
+  margin-right: 20px;
+}
+.profileSettingsTabImageWrapper {
+  border-radius: 999px;
+  height: 75px;
+  width: 75px;
+  overflow: hidden;
+}
+#profileSettingsTabImageInput {
+  display: none;
+}
+#profileSettingsTabImageInputWrapper {
+  position: absolute;
+  height: 21px;
+  width: 100px;
+  margin: 24px 0 0 100px;
+  z-index: 2;
+}
+
+.profileSettingsTabImageInputLabel {
+  font-size: 18px;
+  font-weight: 500;
+  height: 30px;
+  display: inline-block;
+  cursor: pointer;
+  position: relative;
+}
+.profileSettingsTabImageInputLabel:before {
+  content: "";
+  position: absolute;
+  width: 0;
+  background: #000;
+  left: 45%;
+  height: 2px;
+  bottom: 0;
+  transition: all 0.3s;
+  opacity: 0.7;
+}
+
+.profileSettingsTabImageInputLabel:hover:before {
+  width: 100%;
+  left: 0;
+}
+.saveProfileChangesButton {
+  background-color: red;
+  width: 140px;
+  height: 50px;
+  border-radius: 30px;
+  font-family: inherit;
+  font-size: 18px;
+  font-weight: 500;
+  padding-bottom: 3px;
+  color: #fff;
+  transition-duration: 0.3s;
+  border: none;
+  cursor: pointer;
+}
+.saveProfileChangesButton:hover {
+  background-color: darkred;
+}
+
+.resetProfileChangesButton {
+  background-color: #ccc;
+  width: 140px;
+  height: 50px;
+  border-radius: 30px;
+  font-family: inherit;
+  font-size: 18px;
+  font-weight: 500;
+  padding-bottom: 3px;
+  color: #fff;
+  transition-duration: 0.3s;
+  border: none;
+  cursor: pointer;
+}
+.resetProfileChangesButton:hover {
+  background-color: #aaa;
+}
+.profileSettingsTabButtons {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: row;
+}

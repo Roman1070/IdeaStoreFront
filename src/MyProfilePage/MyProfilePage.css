@@ -11,6 +11,7 @@
 .myProfileImage {
   width: 120px;
   margin: 0 auto;
+  border-radius: 999px;
 }
 .myProfileName {
   display: inline-block;

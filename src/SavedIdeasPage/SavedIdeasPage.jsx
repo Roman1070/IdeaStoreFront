@@ -8,6 +8,7 @@ import {
   GetCurrentUsersBoards,
 } from "../requests";
 import BoardsScroll from "../BoardsScroll/BoardsScroll";
+import { GetImageSrc, GetLocalImageSrc } from "../utils";
 
 export default function SavedIdeasPage() {
   function onBoardCreated() {
@@ -26,9 +27,9 @@ export default function SavedIdeasPage() {
   const [profile, setProfile] = useState(null);
   if (ideas == null && profile == null) {
     GetCurrentProfile((json) => {
-      setProfile(json.data);
       GetSavedIdeas((ideas) => {
         setIdeas(ideas);
+        setProfile(json);
       });
     });
   }
@@ -47,7 +48,11 @@ export default function SavedIdeasPage() {
             <div className="profileBlockOnSavedIdeas">
               <img
                 className="profilePictureOnSavedIdeas"
-                src="profileTemp.jpg"
+                src={
+                  profile.avatarImage
+                    ? GetImageSrc(profile.avatarImage)
+                    : GetLocalImageSrc("user.png")
+                }
                 alt=""
               />
               <div className="usernameBlockInSavedIdeas">

@@ -166,7 +166,7 @@
   margin: 20px 0;
 }
 .commentsBlock {
-  overflow-y: scroll;
+  overflow-y: auto;
   overflow-x: hidden;
 
   max-height: 600px;

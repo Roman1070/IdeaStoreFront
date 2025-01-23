@@ -18,6 +18,7 @@ import { GetCookie } from "./utils.js";
 import BoardPreviewPage from "./BoardPreviewPage/BoardPreviewPage.jsx";
 import ProfilePreviewPage from "./ProfilePreviewPage/ProfilePreviewPage.jsx";
 import MyProfilePage from "./MyProfilePage/MyProfilePage.jsx";
+import ProfileSettingsPage from "./ProfileSettingsPage/ProfileSettingsPage.jsx";
 
 function App() {
   var loggedIn = GetCookie("token");
@@ -41,6 +42,11 @@ function App() {
           <Route exact path="/board/*" element={<BoardPreviewPage />} />
           <Route exact path="/profile/*" element={<ProfilePreviewPage />} />
           <Route exact path="/my_profile/*" element={<MyProfilePage />} />
+          <Route
+            exact
+            path="/profile_settings/*"
+            element={<ProfileSettingsPage />}
+          />
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </Router>

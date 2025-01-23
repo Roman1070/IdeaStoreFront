@@ -129,7 +129,7 @@ export function GetCurrentProfile(onComplete) {
     credentials: "include",
   })
     .then((response) => response.json())
-    .then((json) => onComplete(json));
+    .then((json) => onComplete(json.data));
 }
 export function GetProfile(id, onComplete) {
   fetch(JoinClientAddress(`profile?id=${id}`), {
@@ -249,4 +249,14 @@ export function CreateComment(ideaId, text, onComplete) {
       text: text,
     }),
   }).then((response) => onComplete());
+}
+
+export function UpdateProfile(data, onComplete) {
+  fetch(JoinClientAddress("profile"), {
+    method: "PUT",
+    credentials: "include",
+    body: data,
+  })
+    .then((response) => response.json())
+    .then((json) => onComplete(json));
 }

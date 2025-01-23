@@ -3,7 +3,7 @@ import InputField from "../InputField/InputField";
 import "./CreatePage.css";
 import "../InputField/InputField.css";
 import СreateIdeaPreviewImage from "./СreateIdeaPreviewImage";
-import { GetCookie, JoinClientAddress } from "../utils";
+import { GetCookie, GetLocalImageSrc, JoinClientAddress } from "../utils";
 import { CreateIdea } from "../requests";
 const CreatePageNameInputId = "createPageNameInput";
 const CreatePageDescriptionInputId = "createPageDescriptionInput";
@@ -123,7 +123,7 @@ export default function CreatePage() {
           {!previewSrc && (
             <div className="createPageImageInputContent">
               <img
-                src={HostName + "images/uploadIcon.png"}
+                src={GetLocalImageSrc("uploadIcon.png")}
                 alt=""
                 style={{
                   height: "40px",

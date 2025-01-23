@@ -12,11 +12,11 @@ export default function MyProfilePage() {
   const [ideas, setIdeas] = useState();
   if (!profile && !boards && !ideas)
     GetCurrentProfile((json) => {
-      GetBoards(json.data.id, (boardsJson) => {
+      GetBoards(json.id, (boardsJson) => {
         GetSavedIdeas((ideasJson) => {
           setIdeas(ideasJson);
           setBoards(boardsJson);
-          setProfile(json.data);
+          setProfile(json);
         });
       });
     });
@@ -41,7 +41,7 @@ export default function MyProfilePage() {
               width: "30px",
             }}
           ></div>
-          <ButtonLight>Изменить профиль</ButtonLight>
+          <ButtonLight url={"/profile_settings"}>Изменить профиль</ButtonLight>
         </div>
         <span className="myProfileLabel">Доски</span>
         <BoardsScroll boards={boards}></BoardsScroll>

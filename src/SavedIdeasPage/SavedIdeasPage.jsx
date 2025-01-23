@@ -55,7 +55,9 @@ export default function SavedIdeasPage() {
                 <div>0 подписок</div>
               </div>
               <a href="/my_profile" className="openProfileButtonInSavedIdeas">
-                Открыть профиль
+                <span className="openProfileButtonInSavedIdeasText">
+                  Открыть профиль
+                </span>
               </a>
             </div>
           </div>

@@ -43,6 +43,19 @@
   height: 40px;
   border-radius: 40px;
   border: none;
+  background-color: #eee;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition-duration: 0.3s;
+}
+.openProfileButtonInSavedIdeas:hover {
+  background-color: #ccc;
+}
+.openProfileButtonInSavedIdeasText {
   font-size: 14px;
   font-weight: 550;
+  color: black;
+  margin-top: 10px;
+  display: inline-block;
 }

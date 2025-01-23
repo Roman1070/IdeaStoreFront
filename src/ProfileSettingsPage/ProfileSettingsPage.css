@@ -15,6 +15,10 @@
   display: flex;
   flex-direction: column;
 }
+.profileSettingsTabForm {
+  display: flex;
+  flex-direction: column;
+}
 .profileSettingsTabHeader {
   font-size: 28px;
   font-weight: 500;

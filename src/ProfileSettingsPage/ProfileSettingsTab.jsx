@@ -1,7 +1,7 @@
 import { useState } from "react";
 import ButtonLight from "../ButtonLight/ButtonLight";
 import { GetImageSrc, GetLocalImageSrc } from "../utils";
-import { UpdateProfile } from "../requests";
+import { GetCurrentProfile, UpdateProfile } from "../requests";
 import InputField from "../InputField/InputField";
 import "./ProfileSettingsPage.css";
 import "../IdeaCard/IdeaCard.css";
@@ -13,6 +13,7 @@ export default function ProfileSettingsTab({ profile }) {
   function validateName() {
     const input = document.getElementById(ProfileSettingsTabNameInputId);
     const name = input.value;
+
     if (name.length == 0) {
       setUsernameError("Please input name");
       return false;
@@ -29,11 +30,12 @@ export default function ProfileSettingsTab({ profile }) {
     var data = new FormData();
     var imageData = document.getElementById(ProfileSettingsTabImageInputId)
       .files[0];
-    data.append("image", imageData);
+    if (previewSrc) data.append("image", imageData);
+
+    console.log(imageData);
     data.append("name", username);
     data.append("description", description);
     data.append("link", link);
-
     UpdateProfile(data, onUpdated);
   }
   const [previewSrc, setPreviewSrc] = useState();
@@ -56,71 +58,75 @@ export default function ProfileSettingsTab({ profile }) {
   }
   if (profile)
     return (
-      <form className="profileSettingsTab" encType="multipart/form-data">
-        <div className="profileSettingsTabHeader">Изменение профиля</div>
-        <div className="profileSettingsTabSubheader">
-          Позаботьтесь о конфиденциальности личных данных. Добавляемая вами
-          информация видна всем, кто может просматривать ваш профиль.
-        </div>
-        <div>Фотография</div>
-        <div className="profileSettingsTabImageBlock">
-          <div className="profileSettingsTabImageWrapper">
-            <img
-              className="profileSettingsTabImage"
-              src={
-                previewSrc
-                  ? previewSrc
-                  : profile.avatarImage
-                  ? GetImageSrc(profile.avatarImage)
-                  : GetLocalImageSrc("user.png")
-              }
-            ></img>
+      <div className="profileSettingsTab">
+        <form className="profileSettingsTabForm" encType="multipart/form-data">
+          <div className="profileSettingsTabHeader">Изменение профиля</div>
+          <div className="profileSettingsTabSubheader">
+            Позаботьтесь о конфиденциальности личных данных. Добавляемая вами
+            информация видна всем, кто может просматривать ваш профиль.
           </div>
+          <div>Фотография</div>
+          <div className="profileSettingsTabImageBlock">
+            <div className="profileSettingsTabImageWrapper">
+              <img
+                className="profileSettingsTabImage"
+                src={
+                  previewSrc
+                    ? previewSrc
+                    : profile.avatarImage
+                    ? GetImageSrc(profile.avatarImage)
+                    : GetLocalImageSrc("user.png")
+                }
+              ></img>
+            </div>
 
-          <div id="profileSettingsTabImageInputWrapper">
-            <label
-              htmlFor="profileSettingsTabImageInput"
-              className="profileSettingsTabImageInputLabel"
-            >
-              Изменить
-            </label>
-            <input
-              id="profileSettingsTabImageInput"
-              accept="image/bmp,image/jpeg,image/png,image/tiff,image/webp"
-              aria-label="Загрузка файлов"
-              multiple=""
-              type="file"
-              onChange={(event) => changeHandler(event)}
-            ></input>
+            <div id="profileSettingsTabImageInputWrapper">
+              <label
+                htmlFor="profileSettingsTabImageInput"
+                className="profileSettingsTabImageInputLabel"
+              >
+                Изменить
+              </label>
+              <input
+                id="profileSettingsTabImageInput"
+                accept="image/bmp,image/jpeg,image/png,image/tiff,image/webp"
+                aria-label="Загрузка файлов"
+                multiple=""
+                type="file"
+                onChange={(event) => changeHandler(event)}
+              ></input>
+            </div>
           </div>
-        </div>
-        <InputField
-          defaultValue={profile.name}
-          error={usernameError}
-          isCorrect={!usernameError}
-          id="profileSettingsTabNameInput"
-          onChangeAction={(val) => setUsername(val)}
-        >
-          Имя пользователя
-        </InputField>
-        <InputField
-          error={usernameError}
-          isCorrect={!usernameError}
-          placeholder="Расскажите свою историю"
-          height="80px"
-          onChangeAction={(val) => setDescription(val)}
-        >
-          Описание
-        </InputField>
+          <InputField
+            defaultValue={profile.name}
+            error={usernameError}
+            isCorrect={!usernameError}
+            id="profileSettingsTabNameInput"
+            onChangeAction={(event) => setUsername(event.target.value)}
+          >
+            Имя пользователя
+          </InputField>
+          <InputField
+            defaultValue={profile.description}
+            error={usernameError}
+            isCorrect={!usernameError}
+            placeholder="Расскажите свою историю"
+            height="80px"
+            onChangeAction={(event) => setDescription(event.target.value)}
+          >
+            Описание
+          </InputField>
 
-        <InputField
-          error={usernameError}
-          isCorrect={!usernameError}
-          placeholder="https://"
-          onChangeAction={(val) => setLink(val)}
-        >
-          Веб-сайт
-        </InputField>
+          <InputField
+            defaultValue={profile.link}
+            error={usernameError}
+            isCorrect={!usernameError}
+            placeholder="https://"
+            onChangeAction={(event) => setLink(event.target.value)}
+          >
+            Веб-сайт
+          </InputField>
+        </form>
         <div className="profileSettingsTabButtons">
           <button onClick={saveChanges} className="saveProfileChangesButton">
             Сохранить
@@ -132,6 +138,6 @@ export default function ProfileSettingsTab({ profile }) {
           ></div>
           <button className="resetProfileChangesButton">Сбросить</button>
         </div>
-      </form>
+      </div>
     );
 }

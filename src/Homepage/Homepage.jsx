@@ -11,8 +11,8 @@ export default function Homepage() {
     GetAllIdeas(false, (ideas) => {
       GetCurrentUsersBoards((json) => {
         setBoards(json);
+        setIdeas(ideas);
       });
-      setIdeas(ideas);
     });
   }
 

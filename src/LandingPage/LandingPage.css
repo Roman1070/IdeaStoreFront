@@ -1,6 +1,6 @@
 * {
   -ms-overflow-style: none;
 }
-::-webkit-scrollbar {
+#element::-webkit-scrollbar {
   display: none;
 }

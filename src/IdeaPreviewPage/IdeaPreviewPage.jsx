@@ -220,12 +220,7 @@ export default function IdeaPreviewPage() {
                     size={40}
                   ></SmallRoundButton>
                 </div>
-                <div
-                  className="commentsBlock"
-                  style={{
-                    maxHeight: `${window.innerHeight * 0.5}px`,
-                  }}
-                >
+                <div className="commentsBlock" id="commentsBlock">
                   {comments.map((comment) => (
                     <IdeaComment
                       comment={comment}

@@ -17,8 +17,8 @@ export default function LandingPage() {
     });
   }
   return (
-    <>
+    <div className="landingScroll">
       <IdeasScroll ideas={ideas}></IdeasScroll>
-    </>
+    </div>
   );
 }

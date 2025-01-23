@@ -3,6 +3,7 @@ import "./IdeaCard.css";
 import { GetCookie, GetImageSrc } from "../utils";
 import SaveIdeaButton from "./SaveIdeaButton";
 import SelectBoardToSaveButton from "./SelectBoardToSaveButton";
+import IdeaPreviewContentHolder from "../IdeaPreviewPage/IdeaPreviewContentHolder";
 
 export default function IdeaCard({
   idea,
@@ -30,12 +31,16 @@ export default function IdeaCard({
       onMouseLeave={() => onMouseExit(index)}
       className={"ideaCard" + (isSelected ? " activeIdeaCard" : "")}
     >
-      <img
-        src={GetImageSrc(idea.image)}
-        alt={idea.image}
-        content="image"
-        style={{ width: "100%", borderRadius: "20px" }}
-      />
+      <div
+        style={{
+          width: "100%",
+          borderRadius: "20px",
+          overflow: "hidden",
+        }}
+      >
+        <IdeaPreviewContentHolder image={idea.image}></IdeaPreviewContentHolder>
+      </div>
+
       {loggedIn && (
         <a
           href={"/idea/" + index}

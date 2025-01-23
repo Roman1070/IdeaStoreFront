@@ -143,7 +143,7 @@ export default function CreatePage() {
           )}
           <input
             id="createPageImageInput"
-            accept="image/bmp,image/gif,image/jpeg,image/png,image/tiff,image/webp,video/mp4,video/x-m4v,video/quicktime"
+            accept="image/bmp,image/gif,image/jpeg,image/png,image/tiff,image/webp,video/mp4,video/webm,video/x-m4v,video/quicktime"
             aria-label="Загрузка файлов"
             multiple=""
             type="file"

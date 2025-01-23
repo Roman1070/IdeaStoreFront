@@ -14,6 +14,7 @@ import {
 import SaveIdeaButton from "../IdeaCard/SaveIdeaButton";
 import SelectBoardToSaveButton from "../IdeaCard/SelectBoardToSaveButton";
 import IdeaComment from "./IdeaComment";
+import IdeaPreviewContentHolder from "./IdeaPreviewContentHolder";
 
 export default function IdeaPreviewPage() {
   const index = window.location.pathname.substring(6);
@@ -120,10 +121,9 @@ export default function IdeaPreviewPage() {
               maxHeight: `${maxPreviewBlockH}px`,
             }}
           >
-            <img
-              className="previewIdeaBlockImage"
-              src={GetImageSrc(idea.image)}
-            ></img>
+            <IdeaPreviewContentHolder
+              image={idea.image}
+            ></IdeaPreviewContentHolder>
           </div>
           <div className="previewIdeaDataBlock">
             <div className="previewIdeaDataHeader">

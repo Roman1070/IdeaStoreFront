@@ -25,7 +25,11 @@
   display: inline-block;
   margin: auto;
 }
-
+.previewIdeaBlockVideo {
+  width: 100%;
+  display: inline-block;
+  margin: auto;
+}
 .previewIdeaDataBlock {
   display: flex;
   flex-direction: column;

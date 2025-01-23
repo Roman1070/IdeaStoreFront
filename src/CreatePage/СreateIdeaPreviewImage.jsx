@@ -1,9 +1,13 @@
+import IdeaPreviewContentHolder from "../IdeaPreviewPage/IdeaPreviewContentHolder";
 import "./CreatePage.css";
 
 export default function СreateIdeaPreviewImage({ src }) {
   return (
     <div className="createPageImageWrapper">
-      <img src={src} id="createIdeaPreviewImage"></img>
+      <IdeaPreviewContentHolder
+        image={src}
+        id="createIdeaPreviewImage"
+      ></IdeaPreviewContentHolder>
     </div>
   );
 }

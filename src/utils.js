@@ -1,5 +1,5 @@
 const HostName = JoinClientAddress("images/");
-export function GetIdeaSrc(name) {
+export function GetImageSrc(name) {
   return HostName + name;
 }
 

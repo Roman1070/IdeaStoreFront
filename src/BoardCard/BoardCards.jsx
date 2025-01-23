@@ -3,9 +3,8 @@ import { DeleteBoard, GetIdea, GetIdeasInBoard } from "../requests";
 import "./BoardCard.css";
 import { useState } from "react";
 import {
-  GetIdeaSrc,
+  GetImageSrc,
   GetLocalImageSrc,
-  JoinClientAddress,
   JoinReactHostAddress,
   Morph,
 } from "../utils";
@@ -63,7 +62,7 @@ export default function BoardCard({
         <div className="boardCardImageHolder">
           {isActive && <div className="boardCardFade"></div>}
           {ideas && ideas.length > 0 && (
-            <img className="left" src={GetIdeaSrc(ideas[0].image)}></img>
+            <img className="left" src={GetImageSrc(ideas[0].image)}></img>
           )}
           {ideas && ideas.length > 1 && (
             <div className="upper">
@@ -71,7 +70,7 @@ export default function BoardCard({
                 style={{
                   width: "100%",
                 }}
-                src={GetIdeaSrc(ideas[1].image)}
+                src={GetImageSrc(ideas[1].image)}
               ></img>
             </div>
           )}
@@ -81,7 +80,7 @@ export default function BoardCard({
                 style={{
                   width: "100%",
                 }}
-                src={GetIdeaSrc(ideas[2].image)}
+                src={GetImageSrc(ideas[2].image)}
               ></img>
             </div>
           )}

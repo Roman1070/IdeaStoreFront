@@ -17,6 +17,7 @@ import IdeaPreviewPage from "./IdeaPreviewPage/IdeaPreviewPage.jsx";
 import { GetCookie } from "./utils.js";
 import BoardPreviewPage from "./BoardPreviewPage/BoardPreviewPage.jsx";
 import ProfilePreviewPage from "./ProfilePreviewPage/ProfilePreviewPage.jsx";
+import MyProfilePage from "./MyProfilePage/MyProfilePage.jsx";
 
 function App() {
   var loggedIn = GetCookie("token");
@@ -39,6 +40,7 @@ function App() {
           <Route exact path="/idea/*" element={<IdeaPreviewPage />} />
           <Route exact path="/board/*" element={<BoardPreviewPage />} />
           <Route exact path="/profile/*" element={<ProfilePreviewPage />} />
+          <Route exact path="/my_profile/*" element={<MyProfilePage />} />
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </Router>

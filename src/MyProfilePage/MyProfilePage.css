@@ -1,0 +1,32 @@
+.myProfilePage {
+  display: flex;
+  flex-direction: column;
+}
+.myProfileImageBlock {
+  margin-top: 10px;
+  height: 120px;
+  display: flex;
+  flex-direction: row;
+}
+.myProfileImage {
+  width: 120px;
+  margin: 0 auto;
+}
+.myProfileName {
+  display: inline-block;
+  margin: 10px auto;
+  font-size: 36px;
+  font-weight: 500;
+}
+.myProfileButtonsBlock {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.myProfileLabel {
+  display: inline-block;
+  margin-left: 40px;
+  font-size: 24px;
+  font-weight: 500;
+}

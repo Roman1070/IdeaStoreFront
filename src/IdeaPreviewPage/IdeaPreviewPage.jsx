@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { GetIdeaSrc, GetLocalImageSrc, Morph } from "../utils";
+import { GetImageSrc, GetLocalImageSrc, Morph } from "../utils";
 import "./IdeaPreviewPage.css";
 import "../IdeaCard/IdeaCard.css";
 import SmallRoundButton from "../SmallRoundButton/SmallRoundButton";
@@ -29,7 +29,12 @@ export default function IdeaPreviewPage() {
   const [comments, setComments] = useState();
   const [commentInput, setCommentInput] = useState();
   const [commentError, setCommentError] = useState();
+  const [showComments, setShowComments] = useState();
   const inputBlock = document.getElementById("enterCommentInput");
+
+  function toggleShowComments() {
+    setShowComments(!showComments);
+  }
   function onSaveToggle(savedNow) {
     setSaved(savedNow);
   }
@@ -117,7 +122,7 @@ export default function IdeaPreviewPage() {
           >
             <img
               className="previewIdeaBlockImage"
-              src={GetIdeaSrc(idea.image)}
+              src={GetImageSrc(idea.image)}
             ></img>
           </div>
           <div className="previewIdeaDataBlock">
@@ -206,7 +211,10 @@ export default function IdeaPreviewPage() {
             </div>
             {comments && comments.length > 0 && (
               <>
-                <div className="commentsHeaderBlock">
+                <div
+                  className="commentsHeaderBlock"
+                  onClick={toggleShowComments}
+                >
                   <span className="commentsCountText">
                     {comments.length}{" "}
                     {Morph(comments.length, [
@@ -218,16 +226,19 @@ export default function IdeaPreviewPage() {
                   <SmallRoundButton
                     imgSrc={GetLocalImageSrc("downArrowBlack.png")}
                     size={40}
+                    onClick={toggleShowComments}
                   ></SmallRoundButton>
                 </div>
-                <div className="commentsBlock" id="commentsBlock">
-                  {comments.map((comment) => (
-                    <IdeaComment
-                      comment={comment}
-                      key={comment.id}
-                    ></IdeaComment>
-                  ))}
-                </div>
+                {showComments && (
+                  <div className="commentsBlock" id="commentsBlock">
+                    {comments.map((comment) => (
+                      <IdeaComment
+                        comment={comment}
+                        key={comment.id}
+                      ></IdeaComment>
+                    ))}
+                  </div>
+                )}
               </>
             )}
             <div className="enterCommentBlock">

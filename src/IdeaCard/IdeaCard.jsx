@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import "./IdeaCard.css";
-import { GetCookie, GetIdeaSrc } from "../utils";
+import { GetCookie, GetImageSrc } from "../utils";
 import SaveIdeaButton from "./SaveIdeaButton";
 import SelectBoardToSaveButton from "./SelectBoardToSaveButton";
 
@@ -31,7 +31,7 @@ export default function IdeaCard({
       className={"ideaCard" + (isSelected ? " activeIdeaCard" : "")}
     >
       <img
-        src={GetIdeaSrc(idea.image)}
+        src={GetImageSrc(idea.image)}
         alt={idea.image}
         content="image"
         style={{ width: "100%", borderRadius: "20px" }}

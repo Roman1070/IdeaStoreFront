@@ -8,6 +8,7 @@ import {
   JoinReactHostAddress,
   Morph,
 } from "../utils";
+import IdeaPreviewContentHolder from "../IdeaPreviewPage/IdeaPreviewContentHolder";
 
 export default function BoardCard({
   boardData,
@@ -62,26 +63,32 @@ export default function BoardCard({
         <div className="boardCardImageHolder">
           {isActive && <div className="boardCardFade"></div>}
           {ideas && ideas.length > 0 && (
-            <img className="left" src={GetImageSrc(ideas[0].image)}></img>
+            <div className="left">
+              <div
+                style={{
+                  width: "100%",
+                  height: "100%",
+                }}
+              >
+                <IdeaPreviewContentHolder
+                  height="100%"
+                  image={ideas[0].image}
+                ></IdeaPreviewContentHolder>
+              </div>
+            </div>
           )}
           {ideas && ideas.length > 1 && (
             <div className="upper">
-              <img
-                style={{
-                  width: "100%",
-                }}
-                src={GetImageSrc(ideas[1].image)}
-              ></img>
+              <IdeaPreviewContentHolder
+                image={ideas[1].image}
+              ></IdeaPreviewContentHolder>
             </div>
           )}
           {ideas && ideas.length > 2 && (
             <div className="lower">
-              <img
-                style={{
-                  width: "100%",
-                }}
-                src={GetImageSrc(ideas[2].image)}
-              ></img>
+              <IdeaPreviewContentHolder
+                image={ideas[2].image}
+              ></IdeaPreviewContentHolder>
             </div>
           )}
           {isActive && enableDelete && (

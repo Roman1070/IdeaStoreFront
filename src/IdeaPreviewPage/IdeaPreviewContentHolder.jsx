@@ -1,7 +1,7 @@
 import { GetImageSrc } from "../utils";
 import "./IdeaPreviewPage.css";
 
-export default function IdeaPreviewContentHolder({ image }) {
+export default function IdeaPreviewContentHolder({ image, ...props }) {
   const videos = [".mp4", ".mkv", ".webm"];
   var isVideo = false;
   videos.forEach(function (ext) {
@@ -11,11 +11,22 @@ export default function IdeaPreviewContentHolder({ image }) {
   });
   if (!isVideo)
     return (
-      <img className="previewIdeaBlockImage" src={GetImageSrc(image)}></img>
+      <img
+        className="previewIdeaBlockImage"
+        src={GetImageSrc(image)}
+        {...props}
+      ></img>
     );
   else
     return (
-      <video autoPlay muted loop controls className="previewIdeaBlockVideo">
+      <video
+        autoPlay
+        muted
+        loop
+        controls
+        className="previewIdeaBlockVideo"
+        {...props}
+      >
         <source src={GetImageSrc(image)}></source>
       </video>
     );

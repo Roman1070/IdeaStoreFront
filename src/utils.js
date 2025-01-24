@@ -48,3 +48,14 @@ export function Morph(int, array) {
       : [2, 0, 1, 1, 1, 2][int % 10 < 5 ? int % 10 : 5]
   ];
 }
+
+export function IsVideo(src) {
+  const videos = ["mp4", "mkv", "webm"];
+  var isVideo = false;
+  videos.forEach(function (ext) {
+    if (src.includes("." + ext) || src.includes("/" + ext)) {
+      isVideo = true;
+    }
+  });
+  return isVideo;
+}

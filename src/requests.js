@@ -219,7 +219,7 @@ export function GetIdeas(ids, onComplete) {
     body: idsJson,
   })
     .then((response) => response.json())
-    .then((json) => onComplete(json));
+    .then((json) => onComplete(json.ideas));
 }
 
 export function DeleteBoard(id, onComplete) {

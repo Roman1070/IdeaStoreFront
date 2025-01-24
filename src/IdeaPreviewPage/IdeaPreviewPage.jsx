@@ -10,6 +10,7 @@ import {
   IsIdeaSaved,
   GetComments,
   CreateComment,
+  GetCurrentProfile,
 } from "../requests";
 import SaveIdeaButton from "../IdeaCard/SaveIdeaButton";
 import SelectBoardToSaveButton from "../IdeaCard/SelectBoardToSaveButton";
@@ -21,6 +22,7 @@ export default function IdeaPreviewPage() {
   const minPreviewBlockH = window.innerHeight * 0.4;
   const maxPreviewBlockH = window.innerHeight * 0.85;
   const smallButtonsMargin = 6;
+  const [currentId, setCurrentId] = useState();
   const [idea, setIdea] = useState(null);
   const [boards, setBoards] = useState([]);
   const [saved, setSaved] = useState(false);
@@ -83,26 +85,28 @@ export default function IdeaPreviewPage() {
     }
   }
   const smallButtonSize = 40;
-  if (idea == null && boards.length == 0) {
-    GetCurrentUsersBoards((b) => {
-      GetIdea(index, (idea) => {
-        GetProfile(idea.userId, (profile) => {
-          GetComments(index, (commentsJson) => {
-            setComments(commentsJson);
-            console.log(commentsJson);
-            setAuthor(profile);
-            setBoards(b);
-            setIdea(idea);
-            console.log(idea);
-            IsIdeaSaved(index, (json) => {
-              if (Object.hasOwn(json, "err")) {
-                alert("internal error checking idea saved: " + json.err);
-              } else {
-                setSaved(json.saved);
-                setBoardId(Number(json.boardId));
+  if (!idea && boards.length == 0) {
+    GetCurrentProfile((prof) => {
+      GetCurrentUsersBoards((b) => {
+        GetIdea(index, (idea) => {
+          GetProfile(idea.userId, (profile) => {
+            GetComments(index, (commentsJson) => {
+              setComments(commentsJson);
+              console.log(commentsJson);
+              setAuthor(profile);
+              setBoards(b);
+              setIdea(idea);
+              setCurrentId(prof.id);
+              IsIdeaSaved(index, (json) => {
+                if (Object.hasOwn(json, "err")) {
+                  alert("internal error checking idea saved: " + json.err);
+                } else {
+                  setSaved(json.saved);
+                  setBoardId(Number(json.boardId));
 
-                setBoardName(getBoardName(b, Number(json.boardId)));
-              }
+                  setBoardName(getBoardName(b, Number(json.boardId)));
+                }
+              });
             });
           });
         });
@@ -186,15 +190,29 @@ export default function IdeaPreviewPage() {
             {<p className="previewIdeaName">{idea.name}</p>}
             <div className="previewIdeaAuthorBlock">
               <img
+                style={{
+                  borderRadius: "999px",
+                }}
                 className="previewIdeaAuthorAvatar"
-                src={GetLocalImageSrc("profileTemp.jpg")}
+                src={
+                  author.avatarImage
+                    ? GetImageSrc(author.avatarImage)
+                    : GetLocalImageSrc("user.png")
+                }
               ></img>
-              <a
-                href={`/profile/${author.id}`}
-                className="previewIdeaAuthorName"
-              >
-                {author.name}
-              </a>
+              {author.id == currentId && (
+                <a href={`/my_profile`} className="previewIdeaAuthorName">
+                  {author.name}
+                </a>
+              )}
+              {author.id != currentId && (
+                <a
+                  href={`/profile/${author.id}`}
+                  className="previewIdeaAuthorName"
+                >
+                  {author.name}
+                </a>
+              )}
             </div>
             {idea.link && (
               <a

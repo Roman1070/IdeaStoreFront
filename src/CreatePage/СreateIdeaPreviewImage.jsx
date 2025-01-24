@@ -3,7 +3,6 @@ import { IsVideo } from "../utils";
 import "./CreatePage.css";
 
 export default function СreateIdeaPreviewImage({ src }) {
-  console.log(IsVideo(src));
   if (!IsVideo(src)) {
     return (
       <div className="createPageImageWrapper">

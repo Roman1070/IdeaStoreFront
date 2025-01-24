@@ -52,10 +52,21 @@ export function Morph(int, array) {
 export function IsVideo(src) {
   const videos = ["mp4", "mkv", "webm"];
   var isVideo = false;
-  videos.forEach(function (ext) {
-    if (src.includes("." + ext) || src.includes("/" + ext)) {
-      isVideo = true;
-    }
-  });
+
+  if (!src.includes("base64")) {
+    videos.forEach(function (ext) {
+      if (src.includes("." + ext)) {
+        isVideo = true;
+      }
+    });
+  } else {
+    const str = src.substring(0, 50);
+    videos.forEach(function (ext) {
+      if (str.includes("/" + ext)) {
+        isVideo = true;
+      }
+    });
+  }
+
   return isVideo;
 }

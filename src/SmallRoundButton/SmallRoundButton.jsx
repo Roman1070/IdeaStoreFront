@@ -7,6 +7,7 @@ export default function SmallRoundButton({
   onClick,
   size,
   marginRight,
+  forceRound,
 }) {
   if (isLink)
     return (
@@ -19,7 +20,16 @@ export default function SmallRoundButton({
         }}
         className="smallRoundButton"
       >
-        <img src={imgSrc} className="imgInSmallRoundButton" />
+        {forceRound && (
+          <img
+            style={{
+              borderRadius: "999px",
+            }}
+            src={imgSrc}
+            className="imgInSmallRoundButton"
+          />
+        )}
+        {!forceRound && <img src={imgSrc} className="imgInSmallRoundButton" />}
       </a>
     );
   return (
@@ -32,7 +42,17 @@ export default function SmallRoundButton({
       className="smallRoundButton"
       onClick={onClick}
     >
-      <img src={imgSrc} className="imgInSmallRoundButton" />
+      {" "}
+      {forceRound && (
+        <img
+          style={{
+            borderRadius: "999px",
+          }}
+          src={imgSrc}
+          className="imgInSmallRoundButton"
+        />
+      )}
+      {!forceRound && <img src={imgSrc} className="imgInSmallRoundButton" />}
     </button>
   );
 }

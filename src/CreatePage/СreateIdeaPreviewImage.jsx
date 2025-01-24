@@ -16,7 +16,7 @@ export default function СreateIdeaPreviewImage({ src }) {
         <video
           controls
           autoPlay
-          llop
+          loop
           muted
           id="createIdeaPreviewImage"
           src={src}

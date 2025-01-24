@@ -5,84 +5,100 @@ import SmallRoundButton from "../SmallRoundButton/SmallRoundButton";
 import "./MainHeader.css";
 import "../SmallRoundButton/SmallRoundButton.css";
 import { useState } from "react";
-import { GetLocalImageSrc } from "../utils";
+import { GetImageSrc, GetLocalImageSrc } from "../utils";
+import { GetCurrentProfile } from "../requests";
 const HostName = "http://localhost:3000/";
 export default function MainHeaderSignedIn() {
   const [modalEnabled, setModelEnabled] = useState(false);
+  const [profile, setProfile] = useState();
   const smallButtonSize = 40;
   const smallButtonMargin = 8;
-  return (
-    <>
-      <header className="mainHeader">
-        <img
-          src={HostName + "images/logo.png"}
-          alt=""
-          style={{
-            height: "32px",
-            display: "flex",
-            transformOrigin: "50% 100%",
-            marginLeft: "20px",
-            marginRight: "20px",
-          }}
-        />
-        <span
-          style={{
-            padding: "0 8px",
-            flexGrow: "2",
-            position: "relative",
-          }}
-        >
-          <ButtonLight url={"/"} isSelected={window.location.pathname === "/"}>
-            Главная
-          </ButtonLight>
-        </span>
-        <span
-          style={{
-            padding: "0 8px",
-            flexGrow: "2",
-            position: "relative",
-          }}
-        >
-          <ButtonLight
-            url={"/create"}
-            isSelected={window.location.pathname === "/create"}
-          >
-            Создать
-          </ButtonLight>
-        </span>
-        <SearchInputField />
-
-        <SmallRoundButton
-          size={smallButtonSize}
-          imgSrc={HostName + "images/bell.png"}
-          marginRight={smallButtonMargin}
-        ></SmallRoundButton>
-
-        <SmallRoundButton
-          size={smallButtonSize}
-          imgSrc={HostName + "images/message.png"}
-          marginRight={smallButtonMargin}
-        ></SmallRoundButton>
-
-        <SmallRoundButton
-          size={smallButtonSize}
-          isLink={true}
-          href="/saved_ideas"
-          imgSrc={HostName + "images/profileTemp.jpg"}
-        ></SmallRoundButton>
-        <button
-          className="arrowNearProfile"
-          onClick={() => setModelEnabled(!modalEnabled)}
-        >
+  if (!profile) {
+    GetCurrentProfile((prof) => {
+      setProfile(prof);
+    });
+  }
+  if (profile)
+    return (
+      <>
+        <header className="mainHeader">
           <img
-            src={GetLocalImageSrc("downArrowBlack.png")}
+            src={HostName + "images/logo.png"}
             alt=""
-            className="imgInSmallRoundButton"
+            style={{
+              height: "32px",
+              display: "flex",
+              transformOrigin: "50% 100%",
+              marginLeft: "20px",
+              marginRight: "20px",
+            }}
           />
-        </button>
-      </header>
-      <div className="mainHeaderHeightBlock"></div>
-      {modalEnabled && <ProfileModal />}
-    </>
-  );
+          <span
+            style={{
+              padding: "0 8px",
+              flexGrow: "2",
+              position: "relative",
+            }}
+          >
+            <ButtonLight
+              url={"/"}
+              isSelected={window.location.pathname === "/"}
+            >
+              Главная
+            </ButtonLight>
+          </span>
+          <span
+            style={{
+              padding: "0 8px",
+              flexGrow: "2",
+              position: "relative",
+            }}
+          >
+            <ButtonLight
+              url={"/create"}
+              isSelected={window.location.pathname === "/create"}
+            >
+              Создать
+            </ButtonLight>
+          </span>
+          <SearchInputField />
+
+          <SmallRoundButton
+            size={smallButtonSize}
+            imgSrc={HostName + "images/bell.png"}
+            marginRight={smallButtonMargin}
+          ></SmallRoundButton>
+
+          <SmallRoundButton
+            size={smallButtonSize}
+            imgSrc={HostName + "images/message.png"}
+            marginRight={smallButtonMargin}
+          ></SmallRoundButton>
+
+          <SmallRoundButton
+            size={smallButtonSize}
+            isLink={true}
+            forceRound={true}
+            href="/saved_ideas"
+            imgSrc={
+              profile.avatarImage
+                ? GetImageSrc(profile.avatarImage)
+                : GetLocalImageSrc("user.png")
+            }
+          ></SmallRoundButton>
+          <button
+            className="arrowNearProfile"
+            onClick={() => setModelEnabled(!modalEnabled)}
+          >
+            <img
+              src={GetLocalImageSrc("downArrowBlack.png")}
+              alt=""
+              className="imgInSmallRoundButton"
+            />
+          </button>
+        </header>
+        <div className="mainHeaderHeightBlock"></div>
+        {modalEnabled && <ProfileModal />}
+      </>
+    );
 }

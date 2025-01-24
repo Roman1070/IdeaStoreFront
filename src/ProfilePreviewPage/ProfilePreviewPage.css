@@ -9,6 +9,7 @@
 .profilePreviewPageAvatar {
   height: 120px;
   width: 120px;
+  border-radius: 999px;
 }
 .profilePreviewPageName {
   font-size: 36px;

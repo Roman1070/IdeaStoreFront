@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./ProfilePreviewPage.css";
-import { GetLocalImageSrc } from "../utils";
+import { GetImageSrc, GetLocalImageSrc } from "../utils";
 import {
   GetIdeas,
   GetProfile,
@@ -41,7 +41,11 @@ export default function ProfilePreviewPage() {
       <div className="profilePreviewPage">
         <img
           className="profilePreviewPageAvatar"
-          src={GetLocalImageSrc("profileTemp.jpg")}
+          src={
+            profile.avatarImage
+              ? GetImageSrc(profile.avatarImage)
+              : GetLocalImageSrc("user.png")
+          }
         />
         <span className="profilePreviewPageName">{profile.name}</span>
         <a className="profilePreviewPageLink">{profile.link}</a>

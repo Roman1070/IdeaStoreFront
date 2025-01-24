@@ -21,6 +21,7 @@
   height: 60px;
   width: 384px;
   margin-top: 20px;
+  position: relative;
 }
 .sendMessageButton {
   background-color: #ddd;
@@ -63,4 +64,16 @@
   flex-direction: row;
   width: 200px;
   justify-content: space-around;
+}
+.sendMessageModal {
+  padding: 10px;
+
+  box-shadow: 4px 4px 8px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  bottom: 80px;
+  left: 0px;
 }

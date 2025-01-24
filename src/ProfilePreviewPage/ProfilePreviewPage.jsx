@@ -10,12 +10,28 @@ import {
 import ButtonLight from "../ButtonLight/ButtonLight";
 import IdeasScroll from "../IdeasScroll";
 import BoardsScroll from "../BoardsScroll/BoardsScroll";
+import InputField from "../InputField/InputField";
 
 export default function ProfilePreviewPage() {
+  function validateMessage() {
+    console.log(message);
+    if (!message) {
+      setMessageError("Message can't be empty");
+      return false;
+    }
+    return true;
+  }
+
+  function trySendMessage() {
+    if (!validateMessage()) return;
+  }
   const id = window.location.pathname.substring(9);
   const [profile, setProfile] = useState();
-  const [ideas, setIdeas] = useState();
-  const [boards, setBoards] = useState();
+  const [message, setMessage] = useState("");
+  const [messageError, setMessageError] = useState("");
+  const [showMessageModal, setShowMessageModal] = useState();
+  const [ideas, setIdeas] = useState([]);
+  const [boards, setBoards] = useState([]);
   const [selectedTab, setSelectedTab] = useState(0);
   if (!profile) {
     GetProfile(id, (prof) => {
@@ -53,7 +69,36 @@ export default function ProfilePreviewPage() {
           {profile.description}
         </span>
         <div className="profilePreviewPageButtons">
-          <button className="sendMessageButton">Отправить сообщение</button>
+          <button
+            onClick={() => setShowMessageModal(!showMessageModal)}
+            className="sendMessageButton"
+          >
+            Отправить сообщение
+          </button>
+          {showMessageModal && (
+            <div className="sendMessageModal">
+              <InputField
+                defaultValue={message}
+                height="100px"
+                isCorrect={!messageError}
+                error={messageError}
+                onChangeAction={(event) => {
+                  setMessage(event.target.value);
+                  setMessageError("");
+                }}
+              ></InputField>
+              <button
+                onClick={trySendMessage}
+                className="sendMessageButton"
+                style={{
+                  width: "100%",
+                  height: "40px",
+                }}
+              >
+                Отправить
+              </button>
+            </div>
+          )}
           <button className="subscribeButton">Подписаться</button>
         </div>
         <div className="profilePreviewPageTabs">

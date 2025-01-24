@@ -54,6 +54,7 @@ export default function IdeaPreviewPage() {
     var comment = commentInput.replaceAll("<div><br></div>", " ");
     comment = comment.replaceAll("<div>", "");
     comment = comment.replaceAll("</div>", "");
+    comment = comment.replaceAll("&nbsp;", "");
     if (!comment || comment.length == 0) {
       setCommentError("Comment mustn't be empty");
       return;
@@ -89,11 +90,11 @@ export default function IdeaPreviewPage() {
     GetCurrentProfile((prof) => {
       GetCurrentUsersBoards((b) => {
         GetIdea(index, (idea) => {
-          GetProfile(idea.userId, (profile) => {
+          GetProfile(idea.userId, (author) => {
             GetComments(index, (commentsJson) => {
               setComments(commentsJson);
               console.log(commentsJson);
-              setAuthor(profile);
+              setAuthor(author);
               setBoards(b);
               setIdea(idea);
               setCurrentId(prof.id);
@@ -253,6 +254,7 @@ export default function IdeaPreviewPage() {
                       <IdeaComment
                         comment={comment}
                         key={comment.id}
+                        currentId={currentId}
                       ></IdeaComment>
                     ))}
                   </div>

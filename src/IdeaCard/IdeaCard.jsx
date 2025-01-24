@@ -38,7 +38,10 @@ export default function IdeaCard({
           overflow: "hidden",
         }}
       >
-        <IdeaPreviewContentHolder image={idea.image}></IdeaPreviewContentHolder>
+        <IdeaPreviewContentHolder
+          expandY={true}
+          image={idea.image}
+        ></IdeaPreviewContentHolder>
       </div>
 
       {loggedIn && (

@@ -1,7 +1,8 @@
+import { useState } from "react";
 import { GetImageSrc, GetLocalImageSrc, JoinReactHostAddress } from "../utils";
 import "./IdeaPreviewPage.css";
-export default function IdeaComment({ comment }) {
-  console.log(comment);
+import { GetCurrentProfile } from "../requests";
+export default function IdeaComment({ comment, currentId }) {
   return (
     <div className="ideaComment">
       <img
@@ -17,12 +18,23 @@ export default function IdeaComment({ comment }) {
       ></img>
       <div className="ideaCommentContent">
         <div className="ideaCommentUpperContent">
-          <a
-            href={JoinReactHostAddress(`profile/${comment.userId}`)}
-            className="ideaCommentAuthorName"
-          >
-            {comment.username}
-          </a>
+          {currentId == comment.userId && (
+            <a
+              href={JoinReactHostAddress(`my_profile`)}
+              className="ideaCommentAuthorName"
+            >
+              {comment.username}
+            </a>
+          )}
+          {currentId != comment.userId && (
+            <a
+              href={JoinReactHostAddress(`profile/${comment.userId}`)}
+              className="ideaCommentAuthorName"
+            >
+              {comment.username}
+            </a>
+          )}
+
           <span className="ideaCommentText">{comment.text}</span>
         </div>
         <div className="ideaCommentLowerContent"></div>

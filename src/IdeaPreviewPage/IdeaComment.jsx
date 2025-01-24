@@ -1,11 +1,19 @@
-import { GetLocalImageSrc, JoinReactHostAddress } from "../utils";
+import { GetImageSrc, GetLocalImageSrc, JoinReactHostAddress } from "../utils";
 import "./IdeaPreviewPage.css";
 export default function IdeaComment({ comment }) {
+  console.log(comment);
   return (
     <div className="ideaComment">
       <img
+        style={{
+          borderRadius: "999px",
+        }}
         className="ideaCommentAvatar"
-        src={GetLocalImageSrc("profileTemp.jpg")}
+        src={
+          comment.avatar
+            ? GetImageSrc(comment.avatar)
+            : GetLocalImageSrc("user.png")
+        }
       ></img>
       <div className="ideaCommentContent">
         <div className="ideaCommentUpperContent">

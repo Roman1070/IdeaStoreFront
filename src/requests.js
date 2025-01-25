@@ -260,3 +260,12 @@ export function UpdateProfile(data, onComplete) {
     .then((response) => response.json())
     .then((json) => onComplete(json));
 }
+
+export function GetChats(onComplete) {
+  fetch(JoinClientAddress("chats"), {
+    method: "GET",
+    credentials: "include",
+  })
+    .then((response) => response.json())
+    .then((json) => onComplete(json));
+}

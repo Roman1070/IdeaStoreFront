@@ -1,0 +1,51 @@
+.chatModalBlock {
+  position: fixed;
+  height: 670px;
+  width: 362px;
+  display: grid;
+  right: 20px;
+  top: 70px;
+  place-items: center;
+  z-index: 5;
+}
+
+.chatModalContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: top;
+  align-items: flex-start;
+  box-shadow: 0px 0px 2px 4px rgba(0, 0, 0, 0.1);
+  height: 100%;
+  width: 100%;
+  background-color: white;
+  border-radius: 20px;
+}
+.chatModalBlockHeader {
+  font-size: 28px;
+  font-weight: 500;
+  margin: 10px auto;
+}
+.chatsModalElement {
+  height: 60px;
+  display: flex;
+  flex-direction: row;
+  margin: 0 10px 20px 20px;
+  width: 90%;
+  transition-duration: 0.3s;
+  border-radius: 20px;
+  padding: 7px;
+}
+.chatsModalElement:hover {
+  cursor: pointer;
+  background-color: #ccc;
+}
+.chatsModalElementImage {
+  height: 60px;
+  width: 60px;
+  border-radius: 999px;
+  margin-right: 10px;
+}
+.chatsModalElementName {
+  font-size: 20px;
+  margin-top: 16px;
+}

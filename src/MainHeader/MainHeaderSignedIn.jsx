@@ -6,19 +6,25 @@ import "./MainHeader.css";
 import "../SmallRoundButton/SmallRoundButton.css";
 import { useState } from "react";
 import { GetImageSrc, GetLocalImageSrc } from "../utils";
-import { GetCurrentProfile } from "../requests";
+import { GetChats, GetCurrentProfile } from "../requests";
+import ChatsModal from "../ChatsModal/ChatsModal";
 const HostName = "http://localhost:3000/";
 export default function MainHeaderSignedIn() {
-  const [modalEnabled, setModelEnabled] = useState(false);
+  const [profileModalEnabled, setProfileModalEnabled] = useState(false);
+  const [chatsModalEnabled, setChatModalEnabled] = useState(false);
+  const [chats, setChats] = useState();
   const [profile, setProfile] = useState();
   const smallButtonSize = 40;
   const smallButtonMargin = 8;
-  if (!profile) {
+  if (!profile && !chats) {
     GetCurrentProfile((prof) => {
-      setProfile(prof);
+      GetChats((chatsJson) => {
+        setProfile(prof);
+        setChats(chatsJson.chats);
+      });
     });
   }
-  if (profile)
+  if (profile && chats)
     return (
       <>
         <header className="mainHeader">
@@ -72,6 +78,10 @@ export default function MainHeaderSignedIn() {
           <SmallRoundButton
             size={smallButtonSize}
             imgSrc={HostName + "images/message.png"}
+            onClick={() => {
+              setChatModalEnabled(!chatsModalEnabled);
+              setProfileModalEnabled(false);
+            }}
             marginRight={smallButtonMargin}
           ></SmallRoundButton>
 
@@ -88,7 +98,10 @@ export default function MainHeaderSignedIn() {
           ></SmallRoundButton>
           <button
             className="arrowNearProfile"
-            onClick={() => setModelEnabled(!modalEnabled)}
+            onClick={() => {
+              setProfileModalEnabled(!profileModalEnabled);
+              setChatModalEnabled(false);
+            }}
           >
             <img
               src={GetLocalImageSrc("downArrowBlack.png")}
@@ -98,7 +111,8 @@ export default function MainHeaderSignedIn() {
           </button>
         </header>
         <div className="mainHeaderHeightBlock"></div>
-        {modalEnabled && <ProfileModal />}
+        {profileModalEnabled && <ProfileModal />}
+        {chatsModalEnabled && <ChatsModal chats={chats} />}
       </>
     );
 }

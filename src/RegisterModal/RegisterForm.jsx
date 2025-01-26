@@ -39,9 +39,11 @@ export default function RegisterForm() {
   const [passwordError, setPasswordError] = useState("");
   const [confirmPasswordError, setConfirmPasswordError] = useState("");
   const [birthDateError, setBirthDateError] = useState("");
-  var email = "";
-  var password = "";
-  var name = "";
+  const [email, setEmail] = useState();
+  const [name, setName] = useState();
+  const [password, setPassword] = useState();
+  const [confirmPassword, setConfirmPassword] = useState();
+  const [birthDate, setBirthDate] = useState();
 
   function handleRegister(json) {
     if (Object.hasOwn(json, "err")) {
@@ -61,11 +63,7 @@ export default function RegisterForm() {
   }
   var handleSubmit = (event) => {
     event.preventDefault();
-    email = event.target.elements.email.value;
-    password = event.target.password.value;
-    name = event.target.name.value;
-    const confirmPassword = event.target.passwordConfirm.value;
-    const birthDate = event.target.birthDate.value;
+
     if (!validateEmail(email)) {
       setEmailError("Неправильный формат email");
       return;
@@ -99,19 +97,31 @@ export default function RegisterForm() {
   return (
     <form className="registerForm" onSubmit={handleSubmit}>
       <InputField
+        isCommonInput={true}
+        height={"30px"}
         name="email"
         type="email"
-        onChangeAction={() => setEmailError("")}
+        onChangeAction={(val) => {
+          setEmailError("");
+          setEmail(val);
+        }}
         isCorrect={emailError == ""}
         error={emailError}
+        value={email}
         placeholder={"Введите адрес эл.почты"}
       >
         Адрес электронной почты
       </InputField>
       <InputField
+        isCommonInput={true}
+        height={"30px"}
         name="name"
         type="text"
-        onChangeAction={() => setNameError("")}
+        value={name}
+        onChangeAction={(val) => {
+          setNameError("");
+          setName(val);
+        }}
         isCorrect={nameError == ""}
         error={nameError}
         placeholder={"Введите имя пользователя"}
@@ -119,32 +129,50 @@ export default function RegisterForm() {
         Имя пользователя
       </InputField>
       <InputField
+        isCommonInput={true}
+        height={"30px"}
         name="password"
         type="password"
+        value={password}
         isCorrect={passwordError == ""}
         error={passwordError}
-        onChangeAction={() => setPasswordError("")}
+        onChangeAction={(val) => {
+          setPasswordError("");
+          setPassword(val);
+        }}
         placeholder={"Создайте пароль"}
       >
         Пароль
       </InputField>
       <InputField
+        isCommonInput={true}
+        height={"30px"}
         name="passwordConfirm"
         type="password"
+        value={confirmPassword}
         isCorrect={confirmPasswordError == ""}
         error={confirmPasswordError}
-        onChangeAction={() => setConfirmPasswordError("")}
+        onChangeAction={(val) => {
+          setConfirmPasswordError("");
+          setConfirmPassword(val);
+        }}
         placeholder={"Введите пароль еще раз"}
       >
         Подтверждение пароля
       </InputField>
       <InputField
+        isCommonInput={true}
+        height={"30px"}
         name="birthDate"
         type="date"
+        value={birthDate}
         isCorrect={birthDateError == ""}
         error={birthDateError}
         placeholder={"дд.мм.гггг"}
-        onChangeAction={() => setBirthDateError("")}
+        onChangeAction={(val) => {
+          setBirthDateError("");
+          setBirthDate(val);
+        }}
       >
         Дата рождения
       </InputField>

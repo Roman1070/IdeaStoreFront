@@ -98,32 +98,30 @@ export default function ProfileSettingsTab({ profile }) {
             </div>
           </div>
           <InputField
-            defaultValue={profile.name}
+            value={username}
             error={usernameError}
             isCorrect={!usernameError}
             id="profileSettingsTabNameInput"
-            onChangeAction={(event) => setUsername(event.target.value)}
+            onChangeAction={(val) => setUsername(val)}
             height={"20px"}
           >
             Имя пользователя
           </InputField>
           <InputField
-            defaultValue={profile.description}
-            error={usernameError}
-            isCorrect={!usernameError}
+            value={description}
+            isCorrect={true}
             placeholder="Расскажите свою историю"
             height="80px"
-            onChangeAction={(event) => setDescription(event.target.value)}
+            onChangeAction={(val) => setDescription(val)}
           >
             Описание
           </InputField>
 
           <InputField
-            defaultValue={profile.link}
-            error={usernameError}
-            isCorrect={!usernameError}
+            value={link}
+            isCorrect={true}
             placeholder="https://"
-            onChangeAction={(event) => setLink(event.target.value)}
+            onChangeAction={(val) => setLink(val)}
             height={"20px"}
           >
             Веб-сайт

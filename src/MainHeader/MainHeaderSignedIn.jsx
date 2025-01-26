@@ -24,7 +24,7 @@ export default function MainHeaderSignedIn() {
       });
     });
   }
-  if (profile && chats)
+  if (profile)
     return (
       <>
         <header className="mainHeader">

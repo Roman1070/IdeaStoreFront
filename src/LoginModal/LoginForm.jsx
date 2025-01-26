@@ -12,6 +12,8 @@ const validateEmail = (email) => {
 };
 export default function LoginForm() {
   const [emailError, setEmailError] = useState("");
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
 
   function handleLogin(json) {
     if (Object.hasOwn(json, "err")) {
@@ -38,9 +40,14 @@ export default function LoginForm() {
   return (
     <form className="registerForm" onSubmit={handleSubmit}>
       <InputField
+        isCommonInput={true}
         name="email"
         type="email"
-        onChangeAction={() => setEmailError("")}
+        value={email}
+        onChangeAction={(val) => {
+          setEmailError("");
+          setEmail(val);
+        }}
         isCorrect={emailError == ""}
         error={emailError}
         placeholder={"Введите адрес эл.почты"}
@@ -49,10 +56,15 @@ export default function LoginForm() {
         Адрес электронной почты
       </InputField>
       <InputField
+        isCommonInput={true}
         name="password"
         type="password"
+        value={password}
+        onChangeAction={(val) => {
+          setPassword(val);
+        }}
         isCorrect={true}
-        placeholder={"Создайте пароль"}
+        placeholder={"Введите пароль"}
         height={"20px"}
       >
         Пароль

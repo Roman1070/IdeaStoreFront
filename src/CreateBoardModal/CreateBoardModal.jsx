@@ -20,8 +20,8 @@ export default function CreateBoardModal({ onClose }) {
   }
   const [nameError, setNameError] = useState("");
   const [name, setName] = useState("");
-  function onNameChanged(event) {
-    setName(event.target.value);
+  function onNameChanged(value) {
+    setName(value);
     setNameError("");
   }
   return createPortal(
@@ -31,6 +31,7 @@ export default function CreateBoardModal({ onClose }) {
         <span className="createBoardModalHeader">Создание доски</span>
         <InputField
           onChangeAction={onNameChanged}
+          value={name}
           isCorrect={nameError == ""}
           error={nameError}
           height={"20px"}

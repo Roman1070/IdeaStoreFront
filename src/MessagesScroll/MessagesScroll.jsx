@@ -5,7 +5,6 @@ export default function MessagesScroll({
   currentProfile,
   theirProfile,
 }) {
-  console.log(currentProfile);
   return (
     <div className="messagesScroll">
       {messages &&

@@ -22,19 +22,19 @@ export default function CreatePage() {
   const [tags, setTags] = useState("");
   const [createResponseError, setCreateResponseError] = useState("");
 
-  function onNameChanged(event) {
+  function onNameChanged(value) {
     setNameError("");
-    setName(event.target.value);
+    setName(value);
   }
 
-  function onLinkChanged(event) {
-    setLink(event.target.value);
+  function onLinkChanged(value) {
+    setLink(value);
   }
-  function onTagsChanged(event) {
-    setTags(event.target.value);
+  function onTagsChanged(value) {
+    setTags(value);
   }
-  function onDescriptionChanged(event) {
-    setDescription(event.target.value);
+  function onDescriptionChanged(value) {
+    setDescription(value);
   }
   function validateName() {
     const input = document.getElementById(CreatePageNameInputId);
@@ -168,6 +168,7 @@ export default function CreatePage() {
           <InputField
             onChangeAction={onNameChanged}
             error={nameError}
+            value={name}
             isCorrect={!nameError}
             id={CreatePageNameInputId}
             height={"20px"}
@@ -176,6 +177,7 @@ export default function CreatePage() {
           </InputField>
           <InputField
             id={CreatePageDescriptionInputId}
+            value={description}
             isCorrect={true}
             onChangeAction={onDescriptionChanged}
             height={"80px"}
@@ -185,6 +187,7 @@ export default function CreatePage() {
           <InputField
             id={CreatePageLinkInputId}
             isCorrect={true}
+            value={link}
             onChangeAction={onLinkChanged}
             height={"20px"}
           >
@@ -192,6 +195,7 @@ export default function CreatePage() {
           </InputField>
           <InputField
             id={CreatePageTagsInputId}
+            value={tags}
             isCorrect={true}
             onChangeAction={onTagsChanged}
             height={"20px"}

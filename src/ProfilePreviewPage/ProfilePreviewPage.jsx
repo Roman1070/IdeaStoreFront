@@ -78,12 +78,12 @@ export default function ProfilePreviewPage() {
           {showMessageModal && (
             <div className="sendMessageModal">
               <InputField
-                defaultValue={message}
                 height="100px"
                 isCorrect={!messageError}
                 error={messageError}
-                onChangeAction={(event) => {
-                  setMessage(event.target.value);
+                value={message}
+                onChangeAction={(value) => {
+                  setMessage(value);
                   setMessageError("");
                 }}
               ></InputField>

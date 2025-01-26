@@ -277,3 +277,18 @@ export function GetMessages(secondId, onComplete) {
     .then((resp) => resp.json())
     .then((json) => onComplete(json.messages));
 }
+
+export function SendMessage(recieverId, text, fileName, onComplete) {
+  console.log("send");
+  fetch(JoinClientAddress("message"), {
+    method: "POST",
+    body: JSON.stringify({
+      recieverId: recieverId,
+      text: text,
+      fileName: fileName,
+    }),
+    credentials: "include",
+  })
+    .then((resp) => resp.json())
+    .then((json) => onComplete(json));
+}

@@ -6,13 +6,37 @@ export default function InputField({
   isCorrect,
   error,
   onChangeAction,
-  defaultValue,
   height,
-  maxHeight,
+  value,
+  isCommonInput,
   ...props
 }) {
-  const [value, setValue] = useState(defaultValue);
-
+  if (isCommonInput) {
+    return (
+      <>
+        <div className="inputDiv">
+          <span>{children}</span>
+          <input
+            maxLength={500}
+            onChange={(event) => {
+              onChangeAction(event.target.value);
+            }}
+            value={value}
+            className={
+              isCorrect === true ? "inputField" : "inputField inputFieldError"
+            }
+            style={{
+              height: `${height ? height : ""}`,
+              overflowY: "auto",
+              padding: "10px 10px",
+            }}
+            {...props}
+          />
+          <span className="inputErrorText">{error}</span>
+        </div>
+      </>
+    );
+  }
   return (
     <>
       <div className="inputDiv">
@@ -20,8 +44,7 @@ export default function InputField({
         <textarea
           maxLength={500}
           onChange={(event) => {
-            setValue(event.target.value);
-            if (onChangeAction != null) onChangeAction(event);
+            onChangeAction(event.target.value);
           }}
           value={value}
           className={
@@ -29,7 +52,6 @@ export default function InputField({
           }
           style={{
             height: `${height ? height : ""}`,
-            maxHeight: `${maxHeight ? maxHeight : ""}`,
             overflowY: "auto",
             padding: "10px 10px",
           }}

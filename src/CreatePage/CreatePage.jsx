@@ -170,6 +170,7 @@ export default function CreatePage() {
             error={nameError}
             isCorrect={!nameError}
             id={CreatePageNameInputId}
+            height={"20px"}
           >
             Название
           </InputField>
@@ -177,6 +178,7 @@ export default function CreatePage() {
             id={CreatePageDescriptionInputId}
             isCorrect={true}
             onChangeAction={onDescriptionChanged}
+            height={"80px"}
           >
             Описание
           </InputField>
@@ -184,6 +186,7 @@ export default function CreatePage() {
             id={CreatePageLinkInputId}
             isCorrect={true}
             onChangeAction={onLinkChanged}
+            height={"20px"}
           >
             Ссылка при нажатии
           </InputField>
@@ -191,6 +194,7 @@ export default function CreatePage() {
             id={CreatePageTagsInputId}
             isCorrect={true}
             onChangeAction={onTagsChanged}
+            height={"20px"}
           >
             Теги
           </InputField>

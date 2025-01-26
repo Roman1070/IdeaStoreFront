@@ -44,6 +44,7 @@ export default function LoginForm() {
         isCorrect={emailError == ""}
         error={emailError}
         placeholder={"Введите адрес эл.почты"}
+        height={"20px"}
       >
         Адрес электронной почты
       </InputField>
@@ -52,6 +53,7 @@ export default function LoginForm() {
         type="password"
         isCorrect={true}
         placeholder={"Создайте пароль"}
+        height={"20px"}
       >
         Пароль
       </InputField>

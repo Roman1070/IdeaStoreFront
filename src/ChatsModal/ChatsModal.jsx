@@ -5,7 +5,7 @@ import { GetImageSrc, GetLocalImageSrc } from "../utils";
 import SmallRoundButton from "../SmallRoundButton/SmallRoundButton";
 import { GetMessages } from "../requests";
 import MessagesScroll from "../MessagesScroll/MessagesScroll";
-
+import InputField from "../InputField/InputField";
 export default function ChatsModal({ chats, currentProfile }) {
   const [selectedChat, setSelectedChat] = useState();
   const [currentMessages, setCurrentMessages] = useState();
@@ -47,6 +47,11 @@ export default function ChatsModal({ chats, currentProfile }) {
                 currentProfile={currentProfile}
               ></MessagesScroll>
             )}
+            <div className="inputMessageBlock">
+              <div className="inputMessageWrapper">
+                <InputField maxHeight={"100px"}></InputField>
+              </div>
+            </div>
           </>
         )}
         {!selectedChat &&

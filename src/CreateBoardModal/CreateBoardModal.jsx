@@ -33,6 +33,7 @@ export default function CreateBoardModal({ onClose }) {
           onChangeAction={onNameChanged}
           isCorrect={nameError == ""}
           error={nameError}
+          height={"20px"}
         >
           Название
         </InputField>

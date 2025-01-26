@@ -103,6 +103,7 @@ export default function ProfileSettingsTab({ profile }) {
             isCorrect={!usernameError}
             id="profileSettingsTabNameInput"
             onChangeAction={(event) => setUsername(event.target.value)}
+            height={"20px"}
           >
             Имя пользователя
           </InputField>
@@ -123,6 +124,7 @@ export default function ProfileSettingsTab({ profile }) {
             isCorrect={!usernameError}
             placeholder="https://"
             onChangeAction={(event) => setLink(event.target.value)}
+            height={"20px"}
           >
             Веб-сайт
           </InputField>

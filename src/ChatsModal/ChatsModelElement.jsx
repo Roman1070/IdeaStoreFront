@@ -1,9 +1,9 @@
 import { GetImageSrc, GetLocalImageSrc } from "../utils";
 import "./ChatsModal.css";
 
-export default function ChatsModalElement({ chatData }) {
+export default function ChatsModalElement({ chatData, onSelect }) {
   return (
-    <div className="chatsModalElement">
+    <div className="chatsModalElement" onClick={() => onSelect(chatData)}>
       <img
         className="chatsModalElementImage"
         src={

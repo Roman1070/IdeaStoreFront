@@ -1,0 +1,57 @@
+.messagesScroll {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding-top: 20px;
+  overflow-y: auto;
+}
+
+.myMessageBlock {
+  margin: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+}
+.theirMessageBlock {
+  margin: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+}
+.messageBlockMyContent {
+  border-radius: 24px;
+  border: 1px solid #aaa;
+  margin-left: 60px;
+  min-height: 50px;
+
+  display: flex;
+  flex-direction: column;
+}
+.messageBlockTheirContent {
+  border-radius: 24px;
+  background-color: #ddd;
+  margin-right: 60px;
+  min-height: 50px;
+
+  display: flex;
+  flex-direction: column;
+}
+.messageSenderAvatarLeft {
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  display: inline-block;
+  margin: auto 10px auto 0;
+}
+
+.messageSenderAvatarRight {
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  display: inline-block;
+  margin: auto 0 auto 10px;
+}
+.messageText {
+  margin: auto 10px;
+  padding-bottom: 3px;
+}

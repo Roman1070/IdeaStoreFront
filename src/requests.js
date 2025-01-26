@@ -269,3 +269,11 @@ export function GetChats(onComplete) {
     .then((response) => response.json())
     .then((json) => onComplete(json));
 }
+export function GetMessages(secondId, onComplete) {
+  fetch(JoinClientAddress(`messages?id=${secondId}`), {
+    method: "GET",
+    credentials: "include",
+  })
+    .then((resp) => resp.json())
+    .then((json) => onComplete(json.messages));
+}

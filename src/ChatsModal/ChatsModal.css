@@ -14,11 +14,12 @@
   flex-direction: column;
   justify-content: top;
   align-items: flex-start;
-  box-shadow: 0px 0px 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 3px 2px 4px rgba(0, 0, 0, 0.1);
   height: 100%;
   width: 100%;
   background-color: white;
   border-radius: 20px;
+  overflow: hidden;
 }
 .chatModalBlockHeader {
   font-size: 28px;
@@ -61,5 +62,13 @@
   display: flex;
   flex-direction: row;
   justify-content: left;
+  width: 100%;
   padding: 10px;
+  box-shadow: 2px 2px 8px 8px rgba(0, 0, 0, 0.1);
+}
+.selectedChatHeaderName {
+  font-size: 20px;
+  font-weight: 500;
+  margin-left: 10px;
+  margin-top: 8px;
 }

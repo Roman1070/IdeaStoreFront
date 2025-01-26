@@ -112,7 +112,9 @@ export default function MainHeaderSignedIn() {
         </header>
         <div className="mainHeaderHeightBlock"></div>
         {profileModalEnabled && <ProfileModal />}
-        {chatsModalEnabled && <ChatsModal chats={chats} />}
+        {chatsModalEnabled && (
+          <ChatsModal chats={chats} currentProfile={profile} />
+        )}
       </>
     );
 }

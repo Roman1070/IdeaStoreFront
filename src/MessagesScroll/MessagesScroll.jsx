@@ -4,9 +4,10 @@ export default function MessagesScroll({
   messages,
   currentProfile,
   theirProfile,
+  id,
 }) {
   return (
-    <div className="messagesScroll">
+    <div className="messagesScroll" id={id}>
       {messages &&
         messages.map((msg) => (
           <Message

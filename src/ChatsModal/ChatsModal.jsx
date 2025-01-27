@@ -11,6 +11,11 @@ export default function ChatsModal({ chats, currentProfile }) {
   const [currentMessages, setCurrentMessages] = useState();
   const [message, setMessage] = useState();
   const [messageError, setMessageError] = useState();
+  const chatMessagesScroll = document.getElementById("chatMessagesScroll");
+
+  if (chatMessagesScroll) {
+    chatMessagesScroll.scrollTop = chatMessagesScroll.scrollHeight;
+  }
 
   function pad(d) {
     return d < 10 ? "0" + d.toString() : d.toString();
@@ -81,6 +86,7 @@ export default function ChatsModal({ chats, currentProfile }) {
             </div>
             {currentMessages && (
               <MessagesScroll
+                id="chatMessagesScroll"
                 theirProfile={selectedChat}
                 messages={currentMessages}
                 currentProfile={currentProfile}

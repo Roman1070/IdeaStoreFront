@@ -1,4 +1,4 @@
-import { GetCookie, JoinClientAddress } from "./utils";
+import { GetChatWebSocketAddress, GetCookie, JoinClientAddress } from "./utils";
 
 export function GetAllIdeas(includeSaved, onComplete) {
   var tempIdeas = [];
@@ -279,7 +279,6 @@ export function GetMessages(secondId, onComplete) {
 }
 
 export function SendMessage(recieverId, text, fileName, onComplete) {
-  console.log("send");
   fetch(JoinClientAddress("message"), {
     method: "POST",
     body: JSON.stringify({

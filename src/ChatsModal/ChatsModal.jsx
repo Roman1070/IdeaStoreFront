@@ -6,7 +6,7 @@ import SmallRoundButton from "../SmallRoundButton/SmallRoundButton";
 import { GetMessages, SendMessage } from "../requests";
 import MessagesScroll from "../MessagesScroll/MessagesScroll";
 import InputField from "../InputField/InputField";
-export default function ChatsModal({ chats, currentProfile }) {
+export default function ChatsModal({ chats, currentProfile, chatsWS }) {
   const [selectedChat, setSelectedChat] = useState();
   const [currentMessages, setCurrentMessages] = useState();
   const [message, setMessage] = useState();
@@ -16,6 +16,18 @@ export default function ChatsModal({ chats, currentProfile }) {
   if (chatMessagesScroll) {
     chatMessagesScroll.scrollTop = chatMessagesScroll.scrollHeight;
   }
+
+  chatsWS.onmessage = function (event) {
+    const msg = JSON.parse(event.data);
+
+    if (
+      msg.reciever_id == currentProfile.id &&
+      msg.sender_id == selectedChat.id
+    ) {
+      console.log(msg);
+      setCurrentMessages(currentMessages.concat(msg));
+    }
+  };
 
   function pad(d) {
     return d < 10 ? "0" + d.toString() : d.toString();
@@ -57,6 +69,10 @@ export default function ChatsModal({ chats, currentProfile }) {
       currentMessages.push(msg);
       setCurrentMessages(currentMessages);
       setMessage("");
+
+      if (chatsWS) {
+        chatsWS.send(JSON.stringify(msg));
+      }
     });
   }
 

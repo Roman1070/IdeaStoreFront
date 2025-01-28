@@ -24,6 +24,22 @@ export default function MainHeaderSignedIn() {
       });
     });
   }
+
+  const [chatSocket, setChatSocket] = useState();
+
+  if (!chatSocket) {
+    setChatSocket(new WebSocket("ws://localhost:8000/chat_ws"));
+  }
+  if (chatSocket) {
+    chatSocket.onopen = function (event) {
+      console.log("connected to chat web socket");
+    };
+    chatSocket.onclose = function (event) {
+      console.log("disconnected from chat web socket");
+      setChatSocket(null);
+    };
+  }
+
   if (profile)
     return (
       <>
@@ -113,7 +129,11 @@ export default function MainHeaderSignedIn() {
         <div className="mainHeaderHeightBlock"></div>
         {profileModalEnabled && <ProfileModal />}
         {chatsModalEnabled && (
-          <ChatsModal chats={chats} currentProfile={profile} />
+          <ChatsModal
+            chatsWS={chatSocket}
+            chats={chats}
+            currentProfile={profile}
+          />
         )}
       </>
     );

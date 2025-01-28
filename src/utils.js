@@ -39,6 +39,9 @@ export function JoinClientAddress(endpoint) {
   const ClientAddress = "http://localhost:8000/";
   return ClientAddress + endpoint;
 }
+export function GetChatWebSocketAddress() {
+  return "ws://localhost:8000/chat_ws";
+}
 
 export function Morph(int, array) {
   array = array || ["идея", "идеи", "идей"];

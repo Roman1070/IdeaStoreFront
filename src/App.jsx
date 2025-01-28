@@ -19,6 +19,7 @@ import BoardPreviewPage from "./BoardPreviewPage/BoardPreviewPage.jsx";
 import ProfilePreviewPage from "./ProfilePreviewPage/ProfilePreviewPage.jsx";
 import MyProfilePage from "./MyProfilePage/MyProfilePage.jsx";
 import ProfileSettingsPage from "./ProfileSettingsPage/ProfileSettingsPage.jsx";
+import { useState } from "react";
 
 function App() {
   var loggedIn = GetCookie("token");

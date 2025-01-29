@@ -26,9 +26,10 @@ export default function ProfilePreviewPage() {
   function trySendMessage() {
     if (!validateMessage()) return;
 
-    SendMessage(parseInt(id), message, "", true, () =>
-      setShowMessageModal(false)
-    );
+    SendMessage(parseInt(id), message, "", true, () => {
+      setShowMessageModal(false);
+      setMessage("");
+    });
   }
   const id = window.location.pathname.substring(9);
   const [profile, setProfile] = useState();
@@ -69,7 +70,18 @@ export default function ProfilePreviewPage() {
           }
         />
         <span className="profilePreviewPageName">{profile.name}</span>
-        <a className="profilePreviewPageLink">{profile.link}</a>
+        <a
+          href={
+            profile.link.includes("https")
+              ? profile.link
+              : "https://" + profile.link
+          }
+          target="_blank"
+          rel="noopener noreferrer"
+          className="profilePreviewPageLink"
+        >
+          {profile.link}
+        </a>
         <span className="profilePreviewPageDescription">
           {profile.description}
         </span>

@@ -1,7 +1,7 @@
 import IdeaCard from "./IdeaCard/IdeaCard";
 import { useState } from "react";
 import { GetCookie } from "./utils";
-
+import "./IdeasScroll.css";
 export default function IdeasScroll({
   ideas,
   saved,

@@ -6,7 +6,12 @@ import SmallRoundButton from "../SmallRoundButton/SmallRoundButton";
 import { GetMessages, SendMessage } from "../requests";
 import MessagesScroll from "../MessagesScroll/MessagesScroll";
 import InputField from "../InputField/InputField";
-export default function ChatsModal({ chats, currentProfile, chatsWS }) {
+export default function ChatsModal({
+  chats,
+  currentProfile,
+  chatsWS,
+  closeFunc,
+}) {
   const [selectedChat, setSelectedChat] = useState();
   const [currentMessages, setCurrentMessages] = useState();
   const [message, setMessage] = useState();
@@ -82,7 +87,17 @@ export default function ChatsModal({ chats, currentProfile, chatsWS }) {
   return (
     <div className="chatModalBlock">
       <div className="chatModalContainer">
-        {!selectedChat && <div className="chatModalBlockHeader">Сообщения</div>}
+        {!selectedChat && (
+          <div className="chatModalBlockHeader">
+            <SmallRoundButton
+              marginRight={50}
+              size={48}
+              imgSrc={GetLocalImageSrc("leftArrow.png")}
+              onClick={() => closeFunc()}
+            ></SmallRoundButton>
+            <span>Сообщения</span>
+          </div>
+        )}
         {selectedChat && (
           <>
             <div className="selectedChatHeader">

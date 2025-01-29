@@ -23,7 +23,8 @@
 .chatModalBlockHeader {
   font-size: 28px;
   font-weight: 500;
-  margin: 10px auto;
+  margin: 10px;
+  width: 100%;
   display: flex;
   flex-direction: row;
 }

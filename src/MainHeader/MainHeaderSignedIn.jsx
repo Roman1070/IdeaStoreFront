@@ -132,12 +132,13 @@ export default function MainHeaderSignedIn() {
           </button>
         </header>
         <div className="mainHeaderHeightBlock"></div>
-        {profileModalEnabled && <ProfileModal />}
+        {profileModalEnabled && <ProfileModal profile={profile} />}
         {chatsModalEnabled && (
           <ChatsModal
             chatsWS={chatSocket}
             chats={chats}
             currentProfile={profile}
+            closeFunc={() => setChatModalEnabled(false)}
           />
         )}
       </>

@@ -9,7 +9,7 @@ import {
   SendMessage,
 } from "../requests";
 import ButtonLight from "../ButtonLight/ButtonLight";
-import IdeasScroll from "../IdeasScroll";
+import IdeasScroll from "../IdeasScroll.jsx";
 import BoardsScroll from "../BoardsScroll/BoardsScroll";
 import InputField from "../InputField/InputField";
 

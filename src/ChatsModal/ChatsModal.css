@@ -98,3 +98,13 @@
   margin: auto 0;
   margin-right: 10px;
 }
+.chatsModalInputHolder {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.chatsModalInputWrapper {
+  padding: 0 10px;
+  flex: 1;
+}

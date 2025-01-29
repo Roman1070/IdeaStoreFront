@@ -21,7 +21,7 @@ export default function InputField({
             onChange={(event) => {
               onChangeAction(event.target.value);
             }}
-            value={value}
+            value={value ? value : ""}
             className={
               isCorrect === true ? "inputField" : "inputField inputFieldError"
             }
@@ -46,7 +46,7 @@ export default function InputField({
           onChange={(event) => {
             onChangeAction(event.target.value);
           }}
-          value={value}
+          value={value ? value : ""}
           className={
             isCorrect === true ? "inputField" : "inputField inputFieldError"
           }

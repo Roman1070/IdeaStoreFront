@@ -1,9 +1,9 @@
 import { useState } from "react";
 import "./ChatsModal.css";
 import ChatsModalElement from "./ChatsModelElement";
-import { GetImageSrc, GetLocalImageSrc } from "../utils";
+import { debounce, GetImageSrc, GetLocalImageSrc, throttle } from "../utils";
 import SmallRoundButton from "../SmallRoundButton/SmallRoundButton";
-import { GetMessages, SendMessage } from "../requests";
+import { GetMessages, SearchProfiles, SendMessage } from "../requests";
 import MessagesScroll from "../MessagesScroll/MessagesScroll";
 import InputField from "../InputField/InputField";
 import ChatsModalSelectedChat from "./ChatsModalSelectedChat";
@@ -16,9 +16,25 @@ export default function ChatsModal({
   const [selectedChat, setSelectedChat] = useState();
   const [searching, setSearching] = useState();
   const [searchText, setSearchText] = useState();
-
+  const [foundProfiles, setFoundProfiles] = useState();
+  const [searchTimerFlag, setSearchTimerFlag] = useState();
   function onChatClicked(chatData) {
     setSelectedChat(chatData);
+  }
+  const debouncedSearch = debounce((value) => search(value), 700);
+  function search(value) {
+    SearchProfiles(value, (profiles) => {
+      console.log(profiles);
+      setFoundProfiles(profiles);
+    });
+  }
+  function onSearchChanged(value) {
+    setSearchText(value);
+    if (value) {
+      debouncedSearch(value);
+    } else {
+      setFoundProfiles([]);
+    }
   }
 
   return (
@@ -27,12 +43,20 @@ export default function ChatsModal({
         {!selectedChat && (
           <div className="chatModalBlockHeader">
             <SmallRoundButton
-              marginRight={50}
+              marginRight={searching ? 20 : 50}
               size={48}
               imgSrc={GetLocalImageSrc("leftArrow.png")}
-              onClick={() => closeFunc()}
+              onClick={() => {
+                searching ? setSearching(false) : closeFunc();
+              }}
             ></SmallRoundButton>
-            <span>Сообщения</span>
+            <span
+              style={{
+                paddingTop: "3px",
+              }}
+            >
+              {searching ? "Новое сообщение" : "Сообщения"}
+            </span>
           </div>
         )}
         {selectedChat && (
@@ -43,8 +67,8 @@ export default function ChatsModal({
             setSelectedChatFunc={setSelectedChat}
           ></ChatsModalSelectedChat>
         )}
-        {!selectedChat && (
-          <div className="chatsModalElement">
+        {!selectedChat && !searching && (
+          <div className="chatsModalElement" onClick={() => setSearching(true)}>
             <img
               className="chatsModalNewMessageIcon"
               src={GetLocalImageSrc("write.png")}
@@ -52,7 +76,7 @@ export default function ChatsModal({
             <div className="chatsModalElementName">Новое сообщение</div>
           </div>
         )}
-        {!selectedChat && chats && (
+        {!selectedChat && !searching && chats && (
           <div
             style={{
               margin: "0 0 10px 24px",
@@ -62,6 +86,7 @@ export default function ChatsModal({
           </div>
         )}
         {!selectedChat &&
+          !searching &&
           chats &&
           chats.map((chat) => (
             <ChatsModalElement
@@ -70,7 +95,21 @@ export default function ChatsModal({
               chatData={chat}
             ></ChatsModalElement>
           ))}
-        {selectedChat && <div className="selectedChatWrapper"></div>}
+        {searching && (
+          <div className="chatsModalInputHolder">
+            <div className="chatsModalInputWrapper">
+              <InputField
+                placeholder={"Поиск по имени/эд.адресу"}
+                isCorrect={true}
+                error={""}
+                onChangeAction={(value) => onSearchChanged(value)}
+                value={searchText}
+                isCommonInput={true}
+                height={"24px"}
+              ></InputField>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

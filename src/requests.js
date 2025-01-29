@@ -297,3 +297,11 @@ export function SendMessage(
     .then((resp) => resp.json())
     .then((json) => onComplete(json));
 }
+
+export function SearchProfiles(input, onComplete) {
+  fetch(JoinClientAddress(`search-profiles?input=${input}`), {
+    method: "GET",
+  })
+    .then((resp) => resp.json())
+    .then((json) => onComplete(json));
+}

@@ -65,6 +65,7 @@
   width: 100%;
   padding: 10px;
   box-shadow: 2px 2px 8px 8px rgba(0, 0, 0, 0.1);
+  position: relative;
 }
 .selectedChatHeaderName {
   font-size: 20px;
@@ -107,4 +108,10 @@
 .chatsModalInputWrapper {
   padding: 0 10px;
   flex: 1;
+}
+.selectedChatHeaderLink {
+  position: absolute;
+  width: 70%;
+  height: 80%;
+  margin-left: 60px;
 }

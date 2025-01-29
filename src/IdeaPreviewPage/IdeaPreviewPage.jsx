@@ -16,6 +16,7 @@ import SaveIdeaButton from "../IdeaCard/SaveIdeaButton";
 import SelectBoardToSaveButton from "../IdeaCard/SelectBoardToSaveButton";
 import IdeaComment from "./IdeaComment";
 import IdeaPreviewContentHolder from "./IdeaPreviewContentHolder";
+import InputField from "../InputField/InputField";
 
 export default function IdeaPreviewPage() {
   const index = window.location.pathname.substring(6);
@@ -33,7 +34,6 @@ export default function IdeaPreviewPage() {
   const [commentInput, setCommentInput] = useState();
   const [commentError, setCommentError] = useState();
   const [showComments, setShowComments] = useState();
-  const inputBlock = document.getElementById("enterCommentInput");
 
   function toggleShowComments() {
     setShowComments(!showComments);
@@ -51,40 +51,20 @@ export default function IdeaPreviewPage() {
     return "Профиль";
   }
   function trySendComment() {
-    var comment = commentInput.replaceAll("<div><br></div>", " ");
-    comment = comment.replaceAll("<div>", "");
-    comment = comment.replaceAll("</div>", "");
-    comment = comment.replaceAll("&nbsp;", "");
-    if (!comment || comment.length == 0) {
+    if (!commentInput) {
       setCommentError("Comment mustn't be empty");
       return;
     }
-    console.log(comment);
 
-    CreateComment(index, comment, () => {
+    CreateComment(index, commentInput, () => {
       setCommentInput("");
-      inputBlock.innerHTML = "";
+
       GetComments(index, (commentsJson) => {
         setComments(commentsJson);
       });
     });
   }
-  function onCommentChange(event) {
-    var comment = event.target.innerHTML;
-    if (comment.length > 200) {
-      comment = comment.substring(0, 200);
-    }
-    setCommentInput(comment);
-    if (inputBlock) {
-      inputBlock.innerHTML = comment;
-      var range = document.createRange(); //Create a range (a range is a like the selection but invisible)
-      range.selectNodeContents(inputBlock); //Select the entire contents of the element with the range
-      range.collapse(false); //collapse the range to the end point. false means collapse to end rather than the start
-      var selection = window.getSelection(); //get the selection object (allows you to change selection)
-      selection.removeAllRanges(); //remove any selections already made
-      selection.addRange(range);
-    }
-  }
+
   const smallButtonSize = 40;
   if (!idea && boards.length == 0) {
     GetCurrentProfile((prof) => {
@@ -263,17 +243,30 @@ export default function IdeaPreviewPage() {
             )}
             <div className="enterCommentBlock">
               <div
-                contentEditable
-                onInput={onCommentChange}
-                id="enterCommentInput"
-                className="enterCommentInput"
-              ></div>
+                style={{
+                  flex: "1",
+                  margin: "0 10px",
+                }}
+              >
+                <InputField
+                  value={commentInput}
+                  isCorrect={!commentError}
+                  error={commentError}
+                  onChangeAction={(value) => {
+                    setCommentInput(value);
+                    setCommentError("");
+                  }}
+                  height={"24px"}
+                ></InputField>
+              </div>
+
               <div
                 style={{
-                  marginBottom: "15px",
+                  marginBottom: "10px",
                 }}
               >
                 <SmallRoundButton
+                  marginRight={16}
                   size={40}
                   imgSrc={GetLocalImageSrc("sendMessage.png")}
                   onClick={trySendComment}

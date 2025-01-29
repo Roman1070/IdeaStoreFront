@@ -20,7 +20,7 @@ export default function MainHeaderSignedIn() {
     GetCurrentProfile((prof) => {
       GetChats((chatsJson) => {
         setProfile(prof);
-        setChats(chatsJson.chats);
+        setChats(chatsJson);
       });
     });
   }
@@ -95,6 +95,11 @@ export default function MainHeaderSignedIn() {
             size={smallButtonSize}
             imgSrc={HostName + "images/message.png"}
             onClick={() => {
+              if (!chatsModalEnabled) {
+                GetChats((chatsJson) => {
+                  setChats(chatsJson);
+                });
+              }
               setChatModalEnabled(!chatsModalEnabled);
               setProfileModalEnabled(false);
             }}

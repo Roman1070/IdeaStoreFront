@@ -6,6 +6,7 @@ import {
   GetProfile,
   GetCurrentUsersBoards,
   GetBoards,
+  SendMessage,
 } from "../requests";
 import ButtonLight from "../ButtonLight/ButtonLight";
 import IdeasScroll from "../IdeasScroll";
@@ -24,6 +25,10 @@ export default function ProfilePreviewPage() {
 
   function trySendMessage() {
     if (!validateMessage()) return;
+
+    SendMessage(parseInt(id), message, "", true, () =>
+      setShowMessageModal(false)
+    );
   }
   const id = window.location.pathname.substring(9);
   const [profile, setProfile] = useState();

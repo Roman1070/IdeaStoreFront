@@ -11,11 +11,14 @@ export default function ChatsModal({ chats, currentProfile, chatsWS }) {
   const [currentMessages, setCurrentMessages] = useState();
   const [message, setMessage] = useState();
   const [messageError, setMessageError] = useState();
-  const chatMessagesScroll = document.getElementById("chatMessagesScroll");
 
-  if (chatMessagesScroll) {
-    chatMessagesScroll.scrollTop = chatMessagesScroll.scrollHeight;
-  }
+  setTimeout(() => {
+    const chatMessagesScroll = document.getElementById("chatMessagesScroll");
+
+    if (chatMessagesScroll) {
+      chatMessagesScroll.scrollTop = chatMessagesScroll.scrollHeight;
+    }
+  }, 20);
 
   chatsWS.onmessage = function (event) {
     const msg = JSON.parse(event.data);
@@ -45,7 +48,7 @@ export default function ChatsModal({ chats, currentProfile, chatsWS }) {
       return;
     }
 
-    SendMessage(selectedChat.id, message, "", (respJson) => {
+    SendMessage(selectedChat.id, message, "", false, (respJson) => {
       var currentdate = new Date();
       const datetime =
         pad(currentdate.getDate()) +

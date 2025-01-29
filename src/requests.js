@@ -213,7 +213,7 @@ export function GetIdeas(ids, onComplete) {
   const idsJson = JSON.stringify({
     ids: ids,
   });
-  console.log(idsJson);
+
   fetch(JoinClientAddress("ideas"), {
     method: "POST",
     body: idsJson,
@@ -267,7 +267,7 @@ export function GetChats(onComplete) {
     credentials: "include",
   })
     .then((response) => response.json())
-    .then((json) => onComplete(json));
+    .then((json) => onComplete(json.chats));
 }
 export function GetMessages(secondId, onComplete) {
   fetch(JoinClientAddress(`messages?id=${secondId}`), {
@@ -278,8 +278,14 @@ export function GetMessages(secondId, onComplete) {
     .then((json) => onComplete(json.messages));
 }
 
-export function SendMessage(recieverId, text, fileName, onComplete) {
-  fetch(JoinClientAddress("message"), {
+export function SendMessage(
+  recieverId,
+  text,
+  fileName,
+  fromProfile,
+  onComplete
+) {
+  fetch(JoinClientAddress(`message?check_chat=${fromProfile}`), {
     method: "POST",
     body: JSON.stringify({
       recieverId: recieverId,

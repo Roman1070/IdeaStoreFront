@@ -91,3 +91,10 @@
   flex-direction: column;
   justify-content: center;
 }
+.chatsModalNewMessageIcon {
+  width: 48px;
+  height: 48px;
+  display: inline-block;
+  margin: auto 0;
+  margin-right: 10px;
+}

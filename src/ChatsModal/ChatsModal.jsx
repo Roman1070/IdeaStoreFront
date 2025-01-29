@@ -27,6 +27,7 @@ export default function ChatsModal({
   function search(value) {
     SearchProfiles(value, (profiles) => {
       console.log(profiles);
+
       setFoundProfiles(profiles);
     });
   }
@@ -117,6 +118,7 @@ export default function ChatsModal({
           foundProfiles &&
           foundProfiles.map((profile) => (
             <ChatsModalElement
+              currentProfileId={currentProfile.id}
               key={profile.id}
               chatData={profile}
               onSelect={onChatClicked}

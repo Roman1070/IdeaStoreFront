@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useSyncExternalStore } from "react";
 import "./ProfilePreviewPage.css";
 import { GetImageSrc, GetLocalImageSrc } from "../utils";
 import {
@@ -7,6 +7,7 @@ import {
   GetCurrentUsersBoards,
   GetBoards,
   SendMessage,
+  GetCurrentProfile,
 } from "../requests";
 import ButtonLight from "../ButtonLight/ButtonLight";
 import IdeasScroll from "../IdeasScroll.jsx";
@@ -33,6 +34,7 @@ export default function ProfilePreviewPage() {
   }
   const id = window.location.pathname.substring(9);
   const [profile, setProfile] = useState();
+  const [currentProfile, setCurrentProfile] = useState();
   const [message, setMessage] = useState("");
   const [messageError, setMessageError] = useState("");
   const [showMessageModal, setShowMessageModal] = useState();
@@ -50,9 +52,12 @@ export default function ProfilePreviewPage() {
 
       GetIdeas(ideasIds, (ideasJson) => {
         GetBoards(prof.id, (boardsJson) => {
-          setBoards(boardsJson);
-          setProfile(prof);
-          setIdeas(ideasJson);
+          GetCurrentProfile((currentProf) => {
+            setBoards(boardsJson);
+            setProfile(prof);
+            setIdeas(ideasJson);
+            setCurrentProfile(currentProf);
+          });
         });
       });
     });
@@ -85,39 +90,41 @@ export default function ProfilePreviewPage() {
         <span className="profilePreviewPageDescription">
           {profile.description}
         </span>
-        <div className="profilePreviewPageButtons">
-          <button
-            onClick={() => setShowMessageModal(!showMessageModal)}
-            className="sendMessageButton"
-          >
-            Отправить сообщение
-          </button>
-          {showMessageModal && (
-            <div className="sendMessageModal">
-              <InputField
-                height="100px"
-                isCorrect={!messageError}
-                error={messageError}
-                value={message}
-                onChangeAction={(value) => {
-                  setMessage(value);
-                  setMessageError("");
-                }}
-              ></InputField>
-              <button
-                onClick={trySendMessage}
-                className="sendMessageButton"
-                style={{
-                  width: "100%",
-                  height: "40px",
-                }}
-              >
-                Отправить
-              </button>
-            </div>
-          )}
-          <button className="subscribeButton">Подписаться</button>
-        </div>
+        {currentProfile.id != profile.id && (
+          <div className="profilePreviewPageButtons">
+            <button
+              onClick={() => setShowMessageModal(!showMessageModal)}
+              className="sendMessageButton"
+            >
+              Отправить сообщение
+            </button>
+            {showMessageModal && (
+              <div className="sendMessageModal">
+                <InputField
+                  height="100px"
+                  isCorrect={!messageError}
+                  error={messageError}
+                  value={message}
+                  onChangeAction={(value) => {
+                    setMessage(value);
+                    setMessageError("");
+                  }}
+                ></InputField>
+                <button
+                  onClick={trySendMessage}
+                  className="sendMessageButton"
+                  style={{
+                    width: "100%",
+                    height: "40px",
+                  }}
+                >
+                  Отправить
+                </button>
+              </div>
+            )}
+            <button className="subscribeButton">Подписаться</button>
+          </div>
+        )}
         <div className="profilePreviewPageTabs">
           <ButtonLight
             isSelected={selectedTab == 0}

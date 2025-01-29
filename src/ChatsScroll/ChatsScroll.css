@@ -1,0 +1,13 @@
+.chatsScrollWrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+.chatsScroll {
+  height: 680px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  flex: 1 1;
+}

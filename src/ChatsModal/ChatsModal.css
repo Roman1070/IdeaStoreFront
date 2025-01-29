@@ -32,11 +32,11 @@
   height: 60px;
   display: flex;
   flex-direction: row;
-  margin: 0 10px 20px 20px;
+  margin: 0 0 20px 20px;
   width: 90%;
   transition-duration: 0.3s;
   border-radius: 20px;
-  padding: 7px;
+  padding: 7px 0 7px 7px;
 }
 .chatsModalElement:hover {
   cursor: pointer;

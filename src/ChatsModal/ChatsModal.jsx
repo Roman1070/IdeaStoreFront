@@ -7,6 +7,7 @@ import { GetMessages, SearchProfiles, SendMessage } from "../requests";
 import MessagesScroll from "../MessagesScroll/MessagesScroll";
 import InputField from "../InputField/InputField";
 import ChatsModalSelectedChat from "./ChatsModalSelectedChat";
+import ChatsScroll from "../ChatsScroll/ChatsScroll";
 export default function ChatsModal({
   chats,
   currentProfile,
@@ -89,16 +90,12 @@ export default function ChatsModal({
             Ваши чаты
           </div>
         )}
-        {!selectedChat &&
-          !searching &&
-          chats &&
-          chats.map((chat) => (
-            <ChatsModalElement
-              onSelect={onChatClicked}
-              key={chat.id}
-              chatData={chat}
-            ></ChatsModalElement>
-          ))}
+        {!selectedChat && !searching && chats && (
+          <ChatsScroll
+            chats={chats}
+            onChatClicked={onChatClicked}
+          ></ChatsScroll>
+        )}
         {searching && (
           <div className="chatsModalInputHolder">
             <div className="chatsModalInputWrapper">
@@ -114,16 +111,12 @@ export default function ChatsModal({
             </div>
           </div>
         )}
-        {searching &&
-          foundProfiles &&
-          foundProfiles.map((profile) => (
-            <ChatsModalElement
-              currentProfileId={currentProfile.id}
-              key={profile.id}
-              chatData={profile}
-              onSelect={onChatClicked}
-            ></ChatsModalElement>
-          ))}
+        {searching && foundProfiles && (
+          <ChatsScroll
+            chats={foundProfiles}
+            onChatClicked={onChatClicked}
+          ></ChatsScroll>
+        )}
       </div>
     </div>
   );

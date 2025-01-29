@@ -12,13 +12,15 @@ export default function ChatsModal({
   currentProfile,
   chatsWS,
   closeFunc,
+  updateChatsFunc,
 }) {
   const [selectedChat, setSelectedChat] = useState();
   const [searching, setSearching] = useState();
   const [searchText, setSearchText] = useState();
   const [foundProfiles, setFoundProfiles] = useState();
-  const [searchTimerFlag, setSearchTimerFlag] = useState();
+
   function onChatClicked(chatData) {
+    setSearching(false);
     setSelectedChat(chatData);
   }
   const debouncedSearch = debounce((value) => search(value), 700);
@@ -65,6 +67,7 @@ export default function ChatsModal({
             selectedChat={selectedChat}
             currentProfile={currentProfile}
             setSelectedChatFunc={setSelectedChat}
+            updateChatsFunc={updateChatsFunc}
           ></ChatsModalSelectedChat>
         )}
         {!selectedChat && !searching && (
@@ -110,6 +113,15 @@ export default function ChatsModal({
             </div>
           </div>
         )}
+        {searching &&
+          foundProfiles &&
+          foundProfiles.map((profile) => (
+            <ChatsModalElement
+              key={profile.id}
+              chatData={profile}
+              onSelect={onChatClicked}
+            ></ChatsModalElement>
+          ))}
       </div>
     </div>
   );

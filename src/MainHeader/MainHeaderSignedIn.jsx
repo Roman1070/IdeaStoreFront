@@ -139,6 +139,11 @@ export default function MainHeaderSignedIn() {
             chats={chats}
             currentProfile={profile}
             closeFunc={() => setChatModalEnabled(false)}
+            updateChatsFunc={() => {
+              GetChats((chatsJson) => {
+                setChats(chatsJson);
+              });
+            }}
           />
         )}
       </>

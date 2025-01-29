@@ -10,6 +10,7 @@ export default function ChatsModalSelectedChat({
   selectedChat,
   currentProfile,
   setSelectedChatFunc,
+  updateChatsFunc,
 }) {
   const [message, setMessage] = useState();
   const [messageError, setMessageError] = useState();
@@ -37,7 +38,7 @@ export default function ChatsModalSelectedChat({
       return;
     }
 
-    SendMessage(selectedChat.id, message, "", false, (respJson) => {
+    SendMessage(selectedChat.id, message, "", !currentMessages, (respJson) => {
       var currentdate = new Date();
       const datetime =
         pad(currentdate.getDate()) +
@@ -58,8 +59,13 @@ export default function ChatsModalSelectedChat({
         text: message,
         sending_date: datetime,
       };
-      currentMessages.push(msg);
-      setCurrentMessages(currentMessages);
+      if (currentMessages) {
+        currentMessages.push(msg);
+        setCurrentMessages(currentMessages);
+      } else {
+        setCurrentMessages([].concat(msg));
+        updateChatsFunc();
+      }
       setMessage("");
 
       if (chatsWS) {
@@ -79,58 +85,57 @@ export default function ChatsModalSelectedChat({
       setCurrentMessages(currentMessages.concat(msg));
     }
   };
-  if (currentMessages)
-    return (
-      <>
-        <div className="selectedChatHeader">
-          <SmallRoundButton
-            onClick={() => setSelectedChatFunc(null)}
-            marginRight={20}
-            size={48}
-            imgSrc={GetLocalImageSrc("leftArrow.png")}
-          ></SmallRoundButton>
+  return (
+    <>
+      <div className="selectedChatHeader">
+        <SmallRoundButton
+          onClick={() => setSelectedChatFunc(null)}
+          marginRight={20}
+          size={48}
+          imgSrc={GetLocalImageSrc("leftArrow.png")}
+        ></SmallRoundButton>
 
-          <img
-            className="selectedChatHeaderImage"
-            src={
-              selectedChat.avatar
-                ? GetImageSrc(selectedChat.avatar)
-                : GetLocalImageSrc("user.png")
-            }
-          ></img>
-          <div className="selectedChatHeaderName">{selectedChat.name}</div>
+        <img
+          className="selectedChatHeaderImage"
+          src={
+            selectedChat.avatar
+              ? GetImageSrc(selectedChat.avatar)
+              : GetLocalImageSrc("user.png")
+          }
+        ></img>
+        <div className="selectedChatHeaderName">{selectedChat.name}</div>
+      </div>
+      {currentMessages && (
+        <MessagesScroll
+          id="chatMessagesScroll"
+          theirProfile={selectedChat}
+          messages={currentMessages}
+          currentProfile={currentProfile}
+        ></MessagesScroll>
+      )}
+      <div className="inputMessageBlock">
+        <div className="inputMessageWrapper">
+          <InputField
+            id="inputMessageInChatInputField"
+            error={messageError}
+            isCorrect={!messageError}
+            value={message}
+            onChangeAction={(value) => {
+              setMessage(value);
+              setMessageError("");
+            }}
+            placeholder="Введите сообщение..."
+          ></InputField>
         </div>
-        {currentMessages && (
-          <MessagesScroll
-            id="chatMessagesScroll"
-            theirProfile={selectedChat}
-            messages={currentMessages}
-            currentProfile={currentProfile}
-          ></MessagesScroll>
-        )}
-        <div className="inputMessageBlock">
-          <div className="inputMessageWrapper">
-            <InputField
-              id="inputMessageInChatInputField"
-              error={messageError}
-              isCorrect={!messageError}
-              value={message}
-              onChangeAction={(value) => {
-                setMessage(value);
-                setMessageError("");
-              }}
-              placeholder="Введите сообщение..."
-            ></InputField>
-          </div>
-          <div className="sendMessageInChatButton">
-            <SmallRoundButton
-              size={40}
-              marginRight={10}
-              imgSrc={GetLocalImageSrc("sendMessage.png")}
-              onClick={() => trySendMessage()}
-            ></SmallRoundButton>
-          </div>
+        <div className="sendMessageInChatButton">
+          <SmallRoundButton
+            size={40}
+            marginRight={10}
+            imgSrc={GetLocalImageSrc("sendMessage.png")}
+            onClick={() => trySendMessage()}
+          ></SmallRoundButton>
         </div>
-      </>
-    );
+      </div>
+    </>
+  );
 }

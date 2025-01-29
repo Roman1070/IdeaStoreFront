@@ -282,10 +282,10 @@ export function SendMessage(
   recieverId,
   text,
   fileName,
-  fromProfile,
+  checkChatExistance,
   onComplete
 ) {
-  fetch(JoinClientAddress(`message?check_chat=${fromProfile}`), {
+  fetch(JoinClientAddress(`message?check_chat=${checkChatExistance}`), {
     method: "POST",
     body: JSON.stringify({
       recieverId: recieverId,

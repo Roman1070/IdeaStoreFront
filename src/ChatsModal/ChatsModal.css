@@ -32,6 +32,7 @@
   height: 60px;
   display: flex;
   flex-direction: row;
+  position: relative;
   margin: 0 0 20px 20px;
   width: 90%;
   transition-duration: 0.3s;
@@ -41,6 +42,50 @@
 .chatsModalElement:hover {
   cursor: pointer;
   background-color: #ccc;
+}
+.chatsModalElementSharing {
+  height: 60px;
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  margin: 0 0 20px 20px;
+  width: 90%;
+  transition-duration: 0.3s;
+  border-radius: 20px;
+  padding: 7px 0 7px 7px;
+}
+.chatsModalElementSendButton {
+  position: absolute;
+  right: 16px;
+  top: 16px;
+  height: 40px;
+  width: 110px;
+  margin: auto 0;
+  background-color: #eee;
+  border-radius: 22px;
+  font-size: 16px;
+  font-weight: 500;
+  display: flex;
+  flex-direction: column;
+  transition-duration: 0.3s;
+}
+.chatsModalElementSendButtonLocked {
+  position: absolute;
+  right: 16px;
+  top: 16px;
+  height: 40px;
+  width: 110px;
+  margin: auto 0;
+  background-color: #ccc;
+  border-radius: 22px;
+  font-size: 16px;
+  font-weight: 500;
+  display: flex;
+  flex-direction: column;
+}
+.chatsModalElementSendButton:hover {
+  background-color: #ccc;
+  cursor: pointer;
 }
 .chatsModalElementImage {
   height: 60px;

@@ -4,7 +4,6 @@
   flex-direction: row;
 }
 .chatsScroll {
-  height: 680px;
   overflow-y: auto;
   overflow-x: hidden;
   display: flex;

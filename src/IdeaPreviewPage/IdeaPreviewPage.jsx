@@ -11,6 +11,7 @@ import {
   GetComments,
   CreateComment,
   GetCurrentProfile,
+  GetChats,
 } from "../requests";
 import SaveIdeaButton from "../IdeaCard/SaveIdeaButton";
 import SelectBoardToSaveButton from "../IdeaCard/SelectBoardToSaveButton";
@@ -36,6 +37,7 @@ export default function IdeaPreviewPage() {
   const [commentError, setCommentError] = useState();
   const [showComments, setShowComments] = useState();
   const [showShareModal, setShowShareModal] = useState();
+  const [chats, setChats] = useState();
 
   function toggleShowComments() {
     setShowComments(!showComments);
@@ -74,21 +76,24 @@ export default function IdeaPreviewPage() {
         GetIdea(index, (idea) => {
           GetProfile(idea.userId, (author) => {
             GetComments(index, (commentsJson) => {
-              setComments(commentsJson);
-              console.log(commentsJson);
-              setAuthor(author);
-              setBoards(b);
-              setIdea(idea);
-              setCurrentId(prof.id);
-              IsIdeaSaved(index, (json) => {
-                if (Object.hasOwn(json, "err")) {
-                  alert("internal error checking idea saved: " + json.err);
-                } else {
-                  setSaved(json.saved);
-                  setBoardId(Number(json.boardId));
+              GetChats((chatsJson) => {
+                setChats(chatsJson);
+                setComments(commentsJson);
+                console.log(commentsJson);
+                setAuthor(author);
+                setBoards(b);
+                setIdea(idea);
+                setCurrentId(prof.id);
+                IsIdeaSaved(index, (json) => {
+                  if (Object.hasOwn(json, "err")) {
+                    alert("internal error checking idea saved: " + json.err);
+                  } else {
+                    setSaved(json.saved);
+                    setBoardId(Number(json.boardId));
 
-                  setBoardName(getBoardName(b, Number(json.boardId)));
-                }
+                    setBoardName(getBoardName(b, Number(json.boardId)));
+                  }
+                });
               });
             });
           });
@@ -133,7 +138,13 @@ export default function IdeaPreviewPage() {
                   )}
                   onClick={() => setShowShareModal(!showShareModal)}
                 ></SmallRoundButton>
-                {showShareModal && <IdeaSharingModal></IdeaSharingModal>}
+                {showShareModal && (
+                  <IdeaSharingModal
+                    chats={chats}
+                    idea={idea}
+                    ideaId={index}
+                  ></IdeaSharingModal>
+                )}
                 <SmallRoundButton
                   size={smallButtonSize}
                   marginRight={smallButtonsMargin}

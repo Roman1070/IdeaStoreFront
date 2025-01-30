@@ -92,6 +92,7 @@ export default function ChatsModal({
         )}
         {!selectedChat && !searching && chats && (
           <ChatsScroll
+            height={680}
             chats={chats}
             onChatClicked={onChatClicked}
           ></ChatsScroll>
@@ -113,6 +114,7 @@ export default function ChatsModal({
         )}
         {searching && foundProfiles && (
           <ChatsScroll
+            height={680}
             chats={foundProfiles}
             onChatClicked={onChatClicked}
           ></ChatsScroll>

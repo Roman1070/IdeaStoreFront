@@ -8,7 +8,10 @@ export default function ChatsModalElement({
 }) {
   if (currentProfileId != chatData.id)
     return (
-      <div className="chatsModalElement" onClick={() => onSelect(chatData)}>
+      <div
+        className="chatsModalElement"
+        onClick={onSelect ? () => onSelect(chatData) : () => {}}
+      >
         <img
           className="chatsModalElementImage"
           src={

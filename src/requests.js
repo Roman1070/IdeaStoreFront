@@ -297,7 +297,19 @@ export function SendMessage(
     .then((resp) => resp.json())
     .then((json) => onComplete(json));
 }
-
+export function ShareIdea(recieverId, fileName, ideaId, onComplete) {
+  fetch(JoinClientAddress(`message?check_chat=true`), {
+    method: "POST",
+    body: JSON.stringify({
+      recieverId: recieverId,
+      fileName: fileName,
+      ideaId: ideaId,
+    }),
+    credentials: "include",
+  })
+    .then((resp) => resp.json())
+    .then((json) => onComplete(json));
+}
 export function SearchProfiles(input, onComplete) {
   fetch(JoinClientAddress(`search-profiles?input=${input}`), {
     method: "GET",

@@ -1,4 +1,9 @@
-import { GetImageSrc, GetLocalImageSrc, IsVideo } from "../utils";
+import {
+  GetImageSrc,
+  GetLocalImageSrc,
+  IsVideo,
+  JoinReactHostAddress,
+} from "../utils";
 import "./MessagesScroll.css";
 
 export default function Message({ message, theirProfile, currentProfile }) {
@@ -38,6 +43,12 @@ export default function Message({ message, theirProfile, currentProfile }) {
               src={GetImageSrc(message.file_name)}
               className="messageImage"
             ></img>
+            {message.idea_id && (
+              <a
+                href={JoinReactHostAddress(`idea/${message.idea_id}`)}
+                className="messageImageLink"
+              ></a>
+            )}
           </div>
         )}
         {message.file_name && isVideo && (
@@ -49,6 +60,12 @@ export default function Message({ message, theirProfile, currentProfile }) {
               src={GetImageSrc(message.file_name)}
               className="messageVideo"
             ></video>
+            {message.idea_id && (
+              <a
+                href={JoinReactHostAddress(`idea/${message.idea_id}`)}
+                className="messageImageLink"
+              ></a>
+            )}
           </div>
         )}
         {message.text && <div className="messageText">{message.text}</div>}

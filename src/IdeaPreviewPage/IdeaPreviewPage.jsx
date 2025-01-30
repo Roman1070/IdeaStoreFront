@@ -17,6 +17,7 @@ import SelectBoardToSaveButton from "../IdeaCard/SelectBoardToSaveButton";
 import IdeaComment from "./IdeaComment";
 import IdeaPreviewContentHolder from "./IdeaPreviewContentHolder";
 import InputField from "../InputField/InputField";
+import IdeaSharingModal from "../IdeaSharingModal/IdeaSharingModal";
 
 export default function IdeaPreviewPage() {
   const index = window.location.pathname.substring(6);
@@ -34,6 +35,7 @@ export default function IdeaPreviewPage() {
   const [commentInput, setCommentInput] = useState();
   const [commentError, setCommentError] = useState();
   const [showComments, setShowComments] = useState();
+  const [showShareModal, setShowShareModal] = useState();
 
   function toggleShowComments() {
     setShowComments(!showComments);
@@ -126,8 +128,12 @@ export default function IdeaPreviewPage() {
                 <SmallRoundButton
                   size={smallButtonSize}
                   marginRight={smallButtonsMargin}
-                  imgSrc={GetLocalImageSrc("share.png")}
+                  imgSrc={GetLocalImageSrc(
+                    showShareModal ? "shareBlack.png" : "share.png"
+                  )}
+                  onClick={() => setShowShareModal(!showShareModal)}
                 ></SmallRoundButton>
+                {showShareModal && <IdeaSharingModal></IdeaSharingModal>}
                 <SmallRoundButton
                   size={smallButtonSize}
                   marginRight={smallButtonsMargin}

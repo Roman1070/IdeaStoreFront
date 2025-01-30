@@ -5,7 +5,7 @@ import SmallRoundButton from "../SmallRoundButton/SmallRoundButton";
 import "./MainHeader.css";
 import "../SmallRoundButton/SmallRoundButton.css";
 import { useState } from "react";
-import { GetImageSrc, GetLocalImageSrc } from "../utils";
+import { GetImageSrc, GetLocalImageSrc, JoinReactHostAddress } from "../utils";
 import { GetChats, GetCurrentProfile } from "../requests";
 import ChatsModal from "../ChatsModal/ChatsModal";
 const HostName = "http://localhost:3000/";
@@ -87,13 +87,15 @@ export default function MainHeaderSignedIn() {
 
           <SmallRoundButton
             size={smallButtonSize}
-            imgSrc={HostName + "images/bell.png"}
+            imgSrc={GetLocalImageSrc("bell.png")}
             marginRight={smallButtonMargin}
           ></SmallRoundButton>
 
           <SmallRoundButton
             size={smallButtonSize}
-            imgSrc={HostName + "images/message.png"}
+            imgSrc={GetLocalImageSrc(
+              chatsModalEnabled ? "messageBlack.png" : "message.png"
+            )}
             onClick={() => {
               if (!chatsModalEnabled) {
                 GetChats((chatsJson) => {

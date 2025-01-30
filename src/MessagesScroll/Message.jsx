@@ -1,7 +1,12 @@
-import { GetImageSrc, GetLocalImageSrc } from "../utils";
+import { GetImageSrc, GetLocalImageSrc, IsVideo } from "../utils";
 import "./MessagesScroll.css";
 
 export default function Message({ message, theirProfile, currentProfile }) {
+  console.log(message);
+  var isVideo = false;
+  if (message.file_name) {
+    isVideo = IsVideo(message.file_name);
+  }
   return (
     <div
       className={
@@ -27,7 +32,26 @@ export default function Message({ message, theirProfile, currentProfile }) {
             : "messageBlockTheirContent"
         }
       >
-        <div className="messageText">{message.text}</div>
+        {message.file_name && !isVideo && (
+          <div className="messageImageContainer">
+            <img
+              src={GetImageSrc(message.file_name)}
+              className="messageImage"
+            ></img>
+          </div>
+        )}
+        {message.file_name && isVideo && (
+          <div className="messageImageContainer">
+            <video
+              muted
+              loop
+              autoPlay
+              src={GetImageSrc(message.file_name)}
+              className="messageVideo"
+            ></video>
+          </div>
+        )}
+        {message.text && <div className="messageText">{message.text}</div>}
       </div>
       {currentProfile.id == message.sender_id && (
         <img

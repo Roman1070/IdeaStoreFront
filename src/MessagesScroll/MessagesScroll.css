@@ -56,3 +56,19 @@
   margin: auto 10px;
   padding-bottom: 3px;
 }
+.messageImageContainer {
+  width: 200px;
+  max-height: 300px;
+  overflow: hidden;
+  border-radius: 24px;
+  display: flex;
+  flex-direction: column;
+}
+.messageImage {
+  max-width: 100%;
+  max-height: 100%;
+}
+.messageVideo {
+  max-width: 100%;
+  max-height: 100%;
+}

@@ -27,10 +27,7 @@ export default function IdeaSharingModal({ chats, idea, ideaId }) {
   }
 
   function shareIdea(recieverId) {
-    console.log("sent");
-    ShareIdea(recieverId, idea.image, ideaId, (respJson) => {
-      console.log(respJson);
-    });
+    ShareIdea(recieverId, idea.image, ideaId, (respJson) => {});
   }
 
   return (

@@ -16,6 +16,7 @@ export default function IdeaCard({
   board,
   disableSave,
   margin,
+  width,
 }) {
   const [saved, setSaved] = useState(savedDefault);
   const [boardId, setBoardId] = useState(board ? board : -1);
@@ -33,6 +34,7 @@ export default function IdeaCard({
       className={"ideaCard" + (isSelected ? " activeIdeaCard" : "")}
       style={{
         margin: margin,
+        width: width,
       }}
     >
       <div

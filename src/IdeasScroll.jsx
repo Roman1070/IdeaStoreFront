@@ -12,19 +12,19 @@ export default function IdeasScroll({
   var loggedIn = GetCookie("token");
 
   const [currentCard, setCurrentCard] = useState(null);
-  var colWidth = Math.floor(window.innerWidth / 6);
+  var ideaWidth = Math.floor(window.innerWidth / 6);
+  const marginHor = 10;
+  const minIdeaWidth = 284;
+  var colsCount = Math.floor(window.innerWidth / (ideaWidth + 2 * marginHor));
 
-  const minColumnWidth = 284;
-  var colsCount = Math.floor(window.innerWidth / colWidth);
-  var freeSpaceHor = window.innerWidth - colsCount * colWidth;
-  var marginHor = Math.max(freeSpaceHor / (colsCount - 1) / 2, 10);
-
-  while (colWidth < minColumnWidth) {
-    colWidth += 10;
-    colsCount = Math.floor(window.innerWidth / colWidth);
-    freeSpaceHor = window.innerWidth - colsCount * colWidth;
-    marginHor = Math.max(freeSpaceHor / (colsCount - 1) / 2, 10);
+  while (ideaWidth < minIdeaWidth) {
+    ideaWidth += 5;
+    colsCount = Math.floor(window.innerWidth / (ideaWidth + 2 * marginHor));
   }
+  const freeSpace =
+    window.innerWidth - colsCount * (ideaWidth + 2 * marginHor) - 2 * marginHor;
+  const widthIncrease = Math.floor(freeSpace / colsCount);
+  ideaWidth += widthIncrease;
 
   function onMouseEnter(index) {
     if (loggedIn != null) setCurrentCard(index);
@@ -44,12 +44,11 @@ export default function IdeasScroll({
               className="ideaScrollVerticalGroup"
               key={i}
               style={{
-                width: `${colWidth + 2 * marginHor}px`,
+                width: `${ideaWidth + 2 * marginHor}px`,
               }}
             >
               {ideas &&
                 distributionMap.get(i).map((idea) => {
-                  console.log(idea.id);
                   return (
                     <IdeaCard
                       key={idea.id}
@@ -63,6 +62,7 @@ export default function IdeasScroll({
                       isSelected={currentCard == idea.id}
                       board={idea.board || startBoardId}
                       margin={`0 ${marginHor}px 20px ${marginHor}px`}
+                      width={ideaWidth}
                     />
                   );
                 })}

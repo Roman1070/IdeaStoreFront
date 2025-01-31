@@ -16,14 +16,7 @@ export default function IdeaPreviewContentHolder({ image, expandY, ...props }) {
     );
   else
     return (
-      <video
-        autoPlay
-        muted
-        loop
-        controls
-        className="previewIdeaBlockVideo"
-        {...props}
-      >
+      <video autoPlay muted loop className="previewIdeaBlockVideo" {...props}>
         <source src={GetImageSrc(image)}></source>
       </video>
     );

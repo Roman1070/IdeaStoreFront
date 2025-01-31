@@ -115,6 +115,7 @@ export default function IdeaPreviewPage() {
           >
             <IdeaPreviewContentHolder
               image={idea.image}
+              controls
             ></IdeaPreviewContentHolder>
           </div>
           <div className="previewIdeaDataBlock">

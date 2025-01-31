@@ -27,7 +27,7 @@ export default function IdeaPreviewPage() {
   const minPreviewBlockH = window.innerHeight * 0.4;
   const maxPreviewBlockH = window.innerHeight * 0.85;
   const smallButtonsMargin = 6;
-  const [currentId, setCurrentId] = useState();
+  const [currentProfile, setCurrentProfile] = useState();
   const [idea, setIdea] = useState(null);
   const [boards, setBoards] = useState([]);
   const [saved, setSaved] = useState(false);
@@ -91,7 +91,7 @@ export default function IdeaPreviewPage() {
                 setAuthor(author);
                 setBoards(b);
                 setIdea(idea);
-                setCurrentId(prof.id);
+                setCurrentProfile(prof);
                 IsIdeaLiked(index, (json) => {
                   setLiked(json.liked);
                 });
@@ -159,6 +159,7 @@ export default function IdeaPreviewPage() {
                     chats={chats}
                     idea={idea}
                     ideaId={index}
+                    currentProfile={currentProfile}
                   ></IdeaSharingModal>
                 )}
                 <SmallRoundButton
@@ -214,12 +215,12 @@ export default function IdeaPreviewPage() {
                     : GetLocalImageSrc("user.png")
                 }
               ></img>
-              {author.id == currentId && (
+              {author.id == currentProfile.id && (
                 <a href={`/my_profile`} className="previewIdeaAuthorName">
                   {author.name}
                 </a>
               )}
-              {author.id != currentId && (
+              {author.id != currentProfile.id && (
                 <a
                   href={`/profile/${author.id}`}
                   className="previewIdeaAuthorName"
@@ -267,7 +268,7 @@ export default function IdeaPreviewPage() {
                       <IdeaComment
                         comment={comment}
                         key={comment.id}
-                        currentId={currentId}
+                        currentId={currentProfile.id}
                       ></IdeaComment>
                     ))}
                   </div>

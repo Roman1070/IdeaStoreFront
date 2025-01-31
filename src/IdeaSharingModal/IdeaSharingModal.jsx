@@ -6,7 +6,12 @@ import InputField from "../InputField/InputField";
 import { SearchProfiles, SendMessage, ShareIdea } from "../requests";
 import ChatsScroll from "../ChatsScroll/ChatsScroll";
 
-export default function IdeaSharingModal({ chats, idea, ideaId }) {
+export default function IdeaSharingModal({
+  chats,
+  idea,
+  ideaId,
+  currentProfile,
+}) {
   const [copyClicked, setCopyClicked] = useState();
   const [searchInput, setSearchInput] = useState();
   const [foundProfiles, setFoundProfiles] = useState();
@@ -14,7 +19,13 @@ export default function IdeaSharingModal({ chats, idea, ideaId }) {
   const debouncedSearch = debounce((value) => search(value), 700);
   function search(value) {
     SearchProfiles(value, (profiles) => {
-      setFoundProfiles(profiles);
+      var result = [];
+      for (var i = 0; i < profiles.length; i++) {
+        if (profiles[i].id != currentProfile.id) {
+          result.push(profiles[i]);
+        }
+      }
+      setFoundProfiles(result);
     });
   }
   function onSearchChanged(value) {

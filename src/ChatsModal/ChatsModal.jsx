@@ -27,9 +27,13 @@ export default function ChatsModal({
   const debouncedSearch = debounce((value) => search(value), 700);
   function search(value) {
     SearchProfiles(value, (profiles) => {
-      console.log(profiles);
-
-      setFoundProfiles(profiles);
+      var result = [];
+      for (var i = 0; i < profiles.length; i++) {
+        if (profiles[i].id != currentProfile.id) {
+          result.push(profiles[i]);
+        }
+      }
+      setFoundProfiles(result);
     });
   }
   function onSearchChanged(value) {

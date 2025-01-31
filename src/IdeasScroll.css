@@ -4,3 +4,12 @@
   grid-gap: 1rem;
   grid-template-columns: repeat(auto-fill, minmax(284px, 1fr));
 }
+.ideaScrollHorizontalGroup {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+.ideaScrollVerticalGroup {
+  display: flex;
+  flex-direction: column;
+}

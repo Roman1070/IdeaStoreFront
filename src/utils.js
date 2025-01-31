@@ -87,3 +87,16 @@ export const debounce = (mainFunction, delay) => {
     }, delay);
   };
 };
+
+export function distributeIdeas(columnsCount, ideas) {
+  var result = new Map();
+  for (var i = 0; i < columnsCount; i++) {
+    result.set(i, new Array());
+  }
+  var currentIndex = 0;
+  for (var i = 0; i < ideas.length; i++) {
+    result.get(currentIndex).push(ideas[i]);
+    currentIndex = (currentIndex + 1) % columnsCount;
+  }
+  return result;
+}

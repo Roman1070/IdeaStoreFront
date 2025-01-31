@@ -12,6 +12,7 @@ import {
   CreateComment,
   GetCurrentProfile,
   GetChats,
+  ToggleLike,
 } from "../requests";
 import SaveIdeaButton from "../IdeaCard/SaveIdeaButton";
 import SelectBoardToSaveButton from "../IdeaCard/SelectBoardToSaveButton";
@@ -38,7 +39,14 @@ export default function IdeaPreviewPage() {
   const [showComments, setShowComments] = useState();
   const [showShareModal, setShowShareModal] = useState();
   const [chats, setChats] = useState();
-
+  const [liked, setLiked] = useState();
+  const [likesCount, setLikesCount] = useState();
+  function toggleLike() {
+    ToggleLike(index, (resp) => {
+      setLiked(resp.nowLiked);
+      setLikesCount(resp.likesCount);
+    });
+  }
   function toggleShowComments() {
     setShowComments(!showComments);
   }
@@ -79,7 +87,6 @@ export default function IdeaPreviewPage() {
               GetChats((chatsJson) => {
                 setChats(chatsJson);
                 setComments(commentsJson);
-                console.log(commentsJson);
                 setAuthor(author);
                 setBoards(b);
                 setIdea(idea);
@@ -125,10 +132,14 @@ export default function IdeaPreviewPage() {
                   <SmallRoundButton
                     size={smallButtonSize}
                     marginRight={smallButtonsMargin}
-                    imgSrc={GetLocalImageSrc("heart.png")}
+                    onClick={toggleLike}
+                    imgSrc={GetLocalImageSrc(
+                      liked ? "heartRed.png" : "heart.png"
+                    )}
                   ></SmallRoundButton>
                   <div className="likesCount">
-                    {idea.likes > 0 && idea.likes}
+                    {likesCount && likesCount > 0 && likesCount}
+                    {!likesCount && idea.likes > 0 && idea.likes}
                   </div>
                 </div>
                 <SmallRoundButton

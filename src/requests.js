@@ -317,3 +317,15 @@ export function SearchProfiles(input, onComplete) {
     .then((resp) => resp.json())
     .then((json) => onComplete(json));
 }
+
+export function ToggleLike(ideaId, onComplete) {
+  fetch(JoinClientAddress("toggle-like-idea"), {
+    method: "POST",
+    body: JSON.stringify({
+      ideaId: ideaId,
+    }),
+    credentials: "include",
+  })
+    .then((response) => response.json())
+    .then((json) => onComplete(json));
+}

@@ -13,6 +13,7 @@ import {
   GetCurrentProfile,
   GetChats,
   ToggleLike,
+  IsIdeaLiked,
 } from "../requests";
 import SaveIdeaButton from "../IdeaCard/SaveIdeaButton";
 import SelectBoardToSaveButton from "../IdeaCard/SelectBoardToSaveButton";
@@ -91,6 +92,9 @@ export default function IdeaPreviewPage() {
                 setBoards(b);
                 setIdea(idea);
                 setCurrentId(prof.id);
+                IsIdeaLiked(index, (json) => {
+                  setLiked(json.liked);
+                });
                 IsIdeaSaved(index, (json) => {
                   if (Object.hasOwn(json, "err")) {
                     alert("internal error checking idea saved: " + json.err);

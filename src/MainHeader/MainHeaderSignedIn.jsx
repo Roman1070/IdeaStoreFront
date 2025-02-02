@@ -5,7 +5,12 @@ import SmallRoundButton from "../SmallRoundButton/SmallRoundButton";
 import "./MainHeader.css";
 import "../SmallRoundButton/SmallRoundButton.css";
 import { useState } from "react";
-import { GetImageSrc, GetLocalImageSrc, JoinReactHostAddress } from "../utils";
+import {
+  GetChatWebSocketAddress,
+  GetImageSrc,
+  GetLocalImageSrc,
+  JoinReactHostAddress,
+} from "../utils";
 import { GetChats, GetCurrentProfile } from "../requests";
 import ChatsModal from "../ChatsModal/ChatsModal";
 const HostName = "http://localhost:3000/";
@@ -28,7 +33,7 @@ export default function MainHeaderSignedIn() {
   const [chatSocket, setChatSocket] = useState();
 
   if (!chatSocket) {
-    setChatSocket(new WebSocket("ws://localhost:8000/chat_ws"));
+    setChatSocket(new WebSocket(GetChatWebSocketAddress()));
   }
   if (chatSocket) {
     chatSocket.onopen = function (event) {

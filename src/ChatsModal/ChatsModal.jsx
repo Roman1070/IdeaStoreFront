@@ -28,9 +28,11 @@ export default function ChatsModal({
   function search(value) {
     SearchProfiles(value, (profiles) => {
       var result = [];
-      for (var i = 0; i < profiles.length; i++) {
-        if (profiles[i].id != currentProfile.id) {
-          result.push(profiles[i]);
+      if (profiles) {
+        for (var i = 0; i < profiles.length; i++) {
+          if (profiles[i].id != currentProfile.id) {
+            result.push(profiles[i]);
+          }
         }
       }
       setFoundProfiles(result);

@@ -10,8 +10,10 @@ export default function ChatsModalElementSharing({
 }) {
   const [sent, setSent] = useState();
   function onSendClicked() {
-    if (onSendAction) onSendAction(chatData.id);
-    setSent(true);
+    if (!sent && onSendAction) {
+      onSendAction(chatData.id);
+      setSent(true);
+    }
   }
   if (currentProfileId != chatData.id)
     return (

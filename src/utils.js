@@ -1,6 +1,5 @@
-const HostName = JoinClientAddress("images/");
 export function GetImageSrc(name) {
-  return HostName + name;
+  return "http://localhost:8000/app/files/" + name;
 }
 
 const ImagesFolderName = "http://localhost:3000/images/";
@@ -36,11 +35,11 @@ export function JoinReactHostAddress(endpoint) {
   return ClientAddress + endpoint;
 }
 export function JoinClientAddress(endpoint) {
-  const ClientAddress = "http://localhost:8000/";
+  const ClientAddress = "http://localhost:8000/api/v1/";
   return ClientAddress + endpoint;
 }
 export function GetChatWebSocketAddress() {
-  return "ws://localhost:8000/chat_ws";
+  return "ws://localhost:8000/api/v1/chat_ws";
 }
 
 export function Morph(int, array) {

@@ -4,6 +4,7 @@ import {
   GetBoard,
   GetCurrentProfile,
   GetIdeas,
+  GetIdeasInBoard,
   IsIdeaSaved,
 } from "../requests";
 import { Morph } from "../utils";
@@ -17,7 +18,7 @@ export default function BoardPreviewPage() {
   if (!board && !ideas && !profile) {
     GetCurrentProfile((profJson) => {
       GetBoard(id, (boardJson) => {
-        GetIdeas(boardJson.ideasIds, (ideasJson) => {
+        GetIdeasInBoard(boardJson.id, (ideasJson) => {
           setBoard(boardJson);
           setIdeas(ideasJson);
           setProfile(profJson.data);
@@ -25,7 +26,7 @@ export default function BoardPreviewPage() {
       });
     });
   }
-
+  console.log(ideas);
   if (board != null)
     return (
       <>

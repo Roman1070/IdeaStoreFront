@@ -25,6 +25,7 @@ export default function SavedIdeasPage() {
   const [boards, setBoards] = useState(null);
   const [selectedTab, setSelectedTab] = useState(0);
   const [profile, setProfile] = useState(null);
+
   if (ideas == null && profile == null) {
     GetCurrentProfile((json) => {
       GetSavedIdeas((ideas) => {
@@ -35,6 +36,7 @@ export default function SavedIdeasPage() {
   }
   if (boards == null) {
     GetCurrentUsersBoards((json) => {
+      console.log(json);
       setBoards(json);
     });
   }

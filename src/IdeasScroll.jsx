@@ -12,7 +12,7 @@ export default function IdeasScroll({
   var loggedIn = GetCookie("token");
 
   const [currentCard, setCurrentCard] = useState(null);
-  var ideaWidth = Math.floor(window.innerWidth / 6);
+  var ideaWidth = Math.floor(window.innerWidth / 7);
   const marginHor = 10;
   const minIdeaWidth = 284;
   var colsCount = Math.floor(window.innerWidth / (ideaWidth + 2 * marginHor));
@@ -49,22 +49,23 @@ export default function IdeasScroll({
             >
               {ideas &&
                 distributionMap.get(i).map((idea) => {
-                  return (
-                    <IdeaCard
-                      key={idea.id}
-                      disableSave={disableSave}
-                      idea={idea}
-                      onMouseEnter={onMouseEnter}
-                      onMouseExit={onMouseExit}
-                      index={idea.id}
-                      availableBoards={availableBoards}
-                      savedDefault={idea.saved || saved}
-                      isSelected={currentCard == idea.id}
-                      board={idea.board || startBoardId}
-                      margin={`0 ${marginHor}px 20px ${marginHor}px`}
-                      width={ideaWidth}
-                    />
-                  );
+                  if (idea.id)
+                    return (
+                      <IdeaCard
+                        key={idea.id}
+                        disableSave={disableSave}
+                        idea={idea}
+                        onMouseEnter={onMouseEnter}
+                        onMouseExit={onMouseExit}
+                        index={idea.id}
+                        availableBoards={availableBoards}
+                        savedDefault={idea.saved || saved}
+                        isSelected={currentCard == idea.id}
+                        board={idea.board || startBoardId}
+                        margin={`0 ${marginHor}px 20px ${marginHor}px`}
+                        width={ideaWidth}
+                      />
+                    );
                 })}
             </div>
           ))}

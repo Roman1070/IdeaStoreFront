@@ -11,7 +11,7 @@ const CreatePageLinkInputId = "createPageLinkInput";
 const CreatePageTagsInputId = "createPageTagsInput";
 const CreatePageResponseId = "createPageResponse";
 const CreatePageImageInputId = "createPageImageInput";
-const HostName = "http://localhost:3000/";
+
 export default function CreatePage() {
   const [previewSrc, setPreviewSrc] = useState("");
   const [previewSrcError, setPreviewSrcError] = useState("");

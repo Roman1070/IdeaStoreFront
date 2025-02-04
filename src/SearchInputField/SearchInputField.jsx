@@ -1,11 +1,12 @@
 import { useState } from "react";
 import "./SearchInputField.css";
+import { GetLocalImageSrc } from "../utils";
 export default function SearchInputField() {
   const [content, setContent] = useState("");
   return (
     <div className="searchInputFieldBlock">
       <img
-        src="http://localhost:3000/images/lupa.png"
+        src={GetLocalImageSrc("lupa.png")}
         style={{
           height: "24px",
           width: "24px",

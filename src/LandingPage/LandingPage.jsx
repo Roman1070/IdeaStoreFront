@@ -1,5 +1,4 @@
 import { useSearchParams } from "react-router-dom";
-import GetIdeas from "../db";
 import IdeasScroll from "../IdeasScroll";
 import "./LandingPage.css";
 import { useState } from "react";

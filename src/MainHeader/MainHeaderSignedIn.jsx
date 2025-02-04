@@ -13,7 +13,7 @@ import {
 } from "../utils";
 import { GetChats, GetCurrentProfile } from "../requests";
 import ChatsModal from "../ChatsModal/ChatsModal";
-const HostName = "http://localhost:3000/";
+
 export default function MainHeaderSignedIn() {
   const [profileModalEnabled, setProfileModalEnabled] = useState(false);
   const [chatsModalEnabled, setChatModalEnabled] = useState(false);
@@ -50,7 +50,7 @@ export default function MainHeaderSignedIn() {
       <>
         <header className="mainHeader">
           <img
-            src={HostName + "images/logo.png"}
+            src={GetLocalImageSrc("logo.png")}
             alt=""
             style={{
               height: "32px",

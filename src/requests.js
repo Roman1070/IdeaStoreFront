@@ -7,19 +7,19 @@ export function GetAllIdeas(includeSaved, onComplete) {
     credentials: "include",
   })
     .then((response) => response.json())
-    .then((json) => {
-      console.log(json);
-      if (json.ideas) {
-        for (var i in json.ideas) {
-          if (includeSaved || !json[i].saved)
+    .then((json) => json.ideas)
+    .then((ideas) => {
+      if (ideas) {
+        for (var i in ideas) {
+          if (includeSaved || !ideas[i].saved)
             tempIdeas.push({
-              id: json[i].id,
-              image: json[i].image,
-              name: json[i].name,
-              description: json[i].description,
-              link: json[i].link,
-              tags: json[i].tags,
-              saved: json[i].saved,
+              id: ideas[i].id,
+              image: ideas[i].image,
+              name: ideas[i].name,
+              description: ideas[i].description,
+              link: ideas[i].link,
+              tags: ideas[i].tags,
+              saved: ideas[i].saved,
             });
         }
       }

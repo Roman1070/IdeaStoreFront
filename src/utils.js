@@ -1,8 +1,8 @@
 export function GetImageSrc(name) {
-  return "http://127.0.0.1/app/files/" + name;
+  return "http://ideastore.space/app/files/" + name;
 }
 
-const ImagesFolderName = "http://127.0.0.1/images/";
+const ImagesFolderName = "http://ideastore.space/images/";
 export function GetLocalImageSrc(name) {
   return ImagesFolderName + name;
 }
@@ -31,15 +31,15 @@ export function DeleteCookie(name, path, domain) {
   } else console.log("cant find cookie " + name);
 }
 export function JoinReactHostAddress(endpoint) {
-  const ClientAddress = "http://127.0.0.1/";
+  const ClientAddress = "http://ideastore.space/";
   return ClientAddress + endpoint;
 }
 export function JoinClientAddress(endpoint) {
-  const ClientAddress = "http://127.0.0.1/api/v1/";
+  const ClientAddress = "http://ideastore.space/api/v1/";
   return ClientAddress + endpoint;
 }
 export function GetChatWebSocketAddress() {
-  return "ws://127.0.0.1/api/v1/chat_ws";
+  return "ws://ideastore.space/api/v1/chat_ws";
 }
 
 export function Morph(int, array) {

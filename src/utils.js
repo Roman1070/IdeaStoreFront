@@ -1,8 +1,8 @@
 export function GetImageSrc(name) {
-  return "http://176.114.67.252/app/files/" + name;
+  return "http://127.0.0.1/app/files/" + name;
 }
 
-const ImagesFolderName = "http://176.114.67.252/images/";
+const ImagesFolderName = "http://127.0.0.1/images/";
 export function GetLocalImageSrc(name) {
   return ImagesFolderName + name;
 }
@@ -31,15 +31,15 @@ export function DeleteCookie(name, path, domain) {
   } else console.log("cant find cookie " + name);
 }
 export function JoinReactHostAddress(endpoint) {
-  const ClientAddress = "http://176.114.67.252/";
+  const ClientAddress = "http://127.0.0.1/";
   return ClientAddress + endpoint;
 }
 export function JoinClientAddress(endpoint) {
-  const ClientAddress = "http://176.114.67.252/api/v1/";
+  const ClientAddress = "http://127.0.0.1/api/v1/";
   return ClientAddress + endpoint;
 }
 export function GetChatWebSocketAddress() {
-  return "ws://176.114.67.252/api/v1/chat_ws";
+  return "ws://127.0.0.1/api/v1/chat_ws";
 }
 
 export function Morph(int, array) {

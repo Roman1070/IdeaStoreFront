@@ -39,7 +39,7 @@ export function JoinClientAddress(endpoint) {
   return ClientAddress + endpoint;
 }
 export function GetChatWebSocketAddress() {
-  return "ws://ideastore.space/api/chat_ws";
+  return "wss://ideastore.space/api/chat_ws";
 }
 
 export function Morph(int, array) {

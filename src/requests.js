@@ -8,7 +8,7 @@ export function GetAllIdeas(includeSaved, onComplete) {
   })
     .then((response) => response.json())
     .then((json) => {
-      for (var i in json) {
+      for (var i in json.ideas) {
         if (includeSaved || !json[i].saved)
           tempIdeas.push({
             id: json[i].id,
@@ -22,7 +22,7 @@ export function GetAllIdeas(includeSaved, onComplete) {
       }
     })
     .then(() => {
-      onComplete(tempIdeas.ideas);
+      onComplete(tempIdeas);
     })
     .catch((e) => console.error(e));
 }

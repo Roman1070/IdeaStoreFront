@@ -1,5 +1,5 @@
 export function GetImageSrc(name) {
-  return "http://ideastore.space/app/files/" + name;
+  return "http://ideastore.space/api/files/" + name;
 }
 
 const ImagesFolderName = "http://ideastore.space/images/";

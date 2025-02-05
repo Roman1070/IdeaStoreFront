@@ -22,8 +22,9 @@ export function GetAllIdeas(includeSaved, onComplete) {
       }
     })
     .then(() => {
-      onComplete(tempIdeas);
-    });
+      onComplete(tempIdeas.ideas);
+    })
+    .catch((e) => console.error(e));
 }
 
 export function GetCurrentUsersBoards(onComplete) {

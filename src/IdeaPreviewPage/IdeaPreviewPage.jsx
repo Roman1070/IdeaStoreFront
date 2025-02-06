@@ -81,35 +81,47 @@ export default function IdeaPreviewPage() {
   const smallButtonSize = 40;
   if (!idea && boards.length == 0) {
     GetCurrentProfile((prof) => {
-      GetCurrentUsersBoards((b) => {
-        GetIdea(index, (idea) => {
-          GetProfile(idea.userId, (author) => {
-            GetComments(index, (commentsJson) => {
-              GetChats((chatsJson) => {
-                setChats(chatsJson);
-                setComments(commentsJson);
-                setAuthor(author);
-                setBoards(b);
-                setIdea(idea);
-                setCurrentProfile(prof);
-                IsIdeaLiked(index, (json) => {
-                  setLiked(json.liked);
-                });
-                IsIdeaSaved(index, (json) => {
-                  if (Object.hasOwn(json, "err")) {
-                    alert("internal error checking idea saved: " + json.err);
-                  } else {
-                    setSaved(json.saved);
-                    setBoardId(Number(json.boardId));
+      if (prof.id != -1) {
+        GetCurrentUsersBoards((b) => {
+          GetIdea(index, (idea) => {
+            GetProfile(idea.userId, (author) => {
+              GetComments(index, (commentsJson) => {
+                GetChats((chatsJson) => {
+                  setChats(chatsJson);
+                  setComments(commentsJson);
+                  setAuthor(author);
+                  setBoards(b);
+                  setIdea(idea);
+                  setCurrentProfile(prof);
+                  IsIdeaLiked(index, (json) => {
+                    setLiked(json.liked);
+                  });
+                  IsIdeaSaved(index, (json) => {
+                    if (Object.hasOwn(json, "err")) {
+                      alert("internal error checking idea saved: " + json.err);
+                    } else {
+                      setSaved(json.saved);
+                      setBoardId(Number(json.boardId));
 
-                    setBoardName(getBoardName(b, Number(json.boardId)));
-                  }
+                      setBoardName(getBoardName(b, Number(json.boardId)));
+                    }
+                  });
                 });
               });
             });
           });
         });
-      });
+      } else {
+        GetIdea(index, (idea) => {
+          GetComments(index, (comments) => {
+            GetProfile(idea.userId, (author) => {
+              setIdea(idea);
+              setAuthor(author);
+              setComments(comments);
+            });
+          });
+        });
+      }
     });
   }
 
@@ -168,27 +180,29 @@ export default function IdeaPreviewPage() {
                   imgSrc={GetLocalImageSrc("option.png")}
                 ></SmallRoundButton>
               </div>
-              <div className="saveButtonBlock">
-                {boards.length > 0 && (
-                  <div className="previewPageSelectBoardButtonHolder">
-                    <SelectBoardToSaveButton
+              {boards && (
+                <div className="saveButtonBlock">
+                  {boards.length > 0 && (
+                    <div className="previewPageSelectBoardButtonHolder">
+                      <SelectBoardToSaveButton
+                        saved={saved}
+                        setSelectedBoard={setSelectedBoard}
+                        availableBoards={boards}
+                        startBoardId={boardId}
+                        startBoardName={boardName}
+                      ></SelectBoardToSaveButton>
+                    </div>
+                  )}
+                  <div className="previewPageSaveButtonHolder">
+                    <SaveIdeaButton
+                      onSaved={onSaveToggle}
                       saved={saved}
-                      setSelectedBoard={setSelectedBoard}
-                      availableBoards={boards}
-                      startBoardId={boardId}
-                      startBoardName={boardName}
-                    ></SelectBoardToSaveButton>
+                      board={boardId}
+                      index={index}
+                    ></SaveIdeaButton>
                   </div>
-                )}
-                <div className="previewPageSaveButtonHolder">
-                  <SaveIdeaButton
-                    onSaved={onSaveToggle}
-                    saved={saved}
-                    board={boardId}
-                    index={index}
-                  ></SaveIdeaButton>
                 </div>
-              </div>
+              )}
             </div>
             <a
               href={idea.link}

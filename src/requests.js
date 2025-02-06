@@ -16,9 +16,6 @@ export function GetAllIdeas(includeSaved, onComplete) {
               id: ideas[i].id,
               image: ideas[i].image,
               name: ideas[i].name,
-              description: ideas[i].description,
-              link: ideas[i].link,
-              tags: ideas[i].tags,
               saved: ideas[i].saved,
             });
         }
@@ -29,7 +26,32 @@ export function GetAllIdeas(includeSaved, onComplete) {
     })
     .catch((e) => console.error(e));
 }
-
+export function SearchIdeas(input, onComplete) {
+  var tempIdeas = [];
+  fetch(JoinClientAddress(`search-ideas?input=${input}`), {
+    method: "GET",
+    credentials: "include",
+  })
+    .then((response) => response.json())
+    .then((json) => json.ideas)
+    .then((ideas) => {
+      if (ideas) {
+        for (var i in ideas) {
+          if (!ideas[i].saved)
+            tempIdeas.push({
+              id: ideas[i].id,
+              image: ideas[i].image,
+              name: ideas[i].name,
+              saved: ideas[i].saved,
+            });
+        }
+      }
+    })
+    .then(() => {
+      onComplete(tempIdeas);
+    })
+    .catch((e) => console.error(e));
+}
 export function GetCurrentUsersBoards(onComplete) {
   fetch(JoinClientAddress("my-boards"), {
     method: "GET",

@@ -1,8 +1,33 @@
 import { useState } from "react";
 import "./SearchInputField.css";
-import { GetLocalImageSrc } from "../utils";
-export default function SearchInputField() {
+import { GetLocalImageSrc, debounce } from "../utils";
+import { SearchIdeas } from "../requests";
+export default function SearchInputField({ onFoundIdeasChanged }) {
   const [content, setContent] = useState("");
+
+  const debouncedSearch = debounce((value) => search(value), 700);
+  function search(value) {
+    SearchIdeas(value, (ideas) => {
+      var result = [];
+      if (ideas) {
+        for (var i = 0; i < ideas.length; i++) {
+          if (!ideas[i].saved) {
+            result.push(ideas[i]);
+          }
+        }
+      }
+      onFoundIdeasChanged(result);
+    });
+  }
+  function onSearchChanged(value) {
+    setContent(value);
+    if (value) {
+      debouncedSearch(value);
+    } else {
+      onFoundIdeasChanged([]);
+    }
+  }
+
   return (
     <div className="searchInputFieldBlock">
       <img
@@ -17,7 +42,7 @@ export default function SearchInputField() {
       <input
         name="searchInputField"
         className="searchInputField"
-        onChange={(event) => setContent(event.target.value)}
+        onChange={(event) => onSearchChanged(event.target.value)}
         value={content}
       ></input>
     </div>

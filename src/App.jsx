@@ -23,10 +23,16 @@ import { useState } from "react";
 
 function App() {
   var loggedIn = GetCookie("token");
-
+  const [foundIdeas, setFoundIdeas] = useState();
   return (
     <>
-      {loggedIn != null ? <MainHeaderSignedIn /> : <MainHeaderGuest />}
+      {loggedIn != null ? (
+        <MainHeaderSignedIn
+          onFoundIdeasChanged={(ideas) => setFoundIdeas(ideas)}
+        />
+      ) : (
+        <MainHeaderGuest />
+      )}
       <Router>
         <Routes>
           {/* This route is for home component 
@@ -35,7 +41,13 @@ function App() {
           <Route
             exact
             path="/"
-            element={loggedIn != null ? <Homepage /> : <LandingPage />}
+            element={
+              loggedIn != null ? (
+                <Homepage foundIdeas={foundIdeas} />
+              ) : (
+                <LandingPage />
+              )
+            }
           />
           <Route exact path="/create" element={<CreatePage />} />
           <Route exact path="/saved_ideas" element={<SavedIdeasPage />} />

@@ -14,7 +14,7 @@ import {
 import { GetChats, GetCurrentProfile } from "../requests";
 import ChatsModal from "../ChatsModal/ChatsModal";
 
-export default function MainHeaderSignedIn() {
+export default function MainHeaderSignedIn({ onFoundIdeasChanged }) {
   const [profileModalEnabled, setProfileModalEnabled] = useState(false);
   const [chatsModalEnabled, setChatModalEnabled] = useState(false);
   const [chats, setChats] = useState();
@@ -88,7 +88,7 @@ export default function MainHeaderSignedIn() {
               Создать
             </ButtonLight>
           </span>
-          <SearchInputField />
+          <SearchInputField onFoundIdeasChanged={onFoundIdeasChanged} />
 
           <SmallRoundButton
             size={smallButtonSize}

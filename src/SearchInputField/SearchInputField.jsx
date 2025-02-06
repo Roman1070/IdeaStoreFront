@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./SearchInputField.css";
-import { GetLocalImageSrc, debounce } from "../utils";
+import { GetLocalImageSrc, cancelDebounce, debounce } from "../utils";
 import { SearchIdeas } from "../requests";
 export default function SearchInputField({
   onFoundIdeasChanged,
@@ -30,6 +30,7 @@ export default function SearchInputField({
     } else {
       onFoundIdeasChanged([]);
       onSearchInputChanged("");
+      cancelDebounce(timer);
     }
   }
 

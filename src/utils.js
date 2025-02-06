@@ -86,6 +86,9 @@ export const debounce = (mainFunction, delay) => {
     }, delay);
   };
 };
+export const cancelDebounce = () => {
+  clearTimeout(timer);
+};
 
 export function distributeIdeas(columnsCount, ideas) {
   var result = new Map();

@@ -41,7 +41,7 @@ export default function SavedIdeasPage() {
     });
   }
 
-  if (ideas != null && profile != null)
+  if (ideas && profile && profile.id != -1)
     return (
       <>
         <div className="upperModalBlock">

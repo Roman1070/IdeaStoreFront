@@ -1,7 +1,7 @@
 import { useState } from "react";
 import ButtonLight from "../ButtonLight/ButtonLight";
 import { GetImageSrc, GetLocalImageSrc } from "../utils";
-import { GetCurrentProfile, UpdateProfile } from "../requests";
+import { UpdateProfile } from "../requests";
 import InputField from "../InputField/InputField";
 import "./ProfileSettingsPage.css";
 import "../IdeaCard/IdeaCard.css";

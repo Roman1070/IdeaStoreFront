@@ -154,7 +154,7 @@ export default function IdeaPreviewPage() {
                   )}
                   onClick={() => setShowShareModal(!showShareModal)}
                 ></SmallRoundButton>
-                {showShareModal && (
+                {currentProfile.id != -1 && showShareModal && (
                   <IdeaSharingModal
                     chats={chats}
                     idea={idea}
@@ -275,38 +275,40 @@ export default function IdeaPreviewPage() {
                 )}
               </>
             )}
-            <div className="enterCommentBlock">
-              <div
-                style={{
-                  flex: "1",
-                  margin: "0 10px",
-                }}
-              >
-                <InputField
-                  value={commentInput}
-                  isCorrect={!commentError}
-                  error={commentError}
-                  onChangeAction={(value) => {
-                    setCommentInput(value);
-                    setCommentError("");
+            {currentProfile.id != -1 && (
+              <div className="enterCommentBlock">
+                <div
+                  style={{
+                    flex: "1",
+                    margin: "0 10px",
                   }}
-                  height={"24px"}
-                ></InputField>
-              </div>
+                >
+                  <InputField
+                    value={commentInput}
+                    isCorrect={!commentError}
+                    error={commentError}
+                    onChangeAction={(value) => {
+                      setCommentInput(value);
+                      setCommentError("");
+                    }}
+                    height={"24px"}
+                  ></InputField>
+                </div>
 
-              <div
-                style={{
-                  marginBottom: "10px",
-                }}
-              >
-                <SmallRoundButton
-                  marginRight={16}
-                  size={40}
-                  imgSrc={GetLocalImageSrc("sendMessage.png")}
-                  onClick={trySendComment}
-                ></SmallRoundButton>
+                <div
+                  style={{
+                    marginBottom: "10px",
+                  }}
+                >
+                  <SmallRoundButton
+                    marginRight={16}
+                    size={40}
+                    imgSrc={GetLocalImageSrc("sendMessage.png")}
+                    onClick={trySendComment}
+                  ></SmallRoundButton>
+                </div>
               </div>
-            </div>
+            )}
           </div>
         </div>
       </>

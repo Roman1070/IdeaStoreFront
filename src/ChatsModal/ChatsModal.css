@@ -1,6 +1,6 @@
 .chatModalBlock {
   position: fixed;
-  height: 870px;
+  height: 60%;
   width: 362px;
   display: grid;
   right: 20px;

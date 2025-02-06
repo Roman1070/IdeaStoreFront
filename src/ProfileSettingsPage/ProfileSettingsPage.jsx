@@ -13,7 +13,7 @@ export default function ProfileSettingsPage() {
       console.log(profileJson);
     });
   }
-  if (profile)
+  if (profile && profile.id != -1)
     return (
       <div className="profileSettingsPage">
         <div className="profileSettingsPageMenu">

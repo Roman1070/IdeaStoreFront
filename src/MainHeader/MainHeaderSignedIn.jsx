@@ -39,11 +39,8 @@ export default function MainHeaderSignedIn({
     setChatSocket(new WebSocket(GetChatWebSocketAddress()));
   }
   if (chatSocket) {
-    chatSocket.onopen = function (event) {
-      console.log("connected to chat web socket");
-    };
+    chatSocket.onopen = function (event) {};
     chatSocket.onclose = function (event) {
-      console.log("disconnected from chat web socket");
       setChatSocket(null);
     };
   }

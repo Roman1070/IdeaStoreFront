@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { GetImageSrc, GetLocalImageSrc, JoinReactHostAddress } from "../utils";
 import "./IdeaPreviewPage.css";
-import { GetCurrentProfile } from "../requests";
 export default function IdeaComment({ comment, currentId }) {
   return (
     <div className="ideaComment">

@@ -118,6 +118,7 @@ export default function IdeaPreviewPage() {
               setIdea(idea);
               setAuthor(author);
               setComments(comments);
+              setCurrentProfile(prof);
             });
           });
         });

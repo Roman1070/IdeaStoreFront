@@ -3,6 +3,7 @@ import LoginForm from "../LoginModal/LoginForm";
 import LoginModal from "../LoginModal/LoginModal";
 import RegisterModal from "../RegisterModal/RegisterModal";
 import SearchInputField from "../SearchInputField/SearchInputField";
+import { GetLocalImageSrc } from "../utils";
 import "./MainHeader.css";
 import { useState } from "react";
 
@@ -19,7 +20,7 @@ export default function MainHeaderGuest() {
     <>
       <header className="mainHeader">
         <img
-          src="logo.png"
+          src={GetLocalImageSrc("logo.png")}
           alt=""
           style={{
             height: "32px",
@@ -33,7 +34,7 @@ export default function MainHeaderGuest() {
         <span
           style={{
             padding: "0 8px",
-            flexGrow: "2",
+            flex: "1",
             position: "relative",
           }}
         >
@@ -51,6 +52,9 @@ export default function MainHeaderGuest() {
           style={{
             display: "flex",
             flexDirection: "row",
+            maxWidth: "300px",
+            flex: "1",
+            justifyContent: "end",
           }}
         >
           <button

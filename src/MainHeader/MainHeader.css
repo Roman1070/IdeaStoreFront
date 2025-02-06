@@ -31,7 +31,7 @@
   font-size: 16px;
   transition-duration: 0.3s;
   margin-right: 20px;
-  width: 90px;
+  flex: 2;
   height: 40px;
   border-radius: 40px;
   border: unset;
@@ -48,12 +48,12 @@
   font-size: 16px;
   transition-duration: 0.3s;
   margin-right: 30px;
-  width: 150px;
   height: 40px;
   border-radius: 40px;
   border: unset;
   align-items: center;
   cursor: pointer;
+  flex: 3;
 }
 .signUpButton:hover {
   background-color: #aaa;
@@ -66,6 +66,6 @@
   font-size: 24px;
   font-weight: 600;
   color: red;
-  margin-right: 20px;
+  margin-right: 10px;
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }

@@ -26,7 +26,7 @@ export default function IdeaCard({
   function setSelectedBoard(id) {
     setBoardId(id);
   }
-  var loggedIn = GetCookie("token");
+
   return (
     <div
       onMouseEnter={() => onMouseEnter(index)}
@@ -49,20 +49,17 @@ export default function IdeaCard({
           image={idea.image}
         ></IdeaPreviewContentHolder>
       </div>
-
-      {loggedIn && (
-        <a
-          href={"/idea/" + index}
-          style={{
-            position: "absolute",
-            width: "100%",
-            height: "100%",
-            cursor: "pointer",
-            display: "inline-block",
-            zIndex: "3",
-          }}
-        ></a>
-      )}
+      <a
+        href={"/idea/" + index}
+        style={{
+          position: "absolute",
+          width: "100%",
+          height: "100%",
+          cursor: "pointer",
+          display: "inline-block",
+          zIndex: "3",
+        }}
+      ></a>
       {isSelected && (
         <>
           <div className="ideaCardFade"></div>

@@ -43,10 +43,11 @@ export default function IdeaPreviewPage() {
   const [liked, setLiked] = useState();
   const [likesCount, setLikesCount] = useState();
   function toggleLike() {
-    ToggleLike(index, (resp) => {
-      setLiked(resp.nowLiked);
-      setLikesCount(resp.likesCount);
-    });
+    if (currentProfile && currentProfile.id != -1)
+      ToggleLike(index, (resp) => {
+        setLiked(resp.nowLiked);
+        setLikesCount(resp.likesCount);
+      });
   }
   function toggleShowComments() {
     setShowComments(!showComments);

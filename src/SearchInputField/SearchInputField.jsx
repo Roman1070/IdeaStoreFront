@@ -30,7 +30,7 @@ export default function SearchInputField({
     } else {
       onFoundIdeasChanged([]);
       onSearchInputChanged("");
-      cancelDebounce(timer);
+      cancelDebounce();
     }
   }
 

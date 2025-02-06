@@ -28,7 +28,7 @@ export default function Homepage({ foundIdeas, searchInput }) {
       {ideas.length > 0 && (
         <IdeasScroll
           availableBoards={boards}
-          ideas={foundIdeas ? foundIdeas : ideas}
+          ideas={foundIdeas && searchInput ? foundIdeas : ideas}
         ></IdeasScroll>
       )}
     </>

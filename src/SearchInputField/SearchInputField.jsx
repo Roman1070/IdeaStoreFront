@@ -29,6 +29,7 @@ export default function SearchInputField({
       debouncedSearch(value);
     } else {
       onFoundIdeasChanged([]);
+      onSearchInputChanged("");
     }
   }
 

@@ -20,7 +20,7 @@ export default function Homepage({ foundIdeas, searchInput }) {
 
   return (
     <>
-      {foundIdeas && (
+      {foundIdeas && searchInput && (
         <div className="foundIdeasHeader">{`По запросу "${searchInput}" найдено ${
           foundIdeas.length
         } ${Morph(foundIdeas.length)}`}</div>

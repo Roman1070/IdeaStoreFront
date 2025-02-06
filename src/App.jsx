@@ -24,11 +24,13 @@ import { useState } from "react";
 function App() {
   var loggedIn = GetCookie("token");
   const [foundIdeas, setFoundIdeas] = useState();
+  const [searchInput, setSearchInput] = useState();
   return (
     <>
       {loggedIn != null ? (
         <MainHeaderSignedIn
           onFoundIdeasChanged={(ideas) => setFoundIdeas(ideas)}
+          onSearchInputChanged={(value) => setSearchInput(value)}
         />
       ) : (
         <MainHeaderGuest />
@@ -43,7 +45,7 @@ function App() {
             path="/"
             element={
               loggedIn != null ? (
-                <Homepage foundIdeas={foundIdeas} />
+                <Homepage foundIdeas={foundIdeas} searchInput={searchInput} />
               ) : (
                 <LandingPage />
               )

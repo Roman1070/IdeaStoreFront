@@ -2,12 +2,16 @@ import { useState } from "react";
 import "./SearchInputField.css";
 import { GetLocalImageSrc, debounce } from "../utils";
 import { SearchIdeas } from "../requests";
-export default function SearchInputField({ onFoundIdeasChanged }) {
+export default function SearchInputField({
+  onFoundIdeasChanged,
+  onSearchInputChanged,
+}) {
   const [content, setContent] = useState("");
 
   const debouncedSearch = debounce((value) => search(value), 700);
   function search(value) {
     SearchIdeas(value, (ideas) => {
+      onSearchInputChanged(value);
       var result = [];
       if (ideas) {
         for (var i = 0; i < ideas.length; i++) {

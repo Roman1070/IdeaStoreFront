@@ -19,60 +19,65 @@ export default function MainHeaderGuest() {
   return (
     <>
       <header className="mainHeader">
-        <img
-          src={GetLocalImageSrc("logo.png")}
-          alt=""
-          style={{
-            height: "32px",
-            display: "flex",
-            transformOrigin: "50% 100%",
-            marginLeft: "20px",
-            marginRight: "10px",
-          }}
-        />
-        <div className="appName">IdeaStore</div>
-        <span
-          style={{
-            padding: "0 8px",
-            flex: "1",
-            position: "relative",
-          }}
-        >
-          <ButtonLight
-            url={"/"}
-            onClick={() => {
-              setSelectedTab(0);
+        <div className="mainHeaderLeftBlock">
+          <img
+            src={GetLocalImageSrc("logo.png")}
+            alt=""
+            style={{
+              height: "32px",
+              display: "flex",
+              transformOrigin: "50% 100%",
+              marginLeft: "20px",
+              marginRight: "10px",
             }}
-            isSelected={window.location.pathname == "/"}
-          >
-            Просмотреть
-          </ButtonLight>
-        </span>
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            maxWidth: "300px",
-            flex: "1",
-            justifyContent: "end",
-          }}
-        >
-          <button
-            className="signInButton"
-            onClick={() => {
-              setDisplayLoginModal(true);
+          />
+          <div className="appName">IdeaStore</div>
+          {window.innerWidth > 600 && (
+            <span
+              style={{
+                padding: "0 8px",
+                flex: "1",
+                position: "relative",
+              }}
+            >
+              <ButtonLight
+                url={"/"}
+                onClick={() => {
+                  setSelectedTab(0);
+                }}
+                isSelected={window.location.pathname == "/"}
+              >
+                Просмотреть
+              </ButtonLight>
+            </span>
+          )}
+        </div>
+        <div className="mainHeaderRightBlock">
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              flex: "1",
+              justifyContent: "end",
             }}
           >
-            Войти
-          </button>
-          <button
-            onClick={() => {
-              setDisplayRegisterModal(true);
-            }}
-            className="signUpButton"
-          >
-            Регистрация
-          </button>
+            <button
+              className="signInButton"
+              onClick={() => {
+                setDisplayLoginModal(true);
+              }}
+            >
+              Войти
+            </button>
+            <button
+              onClick={() => {
+                setDisplayRegisterModal(true);
+              }}
+              className="signUpButton"
+            >
+              Регистрация
+            </button>
+          </div>
         </div>
       </header>
       <div className="mainHeaderHeightBlock"></div>

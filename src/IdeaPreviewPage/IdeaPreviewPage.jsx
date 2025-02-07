@@ -175,13 +175,16 @@ export default function IdeaPreviewPage() {
                     idea={idea}
                     ideaId={index}
                     currentProfile={currentProfile}
+                    closeFunc={() => setShowShareModal(false)}
                   ></IdeaSharingModal>
                 )}
-                <SmallRoundButton
-                  size={smallButtonSize}
-                  marginRight={smallButtonsMargin}
-                  imgSrc={GetLocalImageSrc("option.png")}
-                ></SmallRoundButton>
+                {currentProfile.id != -1 && (
+                  <SmallRoundButton
+                    size={smallButtonSize}
+                    marginRight={smallButtonsMargin}
+                    imgSrc={GetLocalImageSrc("option.png")}
+                  ></SmallRoundButton>
+                )}
               </div>
               {currentProfile.id != -1 && (
                 <div className="saveButtonBlock">

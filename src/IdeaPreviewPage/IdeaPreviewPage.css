@@ -63,27 +63,29 @@
   margin-right: 10px;
   position: relative;
 }
-@media (max-width: 920px) {
+@media (max-width: 760px) {
   .previewImageButtonsGroup {
     display: flex;
     flex-direction: column;
     align-items: center;
     position: relative;
   }
-
-  .saveButtonBlock {
-    display: flex;
-    flex-direction: column;
-  }
 }
-@media (min-width: 921px) {
+@media (min-width: 761px) {
   .previewImageButtonsGroup {
     display: flex;
     flex-direction: row;
     align-items: center;
     position: relative;
   }
-
+}
+@media (max-width: 920px) {
+  .saveButtonBlock {
+    display: flex;
+    flex-direction: column;
+  }
+}
+@media (min-width: 921px) {
   .saveButtonBlock {
     display: flex;
     flex-direction: row;
@@ -95,11 +97,13 @@
   align-items: center;
 }
 .likesCount {
-  display: inline;
   height: 100%;
   font-weight: 500;
-  top: 0px;
   margin-right: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-bottom: 4px;
 }
 .previewIdeaName {
   font-weight: 600;

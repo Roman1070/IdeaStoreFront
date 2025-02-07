@@ -14,7 +14,7 @@ export default function IdeasScroll({
   const [currentCard, setCurrentCard] = useState(null);
   var ideaWidth = Math.floor(window.innerWidth / 7);
   const marginHor = 10;
-  const minIdeaWidth = 284;
+  const minIdeaWidth = window.innerWidth > 800 ? 284 : 200;
   var colsCount = Math.floor(window.innerWidth / (ideaWidth + 2 * marginHor));
 
   while (ideaWidth < minIdeaWidth) {

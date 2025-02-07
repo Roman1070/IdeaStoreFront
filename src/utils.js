@@ -7,6 +7,10 @@ export function GetLocalImageSrc(name) {
   return ImagesFolderName + name;
 }
 
+export function ScreenIsThin() {
+  return window.innerWidth < 800;
+}
+
 export function GetCookie(name) {
   var dc = document.cookie;
   var prefix = name + "=";

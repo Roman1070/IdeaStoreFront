@@ -11,6 +11,7 @@ export default function IdeaSharingModal({
   idea,
   ideaId,
   currentProfile,
+  closeFunc,
 }) {
   const [copyClicked, setCopyClicked] = useState();
   const [searchInput, setSearchInput] = useState();
@@ -44,22 +45,30 @@ export default function IdeaSharingModal({
   return (
     <div className="ideaSharingModalWrapper">
       <div className="ideaSharingModal">
-        <div className="ideaSharingModalCopyWrapper">
-          <SmallRoundButton
-            imgSrc={GetLocalImageSrc("copy.png")}
-            size={48}
-            onClick={() => {
-              setCopyClicked(true);
-              navigator.clipboard.writeText(window.location.href);
-            }}
-          ></SmallRoundButton>
-          <div
-            style={{
-              margin: "auto 10px",
-            }}
-          >
-            {copyClicked ? "Ссылка скопирована" : "Копировать ссылку"}
+        <div className="ideaSharingModalHeader">
+          <div className="ideaSharingModalCopyWrapper">
+            <SmallRoundButton
+              imgSrc={GetLocalImageSrc("copy.png")}
+              size={48}
+              onClick={() => {
+                setCopyClicked(true);
+                navigator.clipboard.writeText(window.location.href);
+              }}
+            ></SmallRoundButton>
+            <div
+              style={{
+                margin: "auto 10px",
+              }}
+            >
+              {copyClicked ? "Ссылка скопирована" : "Копировать ссылку"}
+            </div>
           </div>
+          <SmallRoundButton
+            size={40}
+            imgSrc={GetLocalImageSrc("close.png")}
+            className="ideaSharingModalClose"
+            onClick={closeFunc}
+          ></SmallRoundButton>
         </div>
 
         {currentProfile.id != -1 && (

@@ -13,6 +13,7 @@ export default function BoardPreviewPage() {
       GetIdeasInBoard(boardJson.id, (ideasJson) => {
         setBoard(boardJson);
         setIdeas(ideasJson);
+        console.log(boardJson);
       });
     });
   }

@@ -93,7 +93,7 @@ export default function ProfilePreviewPage() {
         <span className="profilePreviewPageDescription">
           {profile.description}
         </span>
-        {currentProfile.id != profile.id && (
+        {currentProfile.id != profile.id && currentProfile.id != -1 && (
           <div className="profilePreviewPageButtons">
             <button
               onClick={() => setShowMessageModal(!showMessageModal)}

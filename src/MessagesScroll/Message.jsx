@@ -41,8 +41,7 @@ export default function Message({ message, theirProfile, currentProfile }) {
             ></img>
             {message.idea_id && (
               <Link
-                replace
-                to={`idea/${message.idea_id}`}
+                to={`/idea/${message.idea_id}`}
                 className="messageImageLink"
               ></Link>
             )}
@@ -59,8 +58,7 @@ export default function Message({ message, theirProfile, currentProfile }) {
             ></video>
             {message.idea_id && (
               <Link
-                replace
-                to={`idea/${message.idea_id}`}
+                to={`/idea/${message.idea_id}`}
                 className="messageImageLink"
               ></Link>
             )}

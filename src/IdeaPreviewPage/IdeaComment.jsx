@@ -26,7 +26,7 @@ export default function IdeaComment({ comment, currentId }) {
           {currentId != comment.userId && (
             <Link
               replace
-              to={`profile/${comment.userId}`}
+              to={`/profile/${comment.userId}`}
               className="ideaCommentAuthorName"
             >
               {comment.username}

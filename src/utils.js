@@ -7,8 +7,8 @@ export function GetLocalImageSrc(name) {
   return ImagesFolderName + name;
 }
 
-export function ScreenIsThin() {
-  return window.innerWidth < 800;
+export function AspectRatio() {
+  return window.innerWidth / window.innerHeight;
 }
 
 export function GetCookie(name) {

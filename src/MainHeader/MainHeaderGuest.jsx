@@ -3,7 +3,7 @@ import LoginForm from "../LoginModal/LoginForm";
 import LoginModal from "../LoginModal/LoginModal";
 import RegisterModal from "../RegisterModal/RegisterModal";
 import SearchInputField from "../SearchInputField/SearchInputField";
-import { GetLocalImageSrc } from "../utils";
+import { AspectRatio, GetLocalImageSrc } from "../utils";
 import "./MainHeader.css";
 import { useState } from "react";
 
@@ -20,17 +20,19 @@ export default function MainHeaderGuest() {
     <>
       <header className="mainHeader">
         <div className="mainHeaderLeftBlock">
-          <img
-            src={GetLocalImageSrc("logo.png")}
-            alt=""
-            style={{
-              height: "32px",
-              display: "flex",
-              transformOrigin: "50% 100%",
-              marginLeft: "20px",
-              marginRight: "10px",
-            }}
-          />
+          {AspectRatio() > 0.5 && (
+            <img
+              src={GetLocalImageSrc("logo.png")}
+              alt=""
+              style={{
+                height: "32px",
+                display: "flex",
+                transformOrigin: "50% 100%",
+                marginLeft: "20px",
+                marginRight: "10px",
+              }}
+            />
+          )}
           <div className="appName">IdeaStore</div>
           {window.innerWidth > 600 && (
             <span

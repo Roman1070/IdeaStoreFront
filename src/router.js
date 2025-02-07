@@ -61,7 +61,7 @@ export const router = createBrowserRouter([
       { path: "/idea/*", element: <IdeaPreviewPage /> },
       { path: "/board/*", element: <BoardPreviewPage /> },
       { path: "/profile/*", element: <ProfilePreviewPage /> },
-      { path: "/my-profile", element: <MyProfilePage /> },
+      { path: "/my_profile", element: <MyProfilePage /> },
       { path: "/profile_settings/*", element: <ProfileSettingsPage /> },
       { path: "*", element: <Navigate to="/" /> },
     ],

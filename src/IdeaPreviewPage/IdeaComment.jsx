@@ -19,12 +19,13 @@ export default function IdeaComment({ comment, currentId }) {
       <div className="ideaCommentContent">
         <div className="ideaCommentUpperContent">
           {currentId == comment.userId && (
-            <Link to={`/my_profile`} className="ideaCommentAuthorName">
+            <Link replace to={`/my_profile`} className="ideaCommentAuthorName">
               {comment.username}
             </Link>
           )}
           {currentId != comment.userId && (
             <Link
+              replace
               to={`profile/${comment.userId}`}
               className="ideaCommentAuthorName"
             >

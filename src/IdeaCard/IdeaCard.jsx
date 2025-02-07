@@ -51,6 +51,7 @@ export default function IdeaCard({
         ></IdeaPreviewContentHolder>
       </div>
       <Link
+        replace
         to={"/idea/" + index}
         style={{
           position: "absolute",

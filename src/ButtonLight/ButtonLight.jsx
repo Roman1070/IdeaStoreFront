@@ -14,6 +14,7 @@ export default function ButtonLight({ children, isSelected, onClick, url }) {
       )}
       {url != "" && (
         <Link
+          replace
           to={url}
           onClick={onClick}
           className={isSelected ? "buttonLightActive" : "buttonLight"}

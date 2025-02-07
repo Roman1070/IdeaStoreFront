@@ -37,10 +37,14 @@ export default function ProfileModal({ profile }) {
                 <div className="profileModalEmail">{profile.email}</div>
               </div>
             </div>
-            <Link to="/my_profile" className="profileModalProfileLink"></Link>
+            <Link
+              replace
+              to="/my_profile"
+              className="profileModalProfileLink"
+            ></Link>
           </div>
           <div className="profileModalButtonWrapper">
-            <Link to="/profile_settings" className="profileModalButton">
+            <Link replace to="/profile_settings" className="profileModalButton">
               <span>Настройки</span>
             </Link>
           </div>

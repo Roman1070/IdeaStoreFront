@@ -104,6 +104,7 @@ export default function SelectBoardToSaveButton({
         }}
       >
         <Link
+          replace
           to={!selectedBoardId ? "/saved_ideas" : `/board/${selectedBoardId}`}
           className="selectBoardLink"
           style={{

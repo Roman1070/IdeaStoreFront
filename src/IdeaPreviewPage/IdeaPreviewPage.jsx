@@ -208,6 +208,7 @@ export default function IdeaPreviewPage() {
               )}
             </div>
             <Link
+              replace
               to={idea.link}
               target="_blank"
               rel="noopener noreferrer"
@@ -233,12 +234,17 @@ export default function IdeaPreviewPage() {
                 }
               ></img>
               {author.id == currentProfile.id && (
-                <Link to={`/my_profile`} className="previewIdeaAuthorName">
+                <Link
+                  replace
+                  to={`/my_profile`}
+                  className="previewIdeaAuthorName"
+                >
                   {author.name}
                 </Link>
               )}
               {author.id != currentProfile.id && (
                 <Link
+                  replace
                   to={`/profile/${author.id}`}
                   className="previewIdeaAuthorName"
                 >
@@ -248,6 +254,7 @@ export default function IdeaPreviewPage() {
             </div>
             {idea.link && (
               <Link
+                replace
                 className="previewIdeaOpenLinkButton"
                 to={idea.link}
                 target="_blank"

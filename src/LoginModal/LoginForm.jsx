@@ -23,7 +23,7 @@ export default function LoginForm() {
       let date = new Date(Date.now() + 86400e3);
       date = date.toUTCString();
       document.cookie = `token=${json.token}; path=/; expires=${date}`;
-      window.location.assign("/");
+      window.location.pathname("/");
     }
   }
   var handleSubmit = (event) => {

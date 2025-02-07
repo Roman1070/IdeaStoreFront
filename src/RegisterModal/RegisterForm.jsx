@@ -56,7 +56,7 @@ export default function RegisterForm() {
           setEmailError(json.err);
         } else if (Object.hasOwn(json, "token")) {
           document.cookie = `token=${json.token}; path=/;`;
-          window.location.assign("/");
+          window.location.pathname("/");
         }
       });
     }

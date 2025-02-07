@@ -5,6 +5,7 @@ import "../InputField/InputField.css";
 import СreateIdeaPreviewImage from "./СreateIdeaPreviewImage";
 import { GetCookie, GetLocalImageSrc, JoinClientAddress } from "../utils";
 import { CreateIdea } from "../requests";
+import { Navigate } from "react-router-dom";
 const CreatePageNameInputId = "createPageNameInput";
 const CreatePageDescriptionInputId = "createPageDescriptionInput";
 const CreatePageLinkInputId = "createPageLinkInput";
@@ -58,7 +59,7 @@ export default function CreatePage() {
       setCreateResponseError(json.err);
     } else {
       setCreateResponseError("");
-      window.location.pathname(`/idea/${json.idea_id}`);
+      return <Navigate replace to={`/idea/${json.idea_id}`} />;
     }
   }
   function onPublishClick() {

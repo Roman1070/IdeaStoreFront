@@ -3,6 +3,7 @@ import InputField from "../InputField/InputField";
 import { useState } from "react";
 import { JoinClientAddress } from "../utils";
 import { Login } from "../requests";
+import { Navigate } from "react-router-dom";
 const validateEmail = (email) => {
   return String(email)
     .toLowerCase()
@@ -23,7 +24,7 @@ export default function LoginForm() {
       let date = new Date(Date.now() + 86400e3);
       date = date.toUTCString();
       document.cookie = `token=${json.token}; path=/; expires=${date}`;
-      window.location.pathname("/");
+      return <Navigate replace to="/" />;
     }
   }
   var handleSubmit = (event) => {

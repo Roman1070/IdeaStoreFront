@@ -1,11 +1,11 @@
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { DeleteCookie } from "../utils";
 import { GetImageSrc } from "../utils";
 import { GetLocalImageSrc } from "../utils";
 import "./ProfileModal.css";
 function signOut() {
   DeleteCookie("token", "/", "");
-  window.location.replace("/");
+  return <Navigate replace to="/" />;
 }
 export default function ProfileModal({ profile }) {
   return (

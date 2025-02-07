@@ -1,5 +1,5 @@
 import "./RegisterModal.css";
-import { useSearchParams } from "react-router-dom";
+import { Navigate, useSearchParams } from "react-router-dom";
 import { useState } from "react";
 import InputField from "../InputField/InputField";
 import { JoinClientAddress } from "../utils";
@@ -56,7 +56,7 @@ export default function RegisterForm() {
           setEmailError(json.err);
         } else if (Object.hasOwn(json, "token")) {
           document.cookie = `token=${json.token}; path=/;`;
-          window.location.pathname("/");
+          return <Navigate replace to="/" />;
         }
       });
     }

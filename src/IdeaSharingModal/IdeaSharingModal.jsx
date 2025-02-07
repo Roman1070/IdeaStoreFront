@@ -62,21 +62,25 @@ export default function IdeaSharingModal({
           </div>
         </div>
 
-        <InputField
-          isCorrect={true}
-          error={""}
-          value={searchInput}
-          isCommonInput={true}
-          placeholder="Поиск по имени/эл. адресу"
-          onChangeAction={(value) => onSearchChanged(value)}
-          height={"24px"}
-        ></InputField>
-        <ChatsScroll
-          onShareAction={shareIdea}
-          chats={searchInput ? foundProfiles : chats}
-          height={260}
-          sharing={true}
-        ></ChatsScroll>
+        {currentProfile.id != -1 && (
+          <InputField
+            isCorrect={true}
+            error={""}
+            value={searchInput}
+            isCommonInput={true}
+            placeholder="Поиск по имени/эл. адресу"
+            onChangeAction={(value) => onSearchChanged(value)}
+            height={"24px"}
+          ></InputField>
+        )}
+        {currentProfile.id != -1 && (
+          <ChatsScroll
+            onShareAction={shareIdea}
+            chats={searchInput ? foundProfiles : chats}
+            height={260}
+            sharing={true}
+          ></ChatsScroll>
+        )}
       </div>
     </div>
   );

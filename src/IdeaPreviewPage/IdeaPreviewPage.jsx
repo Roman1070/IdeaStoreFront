@@ -169,7 +169,7 @@ export default function IdeaPreviewPage() {
                   )}
                   onClick={() => setShowShareModal(!showShareModal)}
                 ></SmallRoundButton>
-                {currentProfile.id != -1 && showShareModal && (
+                {showShareModal && (
                   <IdeaSharingModal
                     chats={chats}
                     idea={idea}
@@ -183,9 +183,9 @@ export default function IdeaPreviewPage() {
                   imgSrc={GetLocalImageSrc("option.png")}
                 ></SmallRoundButton>
               </div>
-              {boards && (
+              {currentProfile.id != -1 && (
                 <div className="saveButtonBlock">
-                  {boards.length > 0 && (
+                  {boards && boards.length > 0 && (
                     <div className="previewPageSelectBoardButtonHolder">
                       <SelectBoardToSaveButton
                         saved={saved}

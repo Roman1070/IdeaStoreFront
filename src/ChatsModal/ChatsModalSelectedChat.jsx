@@ -4,7 +4,7 @@ import SmallRoundButton from "../SmallRoundButton/SmallRoundButton";
 import "./ChatsModal.css";
 import { GetMessages, SendMessage } from "../requests";
 import InputField from "../InputField/InputField";
-import { GetImageSrc, GetLocalImageSrc, JoinReactHostAddress } from "../utils";
+import { GetImageSrc, GetLocalImageSrc } from "../utils";
 import { Link } from "react-router-dom";
 export default function ChatsModalSelectedChat({
   chatsWS,
@@ -106,7 +106,7 @@ export default function ChatsModalSelectedChat({
         ></img>
         <div className="selectedChatHeaderName">{selectedChat.name}</div>
         <Link
-          to={JoinReactHostAddress(`profile/${selectedChat.id}`)}
+          to={`/profile/${selectedChat.id}`}
           className="selectedChatHeaderLink"
         ></Link>
       </div>

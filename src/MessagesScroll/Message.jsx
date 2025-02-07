@@ -1,10 +1,5 @@
 import { Link } from "react-router-dom";
-import {
-  GetImageSrc,
-  GetLocalImageSrc,
-  IsVideo,
-  JoinReactHostAddress,
-} from "../utils";
+import { GetImageSrc, GetLocalImageSrc, IsVideo } from "../utils";
 import "./MessagesScroll.css";
 
 export default function Message({ message, theirProfile, currentProfile }) {
@@ -46,7 +41,7 @@ export default function Message({ message, theirProfile, currentProfile }) {
             ></img>
             {message.idea_id && (
               <Link
-                to={JoinReactHostAddress(`idea/${message.idea_id}`)}
+                to={`idea/${message.idea_id}`}
                 className="messageImageLink"
               ></Link>
             )}
@@ -63,7 +58,7 @@ export default function Message({ message, theirProfile, currentProfile }) {
             ></video>
             {message.idea_id && (
               <Link
-                to={JoinReactHostAddress(`idea/${message.idea_id}`)}
+                to={`idea/${message.idea_id}`}
                 className="messageImageLink"
               ></Link>
             )}

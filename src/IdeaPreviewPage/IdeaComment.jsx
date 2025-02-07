@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { GetImageSrc, GetLocalImageSrc, JoinReactHostAddress } from "../utils";
+import { GetImageSrc, GetLocalImageSrc } from "../utils";
 import "./IdeaPreviewPage.css";
 import { Link } from "react-router-dom";
 export default function IdeaComment({ comment, currentId }) {
@@ -19,16 +19,13 @@ export default function IdeaComment({ comment, currentId }) {
       <div className="ideaCommentContent">
         <div className="ideaCommentUpperContent">
           {currentId == comment.userId && (
-            <Link
-              to={JoinReactHostAddress(`my_profile`)}
-              className="ideaCommentAuthorName"
-            >
+            <Link to={`/my_profile`} className="ideaCommentAuthorName">
               {comment.username}
             </Link>
           )}
           {currentId != comment.userId && (
             <Link
-              to={JoinReactHostAddress(`profile/${comment.userId}`)}
+              to={`profile/${comment.userId}`}
               className="ideaCommentAuthorName"
             >
               {comment.username}

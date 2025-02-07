@@ -9,7 +9,6 @@ import {
   GetChatWebSocketAddress,
   GetImageSrc,
   GetLocalImageSrc,
-  JoinReactHostAddress,
 } from "../utils";
 import { GetChats, GetCurrentProfile } from "../requests";
 import ChatsModal from "../ChatsModal/ChatsModal";

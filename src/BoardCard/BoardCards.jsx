@@ -2,12 +2,7 @@ import { Link, useSearchParams } from "react-router-dom";
 import { DeleteBoard, GetIdea, GetIdeasInBoard } from "../requests";
 import "./BoardCard.css";
 import { useState } from "react";
-import {
-  GetImageSrc,
-  GetLocalImageSrc,
-  JoinReactHostAddress,
-  Morph,
-} from "../utils";
+import { GetImageSrc, GetLocalImageSrc, Morph } from "../utils";
 import IdeaPreviewContentHolder from "../IdeaPreviewPage/IdeaPreviewContentHolder";
 
 export default function BoardCard({
@@ -104,10 +99,7 @@ export default function BoardCard({
         <span className="boardCardIdeasCount">
           {ideas && ideas.length} {ideas && Morph(ideas.length)}
         </span>
-        <Link
-          to={JoinReactHostAddress(`board/${boardData.id}`)}
-          className="boardLink"
-        ></Link>
+        <Link to={`/board/${boardData.id}`} className="boardLink"></Link>
       </div>
     );
 }

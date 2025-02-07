@@ -4,14 +4,16 @@ import SearchInputField from "../SearchInputField/SearchInputField";
 import SmallRoundButton from "../SmallRoundButton/SmallRoundButton";
 import "./MainHeader.css";
 import "../SmallRoundButton/SmallRoundButton.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
+  AspectRatio,
   GetChatWebSocketAddress,
   GetImageSrc,
   GetLocalImageSrc,
 } from "../utils";
 import { GetChats, GetCurrentProfile } from "../requests";
 import ChatsModal from "../ChatsModal/ChatsModal";
+import { useNavigate } from "react-router-dom";
 
 export default function MainHeaderSignedIn({
   onFoundIdeasChanged,
@@ -21,6 +23,8 @@ export default function MainHeaderSignedIn({
   const [chatsModalEnabled, setChatModalEnabled] = useState(false);
   const [chats, setChats] = useState();
   const [profile, setProfile] = useState();
+  const [redirectToMain, setRedirectToMain] = useState(false);
+
   const smallButtonSize = 40;
   const smallButtonMargin = 8;
   if (!profile && !chats) {
@@ -49,6 +53,7 @@ export default function MainHeaderSignedIn({
       <>
         <header className="mainHeader">
           <img
+            onClick={() => window.location.assign("/")}
             src={GetLocalImageSrc("logo.png")}
             alt=""
             style={{
@@ -56,23 +61,25 @@ export default function MainHeaderSignedIn({
               display: "flex",
               transformOrigin: "50% 100%",
               marginLeft: "20px",
-              marginRight: "20px",
+              marginRight: "10px",
             }}
           />
-          <span
-            style={{
-              padding: "0 8px",
-              flexGrow: "2",
-              position: "relative",
-            }}
-          >
-            <ButtonLight
-              url={"/"}
-              isSelected={window.location.pathname === "/"}
+          {AspectRatio() > 0.7 && (
+            <span
+              style={{
+                padding: "0 8px",
+                flexGrow: "2",
+                position: "relative",
+              }}
             >
-              Главная
-            </ButtonLight>
-          </span>
+              <ButtonLight
+                url={"/"}
+                isSelected={window.location.pathname === "/"}
+              >
+                Главная
+              </ButtonLight>
+            </span>
+          )}
           <span
             style={{
               padding: "0 8px",
@@ -91,12 +98,6 @@ export default function MainHeaderSignedIn({
             onFoundIdeasChanged={onFoundIdeasChanged}
             onSearchInputChanged={onSearchInputChanged}
           />
-
-          <SmallRoundButton
-            size={smallButtonSize}
-            imgSrc={GetLocalImageSrc("bell.png")}
-            marginRight={smallButtonMargin}
-          ></SmallRoundButton>
 
           <SmallRoundButton
             size={smallButtonSize}

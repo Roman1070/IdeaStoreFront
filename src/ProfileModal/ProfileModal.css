@@ -1,7 +1,9 @@
 .profileModalBlock {
   position: fixed;
-  height: 670px;
-  width: 362px;
+  height: 230px;
+  min-width: 280px;
+  width: 70%;
+  max-width: 362px;
   display: grid;
   right: 20px;
   top: 70px;

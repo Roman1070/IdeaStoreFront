@@ -15,15 +15,7 @@ export default function LoginForm() {
   const [emailError, setEmailError] = useState("");
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
-  const [shouldRedirect, setShouldRedirect] = useState();
 
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    if (shouldRedirect) {
-      navigate("/");
-    }
-  });
   function handleLogin(json) {
     if (Object.hasOwn(json, "err")) {
       console.log(json.err);
@@ -32,7 +24,7 @@ export default function LoginForm() {
       let date = new Date(Date.now() + 86400e3);
       date = date.toUTCString();
       document.cookie = `token=${json.token}; path=/; expires=${date}`;
-      setShouldRedirect(true);
+      window.location.assign("/");
     }
   }
   var handleSubmit = (event) => {

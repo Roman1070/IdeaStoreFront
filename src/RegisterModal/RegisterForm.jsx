@@ -44,15 +44,7 @@ export default function RegisterForm() {
   const [password, setPassword] = useState();
   const [confirmPassword, setConfirmPassword] = useState();
   const [birthDate, setBirthDate] = useState();
-  const [shouldRedirect, setShouldRedirect] = useState();
 
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    if (shouldRedirect) {
-      navigate("/");
-    }
-  });
   function handleRegister(json) {
     if (Object.hasOwn(json, "err")) {
       console.log(json.err);
@@ -64,7 +56,7 @@ export default function RegisterForm() {
           setEmailError(json.err);
         } else if (Object.hasOwn(json, "token")) {
           document.cookie = `token=${json.token}; path=/;`;
-          setShouldRedirect(true);
+          window.location.assign("/");
         }
       });
     }

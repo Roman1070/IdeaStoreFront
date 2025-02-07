@@ -8,18 +8,8 @@ import { useEffect, useState } from "react";
 export default function ProfileModal({ profile }) {
   function signOut() {
     DeleteCookie("token", "/", "");
-    setShouldRedirect(true);
+    window.location.assign("/");
   }
-
-  const [shouldRedirect, setShouldRedirect] = useState();
-
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    if (shouldRedirect) {
-      navigate("/");
-    }
-  });
   return (
     <>
       <div className="profileModalBlock">

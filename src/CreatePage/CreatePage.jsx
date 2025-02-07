@@ -1,11 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import InputField from "../InputField/InputField";
 import "./CreatePage.css";
 import "../InputField/InputField.css";
 import СreateIdeaPreviewImage from "./СreateIdeaPreviewImage";
 import { GetCookie, GetLocalImageSrc, JoinClientAddress } from "../utils";
 import { CreateIdea } from "../requests";
-import { Navigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 const CreatePageNameInputId = "createPageNameInput";
 const CreatePageDescriptionInputId = "createPageDescriptionInput";
 const CreatePageLinkInputId = "createPageLinkInput";
@@ -22,7 +22,15 @@ export default function CreatePage() {
   const [link, setLink] = useState("");
   const [tags, setTags] = useState("");
   const [createResponseError, setCreateResponseError] = useState("");
+  const [redirectIdeaId, setRedirectIdeaId] = useState();
 
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (redirectIdeaId) {
+      navigate(`/idea/${redirectIdeaId}`);
+    }
+  });
   function onNameChanged(value) {
     setNameError("");
     setName(value);
@@ -59,7 +67,7 @@ export default function CreatePage() {
       setCreateResponseError(json.err);
     } else {
       setCreateResponseError("");
-      return <Navigate replace to={`/idea/${json.idea_id}`} />;
+      setRedirectIdeaId(json.idea_id);
     }
   }
   function onPublishClick() {

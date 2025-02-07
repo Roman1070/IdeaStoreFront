@@ -1,9 +1,9 @@
 import "./LoginModal.css";
 import InputField from "../InputField/InputField";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { JoinClientAddress } from "../utils";
 import { Login } from "../requests";
-import { Navigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 const validateEmail = (email) => {
   return String(email)
     .toLowerCase()
@@ -15,7 +15,15 @@ export default function LoginForm() {
   const [emailError, setEmailError] = useState("");
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
+  const [shouldRedirect, setShouldRedirect] = useState();
 
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (shouldRedirect) {
+      navigate("/");
+    }
+  });
   function handleLogin(json) {
     if (Object.hasOwn(json, "err")) {
       console.log(json.err);
@@ -24,7 +32,7 @@ export default function LoginForm() {
       let date = new Date(Date.now() + 86400e3);
       date = date.toUTCString();
       document.cookie = `token=${json.token}; path=/; expires=${date}`;
-      return <Navigate replace to="/" />;
+      setShouldRedirect(true);
     }
   }
   var handleSubmit = (event) => {

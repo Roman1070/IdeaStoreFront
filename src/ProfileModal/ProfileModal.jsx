@@ -1,13 +1,25 @@
-import { Link, Navigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { DeleteCookie } from "../utils";
 import { GetImageSrc } from "../utils";
 import { GetLocalImageSrc } from "../utils";
 import "./ProfileModal.css";
-function signOut() {
-  DeleteCookie("token", "/", "");
-  return <Navigate replace to="/" />;
-}
+import { useEffect, useState } from "react";
+
 export default function ProfileModal({ profile }) {
+  function signOut() {
+    DeleteCookie("token", "/", "");
+    setShouldRedirect(true);
+  }
+
+  const [shouldRedirect, setShouldRedirect] = useState();
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (shouldRedirect) {
+      navigate("/");
+    }
+  });
   return (
     <>
       <div className="profileModalBlock">

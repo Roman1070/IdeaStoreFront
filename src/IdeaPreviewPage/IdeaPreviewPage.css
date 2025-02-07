@@ -1,21 +1,23 @@
-.previewIdeaBlock {
-  width: 65%;
-  border: 1px solid rgba(0, 0, 0, 0.3);
-  display: flex;
-  flex-direction: row;
-  border-radius: 32px;
-  margin: 0 auto;
-  overflow: hidden;
-}
-
 @media (min-width: 1301px) {
   .previewIdeaBlock {
     width: 65%;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: row;
+    border-radius: 32px;
+    margin: 0 auto;
+    overflow: hidden;
   }
 }
 @media (max-width: 1300px) {
   .previewIdeaBlock {
     width: 90%;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: row;
+    border-radius: 32px;
+    margin: 0 auto;
+    overflow: hidden;
   }
 }
 .previewIdeaImageHolder {

@@ -76,18 +76,20 @@ export default function ProfilePreviewPage() {
           }
         />
         <span className="profilePreviewPageName">{profile.name}</span>
-        <Link
-          to={
-            profile.link.includes("https")
-              ? profile.link
-              : "https://" + profile.link
-          }
-          target="_blank"
-          rel="noopener noreferrer"
-          className="profilePreviewPageLink"
-        >
-          {profile.link}
-        </Link>
+        {profile.link && (
+          <Link
+            to={
+              profile.link.includes("https")
+                ? profile.link
+                : "https://" + profile.link
+            }
+            target="_blank"
+            rel="noopener noreferrer"
+            className="profilePreviewPageLink"
+          >
+            {profile.link}
+          </Link>
+        )}
         <span className="profilePreviewPageDescription">
           {profile.description}
         </span>

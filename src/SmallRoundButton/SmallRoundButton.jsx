@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "./SmallRoundButton.css";
 
 export default function SmallRoundButton({
@@ -11,8 +12,8 @@ export default function SmallRoundButton({
 }) {
   if (isLink)
     return (
-      <a
-        href={href}
+      <Link
+        to={href}
         style={{
           width: `${size}px`,
           height: `${size}px`,
@@ -30,7 +31,7 @@ export default function SmallRoundButton({
           />
         )}
         {!forceRound && <img src={imgSrc} className="imgInSmallRoundButton" />}
-      </a>
+      </Link>
     );
   return (
     <button

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import {
   GetImageSrc,
   GetLocalImageSrc,
@@ -44,10 +45,10 @@ export default function Message({ message, theirProfile, currentProfile }) {
               className="messageImage"
             ></img>
             {message.idea_id && (
-              <a
-                href={JoinReactHostAddress(`idea/${message.idea_id}`)}
+              <Link
+                to={JoinReactHostAddress(`idea/${message.idea_id}`)}
                 className="messageImageLink"
-              ></a>
+              ></Link>
             )}
           </div>
         )}
@@ -61,10 +62,10 @@ export default function Message({ message, theirProfile, currentProfile }) {
               className="messageVideo"
             ></video>
             {message.idea_id && (
-              <a
-                href={JoinReactHostAddress(`idea/${message.idea_id}`)}
+              <Link
+                to={JoinReactHostAddress(`idea/${message.idea_id}`)}
                 className="messageImageLink"
-              ></a>
+              ></Link>
             )}
           </div>
         )}

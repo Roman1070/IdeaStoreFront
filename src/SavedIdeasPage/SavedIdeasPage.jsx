@@ -9,6 +9,7 @@ import {
 } from "../requests";
 import BoardsScroll from "../BoardsScroll/BoardsScroll";
 import { GetImageSrc, GetLocalImageSrc } from "../utils";
+import { Link } from "react-router-dom";
 
 export default function SavedIdeasPage() {
   function onBoardCreated() {
@@ -61,11 +62,11 @@ export default function SavedIdeasPage() {
                 <div className="usernameInSavedIdeas">{profile.name}</div>
                 <div>0 подписок</div>
               </div>
-              <a href="/my_profile" className="openProfileButtonInSavedIdeas">
+              <Link to="/my_profile" className="openProfileButtonInSavedIdeas">
                 <span className="openProfileButtonInSavedIdeasText">
                   Открыть профиль
                 </span>
-              </a>
+              </Link>
             </div>
           </div>
           <div

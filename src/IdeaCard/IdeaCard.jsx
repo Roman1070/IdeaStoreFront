@@ -4,6 +4,7 @@ import { GetCookie, GetImageSrc } from "../utils";
 import SaveIdeaButton from "./SaveIdeaButton";
 import SelectBoardToSaveButton from "./SelectBoardToSaveButton";
 import IdeaPreviewContentHolder from "../IdeaPreviewPage/IdeaPreviewContentHolder";
+import { Link } from "react-router-dom";
 
 export default function IdeaCard({
   idea,
@@ -49,8 +50,8 @@ export default function IdeaCard({
           image={idea.image}
         ></IdeaPreviewContentHolder>
       </div>
-      <a
-        href={"/idea/" + index}
+      <Link
+        to={"/idea/" + index}
         style={{
           position: "absolute",
           width: "100%",
@@ -59,7 +60,7 @@ export default function IdeaCard({
           display: "inline-block",
           zIndex: "3",
         }}
-      ></a>
+      ></Link>
       {isSelected && (
         <>
           <div className="ideaCardFade"></div>

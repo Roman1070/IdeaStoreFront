@@ -13,6 +13,7 @@ import ButtonLight from "../ButtonLight/ButtonLight";
 import IdeasScroll from "../IdeasScroll.jsx";
 import BoardsScroll from "../BoardsScroll/BoardsScroll";
 import InputField from "../InputField/InputField";
+import { Link } from "react-router-dom";
 
 export default function ProfilePreviewPage() {
   function validateMessage() {
@@ -75,8 +76,8 @@ export default function ProfilePreviewPage() {
           }
         />
         <span className="profilePreviewPageName">{profile.name}</span>
-        <a
-          href={
+        <Link
+          to={
             profile.link.includes("https")
               ? profile.link
               : "https://" + profile.link
@@ -86,7 +87,7 @@ export default function ProfilePreviewPage() {
           className="profilePreviewPageLink"
         >
           {profile.link}
-        </a>
+        </Link>
         <span className="profilePreviewPageDescription">
           {profile.description}
         </span>

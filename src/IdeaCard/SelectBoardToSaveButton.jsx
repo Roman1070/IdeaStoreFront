@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./IdeaCard.css";
 import { GetLocalImageSrc } from "../utils";
+import { Link } from "react-router-dom";
 
 export default function SelectBoardToSaveButton({
   availableBoards,
@@ -102,8 +103,8 @@ export default function SelectBoardToSaveButton({
           fontFamily: "inherit",
         }}
       >
-        <a
-          href={!selectedBoardId ? "/saved_ideas" : `/board/${selectedBoardId}`}
+        <Link
+          to={!selectedBoardId ? "/saved_ideas" : `/board/${selectedBoardId}`}
           className="selectBoardLink"
           style={{
             marginLeft: "20px",
@@ -111,7 +112,7 @@ export default function SelectBoardToSaveButton({
           }}
         >
           {selectedBoardName ? selectedBoardName : startBoardName}
-        </a>
+        </Link>
       </div>
     );
 }

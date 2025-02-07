@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { DeleteCookie } from "../utils";
 import { GetImageSrc } from "../utils";
 import { GetLocalImageSrc } from "../utils";
@@ -34,12 +35,12 @@ export default function ProfileModal({ profile }) {
                 <div className="profileModalEmail">{profile.email}</div>
               </div>
             </div>
-            <a href="/my_profile" className="profileModalProfileLink"></a>
+            <Link to="/my_profile" className="profileModalProfileLink"></Link>
           </div>
           <div className="profileModalButtonWrapper">
-            <a href="/profile_settings" className="profileModalButton">
+            <Link to="/profile_settings" className="profileModalButton">
               <span>Настройки</span>
-            </a>
+            </Link>
           </div>
           <div className="profileModalButtonWrapper">
             <div onClick={signOut} className="profileModalButton">

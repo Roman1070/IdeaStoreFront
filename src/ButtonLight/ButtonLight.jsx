@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "./ButtonLight.css";
 
 export default function ButtonLight({ children, isSelected, onClick, url }) {
@@ -12,13 +13,13 @@ export default function ButtonLight({ children, isSelected, onClick, url }) {
         </button>
       )}
       {url != "" && (
-        <a
-          href={url}
+        <Link
+          to={url}
           onClick={onClick}
           className={isSelected ? "buttonLightActive" : "buttonLight"}
         >
           {children}
-        </a>
+        </Link>
       )}
       {isSelected && <div></div>}
     </div>

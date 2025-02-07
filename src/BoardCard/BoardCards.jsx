@@ -1,4 +1,4 @@
-import { useSearchParams } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { DeleteBoard, GetIdea, GetIdeasInBoard } from "../requests";
 import "./BoardCard.css";
 import { useState } from "react";
@@ -104,10 +104,10 @@ export default function BoardCard({
         <span className="boardCardIdeasCount">
           {ideas && ideas.length} {ideas && Morph(ideas.length)}
         </span>
-        <a
-          href={JoinReactHostAddress(`board/${boardData.id}`)}
+        <Link
+          to={JoinReactHostAddress(`board/${boardData.id}`)}
           className="boardLink"
-        ></a>
+        ></Link>
       </div>
     );
 }

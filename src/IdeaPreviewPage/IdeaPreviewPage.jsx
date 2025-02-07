@@ -21,6 +21,7 @@ import IdeaComment from "./IdeaComment";
 import IdeaPreviewContentHolder from "./IdeaPreviewContentHolder";
 import InputField from "../InputField/InputField";
 import IdeaSharingModal from "../IdeaSharingModal/IdeaSharingModal";
+import { Link } from "react-router-dom";
 
 export default function IdeaPreviewPage() {
   const index = window.location.pathname.substring(6);
@@ -206,8 +207,8 @@ export default function IdeaPreviewPage() {
                 </div>
               )}
             </div>
-            <a
-              href={idea.link}
+            <Link
+              to={idea.link}
               target="_blank"
               rel="noopener noreferrer"
               style={{
@@ -217,7 +218,7 @@ export default function IdeaPreviewPage() {
               }}
             >
               {idea.link}
-            </a>
+            </Link>
             {<p className="previewIdeaName">{idea.name}</p>}
             <div className="previewIdeaAuthorBlock">
               <img
@@ -232,28 +233,28 @@ export default function IdeaPreviewPage() {
                 }
               ></img>
               {author.id == currentProfile.id && (
-                <a href={`/my_profile`} className="previewIdeaAuthorName">
+                <Link to={`/my_profile`} className="previewIdeaAuthorName">
                   {author.name}
-                </a>
+                </Link>
               )}
               {author.id != currentProfile.id && (
-                <a
-                  href={`/profile/${author.id}`}
+                <Link
+                  to={`/profile/${author.id}`}
                   className="previewIdeaAuthorName"
                 >
                   {author.name}
-                </a>
+                </Link>
               )}
             </div>
             {idea.link && (
-              <a
+              <Link
                 className="previewIdeaOpenLinkButton"
-                href={idea.link}
+                to={idea.link}
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 <span>Открыть веб-сайт</span>
-              </a>
+              </Link>
             )}
             <div className="previewIdeaDescriptionBlock">
               {idea.description}

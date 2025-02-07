@@ -5,6 +5,7 @@ import "./ChatsModal.css";
 import { GetMessages, SendMessage } from "../requests";
 import InputField from "../InputField/InputField";
 import { GetImageSrc, GetLocalImageSrc, JoinReactHostAddress } from "../utils";
+import { Link } from "react-router-dom";
 export default function ChatsModalSelectedChat({
   chatsWS,
   selectedChat,
@@ -104,10 +105,10 @@ export default function ChatsModalSelectedChat({
           }
         ></img>
         <div className="selectedChatHeaderName">{selectedChat.name}</div>
-        <a
-          href={JoinReactHostAddress(`profile/${selectedChat.id}`)}
+        <Link
+          to={JoinReactHostAddress(`profile/${selectedChat.id}`)}
           className="selectedChatHeaderLink"
-        ></a>
+        ></Link>
       </div>
       {currentMessages && (
         <MessagesScroll

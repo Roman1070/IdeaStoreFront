@@ -8,27 +8,24 @@ import { useState } from "react";
 export default function Homepage({ foundIdeas, searchInput }) {
   const [ideas, setIdeas] = useState([]);
   const [boards, setBoards] = useState([]);
-  const [ideasCount, setIdeasCount] = useState(0);
   var loadedIdeasCount = 50;
   if (ideas.length == 0 && boards.length == 0) {
     GetAllIdeas(false, loadedIdeasCount, 0, (ideas) => {
       GetCurrentUsersBoards((json) => {
         setBoards(json);
         setIdeas(ideas);
-        setIdeasCount(ideas.length);
       });
     });
   }
 
   function loadNewIdeas(columnsCount) {
     loadedIdeasCount = columnsCount * 7;
-    GetAllIdeas(false, loadedIdeasCount, ideasCount, (newIdeas) => {
+    GetAllIdeas(false, loadedIdeasCount, ideas.length, (newIdeas) => {
       console.log(
-        `ideas.length = ${ideas.length}, ideasCount = ${ideasCount}, newIdeasCount=${newIdeas.length}`
+        `ideas.length = ${ideas.length}, newIdeasCount=${newIdeas.length}`
       );
       var result = ideas.concat(newIdeas);
       console.log(`result length = ${result.length}`);
-      setIdeasCount(result.length);
       setIdeas(result);
     });
   }

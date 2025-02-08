@@ -8,6 +8,10 @@ import { useState } from "react";
 export default function Homepage({ foundIdeas, searchInput }) {
   const [ideas, setIdeas] = useState([]);
   const [boards, setBoards] = useState([]);
+  console.log(ideas.length);
+  function getIdeasLength() {
+    return ideas.length;
+  }
   var loadedIdeasCount = 50;
   if (ideas.length == 0 && boards.length == 0) {
     GetAllIdeas(false, loadedIdeasCount, 0, (ideas) => {
@@ -20,7 +24,7 @@ export default function Homepage({ foundIdeas, searchInput }) {
 
   function loadNewIdeas(columnsCount) {
     loadedIdeasCount = columnsCount * 7;
-    GetAllIdeas(false, loadedIdeasCount, ideas.length, (newIdeas) => {
+    GetAllIdeas(false, loadedIdeasCount, getIdeasLength(), (newIdeas) => {
       console.log(
         `ideas.length = ${ideas.length}, newIdeasCount=${newIdeas.length}`
       );
@@ -39,7 +43,7 @@ export default function Homepage({ foundIdeas, searchInput }) {
         )}
         {ideas.length > 0 && (
           <IdeasScroll
-            loadNewIdeasFunc={loadNewIdeas}
+            loadNewIdeasFunc={(cols) => loadNewIdeas(cols)}
             availableBoards={boards}
             ideas={foundIdeas && searchInput ? foundIdeas : ideas}
           ></IdeasScroll>

@@ -108,16 +108,13 @@ export function distributeIdeas(columnsCount, ideas) {
 }
 
 let throttleTimeFlag = null; // Variable to keep track of the timer
-export function ThrottleFetchData(mainFunction, limit, ideas, delay) {
-  // Returning a throttled version
-  return () => {
-    if (throttleTimeFlag === null) {
-      // If there is no timer currently running
-      mainFunction(limit, ideas); // Execute the main function
-      throttleTimeFlag = setTimeout(() => {
-        // Set a timer to clear the timerFlag after the specified delay
-        throttleTimeFlag = null; // Clear the timerFlag to allow the main function to be executed again
-      }, delay);
-    }
-  };
+export function ThrottledFetchData(mainFunction, limit, ideas, delay) {
+  if (throttleTimeFlag === null) {
+    // If there is no timer currently running
+    mainFunction(limit, ideas); // Execute the main function
+    throttleTimeFlag = setTimeout(() => {
+      // Set a timer to clear the timerFlag after the specified delay
+      throttleTimeFlag = null; // Clear the timerFlag to allow the main function to be executed again
+    }, delay);
+  }
 }

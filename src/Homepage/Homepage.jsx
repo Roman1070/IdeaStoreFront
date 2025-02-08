@@ -1,6 +1,6 @@
 import IdeasScroll from "../IdeasScroll.jsx";
 import { GetAllIdeas, GetCurrentUsersBoards } from "../requests.js";
-import { Morph, ThrottleFetchData } from "../utils.js";
+import { Morph, ThrottledFetchData } from "../utils.js";
 
 import "./Homepage.css";
 import { useState } from "react";
@@ -28,7 +28,7 @@ export default function Homepage({ foundIdeas, searchInput }) {
   }
 
   function onScrolledDown() {
-    ThrottleFetchData(fetchData, 35, ideas, 2000);
+    ThrottledFetchData(fetchData, 35, ideas, 2000);
   }
   if (ideas && boards)
     return (

@@ -23,6 +23,7 @@ export default function Homepage({ foundIdeas, searchInput }) {
       GetCurrentUsersBoards((json) => {
         setBoards(json);
         setIdeas(ideas);
+        sessionStorage.setItem("ideas", JSON.stringify(ideas));
         sessionStorage.setItem("ideasOffset", loadedIdeasCount);
       });
     });
@@ -33,7 +34,11 @@ export default function Homepage({ foundIdeas, searchInput }) {
     ThrottledFetchData(FetchData, ideasToLoad, throttleDelay, (newIdeas) => {
       console.log(newIdeas);
       if (newIdeas.length > 0) {
-        setIdeas(ideas.concat(newIdeas));
+        var totalIdeas = JSON.parse(sessionStorage.getItem("ideas")).concat(
+          newIdeas
+        );
+        setIdeas(totalIdeas);
+        sessionStorage.setItem("ideas", JSON.stringify(totalIdeas));
         sessionStorage.setItem(
           "ideasOffset",
           parseInt(sessionStorage.getItem("ideasOffset")) + ideasToLoad

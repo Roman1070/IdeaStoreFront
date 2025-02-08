@@ -30,7 +30,7 @@ export default function Homepage({ foundIdeas, searchInput }) {
 
   function onScrolledDown() {
     ThrottledFetchData(fetchData, 35, ideas, 2000, (result) => {
-      console.log(result);
+      setIdeas(result);
     });
   }
   if (ideas && boards)

@@ -12,18 +12,21 @@ export default function IdeasScroll({
 }) {
   function scrollHandler() {
     if (scrollView) {
-      console.log(scrollView.scrollTop);
+      if (
+        scrollContent.offsetHeight - scrollView.scrollTop <
+        visibleScrollSize
+      ) {
+        loadNewIdeasFunc(colsCount);
+      }
     }
   }
   var loggedIn = GetCookie("token");
-
+  var visibleScrollSize = 1080;
   const [currentCard, setCurrentCard] = useState(null);
   var ideaWidth = Math.floor(window.innerWidth / 7);
   const marginHor = 10;
   const minIdeaWidth = AspectRatio() > 1 ? 284 : 160;
   var colsCount = Math.floor(window.innerWidth / (ideaWidth + 2 * marginHor));
-
-  window.addEventListener("scroll", function () {});
 
   while (ideaWidth < minIdeaWidth) {
     ideaWidth += 5;
@@ -46,17 +49,24 @@ export default function IdeasScroll({
   }
   const lastIdea = ideas[ideas.legth - 1];
   const scrollView = document.getElementById("ideasScrollView");
-
-  window.removeEventListener("scroll", scrollHandler);
-  window.addEventListener("scroll", scrollHandler);
+  var scrollContent;
+  if (scrollView) {
+    scrollView.removeEventListener("scroll", scrollHandler);
+    scrollView.addEventListener("scroll", scrollHandler);
+    visibleScrollSize = window.innerHeight - 80;
+    scrollContent = scrollView.children[0];
+  }
 
   if (distributionMap)
     return (
-      <div id="ideasScrollView">
-        <div
-          className="ideaScrollHorizontalGroup"
-          id="ideaScrollHorizontalGroup"
-        >
+      <div
+        id="ideasScrollView"
+        style={{
+          height: `${visibleScrollSize}px`,
+          overflow: "scroll",
+        }}
+      >
+        <div className="ideaScrollHorizontalGroup">
           {[...Array(colsCount)].map((e, i) => (
             <div
               className="ideaScrollVerticalGroup"

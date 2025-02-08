@@ -111,10 +111,17 @@ let throttleTimeFlag = null; // Variable to keep track of the timer
 export function ThrottledFetchData(mainFunction, limit, ideas, delay) {
   if (throttleTimeFlag === null) {
     // If there is no timer currently running
-    mainFunction(limit, ideas); // Execute the main function
+    var result = mainFunction(limit, ideas); // Execute the main function
     throttleTimeFlag = setTimeout(() => {
       // Set a timer to clear the timerFlag after the specified delay
       throttleTimeFlag = null; // Clear the timerFlag to allow the main function to be executed again
     }, delay);
+    return {
+      valid: true,
+      ideas: result,
+    };
   }
+  return {
+    valid: false,
+  };
 }

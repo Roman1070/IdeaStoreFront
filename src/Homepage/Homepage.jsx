@@ -9,7 +9,7 @@ function fetchData(ideasToLoad, ideas) {
   ideasToLoad = 35;
   GetAllIdeas(false, ideasToLoad, ideas.length, (newIdeas) => {
     let result = ideas.concat(newIdeas);
-    console.log(result);
+    return result;
   });
 }
 
@@ -28,7 +28,10 @@ export default function Homepage({ foundIdeas, searchInput }) {
   }
 
   function onScrolledDown() {
-    ThrottledFetchData(fetchData, 35, ideas, 2000);
+    var result = ThrottledFetchData(fetchData, 35, ideas, 2000);
+    if (result.valid) {
+      setIdeas(result.ideas);
+    }
   }
   if (ideas && boards)
     return (

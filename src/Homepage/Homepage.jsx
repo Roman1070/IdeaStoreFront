@@ -11,7 +11,7 @@ export default function Homepage({ foundIdeas, searchInput }) {
   const [boards, setBoards] = useState();
   const [ideasCount, setIdeasCount] = useState(0);
   var loadedIdeasCount = 50;
-  const [requestLocked, setRequestLocked] = useState(false);
+  const [requestLocked, setRequestLocked] = useState();
   if (!ideas && !boards) {
     setIdeas([]);
     setBoards([]);
@@ -25,6 +25,7 @@ export default function Homepage({ foundIdeas, searchInput }) {
   }
 
   function loadNewIdeas(columnsCount) {
+    console.log(ideas.length);
     if (requestLocked) return;
     loadedIdeasCount = columnsCount * 6;
     GetAllIdeas(false, loadedIdeasCount, ideasCount, (ideas) => {

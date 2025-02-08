@@ -33,7 +33,7 @@ export default function Homepage({ foundIdeas, searchInput }) {
       setIdeas(ideas.concat(newIdeas));
       sessionStorage.setItem(
         "ideasOffset",
-        sessionStorage.getItem("ideasOffset") + ideasToLoad
+        parseInt(sessionStorage.getItem("ideasOffset")) + ideasToLoad
       );
     });
   }

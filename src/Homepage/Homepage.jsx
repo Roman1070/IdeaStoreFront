@@ -5,7 +5,7 @@ import { Morph, ThrottledFetchData } from "../utils.js";
 import "./Homepage.css";
 import { useState } from "react";
 
-function fetchData(ideasToLoad, onComplete) {
+export function FetchData(ideasToLoad, onComplete) {
   var ideasOffset = sessionStorage.getItem("ideasOffset");
   GetAllIdeas(false, ideasToLoad, ideasOffset, (newIdeas) => {
     onComplete(newIdeas);
@@ -15,6 +15,7 @@ function fetchData(ideasToLoad, onComplete) {
 export default function Homepage({ foundIdeas, searchInput }) {
   const [ideas, setIdeas] = useState([]);
   const [boards, setBoards] = useState([]);
+  const throttleDelay = 1000;
 
   var loadedIdeasCount = 50;
   if (ideas.length == 0 && boards.length == 0) {
@@ -29,7 +30,7 @@ export default function Homepage({ foundIdeas, searchInput }) {
 
   function onScrolledDown(colsCount) {
     let ideasToLoad = colsCount * 7;
-    ThrottledFetchData(fetchData, ideasToLoad, 2000, (newIdeas) => {
+    ThrottledFetchData(FetchData, ideasToLoad, throttleDelay, (newIdeas) => {
       console.log(newIdeas);
       if (newIdeas.length > 0) {
         setIdeas(ideas.concat(newIdeas));

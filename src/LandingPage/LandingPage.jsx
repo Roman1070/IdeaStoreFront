@@ -3,21 +3,46 @@ import IdeasScroll from "../IdeasScroll";
 import "./LandingPage.css";
 import { useState } from "react";
 import { GetAllIdeas } from "../requests";
-function getRandomInt(max) {
-  return Math.floor(Math.random() * max);
-}
+import { ThrottledFetchData } from "../utils";
+import { FetchData } from "../Homepage/Homepage";
+
 export default function LandingPage() {
-  const [ideas, setIdeas] = useState([]);
-  const [ideasEmpty, setIdeasEmpty] = useState(true);
-  if (ideasEmpty) {
-    GetAllIdeas(true, (ideas) => {
+  const [ideas, setIdeas] = useState();
+  const throttleDelay = 1000;
+  var loadedIdeasCount = 50;
+  if (!ideas) {
+    GetAllIdeas(false, loadedIdeasCount, 0, (ideas) => {
       setIdeas(ideas);
-      setIdeasEmpty(false);
+      sessionStorage.setItem("ideasOffset", loadedIdeasCount);
     });
   }
-  return (
-    <div className="landingScroll">
-      <IdeasScroll ideas={ideas}></IdeasScroll>
-    </div>
-  );
+
+  function onScrolledDown(colsCount) {
+    let ideasToLoad = colsCount * 7;
+    ThrottledFetchData(FetchData, ideasToLoad, throttleDelay, (newIdeas) => {
+      console.log(newIdeas);
+      if (newIdeas.length > 0) {
+        setIdeas(ideas.concat(newIdeas));
+        sessionStorage.setItem(
+          "ideasOffset",
+          parseInt(sessionStorage.getItem("ideasOffset")) + ideasToLoad
+        );
+      }
+    });
+  }
+
+  if (!ideas) {
+    GetAllIdeas(true, (ideas) => {
+      setIdeas(ideas);
+    });
+  }
+  if (ideas)
+    return (
+      <div className="landingScroll">
+        <IdeasScroll
+          onScrolledDown={(colsCount) => onScrolledDown(colsCount)}
+          ideas={ideas}
+        ></IdeasScroll>
+      </div>
+    );
 }

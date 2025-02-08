@@ -30,12 +30,6 @@ export default function LandingPage() {
       }
     });
   }
-
-  if (!ideas) {
-    GetAllIdeas(true, (ideas) => {
-      setIdeas(ideas);
-    });
-  }
   if (ideas)
     return (
       <div className="landingScroll">

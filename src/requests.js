@@ -1,8 +1,8 @@
 import { GetChatWebSocketAddress, GetCookie, JoinClientAddress } from "./utils";
 
-export function GetAllIdeas(includeSaved, onComplete) {
+export function GetAllIdeas(includeSaved, limit, offset, onComplete) {
   var tempIdeas = [];
-  fetch(JoinClientAddress("ideas"), {
+  fetch(JoinClientAddress(`ideas?limit=${limit}&offset=${offset}`), {
     method: "GET",
     credentials: "include",
   })

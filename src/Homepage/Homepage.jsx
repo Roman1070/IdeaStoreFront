@@ -8,13 +8,22 @@ import { useState } from "react";
 export default function Homepage({ foundIdeas, searchInput }) {
   const [ideas, setIdeas] = useState([]);
   const [boards, setBoards] = useState([]);
-
+  const [ideasCount, setIdeasCount] = useState();
+  const loadedIdeasCount = 30;
   if (ideas.length == 0 && boards.length == 0) {
-    GetAllIdeas(false, (ideas) => {
+    GetAllIdeas(false, loadedIdeasCount, ideasCount, (ideas) => {
       GetCurrentUsersBoards((json) => {
         setBoards(json);
         setIdeas(ideas);
+        setIdeasCount(ideasCount + loadedIdeasCount);
       });
+    });
+  }
+
+  function loadNewIdeas() {
+    GetAllIdeas(false, loadedIdeasCount, ideasCount, (ideas) => {
+      setIdeasCount(ideasCount + loadedIdeasCount);
+      setIdeas(ideas);
     });
   }
 
@@ -27,6 +36,7 @@ export default function Homepage({ foundIdeas, searchInput }) {
       )}
       {ideas.length > 0 && (
         <IdeasScroll
+          loadNewIdeasFunc={loadNewIdeas}
           availableBoards={boards}
           ideas={foundIdeas && searchInput ? foundIdeas : ideas}
         ></IdeasScroll>

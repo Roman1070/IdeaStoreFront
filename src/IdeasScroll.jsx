@@ -8,7 +8,13 @@ export default function IdeasScroll({
   availableBoards,
   startBoardId,
   disableSave,
+  loadNewIdeasFunc,
 }) {
+  function scrollHandler() {
+    if (scrollView) {
+      console.log(scrollView.scrollTop);
+    }
+  }
   var loggedIn = GetCookie("token");
 
   const [currentCard, setCurrentCard] = useState(null);
@@ -16,6 +22,8 @@ export default function IdeasScroll({
   const marginHor = 10;
   const minIdeaWidth = AspectRatio() > 1 ? 284 : 160;
   var colsCount = Math.floor(window.innerWidth / (ideaWidth + 2 * marginHor));
+
+  window.addEventListener("scroll", function () {});
 
   while (ideaWidth < minIdeaWidth) {
     ideaWidth += 5;
@@ -34,11 +42,21 @@ export default function IdeasScroll({
     if (loggedIn != null) setCurrentCard(null);
   }
   const distributionMap = distributeIdeas(colsCount, ideas);
+  if (ideas) {
+  }
+  const lastIdea = ideas[ideas.legth - 1];
+  const scrollView = document.getElementById("ideasScrollView");
+
+  window.removeEventListener("scroll", scrollHandler);
+  window.addEventListener("scroll", scrollHandler);
 
   if (distributionMap)
     return (
-      <>
-        <div className="ideaScrollHorizontalGroup">
+      <div id="ideasScrollView">
+        <div
+          className="ideaScrollHorizontalGroup"
+          id="ideaScrollHorizontalGroup"
+        >
           {[...Array(colsCount)].map((e, i) => (
             <div
               className="ideaScrollVerticalGroup"
@@ -70,6 +88,6 @@ export default function IdeasScroll({
             </div>
           ))}
         </div>
-      </>
+      </div>
     );
 }

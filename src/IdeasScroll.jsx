@@ -52,13 +52,13 @@ export default function IdeasScroll({
   const lastIdea = ideas[ideas.legth - 1];
   const scrollView = document.getElementById("ideasScrollView");
   var scrollContent;
-  if (scrollView) {
-    scrollView.removeEventListener("scroll", scrollHandler);
-    scrollView.addEventListener("scroll", scrollHandler);
-    scrollContent = scrollView.children[0];
-  } else if (distributionMap) {
-    forceUpdate(!a);
-  }
+  setTimeout(() => {
+    if (scrollView) {
+      scrollView.removeEventListener("scroll", scrollHandler);
+      scrollView.addEventListener("scroll", scrollHandler);
+      scrollContent = scrollView.children[0];
+    }
+  }, 500);
 
   if (distributionMap)
     return (

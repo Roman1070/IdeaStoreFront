@@ -26,9 +26,9 @@ export default function Homepage({ foundIdeas, searchInput }) {
       console.log(
         `ideas.length = ${ideas.length}, ideasCount = ${ideasCount}, newIdeasCount=${newIdeas.length}`
       );
-      setIdeasCount(ideasCount + newIdeas.length);
       var result = ideas.concat(newIdeas);
       console.log(`result length = ${result.length}`);
+      setIdeasCount(result.length);
       setIdeas(result);
     });
   }

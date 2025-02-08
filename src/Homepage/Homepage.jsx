@@ -5,11 +5,11 @@ import { Morph, ThrottledFetchData } from "../utils.js";
 import "./Homepage.css";
 import { useState } from "react";
 
-function fetchData(ideasToLoad, ideas, onComplete) {
+function fetchData(ideasToLoad, onComplete) {
+  var ideas = sessionStorage.getItem("ideas");
   ideasToLoad = 35;
   GetAllIdeas(false, ideasToLoad, ideas.length, (newIdeas) => {
     let result = ideas.concat(newIdeas);
-    console.log(`fetchData result :${result}`);
     onComplete(result);
   });
 }
@@ -24,6 +24,7 @@ export default function Homepage({ foundIdeas, searchInput }) {
       GetCurrentUsersBoards((json) => {
         setBoards(json);
         setIdeas(ideas);
+        sessionStorage.setItem("ideas", result);
       });
     });
   }
@@ -31,6 +32,7 @@ export default function Homepage({ foundIdeas, searchInput }) {
   function onScrolledDown() {
     ThrottledFetchData(fetchData, 35, ideas, 2000, (result) => {
       setIdeas(result);
+      sessionStorage.setItem("ideas", result);
     });
   }
   if (ideas && boards)

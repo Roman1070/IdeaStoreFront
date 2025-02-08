@@ -29,6 +29,7 @@ export default function Homepage({ foundIdeas, searchInput }) {
 
   function onScrolledDown() {
     var result = ThrottledFetchData(fetchData, 35, ideas, 2000);
+    console.log(result);
     if (result.valid) {
       setIdeas(result.ideas);
     }

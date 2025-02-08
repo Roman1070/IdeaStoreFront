@@ -124,3 +124,7 @@ export function ThrottledFetchData(
     }, delay);
   }
 }
+
+export function ResetThrottledFetchDataTimer() {
+  throttleTimeFlag = null;
+}

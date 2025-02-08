@@ -3,12 +3,12 @@ import IdeasScroll from "../IdeasScroll";
 import "./LandingPage.css";
 import { useState } from "react";
 import { GetAllIdeas } from "../requests";
-import { ThrottledFetchData } from "../utils";
+import { ResetThrottledFetchDataTimer, ThrottledFetchData } from "../utils";
 import { FetchData } from "../Homepage/Homepage";
 
 export default function LandingPage() {
   const [ideas, setIdeas] = useState();
-  const throttleDelay = 5000;
+  const throttleDelay = 20000;
   var loadedIdeasCount = 50;
   console.log(ideas);
 
@@ -22,6 +22,7 @@ export default function LandingPage() {
           "ideasOffset",
           parseInt(sessionStorage.getItem("ideasOffset")) + ideasToLoad
         );
+        ResetThrottledFetchDataTimer();
       }
     });
   }

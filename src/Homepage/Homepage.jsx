@@ -1,6 +1,10 @@
 import IdeasScroll from "../IdeasScroll.jsx";
 import { GetAllIdeas, GetCurrentUsersBoards } from "../requests.js";
-import { Morph, ThrottledFetchData } from "../utils.js";
+import {
+  Morph,
+  ResetThrottledFetchDataTimer,
+  ThrottledFetchData,
+} from "../utils.js";
 
 import "./Homepage.css";
 import { useState } from "react";
@@ -15,7 +19,7 @@ export function FetchData(ideasToLoad, onComplete) {
 export default function Homepage({ foundIdeas, searchInput }) {
   const [ideas, setIdeas] = useState([]);
   const [boards, setBoards] = useState([]);
-  const throttleDelay = 5000;
+  const throttleDelay = 20000;
 
   var loadedIdeasCount = 50;
   if (ideas.length == 0 && boards.length == 0) {
@@ -32,7 +36,6 @@ export default function Homepage({ foundIdeas, searchInput }) {
   function onScrolledDown(colsCount) {
     let ideasToLoad = colsCount * 10;
     ThrottledFetchData(FetchData, ideasToLoad, throttleDelay, (newIdeas) => {
-      console.log(newIdeas);
       if (newIdeas.length > 0) {
         var totalIdeas = JSON.parse(sessionStorage.getItem("ideas")).concat(
           newIdeas
@@ -43,6 +46,7 @@ export default function Homepage({ foundIdeas, searchInput }) {
           "ideasOffset",
           parseInt(sessionStorage.getItem("ideasOffset")) + ideasToLoad
         );
+        ResetThrottledFetchDataTimer();
       }
     });
   }

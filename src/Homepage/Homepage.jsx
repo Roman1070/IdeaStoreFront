@@ -30,11 +30,14 @@ export default function Homepage({ foundIdeas, searchInput }) {
   function onScrolledDown(colsCount) {
     let ideasToLoad = colsCount * 7;
     ThrottledFetchData(fetchData, ideasToLoad, 2000, (newIdeas) => {
-      setIdeas(ideas.concat(newIdeas));
-      sessionStorage.setItem(
-        "ideasOffset",
-        parseInt(sessionStorage.getItem("ideasOffset")) + ideasToLoad
-      );
+      console.log(newIdeas);
+      if (newIdeas.length > 0) {
+        setIdeas(ideas.concat(newIdeas));
+        sessionStorage.setItem(
+          "ideasOffset",
+          parseInt(sessionStorage.getItem("ideasOffset")) + ideasToLoad
+        );
+      }
     });
   }
   if (ideas && boards)

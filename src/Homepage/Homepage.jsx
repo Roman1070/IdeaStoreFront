@@ -10,8 +10,17 @@ var throttleTimer;
 export default function Homepage({ foundIdeas, searchInput }) {
   const [ideas, setIdeas] = useState([]);
   const [boards, setBoards] = useState([]);
+  const [fetchTimer, setFetchTimer] = useState(null);
   console.log(ideas);
-  function fetchData() {
+
+  function tryFetchData() {
+    if (!!fetchTimer) return;
+    setFetchTimer(
+      setTimeout(() => {
+        setFetchTimer(null);
+      }, 2000)
+    );
+
     loadedIdeasCount = 35;
     GetAllIdeas(false, loadedIdeasCount, ideas.length, (newIdeas) => {
       console.log(
@@ -34,7 +43,7 @@ export default function Homepage({ foundIdeas, searchInput }) {
   }
 
   function onScrolledDown() {
-    throttle(fetchData, 2000);
+    tryFetchData();
   }
   if (ideas && boards)
     return (
@@ -46,8 +55,8 @@ export default function Homepage({ foundIdeas, searchInput }) {
         )}
         {ideas.length > 0 && (
           <IdeasScroll
-            loadNewIdeasFunc={(cols) => {
-              onScrolledDown(cols);
+            loadNewIdeasFunc={() => {
+              onScrolledDown();
             }}
             availableBoards={boards}
             ideas={foundIdeas && searchInput ? foundIdeas : ideas}
@@ -55,13 +64,4 @@ export default function Homepage({ foundIdeas, searchInput }) {
         )}
       </>
     );
-}
-
-let shouldThrottle = false;
-function throttle(func, wait) {
-  if (!shouldThrottle) {
-    func.apply(this);
-    shouldThrottle = true;
-    setTimeout((shouldThrottle = false), wait);
-  }
 }

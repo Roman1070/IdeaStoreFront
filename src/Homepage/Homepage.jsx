@@ -15,13 +15,13 @@ export default function Homepage({ foundIdeas, searchInput }) {
       GetCurrentUsersBoards((json) => {
         setBoards(json);
         setIdeas(ideas);
-        setIdeasCount(loadedIdeasCount);
+        setIdeasCount(ideas.length);
       });
     });
   }
 
   function loadNewIdeas(columnsCount) {
-    loadedIdeasCount = columnsCount * 6;
+    loadedIdeasCount = columnsCount * 7;
     GetAllIdeas(false, loadedIdeasCount, ideasCount, (newIdeas) => {
       console.log(
         `ideas.length = ${ideas.length}, ideasCount = ${ideasCount}, newIdeasCount=${newIdeas.length}`

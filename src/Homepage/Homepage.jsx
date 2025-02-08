@@ -7,7 +7,6 @@ import { useState } from "react";
 
 function fetchData(ideasToLoad, onComplete) {
   var ideasOffset = sessionStorage.getItem("ideasOffset");
-  ideasToLoad = 35;
   GetAllIdeas(false, ideasToLoad, ideasOffset, (newIdeas) => {
     onComplete(newIdeas);
   });

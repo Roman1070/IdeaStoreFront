@@ -21,7 +21,7 @@ export default function IdeasScroll({
     }
   }
   var loggedIn = GetCookie("token");
-  var visibleScrollSize = 1080;
+  var visibleScrollSize = window.innerHeight - 80;
   const [currentCard, setCurrentCard] = useState(null);
   var ideaWidth = Math.floor(window.innerWidth / 7);
   const marginHor = 10;
@@ -53,7 +53,7 @@ export default function IdeasScroll({
   if (scrollView) {
     scrollView.removeEventListener("scroll", scrollHandler);
     scrollView.addEventListener("scroll", scrollHandler);
-    visibleScrollSize = window.innerHeight - 80;
+    visibleScrollSize = scrollView.innerHeight - 80;
     scrollContent = scrollView.children[0];
   }
 
@@ -63,7 +63,8 @@ export default function IdeasScroll({
         id="ideasScrollView"
         style={{
           height: `${visibleScrollSize}px`,
-          overflow: "scroll",
+          overflowY: "scroll",
+          overflowX: "hidden",
         }}
       >
         <div className="ideaScrollHorizontalGroup">

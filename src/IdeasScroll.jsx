@@ -19,11 +19,14 @@ export default function IdeasScroll({
       ) {
         loadNewIdeasFunc(colsCount);
       }
+    } else {
+      forceUpdate(!a);
     }
   }
   var loggedIn = GetCookie("token");
   var visibleScrollSize = window.innerHeight - 80;
   const [currentCard, setCurrentCard] = useState(null);
+  const [a, forceUpdate] = useState(false);
   var ideaWidth = Math.floor(window.innerWidth / 7);
   const marginHor = 10;
   const minIdeaWidth = AspectRatio() > 1 ? 284 : 160;

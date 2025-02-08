@@ -13,19 +13,9 @@ function fetchData(ideasToLoad, ideas) {
   });
 }
 
-// Throttle the fetchData function with a delay of 5000 ms
-const throttledFetchData = (limit, ideas) =>
-  ThrottleFetchData(fetchData, limit, ideas, 2000);
-
 export default function Homepage({ foundIdeas, searchInput }) {
   const [ideas, setIdeas] = useState([]);
   const [boards, setBoards] = useState([]);
-
-  console.log(ideas);
-
-  function tryFetchData() {
-    throttledFetchData(35, ideas.length);
-  }
 
   var loadedIdeasCount = 50;
   if (ideas.length == 0 && boards.length == 0) {
@@ -38,7 +28,7 @@ export default function Homepage({ foundIdeas, searchInput }) {
   }
 
   function onScrolledDown() {
-    tryFetchData();
+    ThrottleFetchData(fetchData, 35, ideas, 2000);
   }
   if (ideas && boards)
     return (
@@ -50,9 +40,7 @@ export default function Homepage({ foundIdeas, searchInput }) {
         )}
         {ideas.length > 0 && (
           <IdeasScroll
-            loadNewIdeasFunc={() => {
-              onScrolledDown();
-            }}
+            loadNewIdeasFunc={onScrolledDown}
             availableBoards={boards}
             ideas={foundIdeas && searchInput ? foundIdeas : ideas}
           ></IdeasScroll>

@@ -1,6 +1,6 @@
 import IdeaCard from "./IdeaCard/IdeaCard";
 import { useState } from "react";
-import { AspectRatio, distributeIdeas, GetCookie } from "./utils";
+import { AspectRatio, distributeIdeas, GetCookie, Throttle } from "./utils";
 import "./IdeasScroll.css";
 export default function IdeasScroll({
   ideas,
@@ -10,19 +10,18 @@ export default function IdeasScroll({
   disableSave,
   loadNewIdeasFunc,
 }) {
-  const [requestLocked, setRequestLocked] = useState();
+  const throttledFetchData = Throttle(fetchData, 3000);
+  function fetchData() {
+    // Simulate an API call with a random delay
+    loadNewIdeasFunc(colsCount);
+  }
   function scrollHandler() {
-    if (scrollView && !requestLocked) {
+    if (scrollView) {
       if (
         scrollContent.offsetHeight - scrollView.scrollTop <
-        visibleScrollSize
+        visibleScrollSize * 2
       ) {
-        loadNewIdeasFunc(colsCount);
-        setRequestLocked(true);
-        setTimeout(() => {
-          setRequestLocked(false);
-          console.log("timeoutPassed");
-        }, 5000);
+        throttledFetchData();
       }
     }
   }

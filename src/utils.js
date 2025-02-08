@@ -77,21 +77,21 @@ export function IsVideo(src) {
   return isVideo;
 }
 // Declare a variable called 'timer' to store the timer ID
-let timer;
+let debounceTimer;
 export const debounce = (mainFunction, delay) => {
   // Return an anonymous function that takes in any number of arguments
   return function (...args) {
     // Clear the previous timer to prevent the execution of 'mainFunction'
-    clearTimeout(timer);
+    clearTimeout(debounceTimer);
 
     // Set a new timer that will execute 'mainFunction' after the specified delay
-    timer = setTimeout(() => {
+    debounceTimer = setTimeout(() => {
       mainFunction(...args);
     }, delay);
   };
 };
 export const cancelDebounce = () => {
-  clearTimeout(timer);
+  clearTimeout(debounceTimer);
 };
 
 export function distributeIdeas(columnsCount, ideas) {
@@ -105,4 +105,19 @@ export function distributeIdeas(columnsCount, ideas) {
     currentIndex = (currentIndex + 1) % columnsCount;
   }
   return result;
+}
+
+let throttleTimeFlag = null; // Variable to keep track of the timer
+export function Throttle(mainFunction, delay) {
+  // Returning a throttled version
+  return (...args) => {
+    if (throttleTimeFlag === null) {
+      // If there is no timer currently running
+      mainFunction(...args); // Execute the main function
+      throttleTimeFlag = setTimeout(() => {
+        // Set a timer to clear the timerFlag after the specified delay
+        throttleTimeFlag = null; // Clear the timerFlag to allow the main function to be executed again
+      }, delay);
+    }
+  };
 }

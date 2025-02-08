@@ -10,10 +10,10 @@ var throttleTimer;
 export default function Homepage({ foundIdeas, searchInput }) {
   const [ideas, setIdeas] = useState([]);
   const [boards, setBoards] = useState([]);
-
-  function fetchData(colsCount, ideasLength) {
+  console.log(ideas);
+  function fetchData(colsCount) {
     loadedIdeasCount = colsCount * 7;
-    GetAllIdeas(false, loadedIdeasCount, ideasLength, (newIdeas) => {
+    GetAllIdeas(false, loadedIdeasCount, ideas.length, (newIdeas) => {
       console.log(
         `ideas.length = ${ideas.length}, newIdeasCount=${newIdeas.length}`
       );
@@ -35,7 +35,7 @@ export default function Homepage({ foundIdeas, searchInput }) {
 
   function onScrolledDown(colsCount) {
     if (throttleTimer == null) {
-      fetchData(colsCount, ideas.length);
+      fetchData(colsCount);
       throttleTimer = setTimeout(() => {
         // Set a timer to clear the timerFlag after the specified delay
         throttleTimer = null; // Clear the timerFlag to allow the main function to be executed again

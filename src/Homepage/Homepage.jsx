@@ -15,11 +15,11 @@ export default function Homepage({ foundIdeas, searchInput }) {
   if (!ideas && !boards) {
     setIdeas([]);
     setBoards([]);
-    GetAllIdeas(false, loadedIdeasCount, ideasCount, (ideas) => {
+    GetAllIdeas(false, loadedIdeasCount, 0, (ideas) => {
       GetCurrentUsersBoards((json) => {
         setBoards(json);
         setIdeas(ideas);
-        setIdeasCount(ideasCount + loadedIdeasCount);
+        setIdeasCount(loadedIdeasCount);
       });
     });
   }

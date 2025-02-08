@@ -10,10 +10,11 @@ export default function Homepage({ foundIdeas, searchInput }) {
   const [boards, setBoards] = useState([]);
   console.log(ideas.length);
 
-  const throttledFetchData = Throttle(fetchData, 2000);
-  function fetchData() {
-    loadedIdeasCount = 30;
-    GetAllIdeas(false, loadedIdeasCount, ideas.length, (newIdeas) => {
+  const throttledFetchData = (colsCount, ideasLength) =>
+    Throttle(fetchData(colsCount, ideasLength), 2000);
+  function fetchData(colsCount, ideasLength) {
+    loadedIdeasCount = colsCount * 7;
+    GetAllIdeas(false, loadedIdeasCount, ideasLength, (newIdeas) => {
       console.log(
         `ideas.length = ${ideas.length}, newIdeasCount=${newIdeas.length}`
       );
@@ -33,8 +34,8 @@ export default function Homepage({ foundIdeas, searchInput }) {
     });
   }
 
-  function onScrolledDown(columnsCount) {
-    throttledFetchData();
+  function onScrolledDown(colsCount) {
+    throttledFetchData(colsCount, ideas.length);
   }
   if (ideas && boards)
     return (

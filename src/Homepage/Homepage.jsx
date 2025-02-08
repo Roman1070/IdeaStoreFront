@@ -6,10 +6,12 @@ import "./Homepage.css";
 import { useState } from "react";
 
 export default function Homepage({ foundIdeas, searchInput }) {
+  const requestInterval = 5000;
   const [ideas, setIdeas] = useState();
   const [boards, setBoards] = useState();
   const [ideasCount, setIdeasCount] = useState(0);
   var loadedIdeasCount = 50;
+  const [requestLocked, setRequestLocked] = useState(false);
   if (!ideas && !boards) {
     setIdeas([]);
     setBoards([]);
@@ -23,10 +25,13 @@ export default function Homepage({ foundIdeas, searchInput }) {
   }
 
   function loadNewIdeas(columnsCount) {
+    if (requestLocked) return;
     loadedIdeasCount = columnsCount * 6;
     GetAllIdeas(false, loadedIdeasCount, ideasCount, (ideas) => {
-      setIdeasCount(ideasCount + loadedIdeasCount);
+      setIdeasCount(ideasCount + ideas.length);
       setIdeas(ideas);
+      setRequestLocked(true);
+      setTimeout(() => setRequestLocked(false), requestInterval);
     });
   }
   if (ideas && boards)

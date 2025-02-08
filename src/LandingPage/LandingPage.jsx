@@ -10,12 +10,7 @@ export default function LandingPage() {
   const [ideas, setIdeas] = useState();
   const throttleDelay = 1000;
   var loadedIdeasCount = 50;
-  if (!ideas) {
-    GetAllIdeas(false, loadedIdeasCount, 0, (ideas) => {
-      setIdeas(ideas);
-      sessionStorage.setItem("ideasOffset", loadedIdeasCount);
-    });
-  }
+  console.log(ideas);
 
   function onScrolledDown(colsCount) {
     let ideasToLoad = colsCount * 7;
@@ -30,11 +25,19 @@ export default function LandingPage() {
       }
     });
   }
+
+  if (!ideas) {
+    GetAllIdeas(false, loadedIdeasCount, 0, (ideas) => {
+      console.log(ideas);
+      setIdeas(ideas);
+      sessionStorage.setItem("ideasOffset", loadedIdeasCount);
+    });
+  }
   if (ideas)
     return (
       <div className="landingScroll">
         <IdeasScroll
-          onScrolledDown={(colsCount) => onScrolledDown(colsCount)}
+          loadNewIdeasFunc={(colsCount) => onScrolledDown(colsCount)}
           ideas={ideas}
         ></IdeasScroll>
       </div>

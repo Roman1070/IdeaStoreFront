@@ -50,12 +50,13 @@ import ProfilePreviewPage from "./ProfilePreviewPage/ProfilePreviewPage";
 import MyProfilePage from "./MyProfilePage/MyProfilePage";
 import ProfileSettingsPage from "./ProfileSettingsPage/ProfileSettingsPage";
 import { useState } from "react";
+import HomepageWrapper from "./Homepage/HomepageWrapper";
 
 export const router = createBrowserRouter([
   {
     element: <App />,
     children: [
-      { path: "/", element: <Homepage /> },
+      { path: "/", element: <HomepageWrapper /> },
       { path: "/create", element: <CreatePage /> },
       { path: "/saved_ideas", element: <SavedIdeasPage /> },
       { path: "/idea/*", element: <IdeaPreviewPage /> },

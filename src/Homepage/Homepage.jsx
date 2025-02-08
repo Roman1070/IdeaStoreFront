@@ -25,7 +25,7 @@ export default function Homepage({ foundIdeas, searchInput }) {
       GetCurrentUsersBoards((json) => {
         setBoards(json);
         setIdeas(ideas);
-        sessionStorage.setItem("ideas", ideas);
+        sessionStorage.setItem("ideas", JSON.stringify(ideas));
       });
     });
   }
@@ -33,7 +33,7 @@ export default function Homepage({ foundIdeas, searchInput }) {
   function onScrolledDown() {
     ThrottledFetchData(fetchData, 35, 2000, (result) => {
       setIdeas(result);
-      sessionStorage.setItem("ideas", result);
+      sessionStorage.setItem("ideas", JSON.stringify(result));
     });
   }
   if (ideas && boards)

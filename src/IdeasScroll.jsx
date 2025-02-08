@@ -53,7 +53,6 @@ export default function IdeasScroll({
   if (scrollView) {
     scrollView.removeEventListener("scroll", scrollHandler);
     scrollView.addEventListener("scroll", scrollHandler);
-    visibleScrollSize = scrollView.innerHeight - 80;
     scrollContent = scrollView.children[0];
   }
 

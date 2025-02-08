@@ -6,7 +6,7 @@ import "./Homepage.css";
 import { useState } from "react";
 
 function fetchData(ideasToLoad, onComplete) {
-  var ideas = sessionStorage.getItem("ideas");
+  var ideas = JSON.parse(sessionStorage.getItem("ideas"));
   console.log(ideas);
   ideasToLoad = 35;
   GetAllIdeas(false, ideasToLoad, ideas.length, (newIdeas) => {

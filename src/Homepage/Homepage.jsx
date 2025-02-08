@@ -6,14 +6,11 @@ import "./Homepage.css";
 import { useState } from "react";
 
 export default function Homepage({ foundIdeas, searchInput }) {
-  const requestInterval = 5000;
-  const [ideas, setIdeas] = useState();
-  const [boards, setBoards] = useState();
+  const [ideas, setIdeas] = useState([]);
+  const [boards, setBoards] = useState([]);
   const [ideasCount, setIdeasCount] = useState(0);
   var loadedIdeasCount = 50;
-  if (!ideas && !boards) {
-    setIdeas([]);
-    setBoards([]);
+  if (ideas.length == 0 && boards.length == 0) {
     GetAllIdeas(false, loadedIdeasCount, 0, (ideas) => {
       GetCurrentUsersBoards((json) => {
         setBoards(json);
@@ -24,11 +21,15 @@ export default function Homepage({ foundIdeas, searchInput }) {
   }
 
   function loadNewIdeas(columnsCount) {
-    console.log(ideas.length);
     loadedIdeasCount = columnsCount * 6;
     GetAllIdeas(false, loadedIdeasCount, ideasCount, (newIdeas) => {
+      console.log(
+        `ideas.length = ${ideas.length}, ideasCount = ${ideasCount}, newIdeasCount=${newIdeas.length}`
+      );
       setIdeasCount(ideasCount + newIdeas.length);
-      setIdeas(ideas.concat(newIdeas));
+      var result = ideas.concat(newIdeas);
+      console.log(`result length = ${result.length}`);
+      setIdeas(result);
     });
   }
   if (ideas && boards)

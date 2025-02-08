@@ -5,13 +5,12 @@ import { Morph, Throttle } from "../utils.js";
 import "./Homepage.css";
 import { useState } from "react";
 
+var throttleTimer;
+
 export default function Homepage({ foundIdeas, searchInput }) {
   const [ideas, setIdeas] = useState([]);
   const [boards, setBoards] = useState([]);
-  console.log(ideas.length);
 
-  const throttledFetchData = (colsCount, ideasLength) =>
-    Throttle(fetchData(colsCount, ideasLength), 2000);
   function fetchData(colsCount, ideasLength) {
     loadedIdeasCount = colsCount * 7;
     GetAllIdeas(false, loadedIdeasCount, ideasLength, (newIdeas) => {
@@ -35,7 +34,13 @@ export default function Homepage({ foundIdeas, searchInput }) {
   }
 
   function onScrolledDown(colsCount) {
-    throttledFetchData(colsCount, ideas.length);
+    if (throttleTimer == null) {
+      fetchData(colsCount, ideas.length);
+      throttleTimer = setTimeout(() => {
+        // Set a timer to clear the timerFlag after the specified delay
+        throttleTimer = null; // Clear the timerFlag to allow the main function to be executed again
+      }, 2000);
+    }
   }
   if (ideas && boards)
     return (

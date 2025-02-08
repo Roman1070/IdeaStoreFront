@@ -12,9 +12,8 @@ export default function IdeasScroll({
 }) {
   function scrollHandler() {
     if (scrollView) {
-      console.log(scrollContent.offsetHeight - scrollView.scrollTop);
       if (
-        scrollContent.offsetHeight - scrollView.scrollTop <
+        scrollView.children[0].offsetHeight - scrollView.scrollTop <
         visibleScrollSize * 2
       ) {
         loadNewIdeasFunc(colsCount);
@@ -50,12 +49,6 @@ export default function IdeasScroll({
   }
   const lastIdea = ideas[ideas.legth - 1];
   const scrollView = document.getElementById("ideasScrollView");
-  var scrollContent;
-  setTimeout(() => {
-    if (scrollView) {
-      scrollContent = scrollView.children[0];
-    }
-  }, 1500);
 
   if (distributionMap)
     return (

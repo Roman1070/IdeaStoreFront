@@ -8,7 +8,7 @@ import { FetchData } from "../Homepage/Homepage";
 
 export default function LandingPage() {
   const [ideas, setIdeas] = useState();
-  const throttleDelay = 1000;
+  const throttleDelay = 2000;
   var loadedIdeasCount = 50;
   console.log(ideas);
 

@@ -15,7 +15,7 @@ export function FetchData(ideasToLoad, onComplete) {
 export default function Homepage({ foundIdeas, searchInput }) {
   const [ideas, setIdeas] = useState([]);
   const [boards, setBoards] = useState([]);
-  const throttleDelay = 1000;
+  const throttleDelay = 2000;
 
   var loadedIdeasCount = 50;
   if (ideas.length == 0 && boards.length == 0) {

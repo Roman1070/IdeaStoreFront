@@ -6,12 +6,10 @@ import "./Homepage.css";
 import { useState } from "react";
 
 function fetchData(ideasToLoad, onComplete) {
-  var ideas = JSON.parse(sessionStorage.getItem("ideas"));
-  console.log(ideas);
+  var ideasOffset = sessionStorage.getItem("ideasOffset");
   ideasToLoad = 35;
-  GetAllIdeas(false, ideasToLoad, ideas.length, (newIdeas) => {
-    let result = ideas.concat(newIdeas);
-    onComplete(result);
+  GetAllIdeas(false, ideasToLoad, ideasOffset, (newIdeas) => {
+    onComplete(newIdeas);
   });
 }
 
@@ -25,15 +23,19 @@ export default function Homepage({ foundIdeas, searchInput }) {
       GetCurrentUsersBoards((json) => {
         setBoards(json);
         setIdeas(ideas);
-        sessionStorage.setItem("ideas", JSON.stringify(ideas));
+        sessionStorage.setItem("ideasOffset", loadedIdeasCount);
       });
     });
   }
 
-  function onScrolledDown() {
-    ThrottledFetchData(fetchData, 35, 2000, (result) => {
-      setIdeas(result);
-      sessionStorage.setItem("ideas", JSON.stringify(result));
+  function onScrolledDown(colsCount) {
+    let ideasToLoad = colsCount * 7;
+    ThrottledFetchData(fetchData, ideasToLoad, 2000, (newIdeas) => {
+      setIdeas(ideas.concat(newIdeas));
+      sessionStorage.setItem(
+        "ideasOffset",
+        sessionStorage.getItem("ideasOffset") + ideasToLoad
+      );
     });
   }
   if (ideas && boards)
@@ -46,7 +48,7 @@ export default function Homepage({ foundIdeas, searchInput }) {
         )}
         {ideas.length > 0 && (
           <IdeasScroll
-            loadNewIdeasFunc={onScrolledDown}
+            loadNewIdeasFunc={(colsCount) => onScrolledDown(colsCount)}
             availableBoards={boards}
             ideas={foundIdeas && searchInput ? foundIdeas : ideas}
           ></IdeasScroll>

@@ -9,6 +9,7 @@ function fetchData(ideasToLoad, ideas) {
   ideasToLoad = 35;
   GetAllIdeas(false, ideasToLoad, ideas.length, (newIdeas) => {
     let result = ideas.concat(newIdeas);
+    console.log(`fetchData result :${result}`);
     return result;
   });
 }

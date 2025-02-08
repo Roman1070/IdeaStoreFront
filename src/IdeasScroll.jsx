@@ -19,8 +19,6 @@ export default function IdeasScroll({
       ) {
         loadNewIdeasFunc(colsCount);
       }
-    } else {
-      forceUpdate(!a);
     }
   }
   var loggedIn = GetCookie("token");
@@ -58,6 +56,8 @@ export default function IdeasScroll({
     scrollView.removeEventListener("scroll", scrollHandler);
     scrollView.addEventListener("scroll", scrollHandler);
     scrollContent = scrollView.children[0];
+  } else {
+    forceUpdate(!a);
   }
 
   if (distributionMap)

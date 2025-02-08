@@ -36,6 +36,7 @@ export default function LandingPage() {
     return (
       <div className="landingScroll">
         <IdeasScroll
+          disableSave={true}
           loadNewIdeasFunc={(colsCount) => onScrolledDown(colsCount)}
           ideas={ideas}
         ></IdeasScroll>

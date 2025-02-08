@@ -38,11 +38,11 @@ export default function IdeasScroll({
   ideaWidth += widthIncrease;
 
   function onMouseEnter(index) {
-    if (loggedIn != null) setCurrentCard(index);
+    setCurrentCard(index);
   }
 
   function onMouseExit(index) {
-    if (loggedIn != null) setCurrentCard(null);
+    setCurrentCard(null);
   }
   const distributionMap = distributeIdeas(colsCount, ideas);
   if (ideas) {

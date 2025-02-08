@@ -13,7 +13,7 @@ export default function LandingPage() {
   console.log(ideas);
 
   function onScrolledDown(colsCount) {
-    let ideasToLoad = colsCount * 7;
+    let ideasToLoad = colsCount * 10;
     ThrottledFetchData(FetchData, ideasToLoad, throttleDelay, (newIdeas) => {
       console.log(newIdeas);
       if (newIdeas.length > 0) {

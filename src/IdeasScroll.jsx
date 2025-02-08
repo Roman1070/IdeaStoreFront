@@ -10,18 +10,13 @@ export default function IdeasScroll({
   disableSave,
   loadNewIdeasFunc,
 }) {
-  const throttledFetchData = Throttle(fetchData, 3000);
-  function fetchData() {
-    // Simulate an API call with a random delay
-    loadNewIdeasFunc(colsCount);
-  }
   function scrollHandler() {
     if (scrollView) {
       if (
         scrollContent.offsetHeight - scrollView.scrollTop <
         visibleScrollSize * 2
       ) {
-        throttledFetchData();
+        Throttle(() => loadNewIdeasFunc(colsCount), 1000);
       }
     }
   }

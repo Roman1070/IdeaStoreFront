@@ -11,13 +11,13 @@ export default function Homepage({ foundIdeas, searchInput }) {
   const [ideas, setIdeas] = useState([]);
   const [boards, setBoards] = useState([]);
   console.log(ideas);
-  function fetchData(colsCount) {
-    loadedIdeasCount = colsCount * 7;
+  function fetchData() {
+    loadedIdeasCount = 35;
     GetAllIdeas(false, loadedIdeasCount, ideas.length, (newIdeas) => {
       console.log(
         `ideas.length = ${ideas.length}, newIdeasCount=${newIdeas.length}`
       );
-      var result = ideas.concat(newIdeas);
+      let result = ideas.concat(newIdeas);
       console.log(`result length = ${result.length}`);
       setIdeas(result);
     });
@@ -33,14 +33,8 @@ export default function Homepage({ foundIdeas, searchInput }) {
     });
   }
 
-  function onScrolledDown(colsCount) {
-    if (throttleTimer == null) {
-      fetchData(colsCount);
-      throttleTimer = setTimeout(() => {
-        // Set a timer to clear the timerFlag after the specified delay
-        throttleTimer = null; // Clear the timerFlag to allow the main function to be executed again
-      }, 2000);
-    }
+  function onScrolledDown() {
+    throttle(fetchData, 2000);
   }
   if (ideas && boards)
     return (
@@ -52,11 +46,22 @@ export default function Homepage({ foundIdeas, searchInput }) {
         )}
         {ideas.length > 0 && (
           <IdeasScroll
-            loadNewIdeasFunc={(cols) => onScrolledDown(cols)}
+            loadNewIdeasFunc={(cols) => {
+              onScrolledDown(cols);
+            }}
             availableBoards={boards}
             ideas={foundIdeas && searchInput ? foundIdeas : ideas}
           ></IdeasScroll>
         )}
       </>
     );
+}
+
+let shouldThrottle = false;
+function throttle(func, wait) {
+  if (!shouldThrottle) {
+    func.apply(this);
+    shouldThrottle = true;
+    setTimeout((shouldThrottle = false), wait);
+  }
 }

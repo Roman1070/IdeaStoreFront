@@ -10,13 +10,17 @@ export default function IdeasScroll({
   disableSave,
   loadNewIdeasFunc,
 }) {
+  function fetchData() {
+    loadNewIdeasFunc(colsCount);
+  }
   function scrollHandler() {
+    const throttledFetchData = Throttle(fetchData, 2000);
     if (scrollView) {
       if (
         scrollContent.offsetHeight - scrollView.scrollTop <
         visibleScrollSize * 2
       ) {
-        Throttle(() => loadNewIdeasFunc(colsCount), 1000);
+        throttledFetchData();
       }
     }
   }

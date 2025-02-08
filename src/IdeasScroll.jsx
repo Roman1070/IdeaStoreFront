@@ -24,7 +24,6 @@ export default function IdeasScroll({
   var loggedIn = GetCookie("token");
   var visibleScrollSize = window.innerHeight - 80;
   const [currentCard, setCurrentCard] = useState(null);
-  const [a, forceUpdate] = useState(false);
   var ideaWidth = Math.floor(window.innerWidth / 7);
   const marginHor = 10;
   const minIdeaWidth = AspectRatio() > 1 ? 284 : 160;
@@ -54,16 +53,15 @@ export default function IdeasScroll({
   var scrollContent;
   setTimeout(() => {
     if (scrollView) {
-      scrollView.removeEventListener("scroll", scrollHandler);
-      scrollView.addEventListener("scroll", scrollHandler);
       scrollContent = scrollView.children[0];
     }
-  }, 500);
+  }, 1500);
 
   if (distributionMap)
     return (
       <div
         id="ideasScrollView"
+        onScroll={scrollHandler}
         style={{
           height: `${visibleScrollSize}px`,
           overflowY: "scroll",

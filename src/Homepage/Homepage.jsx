@@ -1,35 +1,30 @@
 import IdeasScroll from "../IdeasScroll.jsx";
 import { GetAllIdeas, GetCurrentUsersBoards } from "../requests.js";
-import { Morph, Throttle } from "../utils.js";
+import { Morph, ThrottleFetchData } from "../utils.js";
 
 import "./Homepage.css";
 import { useState } from "react";
 
-var throttleTimer;
+function fetchData(ideasToLoad, ideas) {
+  ideasToLoad = 35;
+  GetAllIdeas(false, ideasToLoad, ideas.length, (newIdeas) => {
+    let result = ideas.concat(newIdeas);
+    console.log(result);
+  });
+}
+
+// Throttle the fetchData function with a delay of 5000 ms
+const throttledFetchData = (limit, ideas) =>
+  ThrottleFetchData(fetchData, limit, ideas, 2000);
 
 export default function Homepage({ foundIdeas, searchInput }) {
   const [ideas, setIdeas] = useState([]);
   const [boards, setBoards] = useState([]);
-  const [fetchTimer, setFetchTimer] = useState(null);
+
   console.log(ideas);
 
   function tryFetchData() {
-    if (!!fetchTimer) return;
-    setFetchTimer(
-      setTimeout(() => {
-        setFetchTimer(null);
-      }, 2000)
-    );
-
-    loadedIdeasCount = 35;
-    GetAllIdeas(false, loadedIdeasCount, ideas.length, (newIdeas) => {
-      console.log(
-        `ideas.length = ${ideas.length}, newIdeasCount=${newIdeas.length}`
-      );
-      let result = ideas.concat(newIdeas);
-      console.log(`result length = ${result.length}`);
-      setIdeas(result);
-    });
+    throttledFetchData(35, ideas.length);
   }
 
   var loadedIdeasCount = 50;

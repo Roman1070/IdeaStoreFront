@@ -10,8 +10,14 @@ export default function IdeasScroll({
   disableSave,
   loadNewIdeasFunc,
 }) {
+  const [requestLocked, setRequestLocked] = useState();
   function scrollHandler() {
-    if (scrollView) {
+    if (scrollView && !requestLocked) {
+      setRequestLocked(true);
+      setTimeout(() => {
+        setRequestLocked(false);
+        console.log("timeoutPassed");
+      }, 5000);
       if (
         scrollContent.offsetHeight - scrollView.scrollTop <
         visibleScrollSize

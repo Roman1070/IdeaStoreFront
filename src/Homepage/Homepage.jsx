@@ -22,9 +22,9 @@ export default function Homepage({ foundIdeas, searchInput }) {
     });
   }
 
-  function loadNewIdeas(columnsCount) {
+  function loadNewIdeas(columnsCount, ideasLength) {
     loadedIdeasCount = columnsCount * 7;
-    GetAllIdeas(false, loadedIdeasCount, getIdeasLength(), (newIdeas) => {
+    GetAllIdeas(false, loadedIdeasCount, ideasLength, (newIdeas) => {
       console.log(
         `ideas.length = ${ideas.length}, newIdeasCount=${newIdeas.length}`
       );

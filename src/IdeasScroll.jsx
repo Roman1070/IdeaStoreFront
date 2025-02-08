@@ -11,7 +11,7 @@ export default function IdeasScroll({
   loadNewIdeasFunc,
 }) {
   function fetchData() {
-    loadNewIdeasFunc(colsCount);
+    loadNewIdeasFunc(colsCount, ideas.length);
   }
   function scrollHandler() {
     const throttledFetchData = Throttle(fetchData, 2000);

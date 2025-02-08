@@ -13,16 +13,16 @@ export default function IdeasScroll({
   const [requestLocked, setRequestLocked] = useState();
   function scrollHandler() {
     if (scrollView && !requestLocked) {
-      setRequestLocked(true);
-      setTimeout(() => {
-        setRequestLocked(false);
-        console.log("timeoutPassed");
-      }, 5000);
       if (
         scrollContent.offsetHeight - scrollView.scrollTop <
         visibleScrollSize
       ) {
         loadNewIdeasFunc(colsCount);
+        setRequestLocked(true);
+        setTimeout(() => {
+          setRequestLocked(false);
+          console.log("timeoutPassed");
+        }, 5000);
       }
     }
   }

@@ -27,11 +27,12 @@ export default function Homepage({ foundIdeas, searchInput }) {
   function loadNewIdeas(columnsCount) {
     console.log(ideas.length);
     if (requestLocked) return;
+    setRequestLocked(true);
     loadedIdeasCount = columnsCount * 6;
-    GetAllIdeas(false, loadedIdeasCount, ideasCount, (ideas) => {
-      setIdeasCount(ideasCount + ideas.length);
+    GetAllIdeas(false, loadedIdeasCount, ideasCount, (newIdeas) => {
+      setIdeasCount(ideasCount + newIdeas.length);
+      ideas.push(newIdeas);
       setIdeas(ideas);
-      setRequestLocked(true);
       setTimeout(() => setRequestLocked(false), requestInterval);
     });
   }

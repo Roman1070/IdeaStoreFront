@@ -10,7 +10,6 @@ export default function LandingPage() {
   const [ideas, setIdeas] = useState();
   const throttleDelay = 20000;
   var loadedIdeasCount = 50;
-  console.log(ideas);
 
   function onScrolledDown(colsCount) {
     let ideasToLoad = colsCount * 10;
@@ -29,7 +28,6 @@ export default function LandingPage() {
 
   if (!ideas) {
     GetAllIdeas(false, loadedIdeasCount, 0, (ideas) => {
-      console.log(ideas);
       setIdeas(ideas);
       sessionStorage.setItem("ideasOffset", loadedIdeasCount);
     });

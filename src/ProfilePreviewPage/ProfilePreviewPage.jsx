@@ -78,6 +78,7 @@ export default function ProfilePreviewPage() {
         <span className="profilePreviewPageName">{profile.name}</span>
         {profile.link && (
           <Link
+            replace
             to={
               profile.link.includes("https")
                 ? profile.link

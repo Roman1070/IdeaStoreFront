@@ -12,6 +12,7 @@ export default function IdeasScroll({
 }) {
   function scrollHandler() {
     if (scrollView) {
+      console.log(scrollContent.offsetHeight - scrollView.scrollTop);
       if (
         scrollContent.offsetHeight - scrollView.scrollTop <
         visibleScrollSize * 2

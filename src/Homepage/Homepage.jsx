@@ -29,6 +29,7 @@ export default function Homepage({ foundIdeas, searchInput }) {
   function onScrolledDown(colsCount) {
     let ideasToLoad = colsCount * 10;
     GetAllIdeasThrottled(ideasToLoad, (newIdeas) => {
+      console.log(newIdeas);
       if (newIdeas.length > 0) {
         let totalIdeas;
         if (!sessionStorage.getItem("ideas")) {

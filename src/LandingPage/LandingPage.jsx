@@ -7,10 +7,10 @@ import { GetAllIdeasThrottled, UpdateIdeasSessionStorage } from "../utils";
 
 export default function LandingPage() {
   const [ideas, setIdeas] = useState();
-  var loadedIdeasCount = 50;
+  var loadedIdeasCount = 30;
 
   function onScrolledDown(colsCount) {
-    let ideasToLoad = colsCount * 10;
+    let ideasToLoad = colsCount * 6;
     GetAllIdeasThrottled(ideasToLoad, (newIdeas) => {
       if (newIdeas.length > 0) {
         let totalIdeas;

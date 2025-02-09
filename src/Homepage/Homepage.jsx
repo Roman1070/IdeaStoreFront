@@ -1,3 +1,4 @@
+import { useOutletContext } from "react-router-dom";
 import IdeasScroll from "../IdeasScroll.jsx";
 import { GetAllIdeas, GetCurrentUsersBoards } from "../requests.js";
 import {
@@ -11,11 +12,13 @@ import {
 import "./Homepage.css";
 import { useState } from "react";
 
-export default function Homepage({ foundIdeas, searchInput }) {
+export default function Homepage() {
   const [ideas, setIdeas] = useState([]);
   const [boards, setBoards] = useState([]);
+  const [foundIdeas, setFoundIdeas] = useOutletContext();
+  const [searchInput, setSearchInput] = useOutletContext();
 
-  var loadedIdeasCount = 50;
+  var loadedIdeasCount = 30;
   if (ideas.length == 0 && boards.length == 0) {
     GetAllIdeas(false, loadedIdeasCount, 0, (ideas) => {
       GetCurrentUsersBoards((json) => {
@@ -27,7 +30,7 @@ export default function Homepage({ foundIdeas, searchInput }) {
   }
 
   function onScrolledDown(colsCount) {
-    let ideasToLoad = colsCount * 10;
+    let ideasToLoad = colsCount * 6;
     GetAllIdeasThrottled(ideasToLoad, (newIdeas) => {
       if (newIdeas.length > 0) {
         let totalIdeas;

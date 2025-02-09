@@ -23,7 +23,6 @@ export default function MainHeaderSignedIn({
   const [chatsModalEnabled, setChatModalEnabled] = useState(false);
   const [chats, setChats] = useState();
   const [profile, setProfile] = useState();
-  const [redirectToMain, setRedirectToMain] = useState(false);
 
   const smallButtonSize = 40;
   const smallButtonMargin = 8;

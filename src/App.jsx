@@ -37,7 +37,7 @@ function App() {
       ) : (
         <MainHeaderGuest />
       )}
-      <Outlet />
+      <Outlet context={[foundIdeas, searchInput]} />
     </>
   );
 }

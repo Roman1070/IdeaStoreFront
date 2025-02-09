@@ -8,7 +8,7 @@ export default function SearchInputField({
 }) {
   const [content, setContent] = useState("");
 
-  const debouncedSearch = debounce((value) => search(value), 700);
+  const debouncedSearch = debounce((value) => search(value), 1000);
   function search(value) {
     SearchIdeas(value, (ideas) => {
       onSearchInputChanged(value);

@@ -15,10 +15,11 @@ import { useState } from "react";
 export default function Homepage() {
   const [ideas, setIdeas] = useState([]);
   const [boards, setBoards] = useState([]);
-  const [foundIdeas, setFoundIdeas] = useOutletContext();
-  const [searchInput, setSearchInput] = useOutletContext();
-  console.log(foundIdeas);
-  console.log(searchInput);
+  const {
+    foundIdeas: [foundIdeas, setFoundIdeas],
+    searchInput: [searchInput, setSearchInput],
+  } = useOutletContext();
+
   var loadedIdeasCount = 30;
   if (ideas.length == 0 && boards.length == 0) {
     GetAllIdeas(false, loadedIdeasCount, 0, (ideas) => {
@@ -53,22 +54,16 @@ export default function Homepage() {
   if (ideas && boards)
     return (
       <>
-        {foundIdeas.foundIdeas && searchInput.searchInput && (
-          <div className="foundIdeasHeader">{`По запросу "${
-            searchInput.searchInput
-          }" найдено ${foundIdeas.foundIdeas.length} ${Morph(
-            foundIdeas.foundIdeas.length
-          )}`}</div>
+        {foundIdeas && searchInput && (
+          <div className="foundIdeasHeader">{`По запросу "${searchInput}" найдено ${
+            foundIdeas.length
+          } ${Morph(foundIdeas.length)}`}</div>
         )}
         {ideas.length > 0 && (
           <IdeasScroll
             loadNewIdeasFunc={(colsCount) => onScrolledDown(colsCount)}
             availableBoards={boards}
-            ideas={
-              foundIdeas.foundIdeas && searchInput.searchInput
-                ? foundIdeas.foundIdeas
-                : ideas
-            }
+            ideas={foundIdeas && searchInput ? foundIdeas : ideas}
           ></IdeasScroll>
         )}
       </>

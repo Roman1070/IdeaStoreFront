@@ -37,7 +37,12 @@ function App() {
       ) : (
         <MainHeaderGuest />
       )}
-      <Outlet context={[foundIdeas, searchInput]} />
+      <Outlet
+        context={{
+          foundIdeas: [foundIdeas, setFoundIdeas],
+          searchInput: [searchInput, setSearchInput],
+        }}
+      />
     </>
   );
 }

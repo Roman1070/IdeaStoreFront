@@ -53,16 +53,22 @@ export default function Homepage() {
   if (ideas && boards)
     return (
       <>
-        {foundIdeas && searchInput && (
-          <div className="foundIdeasHeader">{`По запросу "${searchInput}" найдено ${
-            foundIdeas.length
-          } ${Morph(foundIdeas.length)}`}</div>
+        {foundIdeas.foundIdeas && searchInput.searchInput && (
+          <div className="foundIdeasHeader">{`По запросу "${
+            searchInput.searchInput
+          }" найдено ${foundIdeas.foundIdeas.length} ${Morph(
+            foundIdeas.foundIdeas.length
+          )}`}</div>
         )}
         {ideas.length > 0 && (
           <IdeasScroll
             loadNewIdeasFunc={(colsCount) => onScrolledDown(colsCount)}
             availableBoards={boards}
-            ideas={foundIdeas && searchInput ? foundIdeas : ideas}
+            ideas={
+              foundIdeas.foundIdeas && searchInput.searchInput
+                ? foundIdeas.foundIdeas
+                : ideas
+            }
           ></IdeasScroll>
         )}
       </>

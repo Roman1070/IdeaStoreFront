@@ -122,6 +122,7 @@ export function ThrottledFetchData(mainFunction, limit, delay, onComplete) {
 }
 
 export function ResetThrottledFetchDataTimer() {
+  console.log("reset throttle");
   throttleTimeFlag = null;
 }
 

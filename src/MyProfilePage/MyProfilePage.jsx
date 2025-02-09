@@ -13,7 +13,7 @@ export default function MyProfilePage() {
   if (!profile && !boards && !ideas)
     GetCurrentProfile((json) => {
       GetBoards(json.id, (boardsJson) => {
-        GetSavedIdeas((ideasJson) => {
+        GetSavedIdeas(150, 0, (ideasJson) => {
           setIdeas(ideasJson);
           setBoards(boardsJson);
           setProfile(json);

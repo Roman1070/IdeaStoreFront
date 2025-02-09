@@ -31,19 +31,21 @@ export default function SavedIdeasPage() {
   function onScrolledDown(colsCount) {
     let ideasToLoad = colsCount * 10;
     GetSavedIdeasThrottled(ideasToLoad, (newIdeas) => {
-      let totalIdeas;
-      if (!sessionStorage.getItem("ideas")) {
-        totalIdeas = newIdeas;
-      } else {
-        totalIdeas = JSON.parse(sessionStorage.getItem("ideas")).concat(
-          newIdeas
+      if (newIdeas.length > 0) {
+        let totalIdeas;
+        if (!sessionStorage.getItem("ideas")) {
+          totalIdeas = newIdeas;
+        } else {
+          totalIdeas = JSON.parse(sessionStorage.getItem("ideas")).concat(
+            newIdeas
+          );
+        }
+        setIdeas(totalIdeas);
+        UpdateIdeasSessionStorage(
+          totalIdeas,
+          ideasToLoad + parseInt(sessionStorage.getItem("ideasOffset"))
         );
       }
-      setIdeas(totalIdeas);
-      UpdateIdeasSessionStorage(
-        totalIdeas,
-        ideasToLoad + parseInt(sessionStorage.getItem("ideasOffset"))
-      );
     });
   }
 

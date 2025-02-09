@@ -40,7 +40,7 @@ export default function Homepage({ foundIdeas, searchInput }) {
             newIdeas
           );
         }
-        setIdeas(totalIdeas);
+        if (totalIdeas.length > 0) setIdeas(totalIdeas);
         UpdateIdeasSessionStorage(
           totalIdeas,
           ideasToLoad + parseInt(sessionStorage.getItem("ideasOffset"))

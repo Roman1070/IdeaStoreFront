@@ -1,3 +1,5 @@
+import { GetAllIdeas } from "./requests";
+
 export function GetImageSrc(name) {
   return "https://ideastore.space/app/files/" + name;
 }
@@ -97,7 +99,7 @@ export const cancelDebounce = () => {
 export function distributeIdeas(columnsCount, ideas) {
   var result = new Map();
   for (var i = 0; i < columnsCount; i++) {
-    result.set(i, new Array());
+    result.set(i, []);
   }
   var currentIndex = 0;
   for (var i = 0; i < ideas.length; i++) {
@@ -108,13 +110,7 @@ export function distributeIdeas(columnsCount, ideas) {
 }
 
 let throttleTimeFlag = null; // Variable to keep track of the timer
-export function ThrottledFetchData(
-  mainFunction,
-  limit,
-
-  delay,
-  onComplete
-) {
+export function ThrottledFetchData(mainFunction, limit, delay, onComplete) {
   if (throttleTimeFlag === null) {
     // If there is no timer currently running
     mainFunction(limit, onComplete); // Execute the main function
@@ -127,4 +123,30 @@ export function ThrottledFetchData(
 
 export function ResetThrottledFetchDataTimer() {
   throttleTimeFlag = null;
+}
+
+export function FetchData(ideasToLoad, onComplete) {
+  let ideasOffset;
+  if (!sessionStorage.getItem("ideasOffset")) {
+    ideasOffset = 0;
+  } else {
+    ideasOffset = sessionStorage.getItem("ideasOffset");
+  }
+  GetAllIdeas(false, ideasToLoad, ideasOffset, (newIdeas) => {
+    onComplete(newIdeas);
+  });
+}
+const throttleDelay = 20000;
+export function GetAllIdeasThrottled(ideasToLoad, onComplete) {
+  ThrottledFetchData(FetchData, ideasToLoad, throttleDelay, (newIdeas) => {
+    if (newIdeas.length > 0) {
+      ResetThrottledFetchDataTimer();
+      onComplete(newIdeas);
+    }
+  });
+}
+
+export function UpdateIdeasSessionStorage(ideas, offset) {
+  sessionStorage.setItem("ideas", JSON.stringify(ideas));
+  sessionStorage.setItem("ideasOffset", offset);
 }

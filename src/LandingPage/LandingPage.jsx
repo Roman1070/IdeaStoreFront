@@ -3,33 +3,35 @@ import IdeasScroll from "../IdeasScroll";
 import "./LandingPage.css";
 import { useState } from "react";
 import { GetAllIdeas } from "../requests";
-import { ResetThrottledFetchDataTimer, ThrottledFetchData } from "../utils";
-import { FetchData } from "../Homepage/Homepage";
+import { GetAllIdeasThrottled, UpdateIdeasSessionStorage } from "../utils";
 
 export default function LandingPage() {
   const [ideas, setIdeas] = useState();
-  const throttleDelay = 20000;
   var loadedIdeasCount = 50;
 
   function onScrolledDown(colsCount) {
     let ideasToLoad = colsCount * 10;
-    ThrottledFetchData(FetchData, ideasToLoad, throttleDelay, (newIdeas) => {
-      console.log(newIdeas);
-      if (newIdeas.length > 0) {
-        setIdeas(ideas.concat(newIdeas));
-        sessionStorage.setItem(
-          "ideasOffset",
-          parseInt(sessionStorage.getItem("ideasOffset")) + ideasToLoad
+    GetAllIdeasThrottled(ideasToLoad, (newIdeas) => {
+      let totalIdeas;
+      if (!sessionStorage.getItem("ideas")) {
+        totalIdeas = newIdeas;
+      } else {
+        totalIdeas = JSON.parse(sessionStorage.getItem("ideas")).concat(
+          newIdeas
         );
-        ResetThrottledFetchDataTimer();
       }
+      setIdeas(totalIdeas);
+      UpdateIdeasSessionStorage(
+        totalIdeas,
+        ideasToLoad + parseInt(sessionStorage.getItem("ideasOffset"))
+      );
     });
   }
 
   if (!ideas) {
     GetAllIdeas(false, loadedIdeasCount, 0, (ideas) => {
       setIdeas(ideas);
-      sessionStorage.setItem("ideasOffset", loadedIdeasCount);
+      UpdateIdeasSessionStorage(ideas, loadedIdeasCount);
     });
   }
   if (ideas)

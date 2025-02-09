@@ -191,9 +191,9 @@ export function CreateBoard(name, onComplete) {
     .then((response) => response.json())
     .then((json) => onComplete(json));
 }
-export function GetSavedIdeas(onComplete) {
+export function GetSavedIdeas(limit, offset, onComplete) {
   var tempIdeas = [];
-  fetch(JoinClientAddress("get-saved-ideas"), {
+  fetch(JoinClientAddress(`get-saved-ideas?limit=${limit}&offset=${offset}`), {
     method: "GET",
     credentials: "include",
   })

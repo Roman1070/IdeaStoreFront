@@ -8,7 +8,12 @@ import {
   GetCurrentUsersBoards,
 } from "../requests";
 import BoardsScroll from "../BoardsScroll/BoardsScroll";
-import { GetImageSrc, GetLocalImageSrc } from "../utils";
+import {
+  GetImageSrc,
+  GetLocalImageSrc,
+  ResetThrottledFetchDataTimer,
+  ThrottledFetchData,
+} from "../utils";
 import { Link } from "react-router-dom";
 
 export default function SavedIdeasPage() {
@@ -22,22 +27,20 @@ export default function SavedIdeasPage() {
       setBoards(json);
     });
   }
-  const [ideas, setIdeas] = useState(null);
-  const [boards, setBoards] = useState(null);
+  const [ideas, setIdeas] = useState();
+  const [boards, setBoards] = useState();
   const [selectedTab, setSelectedTab] = useState(0);
-  const [profile, setProfile] = useState(null);
-
-  if (ideas == null && profile == null) {
+  const [profile, setProfile] = useState();
+  if (!ideas && !profile) {
     GetCurrentProfile((json) => {
-      GetSavedIdeas((ideas) => {
+      GetSavedIdeas(false, 50, 0, (ideas) => {
         setIdeas(ideas);
         setProfile(json);
       });
     });
   }
-  if (boards == null) {
+  if (!boards) {
     GetCurrentUsersBoards((json) => {
-      console.log(json);
       setBoards(json);
     });
   }

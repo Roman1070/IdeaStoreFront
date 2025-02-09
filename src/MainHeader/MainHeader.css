@@ -7,7 +7,6 @@
   position: fixed;
   z-index: 4;
   background-color: white;
-  margin: 0 20px 0 10px;
   justify-content: space-between;
 }
 .mainHeaderLeftBlock {

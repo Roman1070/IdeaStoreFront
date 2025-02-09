@@ -23,7 +23,7 @@ export default function LandingPage() {
         }
         setIdeas(totalIdeas);
         UpdateIdeasSessionStorage(
-          JSON.stringify(totalIdeas),
+          totalIdeas,
           ideasToLoad + parseInt(sessionStorage.getItem("ideasOffset"))
         );
       }

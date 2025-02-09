@@ -14,14 +14,13 @@ import { useState } from "react";
 export default function Homepage({ foundIdeas, searchInput }) {
   const [ideas, setIdeas] = useState([]);
   const [boards, setBoards] = useState([]);
-
+  console.log(ideas);
   var loadedIdeasCount = 50;
   if (ideas.length == 0 && boards.length == 0) {
     GetAllIdeas(false, loadedIdeasCount, 0, (ideas) => {
       GetCurrentUsersBoards((json) => {
         setBoards(json);
         setIdeas(ideas);
-        console.log(ideas);
         UpdateIdeasSessionStorage(JSON.stringify(ideas), loadedIdeasCount);
       });
     });
@@ -30,7 +29,6 @@ export default function Homepage({ foundIdeas, searchInput }) {
   function onScrolledDown(colsCount) {
     let ideasToLoad = colsCount * 10;
     GetAllIdeasThrottled(ideasToLoad, (newIdeas) => {
-      console.log(newIdeas);
       if (newIdeas.length > 0) {
         let totalIdeas;
         if (!sessionStorage.getItem("ideas")) {

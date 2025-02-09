@@ -21,6 +21,7 @@ export default function Homepage({ foundIdeas, searchInput }) {
       GetCurrentUsersBoards((json) => {
         setBoards(json);
         setIdeas(ideas);
+        console.log(newIdeas);
         UpdateIdeasSessionStorage(JSON.stringify(ideas), loadedIdeasCount);
       });
     });

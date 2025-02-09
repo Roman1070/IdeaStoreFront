@@ -11,8 +11,7 @@ import BoardsScroll from "../BoardsScroll/BoardsScroll";
 import {
   GetImageSrc,
   GetLocalImageSrc,
-  ResetThrottledFetchDataTimer,
-  ThrottledFetchData,
+  GetSavedIdeasThrottled,
   UpdateIdeasSessionStorage,
 } from "../utils";
 import { Link } from "react-router-dom";
@@ -28,6 +27,26 @@ export default function SavedIdeasPage() {
       setBoards(json);
     });
   }
+
+  function onScrolledDown(colsCount) {
+    let ideasToLoad = colsCount * 10;
+    GetSavedIdeasThrottled(ideasToLoad, (newIdeas) => {
+      let totalIdeas;
+      if (!sessionStorage.getItem("ideas")) {
+        totalIdeas = newIdeas;
+      } else {
+        totalIdeas = JSON.parse(sessionStorage.getItem("ideas")).concat(
+          newIdeas
+        );
+      }
+      setIdeas(totalIdeas);
+      UpdateIdeasSessionStorage(
+        totalIdeas,
+        ideasToLoad + parseInt(sessionStorage.getItem("ideasOffset"))
+      );
+    });
+  }
+
   const [ideas, setIdeas] = useState();
   const [boards, setBoards] = useState();
   const [selectedTab, setSelectedTab] = useState(0);
@@ -112,6 +131,7 @@ export default function SavedIdeasPage() {
             availableBoards={boards}
             saved={true}
             ideas={ideas}
+            loadNewIdeasFunc={onScrolledDown}
           ></IdeasScroll>
         )}
         {selectedTab == 1 && (

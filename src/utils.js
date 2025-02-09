@@ -1,4 +1,4 @@
-import { GetAllIdeas } from "./requests";
+import { GetAllIdeas, GetSavedIdeas } from "./requests";
 
 export function GetImageSrc(name) {
   return "https://ideastore.space/app/files/" + name;
@@ -125,7 +125,7 @@ export function ResetThrottledFetchDataTimer() {
   throttleTimeFlag = null;
 }
 
-export function FetchData(ideasToLoad, onComplete) {
+export function FetchDataAllIdeas(ideasToLoad, onComplete) {
   let ideasOffset;
   if (!sessionStorage.getItem("ideasOffset")) {
     ideasOffset = 0;
@@ -136,14 +136,44 @@ export function FetchData(ideasToLoad, onComplete) {
     onComplete(newIdeas);
   });
 }
+export function FetchDataSavedIdeas(ideasToLoad, onComplete) {
+  let ideasOffset;
+  if (!sessionStorage.getItem("ideasOffset")) {
+    ideasOffset = 0;
+  } else {
+    ideasOffset = sessionStorage.getItem("ideasOffset");
+  }
+  GetSavedIdeas(ideasToLoad, ideasOffset, (newIdeas) => {
+    onComplete(newIdeas);
+  });
+}
 const throttleDelay = 20000;
 export function GetAllIdeasThrottled(ideasToLoad, onComplete) {
-  ThrottledFetchData(FetchData, ideasToLoad, throttleDelay, (newIdeas) => {
-    if (newIdeas.length > 0) {
-      ResetThrottledFetchDataTimer();
-      onComplete(newIdeas);
+  ThrottledFetchData(
+    FetchDataAllIdeas,
+    ideasToLoad,
+    throttleDelay,
+    (newIdeas) => {
+      if (newIdeas.length > 0) {
+        ResetThrottledFetchDataTimer();
+        onComplete(newIdeas);
+      }
     }
-  });
+  );
+}
+
+export function GetSavedIdeasThrottled(ideasToLoad, onComplete) {
+  ThrottledFetchData(
+    FetchDataSavedIdeas,
+    ideasToLoad,
+    throttleDelay,
+    (newIdeas) => {
+      if (newIdeas.length > 0) {
+        ResetThrottledFetchDataTimer();
+        onComplete(newIdeas);
+      }
+    }
+  );
 }
 
 export function UpdateIdeasSessionStorage(ideas, offset) {

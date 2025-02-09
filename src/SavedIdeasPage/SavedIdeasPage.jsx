@@ -13,6 +13,7 @@ import {
   GetLocalImageSrc,
   ResetThrottledFetchDataTimer,
   ThrottledFetchData,
+  UpdateIdeasSessionStorage,
 } from "../utils";
 import { Link } from "react-router-dom";
 
@@ -32,10 +33,12 @@ export default function SavedIdeasPage() {
   const [selectedTab, setSelectedTab] = useState(0);
   const [profile, setProfile] = useState();
   if (!ideas && !profile) {
+    let ideasToLoad = 50;
     GetCurrentProfile((json) => {
-      GetSavedIdeas(false, 50, 0, (ideas) => {
+      GetSavedIdeas(ideasToLoad, 0, (ideas) => {
         setIdeas(ideas);
         setProfile(json);
+        UpdateIdeasSessionStorage(JSON.stringify(ideas), ideasToLoad);
       });
     });
   }

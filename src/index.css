@@ -20,3 +20,6 @@ select {
   color: inherit;
   background-color: transparent;
 }
+#root {
+  width: 100%;
+}

@@ -17,7 +17,8 @@ export default function Homepage() {
   const [boards, setBoards] = useState([]);
   const [foundIdeas, setFoundIdeas] = useOutletContext();
   const [searchInput, setSearchInput] = useOutletContext();
-
+  console.log(foundIdeas);
+  console.log(searchInput);
   var loadedIdeasCount = 30;
   if (ideas.length == 0 && boards.length == 0) {
     GetAllIdeas(false, loadedIdeasCount, 0, (ideas) => {

@@ -149,7 +149,12 @@ export default function ProfilePreviewPage() {
             visibleScrollSize={window.innerHeight - 430}
           ></IdeasScroll>
         )}
-        {selectedTab == 1 && <BoardsScroll boards={boards}></BoardsScroll>}
+        {selectedTab == 1 && (
+          <BoardsScroll
+            boards={boards}
+            visibleScrollSize={window.innerHeight - 430}
+          ></BoardsScroll>
+        )}
       </div>
     );
 }

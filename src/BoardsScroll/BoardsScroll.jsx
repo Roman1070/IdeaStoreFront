@@ -9,6 +9,7 @@ export default function BoardsScroll({
   onBoardCreated,
   onBoardRemoved,
   enableDelete,
+  visibleScrollSize,
 }) {
   const [currentBoard, setCurrentBoard] = useState(null);
   const [displayPopup, setDisplayPopup] = useState(false);
@@ -20,7 +21,13 @@ export default function BoardsScroll({
     setCurrentBoard(null);
   }
   return (
-    <div className="boardsParent" id="boardsParent">
+    <div
+      className="boardsParent"
+      id="boardsParent"
+      style={{
+        height: `${visibleScrollSize}px`,
+      }}
+    >
       {displayPopup && (
         <CreateBoardModal
           onClose={() => {

@@ -56,7 +56,7 @@ export default function SavedIdeasPage() {
   const [selectedTab, setSelectedTab] = useState(0);
   const [profile, setProfile] = useState();
   var upperModal = document.getElementById("savedIdeasUpperModalBlock");
-  var upperModalBlockHeight = 183;
+  var upperModalBlockHeight = 203;
   if (upperModal) {
     upperModalBlockHeight = upperModal.offsetHeight;
   }
@@ -136,6 +136,7 @@ export default function SavedIdeasPage() {
             boards={boards}
             onBoardCreated={onBoardCreated}
             onBoardRemoved={onBoardRemoved}
+            visibleScrollSize={window.innerHeight - upperModalBlockHeight - 80}
           ></BoardsScroll>
         )}
       </div>

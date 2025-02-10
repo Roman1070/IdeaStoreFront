@@ -105,11 +105,10 @@ export default function ChatsModalSelectedChat({
           }
         ></img>
         <div className="selectedChatHeaderName">{selectedChat.name}</div>
-        <Link
-          replace
-          to={`/profile/${selectedChat.id}`}
+        <a
+          href={`/profile/${selectedChat.id}`}
           className="selectedChatHeaderLink"
-        ></Link>
+        ></a>
       </div>
       {currentMessages && (
         <MessagesScroll

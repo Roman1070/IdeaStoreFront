@@ -1,4 +1,4 @@
-import ChatsModalElement from "../ChatsModal/ChatsModelElement";
+import ChatsModalElement from "../ChatsModal/ChatsModalElement";
 import ChatsModalElementSharing from "../ChatsModal/ChatsModalElementSharing";
 import "./ChatsScroll.css";
 

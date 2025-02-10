@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./ChatsModal.css";
-import ChatsModalElement from "./ChatsModelElement";
+import ChatsModalElement from "./ChatsModalElement";
 import {
   AspectRatio,
   debounce,

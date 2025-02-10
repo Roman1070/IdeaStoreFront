@@ -2,6 +2,7 @@ import { useRef } from "react";
 import "./RegisterModal.css";
 import { createPortal } from "react-dom";
 import RegisterForm from "./RegisterForm";
+import { GetLocalImageSrc } from "../utils";
 
 export default function RegisterModal({ open, closeFunc }) {
   return createPortal(
@@ -10,7 +11,11 @@ export default function RegisterModal({ open, closeFunc }) {
       <div className="registerModalBlock">
         <div className="registerModalContainer">
           <div className="registerModalIconContainer">
-            <img src="logo.png" alt="" className="registerModalIcon" />
+            <img
+              src={GetLocalImageSrc("logo.png")}
+              alt=""
+              className="registerModalIcon"
+            />
           </div>
           <h2 className="registerWelcomeText">
             Добро пожаловать в <br />

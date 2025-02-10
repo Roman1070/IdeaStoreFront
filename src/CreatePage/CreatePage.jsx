@@ -86,7 +86,8 @@ export default function CreatePage() {
     CreateIdea(data, handleAfterSend);
   }
   const changeHandler = (event) => {
-    if (!event.target.files) {
+    console.log(event.target.files);
+    if (event.target.files.length == 0) {
       setPreviewSrc("");
       setPreviewSrcError("Please, upload at least one file");
       return;

@@ -63,7 +63,7 @@ export default function ProfilePreviewPage() {
     });
   }
 
-  if (profile && boards && ideas)
+  if (profile && boards && ideas && currentProfile)
     return (
       <div className="profilePreviewPage">
         <img

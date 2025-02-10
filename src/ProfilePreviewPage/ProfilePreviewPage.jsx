@@ -42,7 +42,7 @@ export default function ProfilePreviewPage() {
   const [ideas, setIdeas] = useState([]);
   const [boards, setBoards] = useState([]);
   const [selectedTab, setSelectedTab] = useState(0);
-  if (!profile && !ideas && !boards && !currentProfile) {
+  if (!profile && ideas.length == 0 && boards.length == 0 && !currentProfile) {
     GetProfile(id, (profile) => {
       setProfile(profile);
       var ideasIds = [];

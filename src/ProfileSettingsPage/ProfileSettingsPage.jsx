@@ -17,12 +17,16 @@ export default function ProfileSettingsPage() {
     return (
       <div className="profileSettingsPage">
         <div className="profileSettingsPageMenu">
-          <ButtonLight isSelected={selectedTab == 0}>
-            Изменение профиля
-          </ButtonLight>
-          <ButtonLight isSelected={selectedTab == 1}>
-            Управление аккаунтом
-          </ButtonLight>
+          <div className="profileSettingsButtonWrapper">
+            <ButtonLight isSelected={selectedTab == 0}>
+              Изменение профиля
+            </ButtonLight>
+          </div>
+          <div className="profileSettingsButtonWrapper">
+            <ButtonLight isSelected={selectedTab == 1}>
+              Управление аккаунтом
+            </ButtonLight>
+          </div>
         </div>
         {selectedTab == 0 && <ProfileSettingsTab profile={profile} />}
       </div>

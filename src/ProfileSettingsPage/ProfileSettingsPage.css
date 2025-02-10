@@ -18,6 +18,10 @@
     display: flex;
     flex-direction: column;
   }
+  .profileSettingsTabSubheader {
+    width: 450px;
+    margin-bottom: 20px;
+  }
 }
 @media (max-aspect-ratio: 0.999) {
   .profileSettingsPage {
@@ -31,12 +35,22 @@
     flex-direction: row;
     justify-content: space-between;
     height: 60px;
+    margin: 0 20px;
   }
 
   .profileSettingsTab {
     display: flex;
     flex-direction: column;
     margin: 10px 30px;
+  }
+  .profileSettingsTabSubheader {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  .profileSettingsButtonWrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
   }
 }
 .profileSettingsTabForm {
@@ -47,10 +61,6 @@
   font-size: 28px;
   font-weight: 500;
   margin-bottom: 10px;
-}
-.profileSettingsTabSubheader {
-  width: 450px;
-  margin-bottom: 20px;
 }
 .profileSettingsTabImageBlock {
   margin-top: 10px;

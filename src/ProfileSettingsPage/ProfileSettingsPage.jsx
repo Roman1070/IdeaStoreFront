@@ -21,11 +21,11 @@ export default function ProfileSettingsPage() {
               Изменение профиля
             </ButtonLight>
           </div>
-          <div className="profileSettingsButtonWrapper">
+          {/* <div className="profileSettingsButtonWrapper">
             <ButtonLight isSelected={selectedTab == 1}>
               Управление аккаунтом
             </ButtonLight>
-          </div>
+          </div> */}
         </div>
         {selectedTab == 0 && <ProfileSettingsTab profile={profile} />}
       </div>

@@ -90,13 +90,13 @@ export default function IdeaPreviewPageMobile({
                 closeFunc={closeShareModal}
               ></IdeaSharingModal>
             )}
-            {currentProfile.id != -1 && (
-              <SmallRoundButton
-                size={smallButtonSize}
-                marginRight={smallButtonsMargin}
-                imgSrc={GetLocalImageSrc("option.png")}
-              ></SmallRoundButton>
-            )}
+            {/* {currentProfile.id != -1 && (
+                <SmallRoundButton
+                  size={smallButtonSize}
+                  marginRight={smallButtonsMargin}
+                  imgSrc={GetLocalImageSrc("option.png")}
+                ></SmallRoundButton>
+              )} */}
           </div>
         </div>
         {currentProfile.id != -1 && (

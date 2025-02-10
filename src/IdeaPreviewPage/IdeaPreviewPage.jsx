@@ -91,13 +91,13 @@ export default function IdeaPreviewPage({
                   closeFunc={closeShareModal}
                 ></IdeaSharingModal>
               )}
-              {currentProfile.id != -1 && (
+              {/* {currentProfile.id != -1 && (
                 <SmallRoundButton
                   size={smallButtonSize}
                   marginRight={smallButtonsMargin}
                   imgSrc={GetLocalImageSrc("option.png")}
                 ></SmallRoundButton>
-              )}
+              )} */}
             </div>
             {currentProfile.id != -1 && (
               <div className="saveButtonBlock">

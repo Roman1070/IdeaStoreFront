@@ -121,6 +121,7 @@
 .saveButtonBlock {
   display: flex;
   flex-direction: row;
+  padding-left: 20px;
 }
 .previewImageLikesGroup {
   display: flex;

@@ -9,12 +9,14 @@ import {
 } from "../requests";
 import BoardsScroll from "../BoardsScroll/BoardsScroll";
 import {
+  AspectRatio,
   GetImageSrc,
   GetLocalImageSrc,
   GetSavedIdeasThrottled,
   UpdateIdeasSessionStorage,
 } from "../utils";
 import { Link } from "react-router-dom";
+import ProfileBlockOnSavedIdeas from "./ProfileBlockOnSavedIdeas";
 
 export default function SavedIdeasPage() {
   function onBoardCreated() {
@@ -75,27 +77,11 @@ export default function SavedIdeasPage() {
         <div className="upperModalBlock">
           <div className="upperHeader">
             <span className="savedIdeasHeader">Ваши сохраненные идеи</span>
-            <div className="profileBlockOnSavedIdeas">
-              <img
-                className="profilePictureOnSavedIdeas"
-                src={
-                  profile.avatarImage
-                    ? GetImageSrc(profile.avatarImage)
-                    : GetLocalImageSrc("user.png")
-                }
-                alt=""
-              />
-              <div className="usernameBlockInSavedIdeas">
-                <div className="usernameInSavedIdeas">{profile.name}</div>
-                <div>0 подписок</div>
-              </div>
-              <Link to="/my_profile" className="openProfileButtonInSavedIdeas">
-                <span className="openProfileButtonInSavedIdeasText">
-                  Открыть профиль
-                </span>
-              </Link>
-            </div>
+            {AspectRatio() >= 1 && (
+              <ProfileBlockOnSavedIdeas profile={profile} />
+            )}
           </div>
+          {AspectRatio() < 1 && <ProfileBlockOnSavedIdeas profile={profile} />}
           <div
             style={{
               display: "flex",

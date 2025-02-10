@@ -89,11 +89,7 @@ export default function SavedIdeasPage() {
                 <div className="usernameInSavedIdeas">{profile.name}</div>
                 <div>0 подписок</div>
               </div>
-              <Link
-                replace
-                to="/my_profile"
-                className="openProfileButtonInSavedIdeas"
-              >
+              <Link to="/my_profile" className="openProfileButtonInSavedIdeas">
                 <span className="openProfileButtonInSavedIdeasText">
                   Открыть профиль
                 </span>

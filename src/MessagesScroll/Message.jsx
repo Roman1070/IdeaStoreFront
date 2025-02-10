@@ -41,7 +41,6 @@ export default function Message({ message, theirProfile, currentProfile }) {
             ></img>
             {message.idea_id && (
               <Link
-                replace
                 reloadDocument
                 to={`/idea/${message.idea_id}`}
                 className="messageImageLink"
@@ -60,7 +59,6 @@ export default function Message({ message, theirProfile, currentProfile }) {
             ></video>
             {message.idea_id && (
               <Link
-                replace
                 reloadDocument
                 to={`/idea/${message.idea_id}`}
                 className="messageImageLink"

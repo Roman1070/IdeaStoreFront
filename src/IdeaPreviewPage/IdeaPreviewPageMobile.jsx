@@ -123,7 +123,6 @@ export default function IdeaPreviewPageMobile({
           </div>
         )}
         <Link
-          replace
           to={idea.link}
           target="_blank"
           rel="noopener noreferrer"
@@ -131,6 +130,7 @@ export default function IdeaPreviewPageMobile({
             padding: "0 16px",
             textDecoration: "none",
             color: "black",
+            marginTop: "20px",
           }}
         >
           {idea.link}
@@ -149,13 +149,12 @@ export default function IdeaPreviewPageMobile({
             }
           ></img>
           {author.id == currentProfile.id && (
-            <Link replace to={`/my_profile`} className="previewIdeaAuthorName">
+            <Link to={`/my_profile`} className="previewIdeaAuthorName">
               {author.name}
             </Link>
           )}
           {author.id != currentProfile.id && (
             <Link
-              replace
               to={`/profile/${author.id}`}
               className="previewIdeaAuthorName"
             >
@@ -165,9 +164,8 @@ export default function IdeaPreviewPageMobile({
         </div>
         {idea.link && (
           <Link
-            replace
-            className="previewIdeaOpenLinkButton"
             to={idea.link}
+            className="previewIdeaOpenLinkButton"
             target="_blank"
             rel="noopener noreferrer"
           >

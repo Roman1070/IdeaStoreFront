@@ -13,7 +13,6 @@ export default function SmallRoundButton({
   if (isLink)
     return (
       <Link
-        replace
         to={href}
         style={{
           width: `${size}px`,

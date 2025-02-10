@@ -99,11 +99,7 @@ export default function BoardCard({
         <span className="boardCardIdeasCount">
           {ideas && ideas.length} {ideas && Morph(ideas.length)}
         </span>
-        <Link
-          replace
-          to={`/board/${boardData.id}`}
-          className="boardLink"
-        ></Link>
+        <Link to={`/board/${boardData.id}`} className="boardLink"></Link>
       </div>
     );
 }

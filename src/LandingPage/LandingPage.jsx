@@ -43,6 +43,7 @@ export default function LandingPage() {
           disableSave={true}
           loadNewIdeasFunc={(colsCount) => onScrolledDown(colsCount)}
           ideas={ideas}
+          visibleScrollSize={window.innerHeight - 80}
         ></IdeasScroll>
       </div>
     );

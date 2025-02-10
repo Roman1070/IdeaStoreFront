@@ -10,6 +10,16 @@ export default function MyProfilePage() {
   const [profile, setProfile] = useState();
   const [boards, setBoards] = useState();
   const [ideas, setIdeas] = useState();
+  const [boardsParent, setBoardsParent] = useState(
+    document.getElementById("boardsParent")
+  );
+
+  var boardsParentHeight = 266;
+  if (boardsParent) {
+    boardsParentHeight = boardsParent.offsetHeight;
+  } else {
+    setBoardsParent(document.getElementById("boardsParent"));
+  }
   if (!profile && !boards && !ideas)
     GetCurrentProfile((json) => {
       GetBoards(json.id, (boardsJson) => {
@@ -53,7 +63,11 @@ export default function MyProfilePage() {
           }}
         ></div>
         <span className="myProfileLabel">Идеи</span>,
-        <IdeasScroll disableSave={true} ideas={ideas}></IdeasScroll>
+        <IdeasScroll
+          disableSave={true}
+          ideas={ideas}
+          visibleScrollSize={window.innerHeight - 430 - boardsParentHeight}
+        ></IdeasScroll>
       </div>
     );
 }

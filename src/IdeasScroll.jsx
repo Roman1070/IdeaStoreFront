@@ -9,6 +9,7 @@ export default function IdeasScroll({
   startBoardId,
   disableSave,
   loadNewIdeasFunc,
+  visibleScrollSize,
 }) {
   function scrollHandler() {
     if (scrollView) {
@@ -23,7 +24,6 @@ export default function IdeasScroll({
     }
   }
 
-  var visibleScrollSize = window.innerHeight - 80;
   const [currentCard, setCurrentCard] = useState(null);
   var ideaWidth = Math.floor(
     AspectRatio() > 1 ? window.innerWidth / 7 : window.innerWidth / 3

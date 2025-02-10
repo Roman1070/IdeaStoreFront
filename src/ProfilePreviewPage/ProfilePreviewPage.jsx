@@ -143,7 +143,11 @@ export default function ProfilePreviewPage() {
           </ButtonLight>
         </div>
         {selectedTab == 0 && (
-          <IdeasScroll disableSave={true} ideas={ideas}></IdeasScroll>
+          <IdeasScroll
+            disableSave={true}
+            ideas={ideas}
+            visibleScrollSize={window.innerHeight - 430}
+          ></IdeasScroll>
         )}
         {selectedTab == 1 && <BoardsScroll boards={boards}></BoardsScroll>}
       </div>

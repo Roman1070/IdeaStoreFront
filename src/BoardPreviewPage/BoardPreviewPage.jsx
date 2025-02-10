@@ -43,6 +43,7 @@ export default function BoardPreviewPage() {
             disableSave={true}
             ideas={ideas}
             startBoardId={id}
+            visibleScrollSize={window.innerHeight - 240}
           ></IdeasScroll>
         )}
       </>

@@ -11,12 +11,6 @@
   margin-bottom: 30px;
 }
 
-.upperHeader {
-  margin-top: 20px;
-  margin-bottom: 40px;
-  display: flex;
-  justify-content: space-between;
-}
 .profilePictureOnSavedIdeas {
   width: 60px;
   height: 60px;
@@ -28,10 +22,29 @@
   flex-direction: row;
   align-items: center;
 }
-
-.savedIdeasHeader {
-  font-size: 36px;
-  font-weight: 500;
+@media (min-aspect-ratio: 1) {
+  .savedIdeasHeader {
+    font-size: 36px;
+    font-weight: 500;
+  }
+  .upperHeader {
+    margin-top: 20px;
+    margin-bottom: 40px;
+    display: flex;
+    justify-content: space-between;
+  }
+}
+@media (max-aspect-ratio: 0.999) {
+  .savedIdeasHeader {
+    font-size: 24px;
+    font-weight: 500;
+  }
+  .upperHeader {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+  }
 }
 
 .usernameInSavedIdeas {

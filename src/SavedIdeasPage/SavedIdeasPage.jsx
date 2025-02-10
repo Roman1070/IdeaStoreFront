@@ -55,6 +55,15 @@ export default function SavedIdeasPage() {
   const [boards, setBoards] = useState();
   const [selectedTab, setSelectedTab] = useState(0);
   const [profile, setProfile] = useState();
+  const [upperModalBlock, setUpperModalBlock] = useState(
+    document.getElementById("savedIdeasUpperModalBlock")
+  );
+  var upperModalBlockHeight = 183;
+  if (upperModalBlock) {
+    upperModalBlockHeight = upperModalBlock.offsetHeight;
+  } else {
+    setUpperModalBlock(document.getElementById("savedIdeasUpperModalBlock"));
+  }
   if (!ideas && !profile) {
     let ideasToLoad = 50;
     GetCurrentProfile((json) => {
@@ -79,7 +88,7 @@ export default function SavedIdeasPage() {
           height: `${window.innerHeight - 80}px`,
         }}
       >
-        <div className="upperModalBlock">
+        <div className="upperModalBlock" id="savedIdeasUpperModalBlock">
           <div className="upperHeader">
             <span className="savedIdeasHeader">Ваши сохраненные идеи</span>
             {AspectRatio() >= 1 && (
@@ -121,6 +130,7 @@ export default function SavedIdeasPage() {
             saved={true}
             ideas={ideas}
             loadNewIdeasFunc={onScrolledDown}
+            visibleScrollSize={window.innerHeight - upperModalBlockHeight - 80}
           ></IdeasScroll>
         )}
         {selectedTab == 1 && (

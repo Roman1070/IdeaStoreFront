@@ -64,6 +64,7 @@ export default function Homepage() {
             loadNewIdeasFunc={(colsCount) => onScrolledDown(colsCount)}
             availableBoards={boards}
             ideas={foundIdeas && searchInput ? foundIdeas : ideas}
+            visibleScrollSize={window.innerHeight - 80}
           ></IdeasScroll>
         )}
       </>

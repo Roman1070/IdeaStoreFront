@@ -20,7 +20,7 @@ export default function BoardsScroll({
     setCurrentBoard(null);
   }
   return (
-    <div className="boardsParent">
+    <div className="boardsParent" id="boardsParent">
       {displayPopup && (
         <CreateBoardModal
           onClose={() => {

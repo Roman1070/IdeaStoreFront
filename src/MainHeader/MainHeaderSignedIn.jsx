@@ -97,7 +97,7 @@ export default function MainHeaderSignedIn({
             {AspectRatio() < 1 && (
               <SmallRoundButton
                 href={"/create"}
-                size={32}
+                size={smallButtonSize}
                 isLink={true}
                 imgSrc={GetLocalImageSrc("plus.png")}
               ></SmallRoundButton>

@@ -1,5 +1,6 @@
 .savedIdeasPage {
   width: 100%;
+  overflow: hidden;
 }
 
 .upperModalBlock {

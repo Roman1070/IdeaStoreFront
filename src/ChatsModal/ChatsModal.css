@@ -13,7 +13,7 @@
 @media (max-aspect-ratio: 0.999) {
   .chatModalBlock {
     position: fixed;
-    height: 60%;
+    height: 80%;
     width: 300px;
     display: grid;
     right: 20px;

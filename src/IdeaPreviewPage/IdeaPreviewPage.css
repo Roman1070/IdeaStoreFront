@@ -27,6 +27,13 @@
   flex-direction: column;
   background-color: rgba(0, 0, 0, 0.05);
 }
+.previewIdeaImageHolderMobile {
+  width: 100%;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(0, 0, 0, 0.05);
+}
 .previewIdeaBlockImage {
   max-width: 100%;
   max-height: 100%;
@@ -46,6 +53,13 @@
   width: 50%;
   position: relative;
 }
+.previewIdeaDataBlockMobile {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  position: relative;
+  padding-bottom: 30px;
+}
 .previewIdeaDataHeader {
   margin-top: 10px;
   padding: 0 10px 0 8px;
@@ -63,33 +77,15 @@
   margin-right: 10px;
   position: relative;
 }
-@media (max-width: 760px) {
-  .previewImageButtonsGroup {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: relative;
-  }
+.previewImageButtonsGroup {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: relative;
 }
-@media (min-width: 761px) {
-  .previewImageButtonsGroup {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    position: relative;
-  }
-}
-@media (max-width: 920px) {
-  .saveButtonBlock {
-    display: flex;
-    flex-direction: column;
-  }
-}
-@media (min-width: 921px) {
-  .saveButtonBlock {
-    display: flex;
-    flex-direction: row;
-  }
+.saveButtonBlock {
+  display: flex;
+  flex-direction: row;
 }
 .previewImageLikesGroup {
   display: flex;
@@ -103,7 +99,6 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding-bottom: 4px;
 }
 .previewIdeaName {
   font-weight: 600;
@@ -210,4 +205,8 @@
 
   max-height: 450px;
   margin: 0 16px 60px 16px;
+}
+
+.previewIdeaBlockMobileWrapper {
+  overflow: hidden auto;
 }

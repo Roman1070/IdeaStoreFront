@@ -33,7 +33,9 @@ export default function MainHeaderGuest() {
               }}
             />
           )}
-          <div className="appName">IdeaStore</div>
+          <div className="appName" onClick={() => window.location.assign("/")}>
+            IdeaStore
+          </div>
           {window.innerWidth > 600 && (
             <span
               style={{

@@ -86,12 +86,21 @@ export default function MainHeaderSignedIn({
               position: "relative",
             }}
           >
-            <ButtonLight
-              url={"/create"}
-              isSelected={window.location.pathname === "/create"}
-            >
-              Создать
-            </ButtonLight>
+            {AspectRatio() >= 1 && (
+              <ButtonLight
+                url={"/create"}
+                isSelected={window.location.pathname === "/create"}
+              >
+                Создать
+              </ButtonLight>
+            )}
+            {AspectRatio() < 1 && (
+              <SmallRoundButton
+                href={"/create"}
+                size={32}
+                imgSrc={GetLocalImageSrc("plus.png")}
+              ></SmallRoundButton>
+            )}
           </span>
           <SearchInputField
             onFoundIdeasChanged={onFoundIdeasChanged}

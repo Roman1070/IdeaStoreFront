@@ -1,12 +1,26 @@
-.chatModalBlock {
-  position: fixed;
-  height: 60%;
-  width: 362px;
-  display: grid;
-  right: 20px;
-  top: 70px;
-  place-items: center;
-  z-index: 5;
+@media (min-aspect-ratio: 1) {
+  .chatModalBlock {
+    position: fixed;
+    height: 60%;
+    width: 362px;
+    display: grid;
+    right: 20px;
+    top: 70px;
+    place-items: center;
+    z-index: 5;
+  }
+}
+@media (max-aspect-ratio: 0.999) {
+  .chatModalBlock {
+    position: fixed;
+    height: 60%;
+    width: 300px;
+    display: grid;
+    right: 20px;
+    top: 70px;
+    place-items: center;
+    z-index: 5;
+  }
 }
 
 .chatModalContainer {

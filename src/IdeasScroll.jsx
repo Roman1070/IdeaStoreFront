@@ -24,7 +24,7 @@ export default function IdeasScroll({
   var visibleScrollSize = window.innerHeight - 80;
   const [currentCard, setCurrentCard] = useState(null);
   var ideaWidth = Math.floor(
-    AspectRatio() > 1 ? window.innerWidth / 7 : window.innerWidth / 2
+    AspectRatio() > 1 ? window.innerWidth / 7 : window.innerWidth / 3
   );
   const marginHor = 10;
   const minIdeaWidth = AspectRatio() > 1 ? 284 : 160;

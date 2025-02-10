@@ -1,7 +1,13 @@
 import { useState } from "react";
 import "./ChatsModal.css";
 import ChatsModalElement from "./ChatsModelElement";
-import { debounce, GetImageSrc, GetLocalImageSrc, throttle } from "../utils";
+import {
+  AspectRatio,
+  debounce,
+  GetImageSrc,
+  GetLocalImageSrc,
+  throttle,
+} from "../utils";
 import SmallRoundButton from "../SmallRoundButton/SmallRoundButton";
 import { GetMessages, SearchProfiles, SendMessage } from "../requests";
 import MessagesScroll from "../MessagesScroll/MessagesScroll";
@@ -53,7 +59,7 @@ export default function ChatsModal({
         {!selectedChat && (
           <div className="chatModalBlockHeader">
             <SmallRoundButton
-              marginRight={searching ? 20 : 50}
+              marginRight={searching || AspectRatio() < 1 ? 20 : 50}
               size={48}
               imgSrc={GetLocalImageSrc("leftArrow.png")}
               onClick={() => {

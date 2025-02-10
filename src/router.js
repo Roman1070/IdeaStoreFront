@@ -51,6 +51,7 @@ import MyProfilePage from "./MyProfilePage/MyProfilePage";
 import ProfileSettingsPage from "./ProfileSettingsPage/ProfileSettingsPage";
 import { useState } from "react";
 import HomepageWrapper from "./Homepage/HomepageWrapper";
+import IdeaPreviewPageWrapper from "./IdeaPreviewPage/IdeaPreviewPageWrapper";
 
 export const router = createBrowserRouter([
   {
@@ -59,7 +60,7 @@ export const router = createBrowserRouter([
       { path: "/", element: <HomepageWrapper /> },
       { path: "/create", element: <CreatePage /> },
       { path: "/saved_ideas", element: <SavedIdeasPage /> },
-      { path: "/idea/*", element: <IdeaPreviewPage /> },
+      { path: "/idea/*", element: <IdeaPreviewPageWrapper /> },
       { path: "/board/*", element: <BoardPreviewPage /> },
       { path: "/profile/*", element: <ProfilePreviewPage /> },
       { path: "/my_profile", element: <MyProfilePage /> },

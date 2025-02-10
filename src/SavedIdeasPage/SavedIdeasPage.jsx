@@ -71,7 +71,7 @@ export default function SavedIdeasPage() {
 
   if (ideas && profile && profile.id != -1)
     return (
-      <>
+      <div className="savedIdeasPage">
         <div className="upperModalBlock">
           <div className="upperHeader">
             <span className="savedIdeasHeader">Ваши сохраненные идеи</span>
@@ -141,6 +141,6 @@ export default function SavedIdeasPage() {
             onBoardRemoved={onBoardRemoved}
           ></BoardsScroll>
         )}
-      </>
+      </div>
     );
 }

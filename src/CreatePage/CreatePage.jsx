@@ -93,8 +93,10 @@ export default function CreatePage() {
     files.forEach((file) => {
       const reader = new FileReader();
       reader.onload = (ev) => {
-        setPreviewSrc(ev.target.result);
-        setPreviewSrcError("");
+        if (ev.target.result) {
+          setPreviewSrc(ev.target.result);
+          setPreviewSrcError("");
+        }
       };
       reader.readAsDataURL(file);
     });

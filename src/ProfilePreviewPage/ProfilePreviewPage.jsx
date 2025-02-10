@@ -125,7 +125,6 @@ export default function ProfilePreviewPage() {
                 </button>
               </div>
             )}
-            <button className="subscribeButton">Подписаться</button>
           </div>
         )}
         <div className="profilePreviewPageTabs">

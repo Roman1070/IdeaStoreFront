@@ -7,22 +7,45 @@
   width: 100%;
   overflow: hidden;
 }
-.profilePreviewPageAvatar {
-  height: 160px;
-  width: 160px;
-  border-radius: 999px;
+@media (min-aspect-ratio: 1) {
+  .profilePreviewPageAvatar {
+    height: 160px;
+    width: 160px;
+    border-radius: 999px;
+  }
+  .profilePreviewPageName {
+    font-size: 36px;
+    font-weight: 500;
+  }
+  .profilePreviewPageButtons {
+    display: flex;
+    flex-direction: row;
+    height: 60px;
+    width: 384px;
+    margin-top: 20px;
+    position: relative;
+    justify-content: center;
+  }
 }
-.profilePreviewPageName {
-  font-size: 36px;
-  font-weight: 500;
-}
-.profilePreviewPageButtons {
-  display: flex;
-  flex-direction: row;
-  height: 60px;
-  width: 384px;
-  margin-top: 20px;
-  position: relative;
+@media (max-aspect-ratio: 0.999) {
+  .profilePreviewPageAvatar {
+    height: 60px;
+    width: 60px;
+    border-radius: 999px;
+  }
+  .profilePreviewPageName {
+    font-size: 24px;
+    font-weight: 500;
+  }
+  .profilePreviewPageButtons {
+    display: flex;
+    flex-direction: row;
+    height: 60px;
+    width: 284px;
+    margin-top: 20px;
+    position: relative;
+    justify-content: center;
+  }
 }
 .sendMessageButton {
   background-color: #ddd;

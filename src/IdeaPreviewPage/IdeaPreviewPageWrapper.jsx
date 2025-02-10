@@ -35,8 +35,6 @@ export default function IdeaPreviewPageWrapper() {
   const [liked, setLiked] = useState();
   const [likesCount, setLikesCount] = useState();
 
-  console.log(idea);
-
   function toggleLike() {
     if (currentProfile && currentProfile.id != -1)
       ToggleLike(index, (resp) => {

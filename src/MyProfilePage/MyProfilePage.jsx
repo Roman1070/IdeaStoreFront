@@ -54,7 +54,9 @@ export default function MyProfilePage() {
         </div>
         <span className="myProfileName">{profile.name}</span>
         <div className="myProfileButtonsBlock">
-          <ButtonLight onClick={onShareClicked}>Поделиться</ButtonLight>
+          <ButtonLight onClick={onShareClicked}>
+            {copied ? "Скопировано" : "Поделиться"}
+          </ButtonLight>
           <div
             style={{
               width: "30px",

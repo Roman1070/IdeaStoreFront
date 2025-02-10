@@ -60,68 +60,68 @@ export default function IdeaPreviewPageMobile({
       </div>
       <div className="previewIdeaDataBlockMobile">
         <div className="previewIdeaDataHeader">
-          {currentProfile.id != -1 && (
-            <div className="saveButtonBlock">
-              {boards && boards.length > 0 && (
-                <div className="previewPageSelectBoardButtonHolder">
-                  <SelectBoardToSaveButton
-                    saved={saved}
-                    setSelectedBoard={setSelectedBoard}
-                    availableBoards={boards}
-                    startBoardId={boardId}
-                    startBoardName={boardName}
-                  ></SelectBoardToSaveButton>
-                </div>
-              )}
-              <div className="previewPageSaveButtonHolder">
-                <SaveIdeaButton
-                  onSaved={onSaveToggle}
-                  saved={saved}
-                  board={boardId}
-                  index={index}
-                ></SaveIdeaButton>
+          <div className="previewImageButtonsGroup">
+            <div className="previewImageLikesGroup">
+              <SmallRoundButton
+                size={smallButtonSize}
+                marginRight={smallButtonsMargin}
+                onClick={toggleLike}
+                imgSrc={GetLocalImageSrc(liked ? "heartRed.png" : "heart.png")}
+              ></SmallRoundButton>
+              <div className="likesCount">
+                {likesCount && likesCount > 0 && likesCount}
+                {!likesCount && idea.likes > 0 && idea.likes}
               </div>
             </div>
-          )}
-        </div>
-        <div className="previewImageButtonsGroup">
-          <div className="previewImageLikesGroup">
             <SmallRoundButton
               size={smallButtonSize}
               marginRight={smallButtonsMargin}
-              onClick={toggleLike}
-              imgSrc={GetLocalImageSrc(liked ? "heartRed.png" : "heart.png")}
+              imgSrc={GetLocalImageSrc(
+                showShareModal ? "shareBlack.png" : "share.png"
+              )}
+              onClick={onShareClicked}
             ></SmallRoundButton>
-            <div className="likesCount">
-              {likesCount && likesCount > 0 && likesCount}
-              {!likesCount && idea.likes > 0 && idea.likes}
+            {showShareModal && (
+              <IdeaSharingModal
+                chats={chats}
+                idea={idea}
+                ideaId={index}
+                currentProfile={currentProfile}
+                closeFunc={closeShareModal}
+              ></IdeaSharingModal>
+            )}
+            {currentProfile.id != -1 && (
+              <SmallRoundButton
+                size={smallButtonSize}
+                marginRight={smallButtonsMargin}
+                imgSrc={GetLocalImageSrc("option.png")}
+              ></SmallRoundButton>
+            )}
+          </div>
+        </div>
+        {currentProfile.id != -1 && (
+          <div className="saveButtonBlock">
+            {boards && boards.length > 0 && (
+              <div className="previewPageSelectBoardButtonHolder">
+                <SelectBoardToSaveButton
+                  saved={saved}
+                  setSelectedBoard={setSelectedBoard}
+                  availableBoards={boards}
+                  startBoardId={boardId}
+                  startBoardName={boardName}
+                ></SelectBoardToSaveButton>
+              </div>
+            )}
+            <div className="previewPageSaveButtonHolder">
+              <SaveIdeaButton
+                onSaved={onSaveToggle}
+                saved={saved}
+                board={boardId}
+                index={index}
+              ></SaveIdeaButton>
             </div>
           </div>
-          <SmallRoundButton
-            size={smallButtonSize}
-            marginRight={smallButtonsMargin}
-            imgSrc={GetLocalImageSrc(
-              showShareModal ? "shareBlack.png" : "share.png"
-            )}
-            onClick={onShareClicked}
-          ></SmallRoundButton>
-          {showShareModal && (
-            <IdeaSharingModal
-              chats={chats}
-              idea={idea}
-              ideaId={index}
-              currentProfile={currentProfile}
-              closeFunc={closeShareModal}
-            ></IdeaSharingModal>
-          )}
-          {currentProfile.id != -1 && (
-            <SmallRoundButton
-              size={smallButtonSize}
-              marginRight={smallButtonsMargin}
-              imgSrc={GetLocalImageSrc("option.png")}
-            ></SmallRoundButton>
-          )}
-        </div>
+        )}
         <Link
           replace
           to={idea.link}

@@ -1,19 +1,43 @@
-.profileSettingsPage {
-  padding-top: 50px;
-  display: flex;
-  flex-direction: row;
+@media (min-aspect-ratio: 1) {
+  .profileSettingsPage {
+    padding-top: 50px;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+  }
+  .profileSettingsPageMenu {
+    width: 640px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 60px;
+    margin-left: 30px;
+  }
+
+  .profileSettingsTab {
+    display: flex;
+    flex-direction: column;
+  }
 }
-.profileSettingsPageMenu {
-  width: 640px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 60px;
-  margin-left: 30px;
-}
-.profileSettingsTab {
-  display: flex;
-  flex-direction: column;
+@media (max-aspect-ratio: 0.999) {
+  .profileSettingsPage {
+    padding-top: 50px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  .profileSettingsPageMenu {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 60px;
+  }
+
+  .profileSettingsTab {
+    display: flex;
+    flex-direction: column;
+    margin: 10px 30px;
+  }
 }
 .profileSettingsTabForm {
   display: flex;
@@ -116,7 +140,7 @@
   background-color: #aaa;
 }
 .profileSettingsTabButtons {
-  margin-top: 10px;
+  margin-top: 15px;
   display: flex;
   flex-direction: row;
 }

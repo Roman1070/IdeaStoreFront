@@ -18,6 +18,7 @@ export default function IdeaCard({
   disableSave,
   margin,
   width,
+  maxHeight,
 }) {
   const [saved, setSaved] = useState(savedDefault);
   const [boardId, setBoardId] = useState(board ? board : -1);
@@ -36,6 +37,7 @@ export default function IdeaCard({
       style={{
         margin: margin,
         width: width,
+        maxHeight: maxHeight,
       }}
     >
       <div

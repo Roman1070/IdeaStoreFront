@@ -54,6 +54,7 @@ export default function IdeasScroll({
   const lastIdea = ideas[ideas.legth - 1];
   var scrollView = document.getElementById("ideasScrollView");
 
+  var maxHeight = ideaWidth * 1.6;
   if (distributionMap)
     return (
       <div
@@ -91,6 +92,7 @@ export default function IdeasScroll({
                         board={idea.board || startBoardId}
                         margin={`0 ${marginHor}px 20px ${marginHor}px`}
                         width={ideaWidth}
+                        maxHeight={maxHeight}
                       />
                     );
                 })}

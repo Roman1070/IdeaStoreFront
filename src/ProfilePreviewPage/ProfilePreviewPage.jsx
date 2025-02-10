@@ -42,25 +42,24 @@ export default function ProfilePreviewPage() {
   const [ideas, setIdeas] = useState([]);
   const [boards, setBoards] = useState([]);
   const [selectedTab, setSelectedTab] = useState(0);
-  if (!profile) {
-    GetProfile(id, (prof) => {
+  if (!profile && !ideas && !boards && !currentProfile) {
+    GetProfile(id, (profile) => {
+      setProfile(profile);
       var ideasIds = [];
-      if (prof) {
-        for (var i = 0; i < prof.savedIdeas.length; i++) {
-          ideasIds.push(prof.savedIdeas[i].ideaId);
+      if (profile) {
+        for (var i = 0; i < profile.savedIdeas.length; i++) {
+          ideasIds.push(profile.savedIdeas[i].ideaId);
         }
       }
-
-      GetIdeas(ideasIds, (ideasJson) => {
-        GetBoards(prof.id, (boardsJson) => {
-          GetCurrentProfile((currentProf) => {
-            setBoards(boardsJson);
-            setProfile(prof);
-            setIdeas(ideasJson);
-            setCurrentProfile(currentProf);
-          });
-        });
+      GetIdeas(ideasIds, (ideas) => {
+        setIdeas(ideas);
       });
+      GetBoards(profile.id, (boards) => {
+        setBoards(boards);
+      });
+    });
+    GetCurrentProfile((currentProfile) => {
+      setCurrentProfile(currentProfile);
     });
   }
 

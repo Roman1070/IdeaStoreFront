@@ -8,9 +8,8 @@ export default function ProfileSettingsPage() {
   const [profile, setProfile] = useState();
   const [selectedTab, setSelectedTab] = useState(0);
   if (!profile) {
-    GetCurrentProfile((profileJson) => {
-      setProfile(profileJson);
-      console.log(profileJson);
+    GetCurrentProfile((currentProfile) => {
+      setProfile(currentProfile);
     });
   }
   if (profile && profile.id != -1)

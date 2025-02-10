@@ -74,48 +74,42 @@ export default function IdeaPreviewPageWrapper() {
 
   const smallButtonSize = 40;
 
-  if (!idea && boards.length == 0) {
+  if (!idea && boards.length == 0 && !chats && !author && !comments && !liked) {
     GetCurrentProfile((prof) => {
+      setCurrentProfile(prof);
       if (prof.id != -1) {
+        GetChats((chatsJson) => {
+          setChats(chatsJson);
+        });
         GetCurrentUsersBoards((b) => {
-          GetIdea(index, (idea) => {
-            GetProfile(idea.userId, (author) => {
-              GetComments(index, (commentsJson) => {
-                GetChats((chatsJson) => {
-                  setChats(chatsJson);
-                  setComments(commentsJson);
-                  setAuthor(author);
-                  setBoards(b);
-                  setIdea(idea);
-                  setCurrentProfile(prof);
-                  IsIdeaLiked(index, (json) => {
-                    setLiked(json.liked);
-                  });
-                  IsIdeaSaved(index, (json) => {
-                    if (Object.hasOwn(json, "err")) {
-                      alert("internal error checking idea saved: " + json.err);
-                    } else {
-                      setSaved(json.saved);
-                      setBoardId(Number(json.boardId));
-
-                      setBoardName(getBoardName(b, Number(json.boardId)));
-                    }
-                  });
-                });
-              });
-            });
+          setBoards(b);
+          IsIdeaSaved(index, (json) => {
+            setSaved(json.saved);
+            setBoardId(Number(json.boardId));
+            setBoardName(getBoardName(b, Number(json.boardId)));
           });
+        });
+        GetIdea(index, (idea) => {
+          setIdea(idea);
+          GetProfile(idea.userId, (author) => {
+            setAuthor(author);
+          });
+        });
+        GetComments(index, (commentsJson) => {
+          setComments(commentsJson);
+        });
+        IsIdeaLiked(index, (json) => {
+          setLiked(json.liked);
         });
       } else {
         GetIdea(index, (idea) => {
-          GetComments(index, (comments) => {
-            GetProfile(idea.userId, (author) => {
-              setIdea(idea);
-              setAuthor(author);
-              setComments(comments);
-              setCurrentProfile(prof);
-            });
+          setIdea(idea);
+          GetProfile(idea.userId, (author) => {
+            setAuthor(author);
           });
+        });
+        GetComments(index, (comments) => {
+          setComments(comments);
         });
       }
     });

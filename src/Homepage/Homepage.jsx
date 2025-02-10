@@ -23,11 +23,11 @@ export default function Homepage() {
   var loadedIdeasCount = 30;
   if (ideas.length == 0 && boards.length == 0) {
     GetAllIdeas(false, loadedIdeasCount, 0, (ideas) => {
-      GetCurrentUsersBoards((json) => {
-        setBoards(json);
-        setIdeas(ideas);
-        UpdateIdeasSessionStorage(ideas, loadedIdeasCount);
-      });
+      setIdeas(ideas);
+      UpdateIdeasSessionStorage(ideas, loadedIdeasCount);
+    });
+    GetCurrentUsersBoards((json) => {
+      setBoards(json);
     });
   }
 

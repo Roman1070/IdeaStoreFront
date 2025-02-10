@@ -11,6 +11,15 @@ export default function MyProfilePage() {
   const [boards, setBoards] = useState();
   const [ideas, setIdeas] = useState();
   const [boardsParentHeight, setBoardsParentHeight] = useState(266);
+  const [copied, setCopied] = useState();
+
+  function onShareClicked() {
+    navigator.clipboard.writeText(
+      `https://ideastore.space/profile/${profile.id}`
+    );
+    setCopied(true);
+  }
+
   setTimeout(() => {
     var boardsParent = document.getElementById("boardsParent");
     if (boardsParent) {
@@ -18,16 +27,18 @@ export default function MyProfilePage() {
     }
   }, 50);
 
-  if (!profile && !boards && !ideas)
-    GetCurrentProfile((json) => {
-      GetBoards(json.id, (boardsJson) => {
-        GetSavedIdeas(150, 0, (ideasJson) => {
-          setIdeas(ideasJson);
-          setBoards(boardsJson);
-          setProfile(json);
-        });
+  if (!profile && !boards && !ideas) {
+    GetCurrentProfile((profile) => {
+      setProfile(profile);
+      GetBoards(profile.id, (boards) => {
+        setBoards(boards);
       });
     });
+    GetSavedIdeas(200, 0, (ideas) => {
+      setIdeas(ideas);
+    });
+  }
+
   if (profile && boards && ideas)
     return (
       <div className="myProfilePage">
@@ -43,7 +54,7 @@ export default function MyProfilePage() {
         </div>
         <span className="myProfileName">{profile.name}</span>
         <div className="myProfileButtonsBlock">
-          <ButtonLight>Поделиться</ButtonLight>
+          <ButtonLight onClick={onShareClicked}>Поделиться</ButtonLight>
           <div
             style={{
               width: "30px",
@@ -60,7 +71,7 @@ export default function MyProfilePage() {
             marginBottom: "30px",
           }}
         ></div>
-        <span className="myProfileLabel">Идеи</span>,
+        <span className="myProfileLabel">Идеи</span>
         <IdeasScroll
           disableSave={true}
           ideas={ideas}

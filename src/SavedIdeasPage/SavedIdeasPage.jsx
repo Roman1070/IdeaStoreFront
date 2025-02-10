@@ -62,12 +62,12 @@ export default function SavedIdeasPage() {
   }
   if (!ideas && !profile) {
     let ideasToLoad = 50;
-    GetCurrentProfile((json) => {
-      GetSavedIdeas(ideasToLoad, 0, (ideas) => {
-        setIdeas(ideas);
-        setProfile(json);
-        UpdateIdeasSessionStorage(JSON.stringify(ideas), ideasToLoad);
-      });
+    GetCurrentProfile((currentProfile) => {
+      setProfile(currentProfile);
+    });
+    GetSavedIdeas(ideasToLoad, 0, (ideas) => {
+      setIdeas(ideas);
+      UpdateIdeasSessionStorage(JSON.stringify(ideas), ideasToLoad);
     });
   }
   if (!boards) {

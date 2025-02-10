@@ -28,10 +28,10 @@ export default function MainHeaderSignedIn({
   const smallButtonMargin = 8;
   if (!profile && !chats) {
     GetCurrentProfile((prof) => {
-      GetChats((chatsJson) => {
-        setProfile(prof);
-        setChats(chatsJson);
-      });
+      setProfile(prof);
+    });
+    GetChats((chatsJson) => {
+      setChats(chatsJson);
     });
   }
 

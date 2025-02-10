@@ -14,7 +14,7 @@ export default function IdeasScroll({
     if (scrollView) {
       if (
         scrollView.children[0].offsetHeight - scrollView.scrollTop <
-        visibleScrollSize * 2
+        window.innerHeight * 2
       ) {
         loadNewIdeasFunc(colsCount);
       }

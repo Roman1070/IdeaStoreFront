@@ -86,7 +86,9 @@ export default function CreatePage() {
     CreateIdea(data, handleAfterSend);
   }
   const changeHandler = (event) => {
-    if (!event.target.files.length) {
+    if (event.target.files) {
+      setPreviewSrc("");
+      setPreviewSrcError("Please, upload at least one file");
       return;
     }
     const files = Array.from(event.target.files);
@@ -153,7 +155,7 @@ export default function CreatePage() {
             <СreateIdeaPreviewImage src={previewSrc}></СreateIdeaPreviewImage>
           )}
           <input
-            id="createPageImageInput"
+            id={CreatePageImageInputId}
             accept="image/bmp,image/gif,image/jpeg,image/png,image/tiff,image/webp,video/mp4,video/webm,video/x-m4v,video/quicktime"
             aria-label="Загрузка файлов"
             multiple=""

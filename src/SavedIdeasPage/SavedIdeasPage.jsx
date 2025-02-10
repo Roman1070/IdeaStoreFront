@@ -73,7 +73,12 @@ export default function SavedIdeasPage() {
 
   if (ideas && profile && profile.id != -1)
     return (
-      <div className="savedIdeasPage">
+      <div
+        className="savedIdeasPage"
+        style={{
+          height: `${window.innerHeight - 80}px`,
+        }}
+      >
         <div className="upperModalBlock">
           <div className="upperHeader">
             <span className="savedIdeasHeader">Ваши сохраненные идеи</span>

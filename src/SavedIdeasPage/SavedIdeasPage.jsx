@@ -55,14 +55,10 @@ export default function SavedIdeasPage() {
   const [boards, setBoards] = useState();
   const [selectedTab, setSelectedTab] = useState(0);
   const [profile, setProfile] = useState();
-  const [upperModalBlock, setUpperModalBlock] = useState(
-    document.getElementById("savedIdeasUpperModalBlock")
-  );
-  var upperModalBlockHeight = 183;
-  if (upperModalBlock) {
-    upperModalBlockHeight = upperModalBlock.offsetHeight;
-  } else {
-    setUpperModalBlock(document.getElementById("savedIdeasUpperModalBlock"));
+  var upperModal = document.getElementById("savedIdeasUpperModalBlock");
+  var upperModalBlockHeight = 193;
+  if (upperModal) {
+    upperModalBlockHeight = upperModal.offsetHeight;
   }
   if (!ideas && !profile) {
     let ideasToLoad = 50;

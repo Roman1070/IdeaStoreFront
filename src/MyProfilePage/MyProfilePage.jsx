@@ -10,12 +10,14 @@ export default function MyProfilePage() {
   const [profile, setProfile] = useState();
   const [boards, setBoards] = useState();
   const [ideas, setIdeas] = useState();
-  var boardsParentHeight = 266;
-  var boardsParent = document.getElementById("boardsParent");
+  const [boardsParentHeight, setBoardsParentHeight] = useState(266);
+  setTimeout(() => {
+    var boardsParent = document.getElementById("boardsParent");
+    if (boardsParent) {
+      setBoardsParentHeight(boardsParent.offsetHeight);
+    }
+  }, 50);
 
-  if (boardsParent) {
-    boardsParentHeight = boardsParent.offsetHeight;
-  }
   if (!profile && !boards && !ideas)
     GetCurrentProfile((json) => {
       GetBoards(json.id, (boardsJson) => {

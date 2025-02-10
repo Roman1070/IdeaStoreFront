@@ -17,7 +17,7 @@ export default function IdeasScroll({
         scrollView.children[0].offsetHeight - scrollView.scrollTop <
         window.innerHeight * 2
       ) {
-        loadNewIdeasFunc(colsCount);
+        if (loadNewIdeasFunc) loadNewIdeasFunc(colsCount);
       }
     } else {
       scrollView = document.getElementById("ideasScrollView");

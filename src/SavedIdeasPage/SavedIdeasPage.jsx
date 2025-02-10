@@ -56,7 +56,7 @@ export default function SavedIdeasPage() {
   const [selectedTab, setSelectedTab] = useState(0);
   const [profile, setProfile] = useState();
   var upperModal = document.getElementById("savedIdeasUpperModalBlock");
-  var upperModalBlockHeight = 193;
+  var upperModalBlockHeight = 183;
   if (upperModal) {
     upperModalBlockHeight = upperModal.offsetHeight;
   }

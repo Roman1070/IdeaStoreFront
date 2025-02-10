@@ -23,6 +23,8 @@ export default function IdeasScroll({
       ) {
         loadNewIdeasFunc(colsCount);
       }
+    } else {
+      scrollView = document.getElementById("ideasScrollView");
     }
   }
 
@@ -55,7 +57,7 @@ export default function IdeasScroll({
   if (ideas) {
   }
   const lastIdea = ideas[ideas.legth - 1];
-  const scrollView = document.getElementById("ideasScrollView");
+  var scrollView = document.getElementById("ideasScrollView");
 
   if (distributionMap)
     return (

@@ -35,6 +35,24 @@
     flex-direction: column;
   }
 }
+@media (max-aspect-ratio: 0.999) {
+  .createBoardModal {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 200px;
+    width: 70%;
+    max-width: 350px;
+    z-index: 11;
+    background-color: white;
+    margin: auto auto;
+    border-radius: 30px;
+    padding: 0 30px;
+    display: flex;
+    flex-direction: column;
+  }
+}
 .createBoardModalHeader {
   margin: 30px auto 10px auto;
   font-size: 32px;

@@ -98,6 +98,7 @@ export default function MainHeaderSignedIn({
               <SmallRoundButton
                 href={"/create"}
                 size={32}
+                isLink={true}
                 imgSrc={GetLocalImageSrc("plus.png")}
               ></SmallRoundButton>
             )}

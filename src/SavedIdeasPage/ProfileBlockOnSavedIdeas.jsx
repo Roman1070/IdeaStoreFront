@@ -15,7 +15,6 @@ export default function ProfileBlockOnSavedIdeas({ profile }) {
       />
       <div className="usernameBlockInSavedIdeas">
         <div className="usernameInSavedIdeas">{profile.name}</div>
-        <div>0 подписок</div>
       </div>
       <Link to="/my_profile" className="openProfileButtonInSavedIdeas">
         <span className="openProfileButtonInSavedIdeasText">

@@ -73,6 +73,10 @@ export default function CreatePage() {
   function onPublishClick() {
     if (!validateInputImage()) return;
     if (!validateName()) return;
+    if (!GetCookie("token")) {
+      setNameError("please, login first");
+      return;
+    }
 
     var data = new FormData();
     var imageData = document.getElementById(CreatePageImageInputId).files[0];

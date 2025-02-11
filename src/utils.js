@@ -156,8 +156,8 @@ export function GetAllIdeasThrottled(ideasToLoad, onComplete) {
     throttleDelay,
     (newIdeas) => {
       if (newIdeas.length > 0) {
-        ResetThrottledFetchDataTimer();
         onComplete(newIdeas);
+        ResetThrottledFetchDataTimer();
       }
     }
   );
@@ -170,8 +170,8 @@ export function GetSavedIdeasThrottled(ideasToLoad, onComplete) {
     throttleDelay,
     (newIdeas) => {
       if (newIdeas.length > 0) {
-        ResetThrottledFetchDataTimer();
         onComplete(newIdeas);
+        ResetThrottledFetchDataTimer();
       }
     }
   );

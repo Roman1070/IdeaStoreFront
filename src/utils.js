@@ -58,7 +58,7 @@ export function Morph(int, array) {
 }
 
 export function IsVideo(src) {
-  const videos = ["mp4", "mkv", "webm"];
+  const videos = ["mp4", "mkv", "webm", "MP4", "MKV", "WEBM"];
   var isVideo = false;
 
   if (!src.includes("base64")) {

@@ -144,13 +144,13 @@ export default function ProfilePreviewPage() {
           <IdeasScroll
             disableSave={true}
             ideas={ideas}
-            visibleScrollSize={window.innerHeight - 430}
+            visibleScrollSize={window.innerHeight - 330}
           ></IdeasScroll>
         )}
         {selectedTab == 1 && (
           <BoardsScroll
             boards={boards}
-            visibleScrollSize={window.innerHeight - 430}
+            visibleScrollSize={window.innerHeight - 330}
           ></BoardsScroll>
         )}
       </div>

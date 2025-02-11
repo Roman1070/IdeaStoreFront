@@ -74,7 +74,8 @@ export default function CreatePage() {
     if (!validateInputImage()) return;
     if (!validateName()) return;
     if (!GetCookie("token")) {
-      setNameError("please, login first");
+      setPreviewSrcError("Please, login first");
+      setNameError("Please, login first");
       return;
     }
 

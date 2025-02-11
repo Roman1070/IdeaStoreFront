@@ -67,6 +67,7 @@ export default function BoardCard({
               >
                 <IdeaPreviewContentHolder
                   height="100%"
+                  muted
                   image={ideas[0].image}
                 ></IdeaPreviewContentHolder>
               </div>
@@ -75,6 +76,7 @@ export default function BoardCard({
           {ideas && ideas.length > 1 && (
             <div className="upper">
               <IdeaPreviewContentHolder
+                muted
                 image={ideas[1].image}
               ></IdeaPreviewContentHolder>
             </div>
@@ -82,6 +84,7 @@ export default function BoardCard({
           {ideas && ideas.length > 2 && (
             <div className="lower">
               <IdeaPreviewContentHolder
+                muted
                 image={ideas[2].image}
               ></IdeaPreviewContentHolder>
             </div>

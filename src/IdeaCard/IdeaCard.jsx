@@ -49,6 +49,7 @@ export default function IdeaCard({
       >
         <IdeaPreviewContentHolder
           expandY={true}
+          muted
           image={idea.image}
         ></IdeaPreviewContentHolder>
       </div>

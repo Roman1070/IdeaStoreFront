@@ -88,7 +88,9 @@ export default function IdeasScroll({
                         index={idea.id}
                         availableBoards={availableBoards}
                         savedDefault={idea.saved || saved}
-                        isSelected={currentCard == idea.id}
+                        isSelected={
+                          AspectRatio() >= 1 && currentCard == idea.id
+                        }
                         board={idea.board || startBoardId}
                         margin={`0 ${marginHor}px 20px ${marginHor}px`}
                         width={ideaWidth}

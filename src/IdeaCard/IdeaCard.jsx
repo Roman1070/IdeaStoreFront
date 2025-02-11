@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import "./IdeaCard.css";
-import { GetCookie, GetImageSrc } from "../utils";
+import { AspectRatio, GetCookie, GetImageSrc } from "../utils";
 import SaveIdeaButton from "./SaveIdeaButton";
 import SelectBoardToSaveButton from "./SelectBoardToSaveButton";
 import IdeaPreviewContentHolder from "../IdeaPreviewPage/IdeaPreviewContentHolder";
